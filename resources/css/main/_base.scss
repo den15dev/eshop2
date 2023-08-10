@@ -24,8 +24,11 @@ body {
 }
 
 a {
-  color: $color1;
   text-decoration: none;
+}
+
+.link {
+  color: $color1;
 
   &:hover {
     color: color($color1, light, 3);

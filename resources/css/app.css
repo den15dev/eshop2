@@ -25,10 +25,13 @@ body {
 }
 
 a {
-  color: #716ef6;
   text-decoration: none;
 }
-a:hover {
+
+.link {
+  color: #716ef6;
+}
+.link:hover {
   color: #9a98fb;
 }
 
@@ -872,7 +875,7 @@ header > .container {
   grid-template-rows: 50px 50px;
   grid-template-areas: "bl l tr" "bc bc bc";
   align-items: center;
-  background-color: #a3c5e6;
+  background-color: #edf0f3;
 }
 @media only screen and (min-width: 992px) {
   header > .container {
@@ -881,7 +884,7 @@ header > .container {
 }
 header .logo {
   grid-area: l;
-  background-color: #e6d2e3;
+  justify-self: center;
 }
 @media only screen and (min-width: 1200px) {
   header .logo {
@@ -891,11 +894,22 @@ header .logo {
 @media only screen and (min-width: 992px) {
   header .logo {
     padding-right: 18px;
+    justify-self: start;
   }
 }
 header .logo img {
   display: block;
   width: var(--logo-width1);
+}
+@media only screen and (min-width: 576px) {
+  header .logo img {
+    width: var(--logo-width2);
+  }
+}
+@media only screen and (min-width: 992px) {
+  header .logo img {
+    width: var(--logo-width1);
+  }
 }
 @media only screen and (min-width: 1200px) {
   header .logo img {
@@ -919,11 +933,16 @@ header .top-right {
 }
 header .bottom-left {
   grid-area: bl;
-  background-color: #74a6e6;
 }
 header .bottom-left .catalog-btn {
   width: var(--logo-width1);
   font-size: 16px;
+  display: none;
+}
+@media only screen and (min-width: 992px) {
+  header .bottom-left .catalog-btn {
+    display: block;
+  }
 }
 @media only screen and (min-width: 1200px) {
   header .bottom-left .catalog-btn {
@@ -935,6 +954,23 @@ header .bottom-left .catalog-btn svg {
   width: 15px;
   height: 14px;
   stroke: #a8a6fc;
+}
+header .bottom-left .catalog-btn-small {
+  display: block;
+  width: 40px;
+  height: 40px;
+  padding: 11px 0;
+}
+header .bottom-left .catalog-btn-small svg {
+  width: 20px;
+  height: 12px;
+  stroke: #a8a6fc;
+  fill: none;
+}
+@media only screen and (min-width: 992px) {
+  header .bottom-left .catalog-btn-small {
+    display: none;
+  }
 }
 header .bottom-center {
   grid-area: bc;

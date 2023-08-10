@@ -16,7 +16,7 @@ header {
             'bl l tr'
             'bc bc bc';
     align-items: center;
-    background-color: #a3c5e6;
+    background-color: #edf0f3;
     @include lg {
       grid-template-areas:
             'l tc tr'
@@ -26,16 +26,23 @@ header {
 
   .logo {
     grid-area: l;
-    background-color: #e6d2e3;
+    justify-self: center;
     @include xl {
       padding-right: 26px;
     }
     @include lg {
       padding-right: 18px;
+      justify-self: start;
     }
     img {
       display: block;
       width: var(--logo-width1);
+      @include sm {
+        width: var(--logo-width2);
+      }
+      @include lg {
+        width: var(--logo-width1);
+      }
       @include xl {
         width: var(--logo-width2);
       }
@@ -59,10 +66,14 @@ header {
 
   .bottom-left {
     grid-area: bl;
-    background-color: #74a6e6;
+
     .catalog-btn {
       width: var(--logo-width1);
       font-size: $cat-btn-font-size;
+      display: none;
+      @include lg {
+        display: block;
+      }
       @include xl {
         width: var(--logo-width2);
         font-size: $cat-btn-font-size * 1.125;
@@ -71,6 +82,22 @@ header {
         width: 15px;
         height: 14px;
         stroke: color($color1, light, 4);
+      }
+    }
+
+    .catalog-btn-small {
+      display: block;
+      width: 40px;
+      height: 40px;
+      padding: 11px 0;
+      svg {
+        width: 20px;
+        height: 12px;
+        stroke: color($color1, light, 4);
+        fill: none;
+      }
+      @include lg {
+        display: none;
       }
     }
   }
