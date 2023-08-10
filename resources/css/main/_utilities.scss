@@ -1,0 +1,43 @@
+$margins: (
+  'm': margin,
+  'mx': margin-left margin-right,
+  'my': margin-top margin-bottom,
+  'mt': margin-top,
+  'me': margin-right,
+  'mb': margin-bottom,
+  'ms': margin-left,
+);
+
+@each $key, $val in $margins {
+  @each $s-key, $s-val in $spacers {
+    .#{$key}-#{$s-key} {
+      @each $prop in $val {
+        #{$prop}: $s-val;
+      }
+    }
+  }
+
+  .#{$key}-auto {
+    @each $prop in $val {
+      #{$prop}: auto;
+    }
+  }
+}
+
+@for $i from 1 to 5 {
+  .va#{$i} {
+    vertical-align: #{$i}px;
+  }
+
+  .va-#{$i} {
+    vertical-align: -#{$i}px;
+  }
+}
+
+.small {
+  font-size: $font-size-sm;
+}
+
+.xsmall {
+  font-size: $font-size-xsm;
+}
