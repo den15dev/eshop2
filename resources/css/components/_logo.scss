@@ -1,0 +1,34 @@
+.logo {
+  display: flex;
+  align-items: center;
+  width: 177px;
+  svg {
+    display: block;
+  }
+  svg:nth-of-type(1) {
+    fill: $color2;
+  }
+  svg:nth-of-type(2) {
+    fill: $color1;
+  }
+}
+
+.logo-ru {
+  column-gap: 2%;
+  svg:nth-of-type(1) {
+    width: 11.5%;
+  }
+  svg:nth-of-type(2) {
+    width: 86.5%;
+  }
+}
+
+.logo-en {
+  column-gap: 2.5%;
+  svg:nth-of-type(1) {
+    width: 12.5%;
+  }
+  svg:nth-of-type(2) {
+    width: 85%;
+  }
+}
