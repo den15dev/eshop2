@@ -84,19 +84,8 @@ h6 {
   padding: 0 0.875rem;
 }
 
-@media only screen and (min-width: 576px) {
-  .container {
-    max-width: 540px;
-  }
-}
-@media only screen and (min-width: 768px) {
-  .container {
-    max-width: 720px;
-  }
-}
 @media only screen and (min-width: 992px) {
   .container {
-    max-width: 960px;
     padding: 0 1rem;
   }
 }
@@ -859,134 +848,191 @@ button:hover, .btn:hover {
 
 main {
   flex-grow: 1;
-}
-
-header {
-  margin-bottom: 1rem;
+  padding-top: 1rem;
 }
 
 header {
   --logo-width1: 138px;
   --logo-width2: 177px;
+  --header-row1-height: 44px;
+  width: 100%;
 }
-header > .container {
+
+.sticky {
+  position: fixed;
+  top: calc(-1 * var(--header-row1-height));
+}
+
+#desktopHeader {
   display: grid;
   grid-template-columns: max-content auto max-content;
-  grid-template-rows: 50px 50px;
-  grid-template-areas: "bl l tr" "bc bc bc";
+  grid-template-rows: 65px;
+  grid-template-areas: "bl l tr";
   align-items: center;
   background-color: #edf0f3;
 }
 @media only screen and (min-width: 992px) {
-  header > .container {
+  #desktopHeader {
+    grid-template-rows: var(--header-row1-height) 58px;
     grid-template-areas: "l tc tr" "bl bc br";
   }
 }
-header .logo {
-  grid-area: l;
-  justify-self: center;
-}
-@media only screen and (min-width: 1200px) {
-  header .logo {
-    padding-right: 26px;
-  }
-}
-@media only screen and (min-width: 992px) {
-  header .logo {
-    padding-right: 18px;
-    justify-self: start;
-  }
-}
-header .logo img {
-  display: block;
-  width: var(--logo-width1);
-}
-@media only screen and (min-width: 576px) {
-  header .logo img {
-    width: var(--logo-width2);
-  }
-}
-@media only screen and (min-width: 992px) {
-  header .logo img {
-    width: var(--logo-width1);
-  }
-}
-@media only screen and (min-width: 1200px) {
-  header .logo img {
-    width: var(--logo-width2);
-  }
-}
-header .top-center {
+#desktopHeader .top-center {
   grid-area: tc;
   display: none;
   background-color: #d3b8f1;
 }
 @media only screen and (min-width: 992px) {
-  header .top-center {
+  #desktopHeader .top-center {
     display: block;
-    padding-right: 18px;
   }
 }
-header .top-right {
+#desktopHeader .top-right {
   grid-area: tr;
   background-color: #b8f1e8;
 }
-header .bottom-left {
+#desktopHeader .bottom-left {
   grid-area: bl;
 }
-header .bottom-left .catalog-btn {
+#desktopHeader .bottom-center {
+  grid-area: bc;
+  display: none;
+  background-color: #81e6bd;
+}
+@media only screen and (min-width: 992px) {
+  #desktopHeader .bottom-center {
+    display: block;
+  }
+}
+#desktopHeader .bottom-right {
+  grid-area: br;
+  display: none;
+  background-color: #c8e6a2;
+}
+@media only screen and (min-width: 992px) {
+  #desktopHeader .bottom-right {
+    display: block;
+  }
+}
+
+.header-logo {
+  grid-area: l;
+  justify-self: center;
+}
+@media only screen and (min-width: 1200px) {
+  .header-logo {
+    padding-right: 26px;
+  }
+}
+@media only screen and (min-width: 992px) {
+  .header-logo {
+    padding-right: 18px;
+    justify-self: start;
+  }
+}
+.header-logo img {
+  display: block;
+  width: var(--logo-width1);
+}
+@media only screen and (min-width: 576px) {
+  .header-logo img {
+    width: var(--logo-width2);
+  }
+}
+@media only screen and (min-width: 992px) {
+  .header-logo img {
+    width: var(--logo-width1);
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .header-logo img {
+    width: var(--logo-width2);
+  }
+}
+
+.catalog-btn {
   width: var(--logo-width1);
   font-size: 16px;
   display: none;
 }
 @media only screen and (min-width: 992px) {
-  header .bottom-left .catalog-btn {
+  .catalog-btn {
     display: block;
   }
 }
 @media only screen and (min-width: 1200px) {
-  header .bottom-left .catalog-btn {
+  .catalog-btn {
     width: var(--logo-width2);
     font-size: 18px;
   }
 }
-header .bottom-left .catalog-btn svg {
+.catalog-btn svg {
   width: 15px;
   height: 14px;
   stroke: #a8a6fc;
 }
-header .bottom-left .catalog-btn-small {
+
+.catalog-btn-small {
   display: block;
   width: 40px;
   height: 40px;
   padding: 11px 0;
 }
-header .bottom-left .catalog-btn-small svg {
+.catalog-btn-small svg {
   width: 20px;
   height: 12px;
   stroke: #a8a6fc;
   fill: none;
 }
 @media only screen and (min-width: 992px) {
-  header .bottom-left .catalog-btn-small {
+  .catalog-btn-small {
     display: none;
   }
 }
-header .bottom-center {
-  grid-area: bc;
-  background-color: #81e6bd;
-}
-header .bottom-right {
-  grid-area: br;
+
+/*
+.header_row1 {
+  background-color: #edf0f3;
   display: none;
-  background-color: #c8e6a2;
-}
-@media only screen and (min-width: 992px) {
-  header .bottom-right {
-    display: block;
+  height: 44px;
+  margin-top: 10px;
+  @include lg {
+    display: flex;
+  }
+
+  .logo-cont {
+    background-color: #e3e6b8;
+  }
+
+  .nav-cont {
+    background-color: #e6cdb8;
+  }
+
+  .lang-cont {
+    background-color: #b8e6d4;
   }
 }
 
+.header_row2 {
+  background-color: #dddaee;
+  display: none;
+  height: 58px;
+  @include lg {
+    display: flex;
+  }
+}
+
+.header_mobile {
+  background-color: #daeedf;
+  display: flex;
+  height: 62px;
+  margin-top: 3px;
+  @include lg {
+    display: none;
+  }
+}
+
+*/
 footer .container {
   background-color: #dcdcdc;
 }
