@@ -8,16 +8,13 @@ header {
   --logo-width1: 138px;
   --logo-width2: 177px;
   --row1-height: 44px;
-  --margin-top: 10px;
+  --desktop-margin-top: 10px;
   width: 100%;
   background-color: white;
-}
-
-.sticky {
-  position: fixed;
+  position: sticky;
   top: 0;
   @include lg {
-    top: calc(-1 * calc(var(--row1-height) + var(--margin-top)));
+    top: calc(-1 * calc(var(--row1-height) + var(--desktop-margin-top)));
   }
 }
 
@@ -27,7 +24,7 @@ header {
 
 #desktopHeader {
   display: none;
-  margin-top: var(--margin-top);
+  margin-top: var(--desktop-margin-top);
   @include lg {
     display: grid;
     grid-template-columns: max-content auto max-content;
@@ -65,19 +62,6 @@ header {
 
 
 .header-logo {
-  /*
-  img {
-    display: block;
-    width: var(--logo-width1);
-    @include lg {
-      width: var(--logo-width1);
-    }
-    @include xl {
-      width: var(--logo-width2);
-    }
-  }
-  */
-
   .logo {
     width: var(--logo-width1);
     @include lg {

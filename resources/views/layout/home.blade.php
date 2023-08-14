@@ -107,26 +107,6 @@
 
         </header>
 
-        <script>
-            const header = document.querySelector('header');
-            const headerRow1Height = parseInt(getComputedStyle(header).getPropertyValue('--row1-height'), 10);
-            const headerMarginTop = parseInt(getComputedStyle(header).getPropertyValue('--margin-top'), 10);
-
-            function stickHeader() {
-                let headerOffsetTop = window.matchMedia('(min-width: 992px)').matches
-                    ? headerRow1Height + headerMarginTop : 0;
-                if (window.pageYOffset > headerOffsetTop) {
-                    header.classList.add("sticky");
-                    document.body.style.paddingTop = header.getBoundingClientRect().height + 'px';
-                } else {
-                    header.classList.remove("sticky");
-                    document.body.style.paddingTop = '0';
-                }
-            }
-
-            window.onscroll = stickHeader;
-        </script>
-
 
 
         <main>
