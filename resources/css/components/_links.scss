@@ -1,0 +1,13 @@
+.link {
+  color: $color1;
+  &:hover {
+    color: color($color1, light, 3);
+  }
+}
+
+.dark-link {
+  color: $text-color;
+  &:hover {
+    color: $color1;
+  }
+}
