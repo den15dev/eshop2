@@ -4,31 +4,49 @@ $header-grey-color2: #b4b4b4; // 180
 $header-grey-color3: #969696; // 150
 $header-grey-color4: #787878; // 120
 
+:root {
+  --header-row1-height: 44px;
+  --header-desktop-margin-top: 10px;
+}
+
 header {
   --logo-width1: 138px;
   --logo-width2: 177px;
-  --row1-height: 44px;
-  --desktop-margin-top: 10px;
   width: 100%;
   background-color: white;
   position: sticky;
   top: 0;
   @include lg {
-    top: calc(-1 * calc(var(--row1-height) + var(--desktop-margin-top)));
+    top: calc(-1 * calc(var(--header-row1-height) + var(--header-desktop-margin-top)));
   }
+  transition: box-shadow 300ms cubic-bezier(0.33, 1, 0.68, 1);
 }
 
+.header-shadow {
+  box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.04);
+}
+
+.shadow-toggler {
+  position: absolute;
+  left: 0;
+  top: 0;
+  @include lg {
+    top: calc(var(--header-row1-height) + var(--header-desktop-margin-top) - 4px);
+  }
+  width: 2px;
+  height: 2px;
+}
 
 
 // -------------------------- Desktop header -----------------------------
 
 #desktopHeader {
   display: none;
-  margin-top: var(--desktop-margin-top);
+  margin-top: var(--header-desktop-margin-top);
   @include lg {
     display: grid;
     grid-template-columns: max-content auto max-content;
-    grid-template-rows: var(--row1-height) 58px;
+    grid-template-rows: var(--header-row1-height) 58px;
     align-items: center;
     column-gap: 18px;
   }
@@ -52,7 +70,6 @@ header {
   }
 
   .bottom-center {
-    background-color: #81e6bd;
   }
 
   .bottom-right {
@@ -73,20 +90,6 @@ header {
   }
 }
 
-.catalog-btn {
-  width: var(--logo-width1);
-  font-size: $cat-btn-font-size;
-  @include xl {
-    width: var(--logo-width2);
-    font-size: $cat-btn-font-size * 1.125;
-  }
-  svg {
-    width: 15px;
-    height: 14px;
-    stroke: color($color1, light, 4);
-    fill: none;
-  }
-}
 
 
 
@@ -95,22 +98,9 @@ header {
 #mobileHeader {
   display: flex;
   align-items: center;
-  height: 65px;
+  height: 67px;
   @include lg {
     display: none;
-  }
-}
-
-.catalog-btn-small {
-  display: block;
-  width: 40px;
-  height: 40px;
-  padding: 11px 0;
-  svg {
-    width: 20px;
-    height: 12px;
-    stroke: color($color1, light, 4);
-    fill: none;
   }
 }
 
@@ -122,22 +112,5 @@ header {
     @include sm {
       width: var(--logo-width2);
     }
-  }
-}
-
-.search-btn-mobile {
-  display: block;
-  width: 40px;
-  height: 40px;
-  padding: 5px 0;
-  background: none;
-  &:hover {
-    background: none;
-  }
-  svg {
-    width: 29px;
-    height: 29px;
-    stroke: $header-grey-color1;
-    fill: none;
   }
 }

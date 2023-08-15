@@ -25,15 +25,30 @@ body {
 
 a {
   text-decoration: none;
+  color: $text-color;
 }
 
-.link {
-  color: $color1;
 
-  &:hover {
-    color: color($color1, light, 3);
-  }
+// ---------- Forms -----------
+
+label {
+  display: inline-block;
 }
+
+input,
+button,
+select,
+optgroup,
+textarea {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+
+
+// --------- Headers -----------
 
 @each $size, $mult in $h-font-sizes {
   h#{$size} {
@@ -44,20 +59,29 @@ a {
   }
 }
 
+
+// --------- Container -------------
+
 .container {
   display: block;
   width: 100%;
   margin: 0 auto;
-  padding: 0 0.875rem;
+  padding: 0 1rem;
 }
 
 @each $key, $val in $breakpoints {
   @media only screen and (min-width: $val) {
     .container {
       max-width: map-get($container-max-widths, $key);
-      @if $key == lg {
-        padding: 0 1rem;
-      }
     }
   }
+}
+
+
+// --------- Lists -------------
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }

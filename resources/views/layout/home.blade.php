@@ -58,6 +58,10 @@
                     <path d="M20.75 20.75L27 27" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M2 12.7143C2 18.6316 6.79695 23.4286 12.7143 23.4286C15.678 23.4286 18.3609 22.2252 20.3005 20.2804C22.2336 18.3423 23.4286 15.6679 23.4286 12.7143C23.4286 6.79695 18.6316 2 12.7143 2C6.79695 2 2 6.79695 2 12.7143Z" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                 </symbol>
+
+                <symbol viewBox="0 0 23 23" id="closeIcon">
+                    <path d="M1.79999 21L11.4 11.4001M11.4 11.4001L21 1.80002M11.4 11.4001L1.79999 1.80002M11.4 11.4001L21 21" stroke-linecap="round" stroke-linejoin="round"/>
+                </symbol>
             </svg>
 
 
@@ -79,20 +83,30 @@
                 <div class="top-right">Top right</div>
 
                 <div class="bottom-left">
-                    <button class="catalog-btn">
+                    <button class="btn catalog-btn" id="catalogBtnDesktop">
                         Каталог
-                        <svg class="ms-2 va-1"><use href="#catalogList" /></svg>
+                        <svg class="svg-catalog-list"><use href="#catalogList" /></svg>
+                        <svg class="svg-close"><use href="#closeIcon" /></svg>
                     </button>
                 </div>
-                <div class="bottom-center">Search input</div>
+                <div class="bottom-center">
+                    <form class="search-form" method="GET" action="">
+                        <div class="search_results_cont" id="search_result_cont"></div>
+                        <input class="search_input bordered" name="query" placeholder="Поиск" autocomplete="off" id="search_input">
+                        <span class="btn-icon clear_btn icon-x-lg" id="clear_btn"></span>
+                        <button class="btn-icon search_btn" type="submit">
+                            <svg><use href="#searchIcon" /></svg>
+                        </button>
+                    </form>
+                </div>
                 <div class="bottom-right">User menu icons go here</div>
             </div>
 
 
-
             <div class="container" id="mobileHeader">
-                <button class="catalog-btn-small">
-                    <svg><use href="#catalogChevronDown" /></svg>
+                <button class="btn catalog-btn-mobile" id="catalogBtnMobile">
+                    <svg class="svg-chevron-down"><use href="#catalogChevronDown" /></svg>
+                    <svg class="svg-close"><use href="#closeIcon" /></svg>
                 </button>
                 <div class="header-logo-mobile">
                     <a href="{{ route('home') }}" class="logo logo-ru">
@@ -100,12 +114,46 @@
                         <svg viewBox="0 0 155 26"><use href="#logoTitleRu" /></svg>
                     </a>
                 </div>
-                <button class="search-btn-mobile">
+                <button class="btn-icon search-btn-mobile">
                     <svg><use href="#searchIcon" /></svg>
                 </button>
             </div>
 
+
+            <div class="catalog-nav-cont" id="catalogNavCont">
+                <div class="container" id="catalogNavDesktop">
+                    <ul>
+                        <li>Компьютерные комплектующие</li>
+                        <li>Бытовая техника</li>
+                        <li>Телевизоры и аксессуары</li>
+                    </ul>
+                </div>
+
+                <div class="container" id="catalogNavMobile">
+                    <ul>
+                        <li>М - Компьютерные комплектующие</li>
+                        <li>М - Бытовая техника</li>
+                        <li>М - Телевизоры и аксессуары</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="catalog-nav-tint"></div>
+
         </header>
+
+
+        <div class="shadow-toggler"></div>
+
+        <script>
+            const header = document.querySelector('header');
+            const shadowToggler = document.querySelector('.shadow-toggler');
+            const observer = new IntersectionObserver(([entry]) => {
+                header.classList.toggle('header-shadow', !entry.isIntersecting);
+            });
+
+            observer.observe(shadowToggler);
+        </script>
 
 
 
@@ -130,14 +178,60 @@
                     To maintain the stable operation of the AMD Ryzen 5 5600X BOX processor and prevent it from overheating, it comes with a cooling system and a thermal interface applied to the base of the radiator.
                 </div>
 
+                <div class="row">
+                    <div class="col-12 col-lg-6">
+                        <div class="mb-4">
+                            <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                            <div id="exampleFormControlInput1" class="form-text">
+                                Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+                            </div>
+                        </div>
+
+                        <div class="form-check form-switch mb-4">
+                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked1" checked>
+                            <label class="form-check-label" for="flexSwitchCheckChecked1">Checked switch checkbox input</label>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-6">
+                        <div class="mb-4">
+                            <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                            <div id="exampleFormControlInput1" class="form-text">
+                                Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+                            </div>
+                        </div>
+
+                        <div class="form-check form-switch mb-4">
+                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked2" checked>
+                            <label class="form-check-label" for="flexSwitchCheckChecked2">Checked switch checkbox input</label>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn mb-4">Каталог</button>
+
+
+
                 <h4>Какой-то заголовок</h4>
                 <div class="mb-4">
                     Для поддержания <a href="#" class="link">стабильной работы</a> процессора AMD Ryzen 5 5600X BOX и предупреждения его перегрева, в комплекте с ним предусмотрена система охлаждения и нанесенный на основание радиатора термоинтерфейс.
                     Для поддержания стабильной работы процессора AMD Ryzen 5 5600X BOX и предупреждения его перегрева, в комплекте с ним предусмотрена система охлаждения и нанесенный на основание радиатора термоинтерфейс.
                 </div>
 
-                <div class="mb-4">
-                    <a href="#" class="link">Important link</a>
+                <div class="row mb-4">
+                    <div class="col-6 col-lg-2">
+                        <a href="#" class="link">Important link</a><br>
+                        <a href="#" class="dark-link">Darkish link</a>
+                    </div>
+
+                    <div class="col-6 col-lg-2">
+                        <span class="fw-light">Текст Light</span><br>
+                        <span>Обычный текст</span><br>
+                        <span class="fw-semibold">Текст Semibold</span><br>
+                        <span class="fw-bold">Текст Bold</span><br>
+                    </div>
                 </div>
 
                 <h3>Заголовок чуть больше</h3>
@@ -175,5 +269,9 @@
         </footer>
     </div>
 
+
+    <script src="{{ asset('js/vendors/jquery-3.7.0.min.js') }}"></script>
+    <script src="{{ asset('js/common.js') }}"></script>
+    <script src="{{ asset('js/search.js') }}"></script>
 </body>
 </html>

@@ -4,12 +4,19 @@
 @import 'main/variables';
 @import 'main/mixins';
 @import 'main/base';
+
+@import 'vendors/bootstrap';
+
 @import 'main/utilities';
 @import 'main/icons/bi-light';
-
-@import 'components/button';
-@import 'components/logo';
 
 @import 'layout/common';
 @import 'layout/header';
 @import 'layout/footer';
+@import 'layout/catalog-navigation';
+
+@import 'components/buttons';
+@import 'components/scrollbars';
+@import 'components/links';
+@import 'components/logo';
+@import 'components/search-input';
