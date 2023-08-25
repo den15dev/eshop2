@@ -504,5 +504,7 @@
 
 
     <script src="{{ asset('js/vendors/jquery-3.7.0.min.js') }}"></script>
+    <script src="{{ asset('js/common.js') }}"></script>
+    <script src="{{ asset('js/search.js') }}"></script>
 </body>
 </html>

@@ -102,7 +102,6 @@ lgMedia.addEventListener('change', switchSearchInput);
 
 function switchSearchInput(mediaQuery) {
     if (mediaQuery.matches) {
-        // $('#searchMobileCont, .main-tint').fadeOut(fadeSpeed);
         closeAllMobileMenus();
         searchResCont = document.getElementById('searchResultCont');
         searchInput = document.getElementById('searchInput');
