@@ -7,15 +7,16 @@ $header-grey-color4: #787878; // 120
 :root {
   --header-row1-height: 44px;
   --header-desktop-margin-top: 10px;
+  --logo-width1: 138px;
+  --logo-width2: 177px;
 }
 
 header {
-  --logo-width1: 138px;
-  --logo-width2: 177px;
   width: 100%;
   background-color: white;
   position: sticky;
   top: 0;
+  z-index: 110;
   @include lg {
     top: calc(-1 * calc(var(--header-row1-height) + var(--header-desktop-margin-top)));
   }
@@ -76,7 +77,6 @@ header {
     background-color: #c8e6a2;
   }
 }
-
 
 .header-logo {
   .logo {

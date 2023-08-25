@@ -1,4 +1,4 @@
-$margins: (
+$margins-and-paddings: (
   'm': margin,
   'mx': margin-left margin-right,
   'my': margin-top margin-bottom,
@@ -6,9 +6,16 @@ $margins: (
   'me': margin-right,
   'mb': margin-bottom,
   'ms': margin-left,
+  'p': padding,
+  'px': padding-left padding-right,
+  'py': padding-top padding-bottom,
+  'pt': padding-top,
+  'pe': padding-right,
+  'pb': padding-bottom,
+  'ps': padding-left,
 );
 
-@each $key, $val in $margins {
+@each $key, $val in $margins-and-paddings {
   @each $s-key, $s-val in $spacers {
     .#{$key}-#{$s-key} {
       @each $prop in $val {
@@ -32,6 +39,10 @@ $margins: (
   .va-#{$i} {
     vertical-align: -#{$i}px;
   }
+}
+
+.large {
+  font-size: $font-size-lg;
 }
 
 .small {

@@ -1,0 +1,54 @@
+.catalog-btn-mobile {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  .svg-chevron-down {
+    position: absolute;
+    top: 15px;
+    left: 10px;
+    width: 20px;
+    height: 12px;
+    stroke: color($color1, light, 4);
+    fill: none;
+  }
+  .svg-close {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 20px;
+    height: 20px;
+    stroke: color($color1, light, 4);
+    stroke-width: 3;
+    fill: none;
+    display: none;
+  }
+}
+
+.search-btn-mobile-nav {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  //background-color: #dde6be;
+  .svg-search {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 29px;
+    height: 29px;
+    stroke: $header-grey-color1;
+    fill: none;
+  }
+  .svg-close {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    width: 24px;
+    height: 24px;
+    stroke: $header-grey-color1;
+    stroke-width: 2.2;
+    fill: none;
+    display: none;
+  }
+}

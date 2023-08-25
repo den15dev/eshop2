@@ -23,7 +23,7 @@ $search-input-height: 40px;
 
 .search_results_cont_inner {
   width: 100%;
-  max-height: 340px;
+  max-height: 400px;
   @if $border-radius-base > 0 {
     border-bottom-left-radius: $border-radius-base;
     border-bottom-right-radius: $border-radius-base;
@@ -76,13 +76,13 @@ $search-input-height: 40px;
   padding: 4px 14px;
 }
 
-.search_input {
+.search-input {
   position: absolute;
   z-index: 102;
   width: 100%;
   height: $search-input-height;
   padding-left: 14px;
-  padding-right: 44px;
+  padding-right: 70px;
   @if $border-radius-base > 0 {
     border-radius: $border-radius-base;
   }
@@ -96,22 +96,21 @@ $search-input-height: 40px;
   }
 }
 
-.search_btn,
-.clear_btn {
+.search-btn,
+.clear-btn {
   position: absolute;
   z-index: 103;
   top: 50%;
   right: 6px;
   width: 32px;
   height: 32px;
-  margin-top: -16px;
   text-align: center;
-  //background-color: #cbe6b0;
-  color: $header-grey-color1;
 }
 
-.search_btn {
+.search-btn {
+  margin-top: -16px;
   padding: 7px 0;
+  //color: $header-grey-color1;
   &:hover {
     svg {
       stroke: color($color1, light, 4);
@@ -125,11 +124,13 @@ $search-input-height: 40px;
   }
 }
 
-.clear_btn {
+.clear-btn {
   display: none;
-  font-size: 20px;
-  line-height: 30px;
-  right: 40px;
+  margin-top: -12px;
+  right: 38px;
+  font-size: 14px;
+  line-height: 21px;
+  color: $grey-220;
   &:hover {
     color: color($color1, light, 4);
   }

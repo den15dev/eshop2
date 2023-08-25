@@ -1,0 +1,46 @@
+.catalog-btn {
+  position: relative;
+  width: var(--logo-width1);
+  height: 40px;
+  padding: 0.55rem 0;
+  font-size: $cat-btn-font-size;
+  text-align: left;
+  text-indent: 26px;
+  @include xl {
+    width: var(--logo-width2);
+    text-indent: 40px;
+    padding: 0.45rem 0;
+    font-size: $cat-btn-font-size * 1.125;
+  }
+
+  .svg-catalog-list {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -7px;
+    margin-left: 28px;
+    width: 15px;
+    height: 14px;
+    stroke: color($color1, light, 4);
+    fill: none;
+    @include xl {
+      margin-left: 32px;
+    }
+  }
+  .svg-close {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -8px;
+    margin-left: 28px;
+    width: 16px;
+    height: 16px;
+    stroke: color($color1, light, 4);
+    stroke-width: 3;
+    fill: none;
+    display: none;
+    @include xl {
+      margin-left: 32px;
+    }
+  }
+}

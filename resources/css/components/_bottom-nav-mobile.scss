@@ -1,0 +1,120 @@
+$bottom-nav-color: color($color1, light, 6);
+$bottom-nav-color-active: white;
+
+.bottom-nav {
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  z-index: 110;
+}
+
+.bottom-nav_cont {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  height: 58px;
+  background-color: $color1;
+  font-size: 11px;
+  @include sm {
+    height: 60px;
+    font-size: 14px;
+  }
+  @include lg {
+    display: none;
+  }
+  & > * {
+    display: block;
+    height: 54px;
+    width: 66px;
+    text-align: center;
+    padding-top: 8px;
+    color: $bottom-nav-color;
+    @include sm {
+      padding-top: 6px;
+      width: 86px;
+    }
+    &.active {
+      color: $bottom-nav-color-active;
+      svg {
+        stroke: $bottom-nav-color-active;
+      }
+    }
+  }
+  svg {
+    display: block;
+    margin: 0 auto 4px auto;
+    fill: none;
+    stroke-width: 1.6;
+    stroke: $bottom-nav-color;
+    @include sm {
+      margin: 0 auto 3px auto;
+    }
+  }
+}
+
+.bottom-main-menu_cont {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  width: 100%;
+  padding: 1.25rem 0;
+  z-index: 99;
+  font-size: 18px;
+  background-color: white;
+  display: none;
+}
+
+.bottom-menu_list {
+  li {
+    line-height: 1.3em;
+  }
+  li:not(:last-child) {
+    margin-bottom: 0.7em;
+  }
+}
+
+.bottom-menu-lang_cont {
+  position: relative;
+  width: fit-content;
+  cursor: pointer;
+  margin-bottom: 10px;
+  img {
+    height: 15px;
+    margin-right: 3px;
+  }
+}
+
+.bottom-menu_close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  text-align: center;
+  padding-top: 4px;
+  cursor: pointer;
+  svg {
+    width: 24px;
+    height: 24px;
+    stroke: $header-grey-color1;
+    stroke-width: 2.2;
+    fill: none;
+  }
+}
+
+.bottom-lang-menu {
+  position: absolute;
+  margin-left: -1rem;
+  margin-top: 0.25rem;
+  padding: 1rem;
+  background-color: white;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.12);
+  display: none;
+  li {
+    white-space: nowrap;
+  }
+  .icon-check-lg {
+    line-height: 1rem;
+  }
+}

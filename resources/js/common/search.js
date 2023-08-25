@@ -90,10 +90,36 @@ const temp_data = `
 /* ------------------------------------ */
 
 
-const searchResCont = document.getElementById('search_result_cont');
-const searchInput = document.getElementById('search_input');
-const clearBtn = document.getElementById('clear_btn');
+let searchResCont;
+let searchInput;
+let clearBtn;
 let searchInputTimeOut;
+
+let lgMedia = window.matchMedia('(min-width: 992px)');
+switchSearchInput(lgMedia);
+lgMedia.addEventListener('change', switchSearchInput);
+
+
+function switchSearchInput(mediaQuery) {
+    if (mediaQuery.matches) {
+        // $('#searchMobileCont, .main-tint').fadeOut(fadeSpeed);
+        closeAllMobileMenus();
+        searchResCont = document.getElementById('searchResultCont');
+        searchInput = document.getElementById('searchInput');
+        clearBtn = document.getElementById('clearBtn');
+        clearSearchResults();
+    } else {
+        searchResCont = document.getElementById('searchResultContMobile');
+        searchInput = document.getElementById('searchInputMobile');
+        clearBtn = document.getElementById('clearBtnMobile');
+        clearSearchResults();
+    }
+
+    searchInput.oninput = handleSearchInput;
+    searchInput.onfocus = handleSearchInput;
+    searchInput.onblur = hideSearchResults;
+    clearBtn.onclick = clearSearchResults;
+}
 
 function handleSearchInput() {
     clearTimeout(searchInputTimeOut);
@@ -156,8 +182,3 @@ function clearSearchResults() {
     clearBtn.style.display = 'none';
     searchInput.focus();
 }
-
-searchInput.oninput = handleSearchInput;
-searchInput.onfocus = handleSearchInput;
-searchInput.onblur = hideSearchResults;
-clearBtn.onclick = clearSearchResults;

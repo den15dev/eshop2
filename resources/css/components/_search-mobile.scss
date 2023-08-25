@@ -1,0 +1,30 @@
+.search-mobile-cont {
+  position: absolute;
+  z-index: 101;
+  top: 100%;
+  width: 100%;
+  padding: 0 0 0.5rem 0;
+  background-color: white;
+  display: none;
+}
+
+.search-input-mobile {
+  width: 100%;
+  height: $search-input-height;
+  padding-left: 14px;
+  padding-right: 70px;
+  @if $border-radius-base > 0 {
+    border-radius: $border-radius-base;
+  }
+  border: 1px solid color($color1, light, 5);
+  outline: 0;
+  &::placeholder {
+    color: $header-grey-color2;
+  }
+}
+
+#searchResultContMobile {
+  margin-top: 0.75rem;
+  padding: 0 0.5rem;
+  display: none;
+}

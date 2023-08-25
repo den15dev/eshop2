@@ -1,0 +1,30 @@
+$button-bg-color: $color1;
+
+@mixin btn-base {
+  display: block;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  text-align: center;
+}
+
+.btn {
+  @include btn-base;
+  padding: 0.5rem 1.75rem 0.4rem 1.75rem;
+  width: fit-content;
+  background-color: $button-bg-color;
+  @if $border-radius-base > 0 {
+    border-radius: $border-radius-base;
+  }
+  font-family: $font;
+  font-size: $font-size-base;
+  color: white;
+  &:hover {
+    background-color: color($button-bg-color, dark, 1);
+  }
+}
+
+.btn-icon {
+  @include btn-base;
+  background: none;
+}

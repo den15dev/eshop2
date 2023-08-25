@@ -15,8 +15,14 @@
 @import 'layout/footer';
 @import 'layout/catalog-navigation';
 
-@import 'components/buttons';
-@import 'components/scrollbars';
-@import 'components/links';
+@import 'components/base/buttons';
+@import 'components/base/scrollbar-thin';
+@import 'components/base/links';
+
 @import 'components/logo';
-@import 'components/search-input';
+@import 'components/header-desktop';
+@import 'components/header-mobile';
+@import 'components/search-desktop';
+@import 'components/search-mobile';
+@import 'components/bottom-nav-mobile';
+
