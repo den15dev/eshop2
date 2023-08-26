@@ -105,26 +105,26 @@ function closeBottomNavLangMenu() {
 }
 
 function closeOthersHoldingTint(currentMenu) {
-    let somethingWasOpened = null;
+    let somethingOpened = null;
 
     if (currentMenu !== 'mobileSearch' && mobileSearchOpened) {
         toggleSearchMobile(true);
-        somethingWasOpened = true;
+        somethingOpened = true;
     }
     if (currentMenu !== 'catalogNav' && catalogNavOpened) {
         toggleCatalogNav(true);
-        somethingWasOpened = true;
+        somethingOpened = true;
     }
     if (currentMenu !== 'bottomNavMenu' && bottomNavMenuOpened) {
         toggleBottomNavMenu(true);
-        somethingWasOpened = true;
+        somethingOpened = true;
     }
     if (currentMenu !== 'bottomNavProfile' && bottomNavProfileOpened) {
         toggleBottomNavProfile(true);
-        somethingWasOpened = true;
+        somethingOpened = true;
     }
 
-    return somethingWasOpened;
+    return somethingOpened;
 }
 
 function closeAllMobileMenus() {

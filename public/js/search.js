@@ -98,6 +98,8 @@ function switchSearchInput(mediaQuery) {
         searchInput = document.getElementById('searchInput');
         clearBtn = document.getElementById('clearBtn');
         clearSearchResults();
+        // On a desktop only: hide search result on input blur.
+        searchInput.onblur = hideSearchResults;
     } else {
         searchResCont = document.getElementById('searchResultContMobile');
         searchInput = document.getElementById('searchInputMobile');
@@ -107,7 +109,6 @@ function switchSearchInput(mediaQuery) {
 
     searchInput.oninput = handleSearchInput;
     searchInput.onfocus = handleSearchInput;
-    searchInput.onblur = hideSearchResults;
     clearBtn.onclick = clearSearchResults;
 }
 
