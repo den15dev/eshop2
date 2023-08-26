@@ -16,7 +16,7 @@ const temp_data = `
                 <div class="search-result_count-block">
                     <a href="http://eshop1.ru/search?query=13900" class="dark-link">
                         <span class="fw-bold">Товары</span>
-                        <span class="lightgrey-text">(4)</span>
+                        <span class="lightgrey-text">(18)</span>
                     </a>
                 </div>
 
@@ -73,15 +73,6 @@ const temp_data = `
                     </div>
                     <div class="product-price">
                         57 490 ₽
-                    </div>
-                </a>
-                <a href="http://eshop1.ru/catalog/cpu/processor-intel-core-i9-13900-40" class="search-result_block">
-                    <img src="storage/images/products/1/01_80.jpg">
-                    <div class="product-title">
-                        Процессор Intel Core i9-13900
-                    </div>
-                    <div class="product-price">
-                        55 590 ₽
                     </div>
                 </a>
             </div>

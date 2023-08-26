@@ -23,12 +23,18 @@ $search-input-height: 40px;
 
 .search_results_cont_inner {
   width: 100%;
-  max-height: 400px;
+  max-height: 220px;
   @if $border-radius-base > 0 {
     border-bottom-left-radius: $border-radius-base;
     border-bottom-right-radius: $border-radius-base;
   }
   overflow-y: auto;
+  @include sm {
+    max-height: 280px;
+  }
+  @include md {
+    max-height: 340px;
+  }
 }
 
 .search-result_block {
