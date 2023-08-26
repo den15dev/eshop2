@@ -1,5 +1,6 @@
 @use "sass:color";
 
+// $strength: 0 - 10
 @function color($color, $mode, $strength) {
   @if $mode == light {
     @return color.scale($color, $lightness: $strength * 10%, $saturation: $strength * 10%);
