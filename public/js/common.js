@@ -179,6 +179,11 @@ function catalogMobileSetItemPaddings() {
     });
 }
 
+function catalogMobileSetMaxHeight() {
+    let catalogMobilMaxHeight = `${(window.innerHeight - 67 - 58) * 0.784}px`;
+    $('#catalogNavMobile').css('max-height', catalogMobilMaxHeight);
+}
+
 function catalogMobileReset() {
     $('#catalogNavMobile ul.catalog-mobile-sublist').hide();
     $('#catalogNavMobile div.cat-btn1, #catalogNavMobile div.cat-btn2').each(function() {
@@ -241,6 +246,8 @@ $(document).ready(function () {
 
     // -------- Catalog mobile ----------
     catalogMobileSetItemPaddings();
+    catalogMobileSetMaxHeight();
+    $(window).on('resize', catalogMobileSetMaxHeight);
 
     $('#catalogNavMobile div.cat-btn1, #catalogNavMobile div.cat-btn2').on('click', function() {
         $(this).siblings('ul.catalog-mobile-sublist').first().slideToggle(slideSpeed);

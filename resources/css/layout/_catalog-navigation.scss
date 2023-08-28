@@ -19,6 +19,9 @@
   display: block;
   max-height: 425px;
   overflow-y: auto;
+  @include sm {
+    max-height: 800px;
+  }
   @include lg {
     display: none;
   }
