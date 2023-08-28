@@ -12,6 +12,7 @@ function toggleCatalogNav(holdTint = false) {
     holdTint = closeOthersHoldingTint('catalogNav') ?? holdTint;
 
     $('#catalogNavCont').fadeToggle(fadeSpeed);
+    if (catalogNavOpened) catalogMobileReset();
     if (!holdTint) {
         $('.main-tint').fadeToggle(fadeSpeed);
         $('body').toggleClass('noscroll');
@@ -27,6 +28,7 @@ function toggleCatalogNav(holdTint = false) {
 function closeCatalogNav() {
     if (catalogNavOpened) {
         $('#catalogNavCont, .main-tint').fadeOut(fadeSpeed);
+        catalogMobileReset();
         $('#catalogBtnDesktop .svg-close').fadeOut(fadeSpeed);
         $('#catalogBtnDesktop .svg-catalog-list').fadeIn(fadeSpeed);
         $('#catalogBtnMobile .svg-close').fadeOut(fadeSpeed);
@@ -174,6 +176,14 @@ function catalogMobileSetItemPaddings() {
 
     $('#catalogNavMobile .catalog-mobile-list').first().children('li').each(function() {
         findChildrenList($(this));
+    });
+}
+
+function catalogMobileReset() {
+    $('#catalogNavMobile ul.catalog-mobile-sublist').hide();
+    $('#catalogNavMobile div.cat-btn1, #catalogNavMobile div.cat-btn2').each(function() {
+        $(this).removeClass('active');
+        $(this).children('.icon-chevron-up').removeClass('icon-chevron-up').addClass('icon-chevron-down');
     });
 }
 
