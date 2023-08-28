@@ -2,6 +2,7 @@
 
 const fadeSpeed = 100;
 const slideSpeed = 100;
+let htmlElem;
 let catalogNavOpened = false;
 let mobileSearchOpened = false;
 let bottomNavMenuOpened = false;
@@ -15,7 +16,7 @@ function toggleCatalogNav(holdTint = false) {
     if (catalogNavOpened) catalogMobileReset();
     if (!holdTint) {
         $('.main-tint').fadeToggle(fadeSpeed);
-        $('body').toggleClass('noscroll');
+        toggleScroll();
     }
 
     $('#catalogBtnDesktop .svg-catalog-list').fadeToggle(fadeSpeed);
@@ -33,7 +34,7 @@ function closeCatalogNav() {
         $('#catalogBtnDesktop .svg-catalog-list').fadeIn(fadeSpeed);
         $('#catalogBtnMobile .svg-close').fadeOut(fadeSpeed);
         $('#catalogBtnMobile .svg-chevron-down').fadeIn(fadeSpeed);
-        $('body').removeClass('noscroll');
+        enableScroll();
         catalogNavOpened = false;
     }
 }
@@ -44,7 +45,7 @@ function toggleSearchMobile(holdTint = false) {
     $('#searchMobileCont').fadeToggle(fadeSpeed);
     if (!holdTint) {
         $('.main-tint').fadeToggle(fadeSpeed);
-        $('body').toggleClass('noscroll');
+        toggleScroll();
     }
 
     $('#searchBtnMobileNav .svg-search').fadeToggle(fadeSpeed);
@@ -57,7 +58,7 @@ function closeSearchMobile() {
         $('#searchMobileCont, .main-tint').fadeOut(fadeSpeed);
         $('#searchBtnMobileNav .svg-search').fadeIn(fadeSpeed);
         $('#searchBtnMobileNav .svg-close').fadeOut(fadeSpeed);
-        $('body').removeClass('noscroll');
+        enableScroll();
         mobileSearchOpened = false;
     }
 }
@@ -69,7 +70,7 @@ function toggleBottomNavMenu(holdTint = false) {
     $('#bottomNavMenuBtn').toggleClass('active');
     if (!holdTint) {
         $('.main-tint').fadeToggle(fadeSpeed);
-        $('body').toggleClass('noscroll');
+        toggleScroll();
     }
     bottomNavMenuOpened = !bottomNavMenuOpened;
 }
@@ -78,7 +79,7 @@ function closeBottomNavMenu() {
     if (bottomNavMenuOpened) {
         $('#bottomNavMenuCont, .main-tint').fadeOut(fadeSpeed);
         $('#bottomNavMenuBtn').removeClass('active');
-        $('body').removeClass('noscroll');
+        enableScroll();
         bottomNavMenuOpened = false;
     }
 }
@@ -90,7 +91,7 @@ function toggleBottomNavProfile(holdTint = false) {
     $('#bottomNavProfileBtn').toggleClass('active');
     if (!holdTint) {
         $('.main-tint').fadeToggle(fadeSpeed);
-        $('body').toggleClass('noscroll');
+        toggleScroll();
     }
     bottomNavProfileOpened = !bottomNavProfileOpened;
 }
@@ -99,7 +100,7 @@ function closeBottomNavProfile() {
     if (bottomNavProfileOpened) {
         $('#bottomNavProfileCont, .main-tint').fadeOut(fadeSpeed);
         $('#bottomNavProfileBtn').removeClass('active');
-        $('body').removeClass('noscroll');
+        enableScroll();
         bottomNavProfileOpened = false;
     }
 }
@@ -132,6 +133,27 @@ function closeAllMobileMenus() {
     closeBottomNavMenu();
     closeBottomNavProfile();
 }
+
+
+/* ----------- Toggle scroll ----------- */
+
+function disableScroll() {
+    if ($(document).height() > $(window).height()) {
+        let scrollTop = ($(htmlElem).scrollTop()) ? $(htmlElem).scrollTop() : $('body').scrollTop();
+        $(htmlElem).addClass('noscroll').css('top',-scrollTop);
+    }
+}
+
+function enableScroll() {
+    let scrollTop = parseInt($(htmlElem).css('top'));
+    $(htmlElem).removeClass('noscroll');
+    $('html,body').scrollTop(-scrollTop);
+}
+
+function toggleScroll() {
+    $(htmlElem).hasClass('noscroll') ? enableScroll() : disableScroll();
+}
+
 
 /* ----------- Dropdowns --------------- */
 
@@ -223,6 +245,9 @@ $(document).on("click", function(event){
 
 
 $(document).ready(function () {
+    // -------- Main ---------
+    htmlElem = $('html');
+
     // ------- Header --------
     $('#catalogBtnDesktop').on('click', function() { toggleCatalogNav(); });
     $('#catalogBtnMobile').on('click', function() { toggleCatalogNav(); });
