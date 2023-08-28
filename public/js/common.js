@@ -180,7 +180,9 @@ function catalogMobileSetItemPaddings() {
 }
 
 function catalogMobileSetMaxHeight() {
-    let catalogMobilMaxHeight = `${(window.innerHeight - 67 - 58) * 0.784}px`;
+    const bottomNavContHeight = $('.bottom-nav_cont').first().innerHeight();
+    const mobileHeaderHeight = $('#mobileHeader').innerHeight();
+    let catalogMobilMaxHeight = `${window.innerHeight - mobileHeaderHeight - bottomNavContHeight - 8}px`;
     $('#catalogNavMobile').css('max-height', catalogMobilMaxHeight);
 }
 
