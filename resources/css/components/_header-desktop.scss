@@ -44,3 +44,73 @@
     }
   }
 }
+
+.nav-list-top {
+  a, div {
+    cursor: pointer;
+    color: $grey-120;
+    &:hover {
+      color: $color1;
+      svg {
+        stroke: color($color1, light, 3);
+      }
+    }
+    font-size: 14px;
+    @include xxl {
+      font-size: 16px;
+    }
+  }
+  & > li:nth-child(3) {
+    display: none;
+    @include xxl {
+      display: block;
+    }
+  }
+  .tel {
+    margin-left: auto;
+    svg {
+      width: 17px;
+      height: 17px;
+      stroke: $grey-180;
+      fill: none;
+      vertical-align: -3px;
+      margin-right: 2px;
+    }
+  }
+}
+
+.nav-list-user {
+  gap: 0;
+  font-size: 12px;
+  @include xxl {
+    font-size: 14px;
+  }
+  line-height: 14px;
+  & > li {
+    display: block;
+    width: 68px;
+    @include xxl {
+      width: 78px;
+    }
+  }
+  li > a, li > div {
+    display: block;
+    position: relative;
+    text-align: center;
+    color: $grey-150;
+    &:hover {
+      color: color($color1, light, 2);
+      svg {
+        stroke: color($color1, light, 2);
+      }
+    }
+  }
+  svg {
+    display: block;
+    height: 21px;
+    margin: 0 auto 6px auto;
+    fill: none;
+    stroke-width: 1.6;
+    stroke: $grey-180;
+  }
+}

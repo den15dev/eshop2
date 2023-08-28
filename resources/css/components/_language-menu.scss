@@ -1,0 +1,16 @@
+.lang-menu {
+  color: $grey-120;
+  img {
+    height: 12px;
+    margin-right: 3px;
+  }
+  a, .dropdown-btn {
+    color: $grey-120;
+    &:hover {
+      color: $color1;
+    }
+  }
+  .icon-check-lg {
+    line-height: 1rem;
+  }
+}

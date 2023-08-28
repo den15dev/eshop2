@@ -17,7 +17,7 @@ $search-input-height: 40px;
   @if $border-radius-base > 0 {
     border-radius: $border-radius-base;
   }
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.12);
+  @include dropdown-shadow;
   display: none;
 }
 

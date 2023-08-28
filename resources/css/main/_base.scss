@@ -86,3 +86,13 @@ ul {
   margin: 0;
   list-style: none;
 }
+
+
+// -------- Navigation ----------
+
+nav > ul {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+  text-wrap: nowrap;
+}

@@ -56,15 +56,11 @@ header {
   }
 
   .top-center {
-    display: none;
-    background-color: #d3b8f1;
-    @include lg {
-      display: block;
-    }
   }
 
   .top-right {
-    background-color: #b8f1e8;
+    display: flex;
+    justify-content: end;
   }
 
   .bottom-left {
@@ -74,7 +70,6 @@ header {
   }
 
   .bottom-right {
-    background-color: #c8e6a2;
   }
 }
 

@@ -1,0 +1,37 @@
+$dropdown-list-paddings: 1.25rem;
+
+.dropdown {
+  position: relative;
+  width: fit-content;
+}
+
+.dropdown-btn {
+  cursor: pointer;
+}
+
+.dropdown-list {
+  position: absolute;
+  cursor: default;
+  display: none;
+  padding: $dropdown-list-paddings * 0.8 $dropdown-list-paddings;
+  z-index: 111;
+  margin-left: -$dropdown-list-paddings;
+  margin-top: 0.5rem;
+  @if $border-radius-base > 0 {
+    border-radius: $border-radius-base;
+  }
+  background-color: white;
+  li {
+    line-height: 1.3em;
+  }
+  li:not(:last-child) {
+    margin-bottom: 0.7em;
+  }
+  white-space: nowrap;
+  @include dropdown-shadow;
+}
+
+.dd-right {
+  margin-left: 0;
+  right: 0;
+}

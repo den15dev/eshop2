@@ -90,6 +90,41 @@
                     <path d="M1 19.2857V18.1428C1 13.7246 4.58173 10.1428 9 10.1428C13.4183 10.1428 17 13.7246 17 18.1428V19.2857" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M8.99999 10.1429C11.5247 10.1429 13.5714 8.09612 13.5714 5.57143C13.5714 3.0467 11.5247 1 8.99999 1C6.47526 1 4.42856 3.0467 4.42856 5.57143C4.42856 8.09612 6.47526 10.1429 8.99999 10.1429Z" stroke-linecap="round" stroke-linejoin="round"/>
                 </symbol>
+
+                <svg viewBox="0 0 17 17" id="telIcon">
+                    <path d="M13.0598 10.6208L9.94063 11.2252C7.83371 10.1677 6.53223 8.95293 5.77481 7.05937L6.35798 3.93115L5.25561 1H2.41458C1.56055 1 0.88803 1.70575 1.01558 2.5502C1.33401 4.65835 2.27289 8.48068 5.01739 11.2252C7.89953 14.1073 12.0506 15.358 14.3352 15.8551C15.2174 16.0471 16 15.3588 16 14.456V11.7411L13.0598 10.6208Z" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+
+                {{-- -------- Catalog Icons --------- --}}
+
+                <symbol viewBox="0 0 20 19" id="catalogIcon_pc-parts">
+                    <path d="M1.65918 12.2761V1.50116C1.65918 1.22438 1.88356 1 2.16034 1H17.8634C18.1402 1 18.3645 1.22438 18.3645 1.50116V12.2761M1.65918 12.2761V13.8631C1.65918 14.1399 1.88356 14.3643 2.16034 14.3643H17.8634C18.1402 14.3643 18.3645 14.1399 18.3645 13.8631V12.2761M1.65918 12.2761H18.3645M7.50605 17.7054H8.75896M8.75896 17.7054V14.3643M8.75896 17.7054H11.2648M11.2648 17.7054H12.5177M11.2648 17.7054V14.3643" stroke-linecap="round" stroke-linejoin="round"/>
+                </symbol>
+
+                <symbol viewBox="0 0 16 18" id="catalogIcon_appliances">
+                    <path d="M15.1765 2.55916L15.1765 15.0325C15.1765 15.8936 14.4785 16.5917 13.6174 16.5917H2.70321C1.84211 16.5917 1.14404 15.8936 1.14404 15.0325V2.55917C1.14404 1.69806 1.84211 1 2.70321 1H13.6173C14.4784 1 15.1765 1.69806 15.1765 2.55916Z" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12.8378 3.34774L12.8466 3.33789" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M8.16029 14.2529C10.7436 14.2529 12.8378 12.1587 12.8378 9.57542C12.8378 6.99211 10.7436 4.89792 8.16029 4.89792C5.57697 4.89792 3.48279 6.99211 3.48279 9.57542C3.48279 12.1587 5.57697 14.2529 8.16029 14.2529Z" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M8.16028 11.9142C6.86859 11.9142 5.82153 10.8671 5.82153 9.57541" stroke-linecap="round" stroke-linejoin="round"/>
+                </symbol>
+
+                <symbol viewBox="0 0 20 17" id="catalogIcon_tvs-and-accessories">
+                    <path d="M5.83551 16.0348H14.1882" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M11.2647 4.34106V7.68214M11.2647 7.68214V9.35267M11.2647 7.68214L12.4095 6.3738M12.4095 6.3738L14.1881 4.34106M12.4095 6.3738L14.1881 9.35267" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M7.92371 4.34106L5.41791 8.09977H8.34134V9.35267" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M1.65918 12.1926V1.50116C1.65918 1.22438 1.88356 1 2.16034 1H17.8634C18.1402 1 18.3645 1.22438 18.3645 1.50116V12.1926C18.3645 12.4694 18.1402 12.6937 17.8634 12.6937H2.16034C1.88356 12.6937 1.65918 12.4694 1.65918 12.1926Z"/>
+                </symbol>
+
+                <symbol viewBox="0 0 21 17" id="catalogIcon_audio">
+                    <path d="M3.14966 9.686V9.22884C3.14966 4.68418 6.42448 1 10.4642 1C14.5039 1 17.7787 4.68418 17.7787 9.22884V9.686" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M1.32104 13.2871V11.571C1.32104 10.7319 1.89212 10.0005 2.70617 9.79692L3.14968 9.68602L4.29667 9.39929C4.64291 9.31279 4.97831 9.57465 4.97831 9.93151V14.9265C4.97831 15.2834 4.64291 15.5452 4.29667 15.4587L2.70617 15.0611C1.89212 14.8576 1.32104 14.1261 1.32104 13.2871Z" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M19.6074 13.2871V11.571C19.6074 10.7319 19.0363 10.0005 18.2223 9.79692L17.7788 9.68602L16.6318 9.39929C16.2855 9.31279 15.9501 9.57465 15.9501 9.93151V14.9265C15.9501 15.2834 16.2855 15.5452 16.6318 15.4587L18.2223 15.0611C19.0363 14.8576 19.6074 14.1261 19.6074 13.2871Z" stroke-linecap="round" stroke-linejoin="round"/>
+                </symbol>
+
+                <symbol viewBox="0 0 13 18" id="catalogIcon_smartphones-and-tablets">
+                    <path d="M6.57178 12.8736L6.58268 12.8615" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M1.62903 16.2236V1.59313C1.62903 1.26555 1.89458 1 2.22216 1H10.9214C11.249 1 11.5145 1.26555 11.5145 1.59313V16.2236C11.5145 16.5512 11.249 16.8167 10.9214 16.8167H2.22216C1.89458 16.8167 1.62903 16.5512 1.62903 16.2236Z"/>
+                </symbol>
             </svg>
 
 
@@ -100,15 +135,85 @@
                         <svg viewBox="0 0 155 26"><use href="#logoTitleRu" /></svg>
                     </a>
                 </div>
-                <div class="top-center">
-                    <div>
-                        <a href="#">
-                            Top menu
+                <nav class="top-center">
+                    <ul class="nav-list-top">
+                        <li>
+                            <a href="#">
+                                Доставка
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Магазины
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Гарантия
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            <div class="dropdown-btn">
+                                Покупателям
+                                <span class="icon-chevron-down xsmall va2"></span>
+                            </div>
+                            <ul class="dropdown-list">
+                                <li>
+                                    <a href="#">
+                                        Бонусная программа
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Обмен, возврат
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Сервисные центры
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="tel">
+                            <a href="tel:+78004567890">
+                                <svg><use href="#telIcon" /></svg>
+                                8 (800) 456-78-90
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="top-right">
+                    <div class="dropdown lang-menu">
+                        <div class="dropdown-btn">
+                            <img src="{{ asset('img/flags/ru.svg') }}" alt="ru">
+                            Ru
                             <span class="icon-chevron-down xsmall va2"></span>
-                        </a>
+                        </div>
+                        <ul class="dropdown-list dd-right">
+                            <li>
+                                <div id="langCurrentBtn">
+                                    <img src="{{ asset('img/flags/ru.svg') }}" alt="ru">
+                                    Русский
+                                    <span class="icon-check-lg me-1 va2"></span>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="{{ asset('img/flags/en.svg') }}" alt="en">
+                                    English
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="{{ asset('img/flags/de.svg') }}" alt="de">
+                                    Deutsch
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <div class="top-right">Top right</div>
+
 
                 <div class="bottom-left">
                     <button class="btn catalog-btn" id="catalogBtnDesktop">
@@ -127,7 +232,42 @@
                         </button>
                     </form>
                 </div>
-                <div class="bottom-right">User menu icons go here</div>
+                <nav class="bottom-right">
+                    <ul class="nav-list-user">
+                        <li>
+                            <a href="#">
+                                <svg viewBox="0 0 21 19"><use href="#favoriteIcon" /></svg>
+                                Избранное
+                                <div class="badge-round">2</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <svg viewBox="0 0 22 22"><use href="#cartIcon" /></svg>
+                                Корзина
+                                <div class="badge-round-red">3</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <svg viewBox="0 0 17 21"><use href="#ordersIcon" /></svg>
+                                Заказы
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <svg viewBox="0 0 16 20"><use href="#lockIcon" /></svg>
+                                Вход
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <svg viewBox="0 0 18 21"><use href="#userIcon" /></svg>
+                                <span style="margin-left: -2px">Регистрация</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
 
 
@@ -158,11 +298,171 @@
                     </ul>
                 </div>
 
-                <div class="container" id="catalogNavMobile">
-                    <ul>
-                        <li>М - Компьютерные комплектующие</li>
-                        <li>М - Бытовая техника</li>
-                        <li>М - Телевизоры и аксессуары</li>
+
+                <div class="container px-0 scrollbar-thin" id="catalogNavMobile">
+                    <ul class="catalog-mobile-list">
+                        <li>
+                            <div class="cat-btn1">
+                                <div class="cat-icon-cont">
+                                    <svg width="20" height="19"><use href="#catalogIcon_pc-parts" /></svg>
+                                </div>
+                                <span class="cat-btn1-text">Компьютерные комплектующие</span>
+                            </div>
+                            <ul class="catalog-mobile-sublist">
+                                <li>
+                                    <a href="#" class="cat-btn2">
+                                        Процессоры <span class="cat-count">65</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="cat-btn2">
+                                        Материнские платы <span class="cat-count">248</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="cat-btn2">
+                                        Видеокарты <span class="cat-count">93</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <div class="cat-btn2">
+                                        Накопители <span class="cat-count">182</span>
+                                        <span class="icon-chevron-down xsmall va3"></span>
+                                    </div>
+                                    <ul class="catalog-mobile-sublist">
+                                        <li>
+                                            <a href="#" class="cat-btn2">
+                                                HDD <span class="cat-count">65</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <div class="cat-btn2">
+                                                SSD M.2 <span class="cat-count">65</span>
+                                                <span class="icon-chevron-down xsmall va3"></span>
+                                            </div>
+                                            <ul class="catalog-mobile-sublist">
+                                                <li>
+                                                    <a href="#" class="cat-btn2">
+                                                        Красные <span class="cat-count">65</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="cat-btn2">
+                                                        Синие <span class="cat-count">65</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="cat-btn2">
+                                                        Для ноутбуков <span class="cat-count">248</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="cat-btn2">
+                                                SSD <span class="cat-count">248</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#" class="cat-btn2">
+                                        Оперативная память <span class="cat-count">174</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="cat-btn2">
+                                        Блоки питания <span class="cat-count">59</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <div class="cat-btn1">
+                                <div class="cat-icon-cont">
+                                    <svg width="16" height="18"><use href="#catalogIcon_appliances" /></svg>
+                                </div>
+                                <span class="cat-btn1-text">Бытовая техника</span>
+                            </div>
+                            <ul class="catalog-mobile-sublist">
+                                <li>
+                                    <a href="#" class="cat-btn2">
+                                        Стиральные машины <span class="cat-count">65</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="cat-btn2">
+                                        Пылесосы <span class="cat-count">248</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="cat-btn2">
+                                        Микроволновые печи <span class="cat-count">93</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="cat-btn2">
+                                        Холодильники <span class="cat-count">182</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="cat-btn2">
+                                        Тостеры <span class="cat-count">174</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="cat-btn2">
+                                        Посудомоечные машины <span class="cat-count">59</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <div class="cat-btn1">
+                                <div class="cat-icon-cont">
+                                    <svg width="20" height="17"><use href="#catalogIcon_tvs-and-accessories" /></svg>
+                                </div>
+                                <span class="cat-btn1-text">Телевизоры и аксессуары</span>
+                            </div>
+                            <ul class="catalog-mobile-sublist">
+                                <li>
+                                    <a href="#" class="cat-btn2">
+                                        LCD телевизоры <span class="cat-count">65</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="cat-btn2">
+                                        QLED телевизоры <span class="cat-count">248</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="cat-btn2">
+                                        Кронштейны <span class="cat-count">93</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="cat-btn2">
+                                        Пульты ДУ <span class="cat-count">182</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <div class="cat-btn1">
+                                <div class="cat-icon-cont">
+                                    <svg width="21" height="17"><use href="#catalogIcon_audio" /></svg>
+                                </div>
+                                <span class="cat-btn1-text">Аудиотехника</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="cat-btn1">
+                                <div class="cat-icon-cont">
+                                    <svg width="13" height="18"><use href="#catalogIcon_smartphones-and-tablets" /></svg>
+                                </div>
+                                <span class="cat-btn1-text">Смартфоны и планшеты</span>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -386,30 +686,32 @@
         <div class="bottom-nav">
             <div class="bottom-nav_cont">
                 <a href="#">
-                    <svg viewBox="0 0 21 19" style="width: 24px;"><use href="#favoriteIcon" /></svg>
+                    <svg viewBox="0 0 21 19"><use href="#favoriteIcon" /></svg>
                     Избранное
+                    <div class="badge-round">2</div>
                 </a>
                 <a href="#">
-                    <svg viewBox="0 0 22 22" style="width: 22px;"><use href="#cartIcon" /></svg>
+                    <svg viewBox="0 0 22 22"><use href="#cartIcon" /></svg>
                     Корзина
+                    <div class="badge-round-red">2</div>
                 </a>
                 <div style="padding-top: 12px;" id="bottomNavMenuBtn">
-                    <svg viewBox="0 0 15 14" style="width: 30px;"><use href="#listIcon" /></svg>
+                    <svg viewBox="0 0 15 14" style="height: 28px;"><use href="#listIcon" /></svg>
                 </div>
                 <a href="#">
-                    <svg viewBox="0 0 17 21" style="width: 18px;"><use href="#ordersIcon" /></svg>
+                    <svg viewBox="0 0 17 21"><use href="#ordersIcon" /></svg>
                     Заказы
                 </a>
             {{--<a href="#">
-                    <svg viewBox="0 0 16 20" style="width: 17px;"><use href="#lockIcon" /></svg>
+                    <svg viewBox="0 0 16 20"><use href="#lockIcon" /></svg>
                     Вход
                 </a>--}}
             {{--    <a href="#">
-                    <svg viewBox="0 0 18 21" style="width: 19px;"><use href="#userIcon" /></svg>
+                    <svg viewBox="0 0 18 21"><use href="#userIcon" /></svg>
                     Регистрация
                 </a>--}}
                 <div id="bottomNavProfileBtn">
-                    <svg viewBox="0 0 18 21" style="width: 19px;"><use href="#userIcon" /></svg>
+                    <svg viewBox="0 0 18 21"><use href="#userIcon" /></svg>
                     Профиль
                 </div>
             </div>
@@ -420,36 +722,33 @@
                         <svg><use href="#closeIcon" /></svg>
                     </div>
 
-                    <div class="bottom-menu-lang_cont">
-                        <div id="bottomMenuLangBtn">
+                    <div class="dropdown lang-menu mb-25">
+                        <div class="dropdown-btn">
                             <img src="{{ asset('img/flags/ru.svg') }}" alt="ru">
                             Ru
-                            <span class="icon-chevron-down xsmall va3"></span>
+                            <span class="icon-chevron-down xsmall va2"></span>
                         </div>
-
-                        <div class="bottom-lang-menu" id="bottomLangMenu">
-                            <ul class="bottom-menu_list">
-                                <li>
-                                    <div id="bottomLangCurrentBtn">
-                                        <img src="{{ asset('img/flags/ru.svg') }}" alt="ru">
-                                        Русский
-                                        <span class="icon-check-lg me-1"></span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('img/flags/en.svg') }}" alt="en">
-                                        English
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="{{ asset('img/flags/de.svg') }}" alt="de">
-                                        Deutsch
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+                        <ul class="dropdown-list">
+                            <li>
+                                <div id="langCurrentBtn">
+                                    <img src="{{ asset('img/flags/ru.svg') }}" alt="ru">
+                                    Русский
+                                    <span class="icon-check-lg me-1 va2"></span>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="{{ asset('img/flags/en.svg') }}" alt="en">
+                                    English
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="{{ asset('img/flags/de.svg') }}" alt="de">
+                                    Deutsch
+                                </a>
+                            </li>
+                        </ul>
                     </div>
 
                     <ul class="bottom-menu_list">

@@ -25,6 +25,7 @@ $bottom-nav-color-active: white;
   }
   & > * {
     display: block;
+    position: relative;
     height: 54px;
     width: 66px;
     text-align: center;
@@ -43,12 +44,20 @@ $bottom-nav-color-active: white;
   }
   svg {
     display: block;
+    height: 22px;
     margin: 0 auto 4px auto;
     fill: none;
     stroke-width: 1.6;
     stroke: $bottom-nav-color;
     @include sm {
       margin: 0 auto 3px auto;
+    }
+  }
+  .badge-round, .badge-round-red, .badge-round-grey {
+    top: 0;
+    right: 14%;
+    @include sm {
+      right: 20%;
     }
   }
 }
@@ -63,6 +72,9 @@ $bottom-nav-color-active: white;
   font-size: 18px;
   background-color: white;
   display: none;
+  .dropdown-list {
+    margin-top: 0.25rem;
+  }
 }
 
 .bottom-menu_list {
@@ -71,17 +83,6 @@ $bottom-nav-color-active: white;
   }
   li:not(:last-child) {
     margin-bottom: 0.7em;
-  }
-}
-
-.bottom-menu-lang_cont {
-  position: relative;
-  width: fit-content;
-  cursor: pointer;
-  margin-bottom: 10px;
-  img {
-    height: 15px;
-    margin-right: 3px;
   }
 }
 
@@ -100,21 +101,5 @@ $bottom-nav-color-active: white;
     stroke: $header-grey-color1;
     stroke-width: 2.2;
     fill: none;
-  }
-}
-
-.bottom-lang-menu {
-  position: absolute;
-  margin-left: -1rem;
-  margin-top: 0.25rem;
-  padding: 1rem;
-  background-color: white;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.12);
-  display: none;
-  li {
-    white-space: nowrap;
-  }
-  .icon-check-lg {
-    line-height: 1rem;
   }
 }

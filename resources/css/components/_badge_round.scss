@@ -1,0 +1,26 @@
+@use 'sass:math';
+
+$badge-size-px: 18px;
+
+.badge-round {
+  display: block;
+  position: absolute;
+  top: -7px;
+  right: 20%;
+  height: $badge-size-px;
+  min-width: $badge-size-px;
+  padding: 3px 6px;
+  font-size: 11px;
+  line-height: 14px;
+  background-color: color($color1, light, 3);
+  color: white;
+  border-radius: math.div($badge-size-px, 2);
+  &-grey {
+    @extend .badge-round;
+    background-color: $grey-200;
+  }
+  &-red {
+    @extend .badge-round;
+    background-color: $color-red;
+  }
+}
