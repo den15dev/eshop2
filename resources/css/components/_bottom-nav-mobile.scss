@@ -54,7 +54,7 @@ $bottom-nav-color-active: white;
     }
   }
   .badge-round, .badge-round-red, .badge-round-grey {
-    top: 0;
+    top: 2px;
     right: 14%;
     @include sm {
       right: 20%;

@@ -11,14 +11,12 @@ $catalog-mobile-padding-left: 16px;
   }
   .cat-btn1 {
     display: flex;
-    //width: fit-content;
     align-items: center;
     gap: 8px;
     padding: 0 $catalog-mobile-padding-left;
     &.active {
       color: $color1;
     }
-    //background-color: #dde6be;
   }
   .cat-icon-cont {
     display: flex;
@@ -30,7 +28,6 @@ $catalog-mobile-padding-left: 16px;
       stroke-width: 1.6;
       stroke: color($color1, light, 4);
     }
-    //background-color: #bee6e1;
   }
   .cat-btn1-text {
     display: block;
