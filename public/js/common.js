@@ -55,6 +55,11 @@ function toggleSearchMobile(holdTint = false) {
 
     $('#searchBtnMobileNav .svg-search').fadeToggle(fadeSpeed);
     $('#searchBtnMobileNav .svg-close').fadeToggle(fadeSpeed);
+
+    if (!mobileSearchOpened) {
+        $('#searchInputMobile').focus();
+    }
+
     mobileSearchOpened = !mobileSearchOpened;
 }
 
