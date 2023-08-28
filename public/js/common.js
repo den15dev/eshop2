@@ -1,4 +1,9 @@
-/* -------------- Main navigation -------------- */
+/* ---------------- Main ------------------ */
+
+let lgMedia = window.matchMedia('(min-width: 992px)');
+
+
+/* -------------- Navigation -------------- */
 
 const fadeSpeed = 100;
 const slideSpeed = 100;
@@ -139,19 +144,28 @@ function closeAllMobileMenus() {
 
 function disableScroll() {
     if ($(document).height() > $(window).height()) {
-        let scrollTop = ($(htmlElem).scrollTop()) ? $(htmlElem).scrollTop() : $('body').scrollTop();
-        $(htmlElem).addClass('noscroll').css('top',-scrollTop);
+        if (lgMedia.matches) {
+            let scrollTop = ($(htmlElem).scrollTop()) ? $(htmlElem).scrollTop() : $('body').scrollTop();
+            $(htmlElem).addClass('noscroll-desktop').css('top',-scrollTop);
+        } else {
+            $(htmlElem).addClass('noscroll-mobile');
+        }
     }
 }
 
 function enableScroll() {
-    let scrollTop = parseInt($(htmlElem).css('top'));
-    $(htmlElem).removeClass('noscroll');
-    $('html,body').scrollTop(-scrollTop);
+    if (lgMedia.matches) {
+        let scrollTop = parseInt($(htmlElem).css('top'));
+        $(htmlElem).removeClass('noscroll-desktop noscroll-mobile');
+        $('html,body').scrollTop(-scrollTop);
+    } else {
+        $(htmlElem).removeClass('noscroll-desktop noscroll-mobile');
+        $(htmlElem).removeAttr('style');
+    }
 }
 
 function toggleScroll() {
-    $(htmlElem).hasClass('noscroll') ? enableScroll() : disableScroll();
+    $(htmlElem).hasClass('noscroll-desktop') || $(htmlElem).hasClass('noscroll-mobile') ? enableScroll() : disableScroll();
 }
 
 

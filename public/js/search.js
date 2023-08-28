@@ -86,10 +86,8 @@ let searchInput;
 let clearBtn;
 let searchInputTimeOut;
 
-let lgMedia = window.matchMedia('(min-width: 992px)');
 switchSearchInput(lgMedia);
 lgMedia.addEventListener('change', switchSearchInput);
-
 
 function switchSearchInput(mediaQuery) {
     if (mediaQuery.matches) {

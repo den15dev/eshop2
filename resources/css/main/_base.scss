@@ -98,9 +98,13 @@ nav > ul {
 }
 
 
-// -------- Other ----------
+// -------- Prevent scrolling when any model is opened ----------
 
-html.noscroll {
+html.noscroll-mobile {
+  overflow: hidden;
+}
+
+html.noscroll-desktop {
   position: fixed;
   overflow-y: scroll;
   width: 100%;
