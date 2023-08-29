@@ -1,5 +1,6 @@
 /* ---------------- Main ------------------ */
 
+let smMedia = window.matchMedia('(min-width: 576px)');
 let lgMedia = window.matchMedia('(min-width: 992px)');
 
 
@@ -202,13 +203,21 @@ function closeAllDropdowns() {
 
 function catalogMobileSetItemPaddings() {
     let n = 0;
-    const paddingStepPx = 12;
+    let iconGap = 8;
+    let iconContWidth = 20;
+    let paddingStepPx = 12;
+
+    if (smMedia.matches) {
+        iconGap = 9;
+        iconContWidth = 24;
+        paddingStepPx = 16;
+    }
 
     function findChildrenList(parentList) {
         $(parentList).children('ul.catalog-mobile-sublist').each(function() {
             n++;
             $(this).children('li').each(function() {
-                $(this).children('a, div').first().css('padding-left', `${16 + 28 + paddingStepPx * (n - 1)}px`);
+                $(this).children('a, div').first().css('padding-left', `${16 + iconContWidth + iconGap + paddingStepPx * (n - 1)}px`);
                 findChildrenList($(this));
             });
             n--;
@@ -294,6 +303,7 @@ $(document).ready(function () {
     catalogMobileSetItemPaddings();
     catalogMobileSetMaxHeight();
     $(window).on('resize', catalogMobileSetMaxHeight);
+    smMedia.addEventListener('change', catalogMobileSetItemPaddings);
 
     $('#catalogNavMobile div.cat-btn1, #catalogNavMobile div.cat-btn2').on('click', function() {
         $(this).siblings('ul.catalog-mobile-sublist').first().slideToggle(slideSpeed);

@@ -6,7 +6,8 @@
 
     <title>{{ config('app.name') }}</title>
 
-    @vite(['resources/css/app.scss', 'resources/js/app.js'])
+{{--    @vite(['resources/css/app.scss', 'resources/js/app.js'])--}}
+    @vite(['resources/css/app.scss'])
 </head>
 <body>
     <div class="page-wrap">
@@ -304,7 +305,7 @@
                         <li>
                             <div class="cat-btn1">
                                 <div class="cat-icon-cont">
-                                    <svg width="20" height="19"><use href="#catalogIcon_pc-parts" /></svg>
+                                    <svg style="height: 60%"><use href="#catalogIcon_pc-parts" /></svg>
                                 </div>
                                 <span class="cat-btn1-text">Компьютерные комплектующие</span>
                             </div>
@@ -380,7 +381,7 @@
                         <li>
                             <div class="cat-btn1">
                                 <div class="cat-icon-cont">
-                                    <svg width="16" height="18"><use href="#catalogIcon_appliances" /></svg>
+                                    <svg style="height: 60%;"><use href="#catalogIcon_appliances" /></svg>
                                 </div>
                                 <span class="cat-btn1-text">Бытовая техника</span>
                             </div>
@@ -420,7 +421,7 @@
                         <li>
                             <div class="cat-btn1">
                                 <div class="cat-icon-cont">
-                                    <svg width="20" height="17"><use href="#catalogIcon_tvs-and-accessories" /></svg>
+                                    <svg style="height: 60%"><use href="#catalogIcon_tvs-and-accessories" /></svg>
                                 </div>
                                 <span class="cat-btn1-text">Телевизоры и аксессуары</span>
                             </div>
@@ -450,7 +451,7 @@
                         <li>
                             <div class="cat-btn1">
                                 <div class="cat-icon-cont">
-                                    <svg width="21" height="17"><use href="#catalogIcon_audio" /></svg>
+                                    <svg style="height: 56%"><use href="#catalogIcon_audio" /></svg>
                                 </div>
                                 <span class="cat-btn1-text">Аудиотехника</span>
                             </div>
@@ -458,7 +459,7 @@
                         <li>
                             <div class="cat-btn1">
                                 <div class="cat-icon-cont">
-                                    <svg width="13" height="18"><use href="#catalogIcon_smartphones-and-tablets" /></svg>
+                                    <svg style="height: 56%"><use href="#catalogIcon_smartphones-and-tablets" /></svg>
                                 </div>
                                 <span class="cat-btn1-text">Смартфоны и планшеты</span>
                             </div>

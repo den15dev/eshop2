@@ -1,28 +1,53 @@
-$catalog-mobile-padding-left: 16px;
-
 .catalog-mobile-list {
+  $padding-left: 16px;
+
+  // Smallest
+  $font-size: 16px;
+  $row-height: 32px;
+  $row-padding-top: 11px;
+  $icon-gap: 8px;
+  $icon-cont-width: 20px;
+
+  // sm
+  $font-size-sm: 18px;
+  $row-height-sm: 36px;
+  $row-padding-top-sm: 12px;
+  $icon-gap-sm: 9px;
+  $icon-cont-width-sm: 24px;
+
+  font-size: $font-size;
   li {
     display: block;
     line-height: 12px;
   }
   div, a {
     display: block;
-    height: 32px;
+    height: $row-height;
+    @include sm {
+      height: $row-height-sm;
+    }
   }
   .cat-btn1 {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 0 $catalog-mobile-padding-left;
+    gap: $icon-gap;
+    padding: 0 $padding-left;
     &.active {
       color: $color1;
+    }
+    @include sm {
+      gap: $icon-gap-sm;
     }
   }
   .cat-icon-cont {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 20px;
+    width: $icon-cont-width;
+    //background-color: #dde6be;
+    @include sm {
+      width: $icon-cont-width-sm;
+    }
     svg {
       fill: none;
       stroke-width: 1.6;
@@ -35,8 +60,8 @@ $catalog-mobile-padding-left: 16px;
   }
 
   .cat-btn2 {
-    padding-top: 11px;
-    padding-left: $catalog-mobile-padding-left + 28px;
+    padding-top: $row-padding-top;
+    padding-left: $padding-left + $icon-cont-width + $icon-gap;
     color: $grey-150;
     .cat-count {
       color: $grey-210;
@@ -44,6 +69,14 @@ $catalog-mobile-padding-left: 16px;
     &.active {
       background-color: rgb(245, 245, 245);
     }
+    @include sm {
+      padding-top: $row-padding-top-sm;
+      padding-left: $padding-left + $icon-cont-width-sm + $icon-gap-sm;
+    }
+  }
+
+  @include sm {
+    font-size: $font-size-sm;
   }
 }
 
