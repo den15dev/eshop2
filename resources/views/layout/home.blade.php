@@ -305,7 +305,7 @@
                         <li>
                             <div class="cat-btn1">
                                 <div class="cat-icon-cont">
-                                    <svg style="height: 60%"><use href="#catalogIcon_pc-parts" /></svg>
+                                    <svg viewBox="0 0 20 19" style="height: 60%"><use href="#catalogIcon_pc-parts" /></svg>
                                 </div>
                                 <span class="cat-btn1-text">Компьютерные комплектующие</span>
                             </div>
@@ -381,7 +381,7 @@
                         <li>
                             <div class="cat-btn1">
                                 <div class="cat-icon-cont">
-                                    <svg style="height: 60%;"><use href="#catalogIcon_appliances" /></svg>
+                                    <svg viewBox="0 0 16 18" style="height: 60%;"><use href="#catalogIcon_appliances" /></svg>
                                 </div>
                                 <span class="cat-btn1-text">Бытовая техника</span>
                             </div>
@@ -421,7 +421,7 @@
                         <li>
                             <div class="cat-btn1">
                                 <div class="cat-icon-cont">
-                                    <svg style="height: 60%"><use href="#catalogIcon_tvs-and-accessories" /></svg>
+                                    <svg viewBox="0 0 20 17" style="height: 60%"><use href="#catalogIcon_tvs-and-accessories" /></svg>
                                 </div>
                                 <span class="cat-btn1-text">Телевизоры и аксессуары</span>
                             </div>
@@ -451,7 +451,7 @@
                         <li>
                             <div class="cat-btn1">
                                 <div class="cat-icon-cont">
-                                    <svg style="height: 56%"><use href="#catalogIcon_audio" /></svg>
+                                    <svg viewBox="0 0 21 17" style="height: 56%"><use href="#catalogIcon_audio" /></svg>
                                 </div>
                                 <span class="cat-btn1-text">Аудиотехника</span>
                             </div>
@@ -459,7 +459,7 @@
                         <li>
                             <div class="cat-btn1">
                                 <div class="cat-icon-cont">
-                                    <svg style="height: 56%"><use href="#catalogIcon_smartphones-and-tablets" /></svg>
+                                    <svg viewBox="0 0 13 18" style="height: 56%"><use href="#catalogIcon_smartphones-and-tablets" /></svg>
                                 </div>
                                 <span class="cat-btn1-text">Смартфоны и планшеты</span>
                             </div>
