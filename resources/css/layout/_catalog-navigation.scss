@@ -10,8 +10,10 @@
 
 #catalogNavDesktop {
   display: none;
+  padding: 8px 16px 8px 12px;
   @include lg {
-    display: block;
+    display: flex;
+    gap: 20px;
   }
 }
 

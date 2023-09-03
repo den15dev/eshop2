@@ -1,0 +1,74 @@
+.catalog-desktop-root-list {
+  & > li, div {
+    height: 32px;
+  }
+  & > li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 8px;
+    cursor: pointer;
+    border-left: 4px solid white;
+    transition-property: color, border-left-color;
+    transition-duration: 0.3s;
+    &.active {
+      color: $color1;
+      border-left-color: $color2;
+      transition-property: color, border-left-color;
+      transition-duration: 0.3s;
+    }
+  }
+  .icon-cont {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    //background-color: #dde6be;
+    svg {
+      fill: none;
+      stroke-width: 1.6;
+      stroke: color($color1, light, 4);
+    }
+  }
+  .item-text {
+    display: block;
+    padding-top: 1px;
+  }
+}
+
+.catalog-desktop-body-cont {
+  h4 {
+    margin-bottom: 4px;
+  }
+}
+
+.catalog-desktop_subcont {
+  display: flex;
+  gap: 32px;
+  ul:not(:first-of-type) {
+    display: none;
+  }
+}
+
+.catalog-desktop-sublist {
+  div, a {
+    display: block;
+    cursor: pointer;
+    height: 32px;
+    color: $grey-150;
+    padding-right: 32px;
+    padding-top: 4px;
+    &.active {
+      color: $color1;
+    }
+    &.active-pointer {
+      background: no-repeat right url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDYgMzIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQogICAgPHBhdGggZD0iTTUuNSAwVjEyTDEgMTYuNUw1LjUgMjFWMzIiIHN0cm9rZT0iI0UwRTBFMCIvPg0KPC9zdmc+');
+    }
+    &.active-border {
+      border-right: 1px solid $grey-220;
+    }
+  }
+  .cat-count {
+    color: $grey-210;
+  }
+}

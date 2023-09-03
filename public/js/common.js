@@ -7,6 +7,7 @@ let lgMedia = window.matchMedia('(min-width: 992px)');
 /* -------------- Navigation -------------- */
 
 const fadeSpeed = 100;
+const catalogFadeSpeed = 100;
 const slideSpeed = 100;
 let htmlElem;
 let catalogNavOpened = false;
@@ -292,12 +293,14 @@ $(document).ready(function () {
         $(this).data('opened') ? closeAllDropdowns() : openDropdown($(this));
     });
 
+
     // ------- Language menu ---------
     $('.lang-menu a').on('click', function(e) {
         let $checkIcon = $(e.target).parents('.dropdown-list').find('.icon-check-lg');
         $checkIcon.clone().appendTo(e.target).addClass('va2');
         $checkIcon.remove();
     });
+
 
     // -------- Catalog mobile ----------
     catalogMobileSetItemPaddings();
@@ -310,4 +313,140 @@ $(document).ready(function () {
         $(this).toggleClass('active');
         $(this).children('.icon-chevron-down, .icon-chevron-up').first().toggleClass(['icon-chevron-down', 'icon-chevron-up']);
     })
+
+
+    // -------- Catalog desktop ---------
+    const catalogRootList = $('.catalog-desktop-root-list').first();
+    const bodyConts = $('#catalogNavDesktop .catalog-desktop-body-cont');
+    let catalogMenuTimeout;
+    let currentId = 1;
+
+    // Set container height
+    /*
+    const catalogNavCont = $('#catalogNavCont');
+    const catalogNavDesktop = $('#catalogNavDesktop');
+    $(catalogNavCont).css('display', 'block');
+    let catalogDesktopBodyMaxHeight = $(catalogNavDesktop).innerHeight();
+    $(bodyConts).first().css('display', 'none');
+    $(bodyConts).each(function(ind, bodyCont) {
+        let curHeight = catalogDesktopBodyMaxHeight;
+        if (ind > 0) {
+            $(bodyCont).css('display', 'block');
+            curHeight = $(catalogNavDesktop).innerHeight();
+            if (curHeight > catalogDesktopBodyMaxHeight) {
+                catalogDesktopBodyMaxHeight = curHeight;
+            }
+            $(bodyCont).css('display', 'none');
+        }
+    });
+    $(bodyConts).first().css('display', 'block');
+    $(catalogNavDesktop).css('height', `${catalogDesktopBodyMaxHeight}px`);
+    $(catalogNavCont).css('display', 'none');
+     */
+
+
+    // --- Root List ---
+    $(catalogRootList).children('li').on('mouseenter', function() {
+        catalogMenuTimeout = setTimeout(() => {
+            const newLiElem = $(this);
+            const newCatId = $(newLiElem).data('id');
+            currentId = newCatId;
+            const currentOpenedBody = $(bodyConts).filter(function() {
+                return $(this).data('opened') === 'on';
+            });
+            const currentOpenedId = $(currentOpenedBody).data('id');
+
+            if (typeof currentOpenedId === 'number' && currentOpenedId !== newCatId) {
+                const catalogNavDesktop = $('#catalogNavDesktop');
+                const targetBody = $(bodyConts).filter('[data-id="' + newCatId + '"]');
+
+                if (targetBody.length) {
+                    const h1 = $(catalogNavDesktop).innerHeight();
+
+                    $(currentOpenedBody).fadeOut(catalogFadeSpeed, function () {
+                        $(currentOpenedBody).data('opened', 'off');
+
+                        if (currentId === newCatId) {
+                            $(targetBody).fadeIn(catalogFadeSpeed);
+                            $(targetBody).data('opened', 'on');
+
+                            // Animate height of the catalog menu
+                            const h2 = $(catalogNavDesktop).innerHeight();
+                            $(catalogNavDesktop).css('height', `${h1}px`);
+                            $(catalogNavDesktop).animate({height: h2}, 200, function () {
+                                $(catalogNavDesktop).css('height', 'auto');
+                            });
+
+                            // Make button active
+                            $(newLiElem).addClass('active');
+                        }
+                    });
+
+                    // Make old button inactive
+                    const oldLiElem = $(catalogRootList).children('li').filter('[data-id="' + currentOpenedId + '"]');
+                    $(oldLiElem).removeClass('active');
+                }
+            }
+        }, 250);
+    });
+
+    $(catalogRootList).children('li').on('mouseleave', function() {
+        clearTimeout(catalogMenuTimeout);
+    });
+
+    // --- Sub Lists ---
+    $('.catalog-desktop_subcont .catalog-desktop-sublist:first-child li').children('div, a').on('mouseenter', function() {
+        catalogMenuTimeout = setTimeout(() => {
+            const itemBtn = $(this);
+            const newSubCatId = $(itemBtn).parent().data('id');
+            currentId = newSubCatId;
+
+            const currentSubCont = $(itemBtn).parents('div.catalog-desktop_subcont').first();
+            const subLists = $(currentSubCont).children('.catalog-desktop-sublist');
+            const targetSubList = subLists.filter('[data-id="' + newSubCatId + '"]');
+
+            //Get current opened items
+            const currentOpenedSublist = $(subLists).filter(function() {
+                return $(this).data('opened') === 'on';
+            });
+            const currentOpenedId = $(currentOpenedSublist).data('id');
+            const oldItemBtn = subLists.first().children('li').filter('[data-id="' + currentOpenedId + '"]');
+
+
+            if (newSubCatId !== currentOpenedId) {
+
+                if (targetSubList.length) {
+
+                    if (typeof currentOpenedId === 'number') {
+                        $(currentOpenedSublist).fadeOut(catalogFadeSpeed, function() {
+
+                            $(targetSubList).fadeIn(catalogFadeSpeed);
+                            $(targetSubList).data('opened', 'on');
+
+                        });
+                        $(currentOpenedSublist).data('opened', 'off');
+
+                    } else {
+                        $(targetSubList).fadeIn(catalogFadeSpeed);
+                        $(targetSubList).data('opened', 'on');
+                    }
+
+                } else {
+
+                    if (typeof currentOpenedId === 'number') {
+                        $(currentOpenedSublist).fadeOut(catalogFadeSpeed);
+                        $(currentOpenedSublist).data('opened', 'off');
+                    }
+
+                }
+
+            }
+
+            $(oldItemBtn).removeClass('active');
+            $(itemBtn).addClass('active');
+
+
+        }, 250);
+    });
+
 });
