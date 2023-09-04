@@ -1,6 +1,8 @@
 .catalog-desktop-root-list {
+  text-wrap: nowrap;
   & > li, div {
     height: 32px;
+    color: black;
   }
   & > li {
     display: flex;
@@ -37,11 +39,43 @@
 }
 
 .catalog-desktop-body-cont {
-  h4 {
-    margin-bottom: 4px;
+  column-count: 3;
+  column-gap: 2rem;
+  //font-size: 0.875rem;
+  //column-width: auto;
+  padding-bottom: 1rem;
+  display: none;
+  h6 {
+    margin-bottom: 0.6rem;
+  }
+  section {
+    margin-bottom: 1.75rem;
+    break-inside: avoid-column;
+    max-width: 240px;
+    div, a {
+      display: block;
+      cursor: pointer;
+      color: $grey-120;
+      &:hover {
+        color: $color1;
+        .icon-chevron-right {
+          color: $grey-120;
+        }
+      }
+    }
+    .cat-count {
+      color: $grey-210;
+    }
+    li, ul.dropdown-list li {
+      line-height: 1.25rem;
+    }
+    li:not(:last-child), ul.dropdown-list li:not(:last-child) {
+      margin-bottom: 0.5rem;
+    }
   }
 }
 
+/*
 .catalog-desktop_subcont {
   display: flex;
   gap: 32px;
@@ -72,3 +106,4 @@
     color: $grey-210;
   }
 }
+ */

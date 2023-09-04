@@ -1,6 +1,7 @@
 $dropdown-list-paddings: 1.25rem;
 
-.dropdown {
+.dropdown,
+.dropdown-hover {
   position: relative;
   width: fit-content;
 }
@@ -34,4 +35,11 @@ $dropdown-list-paddings: 1.25rem;
 .dd-right {
   margin-left: 0;
   right: 0;
+}
+
+.dd-right-out {
+  top: 0;
+  left: 105%;
+  margin-left: 0;
+  margin-top: -$dropdown-list-paddings * 0.7;
 }

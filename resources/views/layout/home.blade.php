@@ -297,7 +297,7 @@
                             <div class="icon-cont">
                                 <svg viewBox="0 0 20 19" style="height: 60%"><use href="#catalogIcon_pc-parts" /></svg>
                             </div>
-                            <span class="item-text">Компьютерные комплектующие</span>
+                            <span class="item-text">Компьютеры и периферия</span>
                         </li>
                         <li data-id="2">
                             <div class="icon-cont">
@@ -325,9 +325,9 @@
                         </li>
                     </ul>
 
-                    <div class="catalog-desktop-body-cont" data-id="1" data-opened="on">
-                        <h4>Компьютерные комплектующие</h4>
-                        <div class="catalog-desktop_subcont">
+                    <div class="catalog-desktop-body-cont" data-id="1" data-opened="on" style="display: block">
+{{--                        <h5>Компьютерные комплектующие</h5>--}}
+                        {{--<div class="catalog-desktop_subcont">
                             <ul class="catalog-desktop-sublist">
                                 <li>
                                     <a href="#">
@@ -340,17 +340,17 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="active-border" href="#">
+                                    <a href="#">
                                         Видеокарты <span class="cat-count">93</span>
                                     </a>
                                 </li>
                                 <li data-id="9">
-                                    <div class="active-pointer">
+                                    <div>
                                         Накопители <span class="cat-count">182</span><span class="icon-chevron-right xsmall va3 ms-2"></span>
                                     </div>
                                 </li>
                                 <li>
-                                    <a class="active-border" href="#">
+                                    <a href="#">
                                         Оперативная память <span class="cat-count">174</span>
                                     </a>
                                 </li>
@@ -360,30 +360,173 @@
                                     </a>
                                 </li>
                             </ul>
-
-                            <ul class="catalog-desktop-sublist" data-id="9">
+                        </div>--}}
+                        <section>
+                            <h6>Комплектующие ПК</h6>
+                            <ul>
                                 <li>
                                     <a href="#">
-                                        HDD <span class="cat-count">65</span>
+                                        Процессоры&nbsp;<span class="cat-count">65</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
-                                        Твердотельные SSD <span class="cat-count">248</span>
+                                        Материнские платы&nbsp;<span class="cat-count">248</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
-                                        M.2 <span class="cat-count">93</span>
+                                        Видеокарты&nbsp;<span class="cat-count">93</span>
+                                    </a>
+                                </li>
+                                <li class="dropdown-hover">
+                                    <div class="dropdown-btn">
+                                        Накопители&nbsp;<span class="cat-count">182</span>
+                                        <span class="icon-chevron-right xsmall va3 ms-1"></span>
+                                    </div>
+                                    <ul class="dropdown-list dd-right-out">
+                                        <li>
+                                            <a href="#">
+                                                HDD <span class="cat-count">174</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                SSD <span class="cat-count">98</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                SSD M.2 <span class="cat-count">204</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-hover">
+                                    <div class="dropdown-btn">
+                                        Оперативная память&nbsp;<span class="cat-count">174</span>
+                                        <span class="icon-chevron-right xsmall va3 ms-1"></span>
+                                    </div>
+                                    <ul class="dropdown-list dd-right-out">
+                                        <li>
+                                            <a href="#">
+                                                DIMM <span class="cat-count">174</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                SO-DIMM <span class="cat-count">98</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Блоки питания&nbsp;<span class="cat-count">59</span>
                                     </a>
                                 </li>
                             </ul>
-                        </div>
+                        </section>
+
+                        <section>
+                            <h6>Периферия и аксессуары</h6>
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        Колонки&nbsp;<span class="cat-count">65</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Шлемы и очки VR&nbsp;<span class="cat-count">248</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Веб-камеры&nbsp;<span class="cat-count">93</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        USB-хабы, разветвители&nbsp;<span class="cat-count">182</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Клавиатуры&nbsp;<span class="cat-count">121</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Мыши&nbsp;<span class="cat-count">68</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Игровые наборы&nbsp;<span class="cat-count">72</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </section>
+
+                        <section>
+                            <h6>Ноутбуки и аксессуары</h6>
+                            <ul>
+                                <li class="dropdown-hover">
+                                    <div class="dropdown-btn">
+                                        Ноутбуки&nbsp;<span class="cat-count">65</span>
+                                        <span class="icon-chevron-right xsmall va3 ms-1"></span>
+                                    </div>
+                                    <ul class="dropdown-list dd-right-out">
+                                        <li>
+                                            <a href="#">
+                                                Ультрабуки&nbsp;<span class="cat-count">174</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                Трансформеры&nbsp;<span class="cat-count">98</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                Игровые&nbsp;<span class="cat-count">204</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Подставки для ноутбуков&nbsp;<span class="cat-count">248</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Сумки для ноутбуков&nbsp;<span class="cat-count">93</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Рюкзаки для ноутбуков&nbsp;<span class="cat-count">182</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        USB-разветвители&nbsp;<span class="cat-count">248</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Зарядные устройства&nbsp;<span class="cat-count">93</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </section>
                     </div>
 
-                    <div class="catalog-desktop-body-cont" data-id="2" style="display: none">
-                        <h4>Бытовая техника</h4>
-                        <div class="catalog-desktop_subcont">
+                    <div class="catalog-desktop-body-cont" data-id="2">
+{{--                        <h4>Бытовая техника</h4>--}}
+                        {{--<div class="catalog-desktop_subcont">
                             <ul class="catalog-desktop-sublist">
                                 <li>
                                     <a href="#">
@@ -419,12 +562,161 @@
                                     </a>
                                 </li>
                             </ul>
-                        </div>
+                        </div>--}}
+
+                        <section>
+                            <h6>Крупная бытовая техника</h6>
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        Стиральные машины <span class="cat-count">65</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Сушильные машины <span class="cat-count">248</span>
+                                    </a>
+                                </li>
+                                <li class="dropdown-hover">
+                                    <div class="dropdown-btn">
+                                        Холодильники <span class="cat-count">182</span>
+                                        <span class="icon-chevron-right xsmall va3 ms-1"></span>
+                                    </div>
+                                    <ul class="dropdown-list dd-right-out">
+                                        <li>
+                                            <a href="#">
+                                                Однокамерные <span class="cat-count">174</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                Двухкамерные <span class="cat-count">98</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                Двухдверные <span class="cat-count">204</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Минихолодильники <span class="cat-count">93</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Морозильники <span class="cat-count">36</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Вытяжки <span class="cat-count">59</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </section>
+
+                        <section>
+                            <h6>Техника для уборки</h6>
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        Пылесосы <span class="cat-count">65</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Роботы-пылесосы <span class="cat-count">248</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Роботы-мойщики окон <span class="cat-count">93</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Пароочистители <span class="cat-count">112</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Мешки и фильтры для пылесосов <span class="cat-count">182</span>
+                                    </a>
+                                </li>
+                                <li class="dropdown-hover">
+                                    <div class="dropdown-btn">
+                                        Профессиональные и строительные пылесосы <span class="cat-count">89</span>
+                                        <span class="icon-chevron-right xsmall va3 ms-1"></span>
+                                    </div>
+                                    <ul class="dropdown-list dd-right-out">
+                                        <li>
+                                            <a href="#">
+                                                HDD <span class="cat-count">174</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                SSD <span class="cat-count">98</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                SSD M.2 <span class="cat-count">204</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </section>
+
+                        <section>
+                            <h6>Техника для кухни</h6>
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        Приготовление чая <span class="cat-count">248</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Кофеварки и кофемашины <span class="cat-count">93</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Мясорубки <span class="cat-count">182</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Микроволновые печи <span class="cat-count">248</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Мультиварки <span class="cat-count">93</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Миксеры <span class="cat-count">128</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Блендеры <span class="cat-count">76</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </section>
                     </div>
 
-                    <div class="catalog-desktop-body-cont" data-id="3" style="display: none">
-                        <h4>Телевизоры и аксессуары</h4>
-                        <div class="catalog-desktop_subcont">
+                    <div class="catalog-desktop-body-cont" data-id="3">
+{{--                        <h4>Телевизоры и аксессуары</h4>--}}
+                        {{--<div class="catalog-desktop_subcont">
                             <ul class="catalog-desktop-sublist">
                                 <li>
                                     <a href="#">
@@ -447,12 +739,89 @@
                                     </a>
                                 </li>
                             </ul>
-                        </div>
+                        </div>--}}
+
+                        <section>
+                            <h6>Телевизоры</h6>
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        8K <span class="cat-count">65</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        4K UHD <span class="cat-count">248</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        FHD <span class="cat-count">93</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Smart TV <span class="cat-count">36</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        OLED <span class="cat-count">59</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        QLED <span class="cat-count">59</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </section>
+
+                        <section>
+                            <h6>Аксессуары</h6>
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        Кронштейны для TV <span class="cat-count">65</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Кабели и переходники <span class="cat-count">248</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Чистящие средства для экранов <span class="cat-count">93</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Сетевые фильтры и удлиннители <span class="cat-count">36</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Стабилизаторы напряжения <span class="cat-count">59</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Антенны <span class="cat-count">59</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Пульты ДУ <span class="cat-count">59</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </section>
                     </div>
 
                     <div class="catalog-desktop-body-cont" data-id="4" style="display: none">
-                        <h4>Аудиотехника</h4>
-                        <div class="catalog-desktop_subcont">
+{{--                        <h4>Аудиотехника</h4>--}}
+                        {{--<div class="catalog-desktop_subcont">
                             <ul class="catalog-desktop-sublist">
                                 <li>
                                     <a href="#">
@@ -485,12 +854,130 @@
                                     </a>
                                 </li>
                             </ul>
-                        </div>
+                        </div>--}}
+
+                        <section>
+                            <h6>Hi-Fi</h6>
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        Колонки <span class="cat-count">65</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Усилители <span class="cat-count">248</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Виниловые проигрыватели <span class="cat-count">93</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Виниловые пластинки <span class="cat-count">36</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        CD плееры <span class="cat-count">59</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </section>
+
+                        <section>
+                            <h6>Наушники</h6>
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        True Wireless&nbsp;<span class="cat-count">65</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Спортивные&nbsp;<span class="cat-count">248</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Накладные и полноразмерные&nbsp;<span class="cat-count">93</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Наушники-вкладыши и внутриканальные&nbsp;<span class="cat-count">36</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Игровые и компьютерные&nbsp;<span class="cat-count">59</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Наушники с костной проводимостью звука&nbsp;<span class="cat-count">59</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Гарнитуры для телефонов&nbsp;<span class="cat-count">59</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Аксессуары для наушников&nbsp;<span class="cat-count">59</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </section>
+
+                        <section>
+                            <h6>Портативное аудио</h6>
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        Портативные колонки <span class="cat-count">65</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Умные колонки <span class="cat-count">248</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        MP3 плееры <span class="cat-count">93</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        iPod <span class="cat-count">36</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Радио <span class="cat-count">59</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Диктофоны <span class="cat-count">59</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Магнитолы <span class="cat-count">59</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </section>
                     </div>
 
                     <div class="catalog-desktop-body-cont" data-id="5" style="display: none">
                         <h4>Смартфоны и планшеты</h4>
-                        <div class="catalog-desktop_subcont">
+                        {{--<div class="catalog-desktop_subcont">
                             <ul class="catalog-desktop-sublist">
                                 <li>
                                     <a href="#">
@@ -528,7 +1015,7 @@
                                     </a>
                                 </li>
                             </ul>
-                        </div>
+                        </div>--}}
                     </div>
                 </div>
 

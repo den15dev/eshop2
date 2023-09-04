@@ -346,6 +346,7 @@ $(document).ready(function () {
 
 
     // --- Root List ---
+    /*
     $(catalogRootList).children('li').on('mouseenter', function() {
         catalogMenuTimeout = setTimeout(() => {
             const newLiElem = $(this);
@@ -361,6 +362,7 @@ $(document).ready(function () {
                 const targetBody = $(bodyConts).filter('[data-id="' + newCatId + '"]');
 
                 if (targetBody.length) {
+                    $(catalogNavDesktop).css('height', 'auto');
                     const h1 = $(catalogNavDesktop).innerHeight();
 
                     $(currentOpenedBody).fadeOut(catalogFadeSpeed, function () {
@@ -373,9 +375,7 @@ $(document).ready(function () {
                             // Animate height of the catalog menu
                             const h2 = $(catalogNavDesktop).innerHeight();
                             $(catalogNavDesktop).css('height', `${h1}px`);
-                            $(catalogNavDesktop).animate({height: h2}, 200, function () {
-                                $(catalogNavDesktop).css('height', 'auto');
-                            });
+                            $(catalogNavDesktop).animate({height: h2}, 200);
 
                             // Make button active
                             $(newLiElem).addClass('active');
@@ -390,10 +390,74 @@ $(document).ready(function () {
         }, 250);
     });
 
+     */
+
+
+    // --- Root List 2 ---
+    $(catalogRootList).children('li').on('mouseenter', function() {
+        catalogMenuTimeout = setTimeout(() => {
+            const newLiElem = $(this);
+            const newCatId = $(newLiElem).data('id');
+            currentId = newCatId;
+            const currentOpenedBody = $(bodyConts).filter(function() {
+                return $(this).data('opened') === 'on';
+            });
+            const currentOpenedId = $(currentOpenedBody).data('id');
+
+            if (typeof currentOpenedId === 'number' && currentOpenedId !== newCatId) {
+                const catalogNavDesktop = $('#catalogNavDesktop');
+                const targetBody = $(bodyConts).filter('[data-id="' + newCatId + '"]');
+
+                if (targetBody.length) {
+                    /*
+                    $(catalogNavDesktop).css('height', 'auto');
+                    const h1 = $(catalogNavDesktop).innerHeight();
+
+                    $(currentOpenedBody).fadeOut(catalogFadeSpeed, function () {
+                        $(currentOpenedBody).data('opened', 'off');
+
+                        if (currentId === newCatId) {
+                            $(targetBody).fadeIn(catalogFadeSpeed);
+                            $(targetBody).data('opened', 'on');
+
+                            // Animate height of the catalog menu
+                            const h2 = $(catalogNavDesktop).innerHeight();
+                            $(catalogNavDesktop).css('height', `${h1}px`);
+                            $(catalogNavDesktop).animate({height: h2}, 200);
+
+                            // Make button active
+                            $(newLiElem).addClass('active');
+                        }
+                    });
+                    */
+
+                    $(catalogNavDesktop).css('height', 'auto');
+
+                    $(currentOpenedBody).hide();
+                    $(currentOpenedBody).data('opened', 'off');
+
+                    $(targetBody).show();
+                    $(targetBody).data('opened', 'on');
+
+                    const h1 = $(catalogNavDesktop).innerHeight();
+                    $(catalogNavDesktop).css('height', `${h1}px`);
+
+                    $(newLiElem).addClass('active');
+
+                    // Make old button inactive
+                    const oldLiElem = $(catalogRootList).children('li').filter('[data-id="' + currentOpenedId + '"]');
+                    $(oldLiElem).removeClass('active');
+                }
+            }
+        }, 250);
+    });
+
+
     $(catalogRootList).children('li').on('mouseleave', function() {
         clearTimeout(catalogMenuTimeout);
     });
 
+    /*
     // --- Sub Lists ---
     $('.catalog-desktop_subcont .catalog-desktop-sublist:first-child li').children('div, a').on('mouseenter', function() {
         catalogMenuTimeout = setTimeout(() => {
@@ -448,5 +512,46 @@ $(document).ready(function () {
 
         }, 250);
     });
+*/
 
+    // --- Section dropdowns ---
+    let catalogDDTimeout;
+    const hoverDropdowns = $('.dropdown-hover');
+
+    function closeDesktopCatalogDropdowns(bodyCont) {
+        $(bodyCont).find('.dropdown-hover').each(function() {
+            if ($(this).data('opened') === 'on') {
+                // $(this).children('.dropdown-list').first().fadeOut(fadeSpeed);
+                $(this).children('.dropdown-list').first().hide();
+            }
+        });
+    }
+
+    $(hoverDropdowns).on('mouseenter', function() {
+        clearTimeout(catalogDDTimeout);
+        catalogDDTimeout = setTimeout(() => {
+            // Close other
+            $(this).data('opened', 'off');
+            closeDesktopCatalogDropdowns($(this).parents('.catalog-desktop-body-cont'));
+
+            // $(this).children('.dropdown-list').first().fadeIn(fadeSpeed);
+            $(this).children('.dropdown-list').first().show();
+            $(this).data('opened', 'on');
+        }, 200);
+    });
+
+    $(hoverDropdowns).on('mouseleave', function() {
+        clearTimeout(catalogDDTimeout);
+        catalogDDTimeout = setTimeout(() => {
+            /*
+            $(this).children('.dropdown-list').first().fadeOut(fadeSpeed, function() {
+                closeDesktopCatalogDropdowns($(this).parents('.catalog-desktop-body-cont'));
+            });
+            */
+            $(this).children('.dropdown-list').first().hide();
+            closeDesktopCatalogDropdowns($(this).parents('.catalog-desktop-body-cont'));
+
+            $(this).data('opened', 'off');
+        }, 200);
+    });
 });
