@@ -25,7 +25,6 @@
     align-items: center;
     justify-content: center;
     width: 20px;
-    //background-color: #dde6be;
     svg {
       fill: none;
       stroke-width: 1.6;
@@ -42,7 +41,6 @@
   column-count: 3;
   column-gap: 1.25rem;
   font-size: 0.875rem;
-  //column-width: auto;
   margin-bottom: 1rem;
   padding-left: 2rem;
   border-left: solid 1px $grey-230;
@@ -81,36 +79,3 @@
     font-size: 1rem;
   }
 }
-
-/*
-.catalog-desktop_subcont {
-  display: flex;
-  gap: 32px;
-  ul:not(:first-of-type) {
-    display: none;
-  }
-}
-
-.catalog-desktop-sublist {
-  div, a {
-    display: block;
-    cursor: pointer;
-    height: 32px;
-    color: $grey-150;
-    padding-right: 32px;
-    padding-top: 4px;
-    &.active {
-      color: $color1;
-    }
-    &.active-pointer {
-      background: no-repeat right url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDYgMzIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQogICAgPHBhdGggZD0iTTUuNSAwVjEyTDEgMTYuNUw1LjUgMjFWMzIiIHN0cm9rZT0iI0UwRTBFMCIvPg0KPC9zdmc+');
-    }
-    &.active-border {
-      border-right: 1px solid $grey-220;
-    }
-  }
-  .cat-count {
-    color: $grey-210;
-  }
-}
- */

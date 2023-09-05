@@ -291,6 +291,9 @@
 
 
             <div class="catalog-nav-cont" id="catalogNavCont">
+
+                {{--  ----------- Catalog Desktop ------------  --}}
+
                 <div class="container" id="catalogNavDesktop">
                     <ul class="catalog-desktop-root-list">
                         <li class="active" data-id="1">
@@ -326,41 +329,6 @@
                     </ul>
 
                     <div class="catalog-desktop-body-cont" data-id="1" data-opened="on" style="display: block">
-{{--                        <h5>Компьютерные комплектующие</h5>--}}
-                        {{--<div class="catalog-desktop_subcont">
-                            <ul class="catalog-desktop-sublist">
-                                <li>
-                                    <a href="#">
-                                        Процессоры <span class="cat-count">65</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Материнские платы <span class="cat-count">248</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Видеокарты <span class="cat-count">93</span>
-                                    </a>
-                                </li>
-                                <li data-id="9">
-                                    <div>
-                                        Накопители <span class="cat-count">182</span><span class="icon-chevron-right xsmall va3 ms-2"></span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Оперативная память <span class="cat-count">174</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Блоки питания <span class="cat-count">59</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>--}}
                         <section>
                             <h6>Комплектующие ПК</h6>
                             <ul>
@@ -525,45 +493,6 @@
                     </div>
 
                     <div class="catalog-desktop-body-cont" data-id="2">
-{{--                        <h4>Бытовая техника</h4>--}}
-                        {{--<div class="catalog-desktop_subcont">
-                            <ul class="catalog-desktop-sublist">
-                                <li>
-                                    <a href="#">
-                                        Холодильники <span class="cat-count">65</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Стиральные машины <span class="cat-count">248</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Пылесосы <span class="cat-count">93</span>
-                                    </a>
-                                </li>
-                            </ul>
-
-                            <ul class="catalog-desktop-sublist">
-                                <li>
-                                    <a href="#">
-                                        HDD <span class="cat-count">65</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Твердотельные SSD <span class="cat-count">248</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        M.2 <span class="cat-count">93</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>--}}
-
                         <section>
                             <h6>Крупная бытовая техника</h6>
                             <ul>
@@ -715,32 +644,6 @@
                     </div>
 
                     <div class="catalog-desktop-body-cont" data-id="3">
-{{--                        <h4>Телевизоры и аксессуары</h4>--}}
-                        {{--<div class="catalog-desktop_subcont">
-                            <ul class="catalog-desktop-sublist">
-                                <li>
-                                    <a href="#">
-                                        LED телевизоры <span class="cat-count">65</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        QLED телевизоры <span class="cat-count">248</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Кронштейны <span class="cat-count">93</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Пульты ДУ <span class="cat-count">12</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>--}}
-
                         <section>
                             <h6>Телевизоры</h6>
                             <ul>
@@ -820,42 +723,6 @@
                     </div>
 
                     <div class="catalog-desktop-body-cont" data-id="4" style="display: none">
-{{--                        <h4>Аудиотехника</h4>--}}
-                        {{--<div class="catalog-desktop_subcont">
-                            <ul class="catalog-desktop-sublist">
-                                <li>
-                                    <a href="#">
-                                        Напольные системы <span class="cat-count">65</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Настенные колонки <span class="cat-count">248</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Наушники <span class="cat-count">93</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Виниловые проигрыватели <span class="cat-count">12</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Портативная акустика <span class="cat-count">42</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Микрофоны и радиосистемы <span class="cat-count">127</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>--}}
-
                         <section>
                             <h6>Наушники</h6>
                             <ul>
@@ -966,47 +833,6 @@
                     </div>
 
                     <div class="catalog-desktop-body-cont" data-id="5" style="display: none">
-{{--                        <h4>Смартфоны и планшеты</h4>--}}
-                        {{--<div class="catalog-desktop_subcont">
-                            <ul class="catalog-desktop-sublist">
-                                <li>
-                                    <a href="#">
-                                        Смартфоны <span class="cat-count">65</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Смарт-часы и браслеты <span class="cat-count">248</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Сотовые телефоны <span class="cat-count">93</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Планшеты <span class="cat-count">12</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Электронные книги <span class="cat-count">42</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Зарядные устройства <span class="cat-count">127</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Чехлы и аксессуары <span class="cat-count">127</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>--}}
-
                         <section>
                             <h6>Смартфоны и телефоны</h6>
                             <ul>
@@ -1108,6 +934,7 @@
                 </div>
 
 
+                {{--  ----------- Catalog Mobile ------------  --}}
 
                 <div class="container px-0 scrollbar-thin" id="catalogNavMobile">
                     <ul class="catalog-mobile-list">

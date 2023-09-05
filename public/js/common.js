@@ -151,32 +151,21 @@ function closeAllMobileMenus() {
 
 function disableScroll() {
     if ($(document).height() > $(window).height()) {
-        if (lgMedia.matches) {
-            /*
-            let scrollTop = ($(htmlElem).scrollTop()) ? $(htmlElem).scrollTop() : $('body').scrollTop();
-            $(htmlElem).addClass('noscroll-desktop').css('top',-scrollTop);
-             */
-        } else {
+        if (!lgMedia.matches) {
             $(htmlElem).addClass('noscroll-mobile');
         }
     }
 }
 
 function enableScroll() {
-    if (lgMedia.matches) {
-        /*
-        let scrollTop = parseInt($(htmlElem).css('top'));
-        $(htmlElem).removeClass('noscroll-desktop noscroll-mobile');
-        $('html,body').scrollTop(-scrollTop);
-        */
-    } else {
-        $(htmlElem).removeClass('noscroll-desktop noscroll-mobile');
+    if (!lgMedia.matches) {
+        $(htmlElem).removeClass('noscroll-mobile');
         $(htmlElem).removeAttr('style');
     }
 }
 
 function toggleScroll() {
-    $(htmlElem).hasClass('noscroll-desktop') || $(htmlElem).hasClass('noscroll-mobile') ? enableScroll() : disableScroll();
+    $(htmlElem).hasClass('noscroll-mobile') ? enableScroll() : disableScroll();
 }
 
 
@@ -325,32 +314,7 @@ $(document).ready(function () {
     let catalogMenuTimeout;
     let currentId = 1;
 
-    // Set container height
-    /*
-    const catalogNavCont = $('#catalogNavCont');
-    const catalogNavDesktop = $('#catalogNavDesktop');
-    $(catalogNavCont).css('display', 'block');
-    let catalogDesktopBodyMaxHeight = $(catalogNavDesktop).innerHeight();
-    $(bodyConts).first().css('display', 'none');
-    $(bodyConts).each(function(ind, bodyCont) {
-        let curHeight = catalogDesktopBodyMaxHeight;
-        if (ind > 0) {
-            $(bodyCont).css('display', 'block');
-            curHeight = $(catalogNavDesktop).innerHeight();
-            if (curHeight > catalogDesktopBodyMaxHeight) {
-                catalogDesktopBodyMaxHeight = curHeight;
-            }
-            $(bodyCont).css('display', 'none');
-        }
-    });
-    $(bodyConts).first().css('display', 'block');
-    $(catalogNavDesktop).css('height', `${catalogDesktopBodyMaxHeight}px`);
-    $(catalogNavCont).css('display', 'none');
-     */
-
-
     // --- Root List ---
-    /*
     $(catalogRootList).children('li').on('mouseenter', function() {
         catalogMenuTimeout = setTimeout(() => {
             const newLiElem = $(this);
@@ -366,75 +330,6 @@ $(document).ready(function () {
                 const targetBody = $(bodyConts).filter('[data-id="' + newCatId + '"]');
 
                 if (targetBody.length) {
-                    $(catalogNavDesktop).css('height', 'auto');
-                    const h1 = $(catalogNavDesktop).innerHeight();
-
-                    $(currentOpenedBody).fadeOut(catalogFadeSpeed, function () {
-                        $(currentOpenedBody).data('opened', 'off');
-
-                        if (currentId === newCatId) {
-                            $(targetBody).fadeIn(catalogFadeSpeed);
-                            $(targetBody).data('opened', 'on');
-
-                            // Animate height of the catalog menu
-                            const h2 = $(catalogNavDesktop).innerHeight();
-                            $(catalogNavDesktop).css('height', `${h1}px`);
-                            $(catalogNavDesktop).animate({height: h2}, 200);
-
-                            // Make button active
-                            $(newLiElem).addClass('active');
-                        }
-                    });
-
-                    // Make old button inactive
-                    const oldLiElem = $(catalogRootList).children('li').filter('[data-id="' + currentOpenedId + '"]');
-                    $(oldLiElem).removeClass('active');
-                }
-            }
-        }, 250);
-    });
-
-     */
-
-
-    // --- Root List 2 ---
-    $(catalogRootList).children('li').on('mouseenter', function() {
-        catalogMenuTimeout = setTimeout(() => {
-            const newLiElem = $(this);
-            const newCatId = $(newLiElem).data('id');
-            currentId = newCatId;
-            const currentOpenedBody = $(bodyConts).filter(function() {
-                return $(this).data('opened') === 'on';
-            });
-            const currentOpenedId = $(currentOpenedBody).data('id');
-
-            if (typeof currentOpenedId === 'number' && currentOpenedId !== newCatId) {
-                const catalogNavDesktop = $('#catalogNavDesktop');
-                const targetBody = $(bodyConts).filter('[data-id="' + newCatId + '"]');
-
-                if (targetBody.length) {
-                    /*
-                    $(catalogNavDesktop).css('height', 'auto');
-                    const h1 = $(catalogNavDesktop).innerHeight();
-
-                    $(currentOpenedBody).fadeOut(catalogFadeSpeed, function () {
-                        $(currentOpenedBody).data('opened', 'off');
-
-                        if (currentId === newCatId) {
-                            $(targetBody).fadeIn(catalogFadeSpeed);
-                            $(targetBody).data('opened', 'on');
-
-                            // Animate height of the catalog menu
-                            const h2 = $(catalogNavDesktop).innerHeight();
-                            $(catalogNavDesktop).css('height', `${h1}px`);
-                            $(catalogNavDesktop).animate({height: h2}, 200);
-
-                            // Make button active
-                            $(newLiElem).addClass('active');
-                        }
-                    });
-                    */
-
                     $(catalogNavDesktop).css('height', 'auto');
 
                     $(currentOpenedBody).hide();
@@ -461,62 +356,6 @@ $(document).ready(function () {
         clearTimeout(catalogMenuTimeout);
     });
 
-    /*
-    // --- Sub Lists ---
-    $('.catalog-desktop_subcont .catalog-desktop-sublist:first-child li').children('div, a').on('mouseenter', function() {
-        catalogMenuTimeout = setTimeout(() => {
-            const itemBtn = $(this);
-            const newSubCatId = $(itemBtn).parent().data('id');
-            currentId = newSubCatId;
-
-            const currentSubCont = $(itemBtn).parents('div.catalog-desktop_subcont').first();
-            const subLists = $(currentSubCont).children('.catalog-desktop-sublist');
-            const targetSubList = subLists.filter('[data-id="' + newSubCatId + '"]');
-
-            //Get current opened items
-            const currentOpenedSublist = $(subLists).filter(function() {
-                return $(this).data('opened') === 'on';
-            });
-            const currentOpenedId = $(currentOpenedSublist).data('id');
-            const oldItemBtn = subLists.first().children('li').filter('[data-id="' + currentOpenedId + '"]');
-
-
-            if (newSubCatId !== currentOpenedId) {
-
-                if (targetSubList.length) {
-
-                    if (typeof currentOpenedId === 'number') {
-                        $(currentOpenedSublist).fadeOut(catalogFadeSpeed, function() {
-
-                            $(targetSubList).fadeIn(catalogFadeSpeed);
-                            $(targetSubList).data('opened', 'on');
-
-                        });
-                        $(currentOpenedSublist).data('opened', 'off');
-
-                    } else {
-                        $(targetSubList).fadeIn(catalogFadeSpeed);
-                        $(targetSubList).data('opened', 'on');
-                    }
-
-                } else {
-
-                    if (typeof currentOpenedId === 'number') {
-                        $(currentOpenedSublist).fadeOut(catalogFadeSpeed);
-                        $(currentOpenedSublist).data('opened', 'off');
-                    }
-
-                }
-
-            }
-
-            $(oldItemBtn).removeClass('active');
-            $(itemBtn).addClass('active');
-
-
-        }, 250);
-    });
-*/
 
     // --- Section dropdowns ---
     let catalogDDTimeout;
@@ -525,7 +364,6 @@ $(document).ready(function () {
     function closeDesktopCatalogDropdowns(bodyCont) {
         $(bodyCont).find('.dropdown-hover').each(function() {
             if ($(this).data('opened') === 'on') {
-                // $(this).children('.dropdown-list').first().fadeOut(fadeSpeed);
                 $(this).children('.dropdown-list').first().hide();
             }
         });
@@ -537,8 +375,7 @@ $(document).ready(function () {
             // Close other
             $(this).data('opened', 'off');
             closeDesktopCatalogDropdowns($(this).parents('.catalog-desktop-body-cont'));
-
-            // $(this).children('.dropdown-list').first().fadeIn(fadeSpeed);
+            
             $(this).children('.dropdown-list').first().show();
             $(this).data('opened', 'on');
         }, 200);
@@ -547,11 +384,6 @@ $(document).ready(function () {
     $(hoverDropdowns).on('mouseleave', function() {
         clearTimeout(catalogDDTimeout);
         catalogDDTimeout = setTimeout(() => {
-            /*
-            $(this).children('.dropdown-list').first().fadeOut(fadeSpeed, function() {
-                closeDesktopCatalogDropdowns($(this).parents('.catalog-desktop-body-cont'));
-            });
-            */
             $(this).children('.dropdown-list').first().hide();
             closeDesktopCatalogDropdowns($(this).parents('.catalog-desktop-body-cont'));
 
