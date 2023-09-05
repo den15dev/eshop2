@@ -857,49 +857,8 @@
                         </div>--}}
 
                         <section>
-                            <h6>Hi-Fi</h6>
-                            <ul>
-                                <li>
-                                    <a href="#">
-                                        Колонки <span class="cat-count">65</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Усилители <span class="cat-count">248</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Виниловые проигрыватели <span class="cat-count">93</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Виниловые пластинки <span class="cat-count">36</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        CD плееры <span class="cat-count">59</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </section>
-
-                        <section>
                             <h6>Наушники</h6>
                             <ul>
-                                <li>
-                                    <a href="#">
-                                        True Wireless&nbsp;<span class="cat-count">65</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Спортивные&nbsp;<span class="cat-count">248</span>
-                                    </a>
-                                </li>
                                 <li>
                                     <a href="#">
                                         Накладные и полноразмерные&nbsp;<span class="cat-count">93</span>
@@ -917,7 +876,7 @@
                                 </li>
                                 <li>
                                     <a href="#">
-                                        Наушники с костной проводимостью звука&nbsp;<span class="cat-count">59</span>
+                                        Спортивные&nbsp;<span class="cat-count">248</span>
                                     </a>
                                 </li>
                                 <li>
@@ -973,10 +932,41 @@
                                 </li>
                             </ul>
                         </section>
+
+                        <section>
+                            <h6>Hi-Fi</h6>
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        Колонки <span class="cat-count">65</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Усилители <span class="cat-count">248</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Виниловые проигрыватели <span class="cat-count">93</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Виниловые пластинки <span class="cat-count">36</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        CD плееры <span class="cat-count">59</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </section>
                     </div>
 
                     <div class="catalog-desktop-body-cont" data-id="5" style="display: none">
-                        <h4>Смартфоны и планшеты</h4>
+{{--                        <h4>Смартфоны и планшеты</h4>--}}
                         {{--<div class="catalog-desktop_subcont">
                             <ul class="catalog-desktop-sublist">
                                 <li>
@@ -1016,6 +1006,104 @@
                                 </li>
                             </ul>
                         </div>--}}
+
+                        <section>
+                            <h6>Смартфоны и телефоны</h6>
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        Смартфоны&nbsp;<span class="cat-count">65</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Мобильные телефоны&nbsp;<span class="cat-count">248</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Стационарные сотовые телефоны&nbsp;<span class="cat-count">93</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Радиостанции&nbsp;<span class="cat-count">36</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Аксессуары для смартфонов&nbsp;<span class="cat-count">59</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Зарядка для смартфонов&nbsp;<span class="cat-count">118</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </section>
+
+                        <section>
+                            <h6>Планшеты, электронные книги</h6>
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        Планшеты&nbsp;<span class="cat-count">65</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Электронные книги&nbsp;<span class="cat-count">248</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Цифровые блокноты&nbsp;<span class="cat-count">93</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Детские планшеты&nbsp;<span class="cat-count">36</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Аксессуары для планшетов&nbsp;<span class="cat-count">59</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Чехлы для электронных книг&nbsp;<span class="cat-count">118</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </section>
+
+                        <section>
+                            <h6>Гаджеты</h6>
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        Смарт-часы и браслеты&nbsp;<span class="cat-count">65</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Детские часы&nbsp;<span class="cat-count">248</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Аксессуары для смарт-часов и браслетов&nbsp;<span class="cat-count">93</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Мобильные Wi-Fi роутеры&nbsp;<span class="cat-count">36</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </section>
                     </div>
                 </div>
 

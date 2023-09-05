@@ -152,8 +152,10 @@ function closeAllMobileMenus() {
 function disableScroll() {
     if ($(document).height() > $(window).height()) {
         if (lgMedia.matches) {
+            /*
             let scrollTop = ($(htmlElem).scrollTop()) ? $(htmlElem).scrollTop() : $('body').scrollTop();
             $(htmlElem).addClass('noscroll-desktop').css('top',-scrollTop);
+             */
         } else {
             $(htmlElem).addClass('noscroll-mobile');
         }
@@ -162,9 +164,11 @@ function disableScroll() {
 
 function enableScroll() {
     if (lgMedia.matches) {
+        /*
         let scrollTop = parseInt($(htmlElem).css('top'));
         $(htmlElem).removeClass('noscroll-desktop noscroll-mobile');
         $('html,body').scrollTop(-scrollTop);
+        */
     } else {
         $(htmlElem).removeClass('noscroll-desktop noscroll-mobile');
         $(htmlElem).removeAttr('style');

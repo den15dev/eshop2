@@ -40,10 +40,12 @@
 
 .catalog-desktop-body-cont {
   column-count: 3;
-  column-gap: 2rem;
-  //font-size: 0.875rem;
+  column-gap: 1.25rem;
+  font-size: 0.875rem;
   //column-width: auto;
-  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  padding-left: 2rem;
+  border-left: solid 1px $grey-230;
   display: none;
   h6 {
     margin-bottom: 0.6rem;
@@ -72,6 +74,11 @@
     li:not(:last-child), ul.dropdown-list li:not(:last-child) {
       margin-bottom: 0.5rem;
     }
+  }
+  @include xl {
+    column-gap: 2rem;
+    padding-left: 2.25rem;
+    font-size: 1rem;
   }
 }
 
