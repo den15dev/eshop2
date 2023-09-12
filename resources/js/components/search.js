@@ -1,3 +1,5 @@
+import $ from 'jquery';
+import { lgMedia } from './_globals';
 
 /* ------------- TEMP ----------------- */
 
@@ -86,8 +88,10 @@ let searchInput;
 let clearBtn;
 let searchInputTimeOut;
 
-activateSearchInput(lgMedia);
-lgMedia.addEventListener('change', activateSearchInput);
+export default function init() {
+    activateSearchInput(lgMedia);
+    lgMedia.addEventListener('change', activateSearchInput);
+}
 
 function activateSearchInput(mediaQuery) {
     if (mediaQuery.matches) {

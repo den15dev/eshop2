@@ -1,6 +1,6 @@
 {
   "resources/css/app.scss": {
-    "file": "assets/app-190b7bfa.css",
+    "file": "assets/app-439d6287.css",
     "isEntry": true,
     "src": "resources/css/app.scss"
   },
@@ -11,5 +11,10 @@
   "resources/css/main/icons/bi-light.woff2": {
     "file": "assets/bi-light-6529c205.woff2",
     "src": "resources/css/main/icons/bi-light.woff2"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-2fab6198.js",
+    "isEntry": true,
+    "src": "resources/js/app.js"
   }
 }

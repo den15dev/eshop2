@@ -6,8 +6,8 @@
 
     <title>{{ config('app.name') }}</title>
 
-{{--    @vite(['resources/css/app.scss', 'resources/js/app.js'])--}}
-    @vite(['resources/css/app.scss'])
+    @vite(['resources/css/app.scss', 'resources/js/app.js'])
+
 </head>
 <body>
     <div class="page-wrap">
@@ -1151,6 +1151,14 @@
                     Для поддержания стабильной работы процессора AMD Ryzen 5 5600X BOX и предупреждения его перегрева, в комплекте с ним предусмотрена система охлаждения и нанесенный на основание радиатора термоинтерфейс.
                 </div>
 
+                <div class="test-box mb-2 fade0" id="testFadeBox">
+                    <div class="py-2 px-3">
+                        Бла-бла-бла<br>
+                        Вторая строка
+                    </div>
+                </div>
+                <button class="btn mb-3" id="testFadeBtn">Fade</button>
+
                 <h3>Заголовок чуть больше</h3>
                 <div class="mb-4">
                     To maintain the stable operation of the AMD Ryzen 5 5600X BOX processor and prevent it from overheating, it comes with a cooling system and a thermal interface applied to the base of the radiator.
@@ -1437,10 +1445,5 @@
 
     <div class="main-tint"></div>
     <div class="win-tint"></div>
-
-
-    <script src="{{ asset('js/vendors/jquery-3.7.0.min.js') }}"></script>
-    <script src="{{ asset('js/common.js') }}"></script>
-    <script src="{{ asset('js/search.js') }}"></script>
 </body>
 </html>
