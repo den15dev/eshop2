@@ -1,23 +1,21 @@
-.test-box {
-  width: 200px;
-  height: 120px;
-  background-color: color($color1, light, 7);
+.fade-in {
+  --fade-speed: 0.2s;
+  --max-opacity: 1;
+  animation: fadeIn var(--fade-speed);
 }
 
-.fade1 {
-  display: block;
-  opacity: 1;
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: var(--max-opacity); }
 }
 
-.fade0 {
-  display: none;
+.fade-out {
+  --fade-speed: 0.2s;
+  --opac-value: 1;
+  animation: fadeOut var(--fade-speed);
 }
 
-.fade-trans {
-  --fade-speed: 0.1s;
-  transition: opacity var(--fade-speed) ease;
-  &.fade0 {
-    display: block;
-    opacity: 0;
-  }
+@keyframes fadeOut {
+  0% { opacity: var(--max-opacity); }
+  100% { opacity: 0; }
 }

@@ -1151,13 +1151,17 @@
                     Для поддержания стабильной работы процессора AMD Ryzen 5 5600X BOX и предупреждения его перегрева, в комплекте с ним предусмотрена система охлаждения и нанесенный на основание радиатора термоинтерфейс.
                 </div>
 
-                <div class="test-box mb-2 fade0" id="testFadeBox">
+                {{--<div class="mb-2" style="background-color: #b2cad0;" id="testFadeBox">
                     <div class="py-2 px-3">
                         Бла-бла-бла<br>
                         Вторая строка
                     </div>
                 </div>
-                <button class="btn mb-3" id="testFadeBtn">Fade</button>
+                <div class="mb-3" style="display: flex; gap: 0.5rem;">
+                    <button class="btn" id="testFadeInBtn">Fade In</button>
+                    <button class="btn" id="testFadeOutBtn">Fade Out</button>
+                    <button class="btn" id="testFadeToggleBtn">Fade Toggle</button>
+                </div>--}}
 
                 <h3>Заголовок чуть больше</h3>
                 <div class="mb-4">

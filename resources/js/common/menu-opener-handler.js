@@ -1,5 +1,5 @@
-import $ from 'jquery';
 import { pageTint, fadeSpeed, htmlElem, lgMedia } from './_globals';
+import { fadeIn, fadeOut } from "../effects/fade";
 import { menuOpeners as openers } from './menu-openers';
 
 
@@ -7,13 +7,13 @@ export default function init() {
     openers.forEach(opener => {
         const btnArray = Array.isArray(opener.button) ? opener.button : [opener.button];
         btnArray.forEach((btn) => {
-            btn.on('click', function() {
+            document.querySelector(btn).addEventListener('click', function() {
                 toggleMenuOpener(opener);
             });
         });
 
         if (opener.closeButton) {
-            opener.closeButton.on('click', function() {
+            document.querySelector(opener.closeButton).addEventListener('click', function() {
                 toggleMenuOpener(opener);
             });
         }
@@ -21,23 +21,22 @@ export default function init() {
 
     // Close all mobile menus on screen change to desktop
     lgMedia.addEventListener('change', () => {
-        if (lgMedia.matches) {
-            openers.forEach(opener => {
-                if (opener.isOpened) {
-                    closeOpener(opener);
-                    $(pageTint).fadeOut(fadeSpeed);
-                }
-            });
-        }
+        openers.forEach(opener => {
+            if (opener.isOpened) {
+                closeOpener(opener);
+                fadeOut(pageTint, fadeSpeed);
+                enableScroll();
+            }
+        });
     });
 }
 
 function toggleMenuOpener(opener) {
     if (opener.isOpened) {
         closeOpener(opener);
-        $(pageTint).fadeOut(fadeSpeed);
+        fadeOut(pageTint, fadeSpeed);
         enableScroll();
-        $(document).off('click', closeOnClickOutside);
+        document.removeEventListener('click', closeOnClickOutside);
 
     } else {
         openers.forEach(prevOpener => {
@@ -46,17 +45,17 @@ function toggleMenuOpener(opener) {
             }
         })
 
-        $(pageTint).fadeIn(fadeSpeed);
-        opener.container.fadeIn(fadeSpeed);
+        fadeIn(pageTint, fadeSpeed);
+        fadeIn(document.querySelector(opener.container), fadeSpeed);
         opener.openActions();
         opener.isOpened = true;
         disableScroll();
-        $(document).on('click', closeOnClickOutside);
+        document.addEventListener('click', closeOnClickOutside);
     }
 }
 
 function closeOpener(opener) {
-    opener.container.fadeOut(fadeSpeed);
+    fadeOut(document.querySelector(opener.container), fadeSpeed);
     opener.closeActions();
     opener.isOpened = false;
 }
@@ -64,12 +63,12 @@ function closeOpener(opener) {
 function closeOnClickOutside(event) {
     openers.forEach(opener => {
         if (opener.isOpened) {
-            let elemArr = [opener.container];
-            Array.isArray(opener.button) ? opener.button.forEach(elem => elemArr.push(elem)) : elemArr.push(opener.button);
+            let selArr = [opener.container];
+            Array.isArray(opener.button) ? opener.button.forEach(selector => selArr.push(selector)) : selArr.push(opener.button);
 
             let parents = false;
-            elemArr.forEach(elem => {
-                if (!parents && $(event.target).closest($(elem)).length) {
+            selArr.forEach(selector => {
+                if (!parents && event.target.closest(selector)) {
                     parents = true;
                 }
             });
@@ -82,12 +81,12 @@ function closeOnClickOutside(event) {
 }
 
 function disableScroll() {
-    if (!lgMedia.matches && $(document).height() > $(window).height()) {
-        $(htmlElem).addClass('noscroll-mobile');
+    if (!lgMedia.matches && document.body.scrollHeight > window.innerHeight) {
+        htmlElem.classList.add('noscroll-mobile');
     }
 }
 
 function enableScroll() {
-    $(htmlElem).removeClass('noscroll-mobile');
-    $(htmlElem).removeAttr('class');
+    htmlElem.classList.remove('noscroll-mobile');
+    htmlElem.removeAttribute('class');
 }
