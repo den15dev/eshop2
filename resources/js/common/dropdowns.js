@@ -1,6 +1,6 @@
 import {fadeIn, fadeOut} from "../effects/fade";
 
-const fadeSpeed = 100;
+const fadeSpeed = 200;
 let dropdownOpened = false;
 
 function openDropdown(dropdown_btn) {
