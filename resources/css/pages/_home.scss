@@ -1,3 +1,26 @@
-// -----------------------------------------------------------------------------
-// This file contains styles that are specific to the home page.
-// -----------------------------------------------------------------------------
+.promo-swiper {
+  --swiper-theme-color: #{$color1};
+  --swiper-navigation-size: 34px;
+  --swiper-pagination-bullet-size: 8px;
+  --swiper-pagination-bullet-horizontal-gap: 4px;
+  --swiper-pagination-bullet-inactive-color: #{$color1};
+  --swiper-pagination-bullet-inactive-opacity: 0.2;
+  text-align: center;
+  picture, img {
+    display: block;
+    width: 100%;
+  }
+  @include lg {
+    --swiper-pagination-bullet-size: 10px;
+    --swiper-pagination-bullet-horizontal-gap: 5px;
+  }
+}
+/*
+.img-cont-test {
+  display: block;
+  img {
+    display: block;
+    width: 100%;
+  }
+}
+*/

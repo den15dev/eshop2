@@ -6,6 +6,7 @@
 @import 'main/base';
 
 @import 'vendors/bootstrap';
+@import 'vendors/swiper';
 
 @import 'main/utilities';
 @import 'main/icons/bi-light';
@@ -31,4 +32,6 @@
 @import 'components/bottom-nav-mobile';
 @import 'components/catalog-nav-mobile';
 @import 'components/catalog-nav-desktop';
+
+@import 'pages/home';
 

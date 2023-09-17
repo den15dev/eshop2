@@ -95,6 +95,7 @@
   }
   li > a, li > div {
     display: block;
+    cursor: pointer;
     position: relative;
     text-align: center;
     color: $grey-150;
@@ -112,5 +113,19 @@
     fill: none;
     stroke-width: 1.6;
     stroke: $grey-180;
+  }
+  .dropdown-list {
+    margin-top: 12px;
+  }
+  .dropdown-list li > a {
+    text-align: left;
+    font-size: 16px;
+    color: $grey-120;
+    &:hover {
+      color: color($color1, light, 2);
+    }
+  }
+  .dropdown-list li:not(:last-child) {
+    margin-bottom: 1em;
   }
 }

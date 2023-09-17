@@ -261,11 +261,37 @@
                                 Вход
                             </a>
                         </li>
-                        <li>
+                        {{--<li>
                             <a href="#">
                                 <svg viewBox="0 0 18 21"><use href="#userIcon" /></svg>
                                 <span style="margin-left: -2px">Регистрация</span>
                             </a>
+                        </li>--}}
+                        <li class="dropdown">
+                            <div class="dropdown-btn">
+                                <svg viewBox="0 0 18 21"><use href="#userIcon" /></svg>
+                                <span>Профиль</span>
+                            </div>
+                            <ul class="dropdown-list dd-right">
+                                <li>
+                                    <a href="#">
+                                        <span class="icon-gear va2 me-2"></span>
+                                        Настройки
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="icon-bell va2 me-2"></span>
+                                        Уведомления
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="icon-box-arrow-right va2 me-2"></span>
+                                        Выход
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </nav>
@@ -1138,6 +1164,75 @@
 
         <main>
             <div class="container">
+
+                <div class="promo-swiper mb-4">
+                    <div class="swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <picture>
+                                    <source srcset="{{ asset('storage/images/promos/1/akcia_na_videokarty_nvidia.jpg') }}" media="(min-width: 1140px)" />
+                                    <source srcset="{{ asset('storage/images/promos/1/akcia_na_videokarty_nvidia_1140.jpg') }}" media="(min-width: 992px)" />
+                                    <source srcset="{{ asset('storage/images/promos/1/akcia_na_videokarty_nvidia_992.jpg') }}" media="(min-width: 768px)" />
+                                    <source srcset="{{ asset('storage/images/promos/1/akcia_na_videokarty_nvidia_788.jpg') }}" media="(min-width: 400px)" />
+                                    <img src="{{ asset('storage/images/promos/1/akcia_na_videokarty_nvidia_400.jpg') }}" alt="" />
+                                </picture>
+                            </div>
+                            <div class="swiper-slide">
+                                <picture>
+                                    <source srcset="{{ asset('storage/images/promos/2/akcia_na_vse_processory_amd_ryzen.jpg') }}" media="(min-width: 1140px)" />
+                                    <source srcset="{{ asset('storage/images/promos/2/akcia_na_vse_processory_amd_ryzen_1140.jpg') }}" media="(min-width: 992px)" />
+                                    <source srcset="{{ asset('storage/images/promos/2/akcia_na_vse_processory_amd_ryzen_992.jpg') }}" media="(min-width: 768px)" />
+                                    <source srcset="{{ asset('storage/images/promos/2/akcia_na_vse_processory_amd_ryzen_788.jpg') }}" media="(min-width: 400px)" />
+                                    <img src="{{ asset('storage/images/promos/2/akcia_na_vse_processory_amd_ryzen_400.jpg') }}" alt="" />
+                                </picture>
+                            </div>
+                            <div class="swiper-slide">
+                                <picture>
+                                    <source srcset="{{ asset('storage/images/promos/3/akcia_na_processory_intel.jpg') }}" media="(min-width: 1140px)" />
+                                    <source srcset="{{ asset('storage/images/promos/3/akcia_na_processory_intel_1140.jpg') }}" media="(min-width: 992px)" />
+                                    <source srcset="{{ asset('storage/images/promos/3/akcia_na_processory_intel_992.jpg') }}" media="(min-width: 768px)" />
+                                    <source srcset="{{ asset('storage/images/promos/3/akcia_na_processory_intel_788.jpg') }}" media="(min-width: 400px)" />
+                                    <img src="{{ asset('storage/images/promos/3/akcia_na_processory_intel_400.jpg') }}" alt="" />
+                                </picture>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+
+                        <!-- If we need navigation buttons -->
+                        {{--<div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div>--}}
+
+                    </div>
+                    <div class="swiper-pagination-outside"></div>
+                </div>
+
+
+
+                {{--<div class="img-cont-test mb-3">
+                    <img srcset="{{ asset('storage/images/promos/1/akcia_na_videokarty_nvidia_400.jpg') }} 400w,
+                            {{ asset('storage/images/promos/1/akcia_na_videokarty_nvidia_788.jpg') }} 788w,
+                            {{ asset('storage/images/promos/1/akcia_na_videokarty_nvidia_992.jpg') }} 992w,
+                            {{ asset('storage/images/promos/1/akcia_na_videokarty_nvidia_1140.jpg') }} 1140w,
+                            {{ asset('storage/images/promos/1/akcia_na_videokarty_nvidia.jpg') }} 1296w"
+
+                    sizes="(max-width: 400px) 40vw,
+                           (max-width: 788px) 50vw,
+                           (max-width: 992px) 60vw,
+                           (max-width: 1140px) 70vw,
+                            100vw"
+
+                    src="{{ asset('storage/images/promos/1/akcia_na_videokarty_nvidia_400.jpg') }}" alt="">
+                </div>--}}
+
+
+                {{--<picture class="img-cont-test mb-3">
+                    <source srcset="{{ asset('storage/images/promos/1/akcia_na_videokarty_nvidia.jpg') }}" media="(min-width: 1140px)" />
+                    <source srcset="{{ asset('storage/images/promos/1/akcia_na_videokarty_nvidia_1140.jpg') }}" media="(min-width: 992px)" />
+                    <source srcset="{{ asset('storage/images/promos/1/akcia_na_videokarty_nvidia_992.jpg') }}" media="(min-width: 768px)" />
+                    <source srcset="{{ asset('storage/images/promos/1/akcia_na_videokarty_nvidia_788.jpg') }}" media="(min-width: 400px)" />
+                    <img src="{{ asset('storage/images/promos/1/akcia_na_videokarty_nvidia_400.jpg') }}" alt="" />
+                </picture>--}}
+
 
                 <h1>Very big title</h1>
                 <div class="mb-4">
