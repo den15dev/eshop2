@@ -10,7 +10,7 @@ $button-bg-color: $color1;
 
 .btn {
   @include btn-base;
-  padding: 0.5rem 1.75rem 0.4rem 1.75rem;
+  padding: 0.55rem 1.75rem 0.4rem 1.75rem;
   width: fit-content;
   background-color: $button-bg-color;
   @if $border-radius-base > 0 {

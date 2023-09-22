@@ -156,7 +156,7 @@
                         <li class="dropdown">
                             <div class="dropdown-btn">
                                 Покупателям
-                                <span class="icon-chevron-down xsmall va2"></span>
+                                <span class="icon-chevron-down xsmall"></span>
                             </div>
                             <ul class="dropdown-list">
                                 <li>
@@ -189,14 +189,14 @@
                         <div class="dropdown-btn">
                             <img src="{{ asset('img/flags/ru.svg') }}" alt="ru">
                             Ru
-                            <span class="icon-chevron-down xsmall va2"></span>
+                            <span class="icon-chevron-down xsmall"></span>
                         </div>
                         <ul class="dropdown-list dd-right">
                             <li>
-                                <div id="langCurrentBtn">
+                                <div>
                                     <img src="{{ asset('img/flags/ru.svg') }}" alt="ru">
                                     Русский
-                                    <span class="icon-check-lg me-1 va2"></span>
+                                    <span class="icon-check-lg me-1"></span>
                                 </div>
                             </li>
                             <li>
@@ -275,19 +275,19 @@
                             <ul class="dropdown-list dd-right">
                                 <li>
                                     <a href="#">
-                                        <span class="icon-gear va2 me-2"></span>
+                                        <span class="icon-gear me-2"></span>
                                         Настройки
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
-                                        <span class="icon-bell va2 me-2"></span>
+                                        <span class="icon-bell me-2"></span>
                                         Уведомления
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
-                                        <span class="icon-box-arrow-right va2 me-2"></span>
+                                        <span class="icon-box-arrow-right me-2"></span>
                                         Выход
                                     </a>
                                 </li>
@@ -376,7 +376,7 @@
                                 <li class="dropdown-hover">
                                     <div class="dropdown-btn">
                                         Накопители&nbsp;<span class="cat-count">182</span>
-                                        <span class="icon-chevron-right xsmall va3 ms-1"></span>
+                                        <span class="icon-chevron-right xsmall va1 ms-1"></span>
                                     </div>
                                     <ul class="dropdown-list dd-right-out">
                                         <li>
@@ -399,7 +399,7 @@
                                 <li class="dropdown-hover">
                                     <div class="dropdown-btn">
                                         Оперативная память&nbsp;<span class="cat-count">174</span>
-                                        <span class="icon-chevron-right xsmall va3 ms-1"></span>
+                                        <span class="icon-chevron-right xsmall va1 ms-1"></span>
                                     </div>
                                     <ul class="dropdown-list dd-right-out">
                                         <li>
@@ -469,7 +469,7 @@
                                 <li class="dropdown-hover">
                                     <div class="dropdown-btn">
                                         Ноутбуки&nbsp;<span class="cat-count">65</span>
-                                        <span class="icon-chevron-right xsmall va3 ms-1"></span>
+                                        <span class="icon-chevron-right xsmall va1 ms-1"></span>
                                     </div>
                                     <ul class="dropdown-list dd-right-out">
                                         <li>
@@ -535,7 +535,7 @@
                                 <li class="dropdown-hover">
                                     <div class="dropdown-btn">
                                         Холодильники <span class="cat-count">182</span>
-                                        <span class="icon-chevron-right xsmall va3 ms-1"></span>
+                                        <span class="icon-chevron-right xsmall va1 ms-1"></span>
                                     </div>
                                     <ul class="dropdown-list dd-right-out">
                                         <li>
@@ -604,7 +604,7 @@
                                 <li class="dropdown-hover">
                                     <div class="dropdown-btn">
                                         Профессиональные и строительные пылесосы <span class="cat-count">89</span>
-                                        <span class="icon-chevron-right xsmall va3 ms-1"></span>
+                                        <span class="icon-chevron-right xsmall va1 ms-1"></span>
                                     </div>
                                     <ul class="dropdown-list dd-right-out">
                                         <li>
@@ -990,7 +990,7 @@
                                 <li>
                                     <div class="cat-btn2">
                                         Накопители <span class="cat-count">182</span>
-                                        <span class="icon-chevron-down xsmall va3"></span>
+                                        <span class="icon-chevron-down xsmall va1"></span>
                                     </div>
                                     <ul class="catalog-mobile-sublist">
                                         <li>
@@ -1001,7 +1001,7 @@
                                         <li>
                                             <div class="cat-btn2">
                                                 SSD M.2 <span class="cat-count">65</span>
-                                                <span class="icon-chevron-down xsmall va3"></span>
+                                                <span class="icon-chevron-down xsmall va1"></span>
                                             </div>
                                             <ul class="catalog-mobile-sublist">
                                                 <li>
@@ -1165,73 +1165,45 @@
         <main>
             <div class="container">
 
-                <div class="promo-swiper mb-4">
+                <div class="promo-banner mb-4">
                     <div class="swiper">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
-                                <picture>
-                                    <source srcset="{{ asset('storage/images/promos/1/akcia_na_videokarty_nvidia.jpg') }}" media="(min-width: 1140px)" />
-                                    <source srcset="{{ asset('storage/images/promos/1/akcia_na_videokarty_nvidia_1140.jpg') }}" media="(min-width: 992px)" />
-                                    <source srcset="{{ asset('storage/images/promos/1/akcia_na_videokarty_nvidia_992.jpg') }}" media="(min-width: 768px)" />
-                                    <source srcset="{{ asset('storage/images/promos/1/akcia_na_videokarty_nvidia_788.jpg') }}" media="(min-width: 400px)" />
-                                    <img src="{{ asset('storage/images/promos/1/akcia_na_videokarty_nvidia_400.jpg') }}" alt="" />
-                                </picture>
+                                <a href="#">
+                                    <picture>
+                                        <source srcset="{{ asset('storage/images/promos/1/akcia_na_videokarty_nvidia.jpg') }}" media="(min-width: 1140px)" />
+                                        <source srcset="{{ asset('storage/images/promos/1/akcia_na_videokarty_nvidia_1140.jpg') }}" media="(min-width: 992px)" />
+                                        <source srcset="{{ asset('storage/images/promos/1/akcia_na_videokarty_nvidia_992.jpg') }}" media="(min-width: 768px)" />
+                                        <img src="{{ asset('storage/images/promos/1/akcia_na_videokarty_nvidia_788.jpg') }}" alt="" />
+                                    </picture>
+                                </a>
                             </div>
                             <div class="swiper-slide">
-                                <picture>
-                                    <source srcset="{{ asset('storage/images/promos/2/akcia_na_vse_processory_amd_ryzen.jpg') }}" media="(min-width: 1140px)" />
-                                    <source srcset="{{ asset('storage/images/promos/2/akcia_na_vse_processory_amd_ryzen_1140.jpg') }}" media="(min-width: 992px)" />
-                                    <source srcset="{{ asset('storage/images/promos/2/akcia_na_vse_processory_amd_ryzen_992.jpg') }}" media="(min-width: 768px)" />
-                                    <source srcset="{{ asset('storage/images/promos/2/akcia_na_vse_processory_amd_ryzen_788.jpg') }}" media="(min-width: 400px)" />
-                                    <img src="{{ asset('storage/images/promos/2/akcia_na_vse_processory_amd_ryzen_400.jpg') }}" alt="" />
-                                </picture>
+                                <a href="#">
+                                    <picture>
+                                        <source srcset="{{ asset('storage/images/promos/2/amd_cpu_promo_001.jpg') }}" media="(min-width: 1140px)" />
+                                        <source srcset="{{ asset('storage/images/promos/2/amd_cpu_promo_001_1140.jpg') }}" media="(min-width: 992px)" />
+                                        <source srcset="{{ asset('storage/images/promos/2/amd_cpu_promo_001_992.jpg') }}" media="(min-width: 768px)" />
+                                        <img src="{{ asset('storage/images/promos/2/amd_cpu_promo_001_788.jpg') }}" alt="" />
+                                    </picture>
+                                </a>
                             </div>
                             <div class="swiper-slide">
-                                <picture>
-                                    <source srcset="{{ asset('storage/images/promos/3/akcia_na_processory_intel.jpg') }}" media="(min-width: 1140px)" />
-                                    <source srcset="{{ asset('storage/images/promos/3/akcia_na_processory_intel_1140.jpg') }}" media="(min-width: 992px)" />
-                                    <source srcset="{{ asset('storage/images/promos/3/akcia_na_processory_intel_992.jpg') }}" media="(min-width: 768px)" />
-                                    <source srcset="{{ asset('storage/images/promos/3/akcia_na_processory_intel_788.jpg') }}" media="(min-width: 400px)" />
-                                    <img src="{{ asset('storage/images/promos/3/akcia_na_processory_intel_400.jpg') }}" alt="" />
-                                </picture>
+                                <a href="#">
+                                    <picture>
+                                        <source srcset="{{ asset('storage/images/promos/3/intel_13gen_promo_001.jpg') }}" media="(min-width: 1140px)" />
+                                        <source srcset="{{ asset('storage/images/promos/3/intel_13gen_promo_001_1140.jpg') }}" media="(min-width: 992px)" />
+                                        <source srcset="{{ asset('storage/images/promos/3/intel_13gen_promo_001_992.jpg') }}" media="(min-width: 768px)" />
+                                        <img src="{{ asset('storage/images/promos/3/intel_13gen_promo_001_788.jpg') }}" alt="" />
+                                    </picture>
+                                </a>
                             </div>
                         </div>
                         <div class="swiper-pagination"></div>
-
-                        <!-- If we need navigation buttons -->
-                        {{--<div class="swiper-button-prev"></div>
-                        <div class="swiper-button-next"></div>--}}
-
                     </div>
                     <div class="swiper-pagination-outside"></div>
                 </div>
 
-
-
-                {{--<div class="img-cont-test mb-3">
-                    <img srcset="{{ asset('storage/images/promos/1/akcia_na_videokarty_nvidia_400.jpg') }} 400w,
-                            {{ asset('storage/images/promos/1/akcia_na_videokarty_nvidia_788.jpg') }} 788w,
-                            {{ asset('storage/images/promos/1/akcia_na_videokarty_nvidia_992.jpg') }} 992w,
-                            {{ asset('storage/images/promos/1/akcia_na_videokarty_nvidia_1140.jpg') }} 1140w,
-                            {{ asset('storage/images/promos/1/akcia_na_videokarty_nvidia.jpg') }} 1296w"
-
-                    sizes="(max-width: 400px) 40vw,
-                           (max-width: 788px) 50vw,
-                           (max-width: 992px) 60vw,
-                           (max-width: 1140px) 70vw,
-                            100vw"
-
-                    src="{{ asset('storage/images/promos/1/akcia_na_videokarty_nvidia_400.jpg') }}" alt="">
-                </div>--}}
-
-
-                {{--<picture class="img-cont-test mb-3">
-                    <source srcset="{{ asset('storage/images/promos/1/akcia_na_videokarty_nvidia.jpg') }}" media="(min-width: 1140px)" />
-                    <source srcset="{{ asset('storage/images/promos/1/akcia_na_videokarty_nvidia_1140.jpg') }}" media="(min-width: 992px)" />
-                    <source srcset="{{ asset('storage/images/promos/1/akcia_na_videokarty_nvidia_992.jpg') }}" media="(min-width: 768px)" />
-                    <source srcset="{{ asset('storage/images/promos/1/akcia_na_videokarty_nvidia_788.jpg') }}" media="(min-width: 400px)" />
-                    <img src="{{ asset('storage/images/promos/1/akcia_na_videokarty_nvidia_400.jpg') }}" alt="" />
-                </picture>--}}
 
 
                 <h1>Very big title</h1>
@@ -1246,17 +1218,52 @@
                     Для поддержания стабильной работы процессора AMD Ryzen 5 5600X BOX и предупреждения его перегрева, в комплекте с ним предусмотрена система охлаждения и нанесенный на основание радиатора термоинтерфейс.
                 </div>
 
-                {{--<div class="mb-2" style="background-color: #b2cad0;" id="testFadeBox">
-                    <div class="py-2 px-3">
-                        Бла-бла-бла<br>
-                        Вторая строка
+
+                <h2>Лучшие цены</h2>
+
+                <div class="swiper product-carousel mb-6">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><x-product-card num="1" /></div>
+                        <div class="swiper-slide"><x-product-card num="2" /></div>
+                        <div class="swiper-slide"><x-product-card num="3" /></div>
+                        <div class="swiper-slide"><x-product-card num="4" /></div>
+                        <div class="swiper-slide"><x-product-card num="5" /></div>
+                        <div class="swiper-slide"><x-product-card num="6" /></div>
+                        <div class="swiper-slide"><x-product-card num="7" /></div>
+                        <div class="swiper-slide"><x-product-card num="8" /></div>
+                        <div class="swiper-slide"><x-product-card num="9" /></div>
+                    </div>
+                    <div class="carousel-next-btn">
+                        <span class="icon-chevron-right"></span>
+                    </div>
+                    <div class="carousel-prev-btn">
+                        <span class="icon-chevron-left"></span>
                     </div>
                 </div>
-                <div class="mb-3" style="display: flex; gap: 0.5rem;">
-                    <button class="btn" id="testFadeInBtn">Fade In</button>
-                    <button class="btn" id="testFadeOutBtn">Fade Out</button>
-                    <button class="btn" id="testFadeToggleBtn">Fade Toggle</button>
-                </div>--}}
+
+
+                <h2>Новинки</h2>
+
+                <div class="swiper product-carousel mb-5">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><x-product-card num="1" /></div>
+                        <div class="swiper-slide"><x-product-card num="2" /></div>
+                        <div class="swiper-slide"><x-product-card num="3" /></div>
+                        <div class="swiper-slide"><x-product-card num="4" /></div>
+                        <div class="swiper-slide"><x-product-card num="5" /></div>
+                        <div class="swiper-slide"><x-product-card num="6" /></div>
+                        <div class="swiper-slide"><x-product-card num="7" /></div>
+                        <div class="swiper-slide"><x-product-card num="8" /></div>
+                        <div class="swiper-slide"><x-product-card num="9" /></div>
+                    </div>
+                    <div class="carousel-next-btn">
+                        <span class="icon-chevron-right"></span>
+                    </div>
+                    <div class="carousel-prev-btn">
+                        <span class="icon-chevron-left"></span>
+                    </div>
+                </div>
+
 
                 <h3>Заголовок чуть больше</h3>
                 <div class="mb-4">
@@ -1470,14 +1477,14 @@
                         <div class="dropdown-btn">
                             <img src="{{ asset('img/flags/ru.svg') }}" alt="ru">
                             Ru
-                            <span class="icon-chevron-down xsmall va2"></span>
+                            <span class="icon-chevron-down xsmall"></span>
                         </div>
                         <ul class="dropdown-list">
                             <li>
-                                <div id="langCurrentBtn">
+                                <div>
                                     <img src="{{ asset('img/flags/ru.svg') }}" alt="ru">
                                     Русский
-                                    <span class="icon-check-lg me-1 va2"></span>
+                                    <span class="icon-check-lg me-1 va-1"></span>
                                 </div>
                             </li>
                             <li>

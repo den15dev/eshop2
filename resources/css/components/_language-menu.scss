@@ -13,4 +13,10 @@
   .icon-check-lg {
     line-height: 1rem;
   }
+  div {
+    cursor: pointer;
+    &:hover {
+      color: $color1;
+    }
+  }
 }

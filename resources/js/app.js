@@ -6,7 +6,7 @@ import catalogMobile  from './common/catalog-mobile';
 import { catalogDesktopRoot, catalogDesktopDropdowns } from "./common/catalog-desktop";
 import search from './common/search';
 
-import {swiper} from "./pages/home";
+import {promoSwiper, initProductCarousels} from "./pages/home";
 
 
 // --------------- Common ------------------
@@ -22,6 +22,6 @@ search();
 
 // --------------- Home ------------------
 
-
+initProductCarousels();
 
 // console.log(document.querySelectorAll('#catalogNavMobile .catalog-mobile-list > li').length);

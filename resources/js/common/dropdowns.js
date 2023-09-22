@@ -49,4 +49,11 @@ export function languageDropdown() {
             checkIcon.remove();
         });
     });
+
+    document.querySelectorAll('.lang-menu .dropdown-list div').forEach(curLangDiv => {
+        curLangDiv.addEventListener('click', () => {
+            const dropdown_btn = curLangDiv.closest('.lang-menu').querySelector('.dropdown-btn');
+            closeDropdown(dropdown_btn);
+        });
+    });
 }
