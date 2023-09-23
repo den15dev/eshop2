@@ -20,14 +20,14 @@
     </a>
     <div class="product-card_price mb-2">60 490 ₽</div>
     <button class="btn-2sizes">В корзину</button>
-    <div class="product-card_buttons">
+    <div class="product-card_buttons small">
         <div data-btn="compare">
             <span class="icon-bar-chart me-1"></span>
-            <span class="smallbtn-text">Сравнить</span>
+            Сравнить
         </div>
         <div data-btn="favorite">
             <span class="icon-heart me-1"></span>
-            <span class="smallbtn-text">В избранное</span>
+            В избранное
         </div>
     </div>
 </div>

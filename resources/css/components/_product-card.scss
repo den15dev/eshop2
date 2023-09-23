@@ -5,7 +5,10 @@
     width: fit-content;
   }
   button.btn-2sizes {
-    margin-bottom: 0.875rem;
+    margin-bottom: 0.8rem;
+    @include md {
+      margin-bottom: 0.875rem;
+    }
   }
 }
 
@@ -14,7 +17,7 @@
   img {
     width: 154px;
     //border: solid 1px $grey-230;
-    @include sm {
+    @include md {
       width: 220px;
     }
     @include xl {
@@ -30,7 +33,7 @@
   &:hover {
     color: $color1;
   }
-  @include sm {
+  @include md {
     font-size: $font-size-base;
   }
 }
@@ -39,7 +42,8 @@
   color: $grey-150;
   font-size: $font-size-sm;
   display: none;
-  @include sm {
+  @include md {
+    font-size: $font-size-sm;
     display: block;
   }
 }
@@ -72,9 +76,9 @@
 }
 
 .product-card_buttons {
-  display: flex;
+  display: block;
   gap: 1rem;
-  font-size: 1.2rem;
+  //font-size: 1.2rem;
   color: $grey-150;
   & > div {
     cursor: pointer;
@@ -82,13 +86,24 @@
       color: $color1;
     }
   }
+
+  & > div:not(:last-child) {
+    margin-bottom: 0.25rem;
+    @include md {
+      margin-bottom: 0;
+    }
+  }
+
+  /*
   .smallbtn-text {
     display: none;
     @include sm {
       display: inline;
     }
   }
-  @include sm {
-    font-size: 0.875rem;
+  */
+  @include md {
+    display: flex;
+    //font-size: 0.875rem;
   }
 }
