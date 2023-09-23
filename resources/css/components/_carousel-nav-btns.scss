@@ -8,7 +8,6 @@
   width: 30px;
   height: var(--btn-height);
   cursor: pointer;
-  //background-color: rgba(color($color1, light, 2), 0.4);
   background-color: rgba($grey-200, 0.4);
   font-size: 32px;
   text-align: center;
@@ -19,8 +18,8 @@
   }
 
   &.disabled {
-    //background-color: rgba(color($color1, light, 4), 0.2);
-    background-color: rgba($grey-200, 0.2);
+    display: none;
+    //background-color: rgba($grey-200, 0.2);
   }
 }
 

@@ -1265,6 +1265,22 @@
                 </div>
 
 
+                <h2>Популярные</h2>
+
+                <div class="swiper product-carousel mb-5">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><x-product-card num="1" /></div>
+                        <div class="swiper-slide"><x-product-card num="2" /></div>
+                    </div>
+                    <div class="carousel-next-btn">
+                        <span class="icon-chevron-right"></span>
+                    </div>
+                    <div class="carousel-prev-btn">
+                        <span class="icon-chevron-left"></span>
+                    </div>
+                </div>
+
+
                 <h3>Заголовок чуть больше</h3>
                 <div class="mb-4">
                     To maintain the stable operation of the AMD Ryzen 5 5600X BOX processor and prevent it from overheating, it comes with a cooling system and a thermal interface applied to the base of the radiator.

@@ -19,7 +19,7 @@
         <div>(208)</div>
     </a>
     <div class="product-card_price mb-2">60 490 ₽</div>
-    <button class="btn">В корзину</button>
+    <button class="btn-2sizes">В корзину</button>
     <div class="product-card_buttons">
         <div data-btn="compare">
             <span class="icon-bar-chart me-1"></span>

@@ -4,7 +4,7 @@
   a {
     width: fit-content;
   }
-  button.btn {
+  button.btn-2sizes {
     margin-bottom: 0.875rem;
   }
 }
@@ -12,9 +12,12 @@
 .product-card_image {
   display: block;
   img {
-    width: 140px;
-    border: solid 1px $grey-230;
+    width: 154px;
+    //border: solid 1px $grey-230;
     @include sm {
+      width: 220px;
+    }
+    @include xl {
       width: 240px;
     }
   }
@@ -23,8 +26,12 @@
 .product-card_name {
   display: block;
   font-weight: $font-weight-semibold;
+  font-size: $font-size-sm;
   &:hover {
     color: $color1;
+  }
+  @include sm {
+    font-size: $font-size-base;
   }
 }
 
@@ -57,8 +64,11 @@
 }
 
 .product-card_price {
-  font-size: $font-size-base * 1.5;
+  font-size: $font-size-base * 1.4;
   font-weight: $font-weight-semibold;
+  @include sm {
+    font-size: $font-size-base * 1.5;
+  }
 }
 
 .product-card_buttons {
