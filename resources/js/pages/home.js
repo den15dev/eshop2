@@ -1,12 +1,11 @@
 import Swiper from 'swiper';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
-import { fadeIn, fadeOut } from "../effects/fade";
+
+/* -------------- Promo Banner --------------- */
 
 const promoBannerElem = document.querySelector('.promo-banner');
-const productCarousels = document.querySelectorAll('.product-carousel');
-let swiperCarousels = [];
 
-export const promoSwiper = promoBannerElem ? new Swiper('.promo-banner .swiper', {
+const promoSwiper = promoBannerElem ? new Swiper('.promo-banner .swiper', {
     modules: [Pagination, Autoplay],
     autoHeight: true,
     speed: 500,
@@ -35,6 +34,11 @@ export const promoSwiper = promoBannerElem ? new Swiper('.promo-banner .swiper',
 }) : null;
 
 
+/* -------------- Product Carousels --------------- */
+
+const productCarousels = document.querySelectorAll('.product-carousel');
+let swiperCarousels = [];
+
 export function initProductCarousels() {
     const spaceBetween = 20;
     const breakpoints = calculateBreakpoints(spaceBetween);
@@ -57,7 +61,6 @@ export function initProductCarousels() {
 
         const showNavigation = swiperCarousel.params.slidesPerView < swiperCarousel.slides.length;
         initNavButtons(carousel, showNavigation);
-
     });
 }
 
@@ -82,25 +85,6 @@ function calculateBreakpoints(spaceBetween) {
 function initNavButtons(carousel, showNavigation) {
     const prevBtn = carousel.querySelector('.carousel-prev-btn');
     const nextBtn = carousel.querySelector('.carousel-next-btn');
-    /*
-    prevBtn.style.display = 'none';
-    nextBtn.style.display = 'none';
-
-    if (showNavigation) {
-        let fadeTimeout;
-        carousel.addEventListener('mouseenter', () => {
-            fadeIn(prevBtn, 400);
-            fadeIn(nextBtn, 400);
-            clearTimeout(fadeTimeout);
-        });
-        carousel.addEventListener('mouseleave', () => {
-            fadeTimeout = setTimeout(() => {
-                fadeOut(prevBtn, 400);
-                fadeOut(nextBtn, 400);
-            }, 800);
-        });
-    }
-*/
 
     if (!showNavigation) {
         prevBtn.style.display = 'none';

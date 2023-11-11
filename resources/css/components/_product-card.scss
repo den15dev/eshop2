@@ -1,6 +1,4 @@
 .product-card {
-  //background-color: #eaeeef;
-  //width: 250px;
   a {
     width: fit-content;
   }
@@ -78,7 +76,6 @@
 .product-card_buttons {
   display: block;
   gap: 1rem;
-  //font-size: 1.2rem;
   color: $grey-150;
   & > div {
     cursor: pointer;
@@ -94,16 +91,7 @@
     }
   }
 
-  /*
-  .smallbtn-text {
-    display: none;
-    @include sm {
-      display: inline;
-    }
-  }
-  */
   @include md {
     display: flex;
-    //font-size: 0.875rem;
   }
 }

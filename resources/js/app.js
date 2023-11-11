@@ -6,7 +6,7 @@ import catalogMobile  from './common/catalog-mobile';
 import { catalogDesktopRoot, catalogDesktopDropdowns } from "./common/catalog-desktop";
 import search from './common/search';
 
-import {promoSwiper, initProductCarousels} from "./pages/home";
+import {initProductCarousels} from "./pages/home";
 
 
 // --------------- Common ------------------

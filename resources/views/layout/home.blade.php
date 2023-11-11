@@ -7,7 +7,6 @@
     <title>{{ config('app.name') }}</title>
 
     @vite(['resources/css/app.scss', 'resources/js/app.js'])
-
 </head>
 <body>
     <div class="page-wrap">
@@ -275,6 +274,12 @@
                             <ul class="dropdown-list dd-right">
                                 <li>
                                     <a href="#">
+                                        <span class="icon-key me-2"></span>
+                                        Панель администратора
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
                                         <span class="icon-gear me-2"></span>
                                         Настройки
                                     </a>
@@ -374,10 +379,10 @@
                                     </a>
                                 </li>
                                 <li class="dropdown-hover">
-                                    <div class="dropdown-btn">
+                                    <a href="#" class="dropdown-btn">
                                         Накопители&nbsp;<span class="cat-count">182</span>
                                         <span class="icon-chevron-right xsmall va1 ms-1"></span>
-                                    </div>
+                                    </a>
                                     <ul class="dropdown-list dd-right-out">
                                         <li>
                                             <a href="#">
@@ -397,10 +402,10 @@
                                     </ul>
                                 </li>
                                 <li class="dropdown-hover">
-                                    <div class="dropdown-btn">
+                                    <a href="#" class="dropdown-btn">
                                         Оперативная память&nbsp;<span class="cat-count">174</span>
                                         <span class="icon-chevron-right xsmall va1 ms-1"></span>
-                                    </div>
+                                    </a>
                                     <ul class="dropdown-list dd-right-out">
                                         <li>
                                             <a href="#">
@@ -467,10 +472,10 @@
                             <h6>Ноутбуки и аксессуары</h6>
                             <ul>
                                 <li class="dropdown-hover">
-                                    <div class="dropdown-btn">
+                                    <a href="#" class="dropdown-btn">
                                         Ноутбуки&nbsp;<span class="cat-count">65</span>
                                         <span class="icon-chevron-right xsmall va1 ms-1"></span>
-                                    </div>
+                                    </a>
                                     <ul class="dropdown-list dd-right-out">
                                         <li>
                                             <a href="#">
@@ -1212,6 +1217,13 @@
                     To maintain the stable operation of the AMD Ryzen 5 5600X BOX processor and prevent it from overheating, it comes with a cooling system and a thermal interface applied to the base of the radiator.
                 </div>
 
+                <ul class="small mb-4">
+                @foreach($out as $row)
+                    <li>{{ $row->id . ': ' . $row->spec_value }}</li>
+                @endforeach
+                </ul>
+
+
                 <h2>Ещё по-больше</h2>
                 <div class="mb-4">
                     Для поддержания стабильной работы процессора AMD Ryzen 5 5600X BOX и предупреждения его перегрева, в комплекте с ним предусмотрена система охлаждения и нанесенный на основание радиатора термоинтерфейс.
@@ -1244,7 +1256,7 @@
 
                 <h2>Новинки</h2>
 
-                <div class="swiper product-carousel mb-5">
+                <div class="swiper product-carousel mb-6">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide"><x-product-card num="1" /></div>
                         <div class="swiper-slide"><x-product-card num="2" /></div>
