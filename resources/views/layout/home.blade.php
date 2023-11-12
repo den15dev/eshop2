@@ -1210,6 +1210,8 @@
                 </div>
 
 
+                <p>Version 2.0.1.18<br>The app plugged to Docker.</p>
+
 
                 <h1>Very big title</h1>
                 <div class="mb-4">
