@@ -1217,11 +1217,12 @@
                     To maintain the stable operation of the AMD Ryzen 5 5600X BOX processor and prevent it from overheating, it comes with a cooling system and a thermal interface applied to the base of the radiator.
                 </div>
 
-                <ul class="small mb-4">
+
+                {{--<ul class="small mb-4">
                 @foreach($out as $row)
                     <li>{{ $row->id . ': ' . $row->spec_value }}</li>
                 @endforeach
-                </ul>
+                </ul>--}}
 
 
                 <h2>Ещё по-больше</h2>

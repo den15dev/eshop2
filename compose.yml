@@ -1,0 +1,42 @@
+services:
+  nginx:
+    image: nginx
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+    environment:
+      - VIRTUAL_HOST=${APP_URL}
+    depends_on:
+      - app
+    networks:
+      - nw1
+
+  app:
+    build:
+      context: .
+      dockerfile: docker/app/Dockerfile
+    volumes:
+      - ./:/var/www
+    networks:
+      - nw1
+
+  db:
+    image: postgres:16.0
+    environment:
+      POSTGRES_DB: ${DB_DATABASE}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    volumes:
+      - ./docker/postgres/postgresql.conf:/var/lib/postgresql/data/postgresql.conf
+      - ./tmp/db:/var/lib/postgresql/data
+    networks:
+      - nw1
+
+networks:
+  nw1:
+    name: denny-nw
+    external: true

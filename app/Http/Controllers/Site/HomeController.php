@@ -10,10 +10,15 @@ class HomeController extends Controller
 {
     public function index(): View
     {
-        $out = DB::table('product_specification')
+
+        /*
+         * $out = DB::table('product_specification')
             ->whereIn('spec_value->ru', ['нет', 'DDR4'])
             ->get();
+        */
 
-        return view('layout.home', compact('out'));
+
+
+        return view('layout.home');
     }
 }
