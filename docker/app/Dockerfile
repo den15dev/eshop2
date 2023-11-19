@@ -1,7 +1,8 @@
 FROM php:8.2-fpm
 
-ARG user=denny
-ARG uid=1000
+# Arguments defined in compose.yml
+ARG user
+ARG uid
 
 RUN apt-get update && apt-get install -y \
       apt-utils \

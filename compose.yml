@@ -13,6 +13,9 @@ services:
 
   app:
     build:
+      args:
+        user: ${DOCKER_APP_USER}
+        uid: ${DOCKER_APP_UID}
       context: .
       dockerfile: docker/app/Dockerfile
     volumes:
@@ -38,5 +41,5 @@ services:
 
 networks:
   nw1:
-    name: denny-nw
+    name: ${DOCKER_PROXY_NETWORK}
     external: true
