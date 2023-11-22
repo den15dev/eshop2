@@ -5,15 +5,17 @@ import { menuOpeners as openers } from './menu-openers';
 
 export default function init() {
     openers.forEach(opener => {
-        const btnArray = Array.isArray(opener.button) ? opener.button : [opener.button];
-        btnArray.forEach((btn) => {
-            document.querySelector(btn).addEventListener('click', function() {
-                toggleMenuOpener(opener);
-            });
-        });
+        if (document.querySelector(opener.container)) {
+            opener.isOpened = false;
+            const btnArray = Array.isArray(opener.button) ? opener.button : [opener.button];
 
-        if (opener.closeButton) {
-            document.querySelector(opener.closeButton).addEventListener('click', function() {
+            btnArray.forEach((btn_id) => {
+                document.querySelector(btn_id)?.addEventListener('click', function() {
+                    toggleMenuOpener(opener);
+                });
+            });
+
+            document.querySelector(opener.container + ' .bottom-menu_close-btn')?.addEventListener('click', function() {
                 toggleMenuOpener(opener);
             });
         }
@@ -42,10 +44,15 @@ function toggleMenuOpener(opener) {
         openers.forEach(prevOpener => {
             if (prevOpener.isOpened) {
                 closeOpener(prevOpener);
+                if (opener.disablePageTint) {
+                    fadeOut(pageTint, fadeSpeed);
+                }
             }
         })
 
-        fadeIn(pageTint, fadeSpeed);
+        if (!opener.disablePageTint) {
+            fadeIn(pageTint, fadeSpeed);
+        }
         fadeIn(document.querySelector(opener.container), fadeSpeed);
         opener.openActions();
         opener.isOpened = true;

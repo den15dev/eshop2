@@ -19,6 +19,6 @@ class HomeController extends Controller
 
 
 
-        return view('layout.home');
+        return view('pages.home');
     }
 }

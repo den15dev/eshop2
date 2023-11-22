@@ -1,9 +1,9 @@
 import '../effects/slide';
-import { smMedia } from './_globals';
+import { smMedia, getMobileWinHeight } from './_globals';
 
 const slideSpeed = 100;
 
-function catalogMobileSetItemPaddings() {
+function setItemPaddings() {
     let n = 0;
     let iconGap = 8;
     let iconContWidth = 20;
@@ -32,10 +32,8 @@ function catalogMobileSetItemPaddings() {
     });
 }
 
-function catalogMobileSetMaxHeight() {
-    const bottomNavContHeight = document.querySelector('.bottom-nav_cont').offsetHeight;
-    const mobileHeaderHeight = document.querySelector('#mobileHeader').offsetHeight;
-    document.querySelector('#catalogNavMobile').style.maxHeight = `${window.innerHeight - mobileHeaderHeight - bottomNavContHeight - 8}px`;
+function setContainerMaxHeight() {
+    document.querySelector('#catalogNavMobile').style.maxHeight = `${getMobileWinHeight() - 8}px`;
 }
 
 export function catalogMobileReset() {
@@ -51,10 +49,10 @@ export function catalogMobileReset() {
 }
 
 export default function init() {
-    catalogMobileSetItemPaddings();
-    catalogMobileSetMaxHeight();
-    window.addEventListener('resize', catalogMobileSetMaxHeight);
-    smMedia.addEventListener('change', catalogMobileSetItemPaddings);
+    setItemPaddings();
+    setContainerMaxHeight();
+    window.addEventListener('resize', setContainerMaxHeight);
+    smMedia.addEventListener('change', setItemPaddings);
 
     document.querySelectorAll('#catalogNavMobile div.cat-btn1, #catalogNavMobile div.cat-btn2').forEach(catBtn => {
         catBtn.addEventListener('click', () => {

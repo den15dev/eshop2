@@ -1,3 +1,24 @@
+export function fadeIn(element, fadeSpeed) {
+    if (!isDisplayed(element)) {
+        doFadeIn(element, fadeSpeed);
+    }
+}
+
+export function fadeOut(element, fadeSpeed) {
+    if (isDisplayed(element)) {
+        doFadeOut(element, fadeSpeed);
+    }
+}
+
+export function fadeToggle(element, fadeSpeed) {
+    if (isDisplayed(element)) {
+        doFadeOut(element, fadeSpeed);
+    } else {
+        doFadeIn(element, fadeSpeed);
+    }
+}
+
+
 function setFadeSpeed(element, fadeSpeed) {
     fadeSpeed = `${fadeSpeed/1000}s`;
     element.style.setProperty('--fade-speed', fadeSpeed);
@@ -25,26 +46,6 @@ function doFadeOut(element, fadeSpeed) {
     setFadeSpeed(element, fadeSpeed);
     setMaxOpacity(element);
     element.classList.add('fade-out');
-}
-
-export function fadeIn(element, fadeSpeed) {
-    if (!isDisplayed(element)) {
-        doFadeIn(element, fadeSpeed);
-    }
-}
-
-export function fadeOut(element, fadeSpeed) {
-    if (isDisplayed(element)) {
-        doFadeOut(element, fadeSpeed);
-    }
-}
-
-export function fadeToggle(element, fadeSpeed) {
-    if (isDisplayed(element)) {
-        doFadeOut(element, fadeSpeed);
-    } else {
-        doFadeIn(element, fadeSpeed);
-    }
 }
 
 function removeFadeInAnimation(event) {

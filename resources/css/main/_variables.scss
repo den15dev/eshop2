@@ -16,7 +16,7 @@ $font-weight-semibold: 600;
 $font-weight-bold: 800;
 
 $font-size-base: 1rem;
-$font-size-lg: $font-size-base * 1.25;
+$font-size-lg: $font-size-base * 1.125;
 $font-size-sm: $font-size-base * .875;
 $font-size-xsm: $font-size-base * .7;
 
@@ -42,6 +42,7 @@ $color3: #f6b56e;
 $color-red: #e2347a;
 
 // Greys
+$grey-30: rgb(30, 30, 30);
 $grey-60: rgb(60, 60, 60);
 $grey-90: rgb(90, 90, 90);
 $grey-120: rgb(120, 120, 120);
@@ -52,6 +53,7 @@ $grey-210: rgb(210, 210, 210);
 $grey-220: rgb(220, 220, 220);
 $grey-230: rgb(230, 230, 230);
 $grey-240: rgb(240, 240, 240);
+$grey-245: rgb(245, 245, 245);
 
 
 

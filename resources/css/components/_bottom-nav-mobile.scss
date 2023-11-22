@@ -1,5 +1,7 @@
-$bottom-nav-color: color($color1, light, 6);
-$bottom-nav-color-active: white;
+//$bottom-nav-color: color($color1, light, 6);
+$bottom-nav-bg-color: $grey-245;
+$bottom-nav-color: $grey-180;
+$bottom-nav-color-active: $color1;
 
 .bottom-nav {
   position: sticky;
@@ -14,7 +16,8 @@ $bottom-nav-color-active: white;
   align-items: center;
   width: 100%;
   height: 58px;
-  background-color: $color1;
+  //background-color: $color1;
+  background-color: $bottom-nav-bg-color;
   font-size: 11px;
   @include sm {
     height: 60px;
@@ -62,14 +65,13 @@ $bottom-nav-color-active: white;
   }
 }
 
-.bottom-main-menu_cont {
+.bottom-menu_cont {
   position: absolute;
   bottom: 100%;
   left: 0;
   width: 100%;
   padding: 1rem 0;
   z-index: 99;
-  font-size: 18px;
   background-color: white;
   display: none;
   .dropdown-list {
