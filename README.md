@@ -20,7 +20,7 @@ This is the second version of classic multi-page E-commerce web application (wor
 - Multi-language support
 - Correct responsive layout for all devices
 
-The work in progress, but you can see the current demo [here](https://eshop2.den15.dev/).
+Currently, the work in progress.
 
 ## Technology stack
 
@@ -43,7 +43,5 @@ Languages:
 - SQL, Eloquent ORM
 
 ## Installation
-
-After cloning the repository, do the following:
 
 `$ composer install`
