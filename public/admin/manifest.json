@@ -1,8 +1,8 @@
 {
-  "resources/css/app.scss": {
-    "file": "assets/app-c017af00.css",
+  "resources/css/admin.scss": {
+    "file": "assets/admin-ffdbe64c.css",
     "isEntry": true,
-    "src": "resources/css/app.scss"
+    "src": "resources/css/admin.scss"
   },
   "resources/css/common/icons/bi-light.woff": {
     "file": "assets/bi-light-7245b81d.woff",
@@ -12,9 +12,9 @@
     "file": "assets/bi-light-6529c205.woff2",
     "src": "resources/css/common/icons/bi-light.woff2"
   },
-  "resources/js/app.js": {
-    "file": "assets/app-d100fcc4.js",
+  "resources/js/admin.js": {
+    "file": "assets/admin-0d91dc04.js",
     "isEntry": true,
-    "src": "resources/js/app.js"
+    "src": "resources/js/admin.js"
   }
 }

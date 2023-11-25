@@ -2,8 +2,12 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "dev": "vite",
-        "build": "vite build"
+        "dev:site": "vite --config vite.site.config.js",
+        "build:site": "vite build --config vite.site.config.js",
+        "dev:admin": "vite --config vite.admin.config.js",
+        "build:admin": "vite build --config vite.admin.config.js",
+        "dev": "npm run dev:site & npm run dev:admin",
+        "build": "npm run build:site & npm run build:admin"
     },
     "devDependencies": {
         "axios": "^1.1.2",

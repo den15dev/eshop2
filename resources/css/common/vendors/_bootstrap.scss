@@ -1,0 +1,27 @@
+$font-family-base: $font;
+$primary: $color1;
+$form-label-margin-bottom: 0.375rem;
+$input-placeholder-color: rgb(200, 200, 200);
+$form-check-label-cursor: pointer;
+
+
+@import '../../../../node_modules/bootstrap/scss/functions';
+@import "../../../../node_modules/bootstrap/scss/variables";
+@import "../../../../node_modules/bootstrap/scss/variables-dark";
+
+
+@if $border-radius-base > 0 {
+  $enable-rounded: true;
+  $border-radius: $border-radius-base;
+  $border-radius-sm: $border-radius-base * 0.65;
+} @else {
+  $enable-rounded: false;
+}
+
+
+@import "../../../../node_modules/bootstrap/scss/maps";
+@import "../../../../node_modules/bootstrap/scss/mixins";
+
+@import "../../../../node_modules/bootstrap/scss/root";
+@import "../../../../node_modules/bootstrap/scss/grid";
+@import "../../../../node_modules/bootstrap/scss/forms";

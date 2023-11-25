@@ -1,0 +1,90 @@
+#catalogNavDesktop {
+  display: none;
+  padding: 8px 16px 8px 12px;
+  @include lg {
+    display: flex;
+    gap: 2rem;
+  }
+}
+
+.catalog-desktop-root-list {
+  white-space: nowrap;
+  & > li, div {
+    height: 32px;
+    color: black;
+  }
+  & > li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 8px;
+    cursor: pointer;
+    border-left: 4px solid white;
+    transition-property: color, border-left-color;
+    transition-duration: 0.3s;
+    &.active {
+      color: $color1;
+      border-left-color: $color2;
+      transition-property: color, border-left-color;
+      transition-duration: 0.3s;
+    }
+  }
+  .icon-cont {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    svg {
+      fill: none;
+      stroke-width: 1.6;
+      stroke: color($color1, light, 4);
+    }
+  }
+  .item-text {
+    display: block;
+    padding-top: 1px;
+  }
+}
+
+.catalog-desktop-body-cont {
+  column-count: 3;
+  column-gap: 1.25rem;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+  padding-left: 2rem;
+  border-left: solid 1px $grey-230;
+  display: none;
+  h6 {
+    margin-bottom: 0.6rem;
+  }
+  section {
+    margin-bottom: 1.75rem;
+    break-inside: avoid-column;
+    max-width: 240px;
+    div, a {
+      display: block;
+      cursor: pointer;
+      color: $grey-120;
+      &:hover {
+        color: $color1;
+        .icon-chevron-right {
+          color: $grey-120;
+        }
+      }
+    }
+    .cat-count {
+      color: $grey-210;
+    }
+    li, ul.dropdown-list li {
+      line-height: 1.25rem;
+    }
+    li:not(:last-child), ul.dropdown-list li:not(:last-child) {
+      margin-bottom: 0.5rem;
+    }
+  }
+  @include xl {
+    column-gap: 2rem;
+    padding-left: 2.25rem;
+    font-size: 1rem;
+  }
+}

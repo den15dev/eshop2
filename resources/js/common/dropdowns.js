@@ -1,4 +1,4 @@
-import {fadeIn, fadeOut} from "../effects/fade";
+import {fadeIn, fadeOut} from "./effects/fade";
 
 const fadeSpeed = 200;
 let dropdownOpened = false;

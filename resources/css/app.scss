@@ -1,39 +1,38 @@
 @charset "utf-8";
 
-@import 'main/functions';
-@import 'main/variables';
-@import 'main/mixins';
-@import 'main/base';
+@import 'common/functions';
+@import 'common/variables';
+@import 'common/mixins';
+@import 'common/base';
 
-@import 'vendors/bootstrap';
-@import 'vendors/swiper';
+@import 'common/vendors/bootstrap';
+@import 'common/vendors/swiper';
 
-@import 'main/utilities';
-@import 'main/icons/bi-light';
+@import 'common/utilities';
+@import 'common/icons/bi-light';
 
-@import 'layout/common';
-@import 'layout/header';
-@import 'layout/footer';
-@import 'layout/catalog-navigation';
+@import 'common/components/buttons';
+@import 'common/components/scrollbar-thin';
+@import 'common/components/links';
+@import 'common/components/dropdowns';
+@import 'common/components/fade';
+@import 'common/components/badge_round';
 
-@import 'components/base/buttons';
-@import 'components/base/scrollbar-thin';
-@import 'components/base/links';
-@import 'components/base/dropdowns';
-@import 'components/base/fade';
+@import 'site/main/logo';
+@import 'site/main/header';
+@import 'site/main/header-desktop';
+@import 'site/main/header-mobile';
+@import 'site/main/search-desktop';
+@import 'site/main/search-mobile';
+@import 'site/main/catalog-nav';
+@import 'site/main/catalog-nav-mobile';
+@import 'site/main/catalog-nav-desktop';
+@import 'site/main/footer';
+@import 'site/main/bottom-nav-mobile';
+@import 'site/main/language-menu';
 
-@import 'components/logo';
-@import 'components/header-desktop';
-@import 'components/header-mobile';
-@import 'components/language-menu';
-@import 'components/badge_round';
-@import 'components/search-desktop';
-@import 'components/search-mobile';
-@import 'components/bottom-nav-mobile';
-@import 'components/catalog-nav-mobile';
-@import 'components/catalog-nav-desktop';
-@import 'components/product-card';
-@import 'components/carousel-nav-btns';
+@import 'site/components/product-card';
+@import 'site/components/carousel-nav-btns';
 
-@import 'pages/home';
+@import 'site/pages/home';
 

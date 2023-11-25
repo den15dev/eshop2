@@ -1,0 +1,97 @@
+#catalogNavMobile {
+  display: block;
+  max-height: 425px;
+  overflow-y: auto;
+  @include sm {
+    max-height: 800px;
+  }
+  @include lg {
+    display: none;
+  }
+}
+
+.catalog-mobile-list {
+  $padding-left: 16px;
+
+  // Smallest
+  $font-size: 16px;
+  $row-height: 32px;
+  $row-padding-top: 11px;
+  $icon-gap: 8px;
+  $icon-cont-width: 20px;
+
+  // sm
+  $font-size-sm: 18px;
+  $row-height-sm: 36px;
+  $row-padding-top-sm: 12px;
+  $icon-gap-sm: 9px;
+  $icon-cont-width-sm: 24px;
+
+  font-size: $font-size;
+  li {
+    display: block;
+    line-height: 12px;
+  }
+  div, a {
+    display: block;
+    height: $row-height;
+    @include sm {
+      height: $row-height-sm;
+    }
+  }
+  .cat-btn1 {
+    display: flex;
+    align-items: center;
+    gap: $icon-gap;
+    padding: 0 $padding-left;
+    &.active {
+      color: $color1;
+    }
+    @include sm {
+      gap: $icon-gap-sm;
+    }
+  }
+  .cat-icon-cont {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: $icon-cont-width;
+    //background-color: #dde6be;
+    @include sm {
+      width: $icon-cont-width-sm;
+    }
+    svg {
+      fill: none;
+      stroke-width: 1.6;
+      stroke: color($color1, light, 4);
+    }
+  }
+  .cat-btn1-text {
+    display: block;
+    padding-top: 1px;
+  }
+
+  .cat-btn2 {
+    padding-top: $row-padding-top;
+    padding-left: $padding-left + $icon-cont-width + $icon-gap;
+    color: $grey-150;
+    .cat-count {
+      color: $grey-210;
+    }
+    &.active {
+      background-color: rgb(245, 245, 245);
+    }
+    @include sm {
+      padding-top: $row-padding-top-sm;
+      padding-left: $padding-left + $icon-cont-width-sm + $icon-gap-sm;
+    }
+  }
+
+  @include sm {
+    font-size: $font-size-sm;
+  }
+}
+
+.catalog-mobile-sublist {
+  display: none;
+}
