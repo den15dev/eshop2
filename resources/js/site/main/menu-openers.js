@@ -61,10 +61,15 @@ export const menuOpeners = [
         container: '#bottomNavFiltersCont',
         openActions() {
             document.querySelector(this.button).classList.add('active');
-            document.querySelector(this.container).style.height = `${getMobileWinHeight()}px`;
+            this.setFilterContHeight();
+            window.addEventListener('resize', this.setFilterContHeight);
         },
         closeActions() {
             document.querySelector(this.button).classList.remove('active');
+            window.removeEventListener('resize', this.setFilterContHeight);
+        },
+        setFilterContHeight() {
+            document.querySelector('#bottomNavFiltersCont').style.height = `${getMobileWinHeight()}px`;
         },
         disablePageTint: true
     },

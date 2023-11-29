@@ -1,4 +1,5 @@
 $button-bg-color: $color1;
+$button-bg-grey: $grey-230;
 
 @mixin btn-base {
   display: block;
@@ -8,6 +9,7 @@ $button-bg-color: $color1;
   text-align: center;
 }
 
+button,
 .btn,
 .btn-2sizes {
   @include btn-base;
@@ -23,6 +25,7 @@ $button-bg-color: $color1;
   }
 }
 
+button,
 .btn {
   padding: 0.55rem 1.75rem 0.4rem 1.75rem;
   font-size: $font-size-base;
@@ -40,4 +43,15 @@ $button-bg-color: $color1;
 .btn-icon {
   @include btn-base;
   background: none;
+  &:hover {
+    background: none;
+  }
+}
+
+.btn-bg-grey {
+  color: $text-color;
+  background-color: $button-bg-grey;
+  &:hover {
+    background-color: color($button-bg-grey, dark, 1);
+  }
 }

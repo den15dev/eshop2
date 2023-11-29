@@ -7,6 +7,7 @@ import { catalogDesktopRoot, catalogDesktopDropdowns } from "./site/main/catalog
 import search from './site/main/search.js';
 
 import {initProductCarousels} from "./site/home.js";
+import initCatalogFilters from "./site/catalog-filters.js";
 
 
 // --------------- Common ------------------
@@ -23,5 +24,10 @@ search();
 // --------------- Home ------------------
 
 initProductCarousels();
+
+
+// --------------- Catalog ------------------
+
+initCatalogFilters();
 
 // console.log(document.querySelectorAll('#catalogNavMobile .catalog-mobile-list > li').length);

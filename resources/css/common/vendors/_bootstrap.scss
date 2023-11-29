@@ -18,6 +18,8 @@ $form-check-label-cursor: pointer;
   $enable-rounded: false;
 }
 
+$breadcrumb-divider: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='8'><path d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='#{$grey-200}'/></svg>");
+
 
 @import "../../../../node_modules/bootstrap/scss/maps";
 @import "../../../../node_modules/bootstrap/scss/mixins";
@@ -25,3 +27,4 @@ $form-check-label-cursor: pointer;
 @import "../../../../node_modules/bootstrap/scss/root";
 @import "../../../../node_modules/bootstrap/scss/grid";
 @import "../../../../node_modules/bootstrap/scss/forms";
+@import "../../../../node_modules/bootstrap/scss/breadcrumb";

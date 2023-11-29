@@ -19,16 +19,23 @@
                 <use href="#listIcon"/>
             </svg>
         </div>
-        {{--<a href="#">
-            <svg viewBox="0 0 17 21"><use href="#ordersIcon" /></svg>
-            Заказы
-        </a>--}}
-        <div id="bottomNavFiltersBtn">
-            <svg viewBox="0 0 23 22">
-                <use href="#filtersIcon"/>
-            </svg>
-            Фильтры
-        </div>
+
+        @if(request()->routeIs('catalog'))
+            <div id="bottomNavFiltersBtn">
+                <svg viewBox="0 0 23 22">
+                    <use href="#filtersIcon"/>
+                </svg>
+                Фильтры
+            </div>
+        @else
+            <a href="#">
+                <svg viewBox="0 0 17 21">
+                    <use href="#ordersIcon"/>
+                </svg>
+                Заказы
+            </a>
+        @endif
+
         {{--<a href="#">
                 <svg viewBox="0 0 16 20"><use href="#lockIcon" /></svg>
                 Вход
@@ -45,9 +52,11 @@
         </div>
     </div>
 
-    @include('site.main.bottom-nav.menu')
+    @include('site.main.bottom-nav.bottom-nav-menu')
 
-    @include('site.main.bottom-nav.filters')
+    @if(request()->routeIs('catalog'))
+        @include('site.main.bottom-nav.bottom-nav-filters')
+    @endif
 
-    @include('site.main.bottom-nav.profile')
+    @include('site.main.bottom-nav.bottom-nav-profile')
 </div>

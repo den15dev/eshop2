@@ -8,9 +8,6 @@
 @import 'common/vendors/bootstrap';
 @import 'common/vendors/swiper';
 
-@import 'common/utilities';
-@import 'common/icons/bi-light';
-
 @import 'common/components/buttons';
 @import 'common/components/scrollbar-thin';
 @import 'common/components/links';
@@ -31,8 +28,12 @@
 @import 'site/main/bottom-nav-mobile';
 @import 'site/main/language-menu';
 
+@import 'site/pages/home';
+@import 'site/pages/catalog';
+
 @import 'site/components/product-card';
 @import 'site/components/carousel-nav-btns';
+@import 'site/components/catalog-filters';
 
-@import 'site/pages/home';
-
+@import 'common/utilities';
+@import 'common/icons/bi-light';

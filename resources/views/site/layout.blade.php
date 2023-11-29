@@ -2,12 +2,10 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>@yield('page_title', config('app.name'))</title>
 
     @include('site.main.meta-tags')
-
-    {{-- @vite(['resources/css/app.scss', 'resources/js/app.js']) --}}
 
     {{ Vite::useHotFile('site.hot')
         ->useBuildDirectory('build')

@@ -11,7 +11,7 @@
             </div>
             <ul class="catalog-mobile-sublist">
                 <li>
-                    <a href="#" class="cat-btn2">
+                    <a href="{{ route('catalog', 'cpu') }}" class="cat-btn2">
                         Процессоры <span class="cat-count">65</span>
                     </a>
                 </li>
