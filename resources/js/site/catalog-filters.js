@@ -7,7 +7,7 @@ export default function init() {
     document.querySelectorAll('.filters-dropdown').forEach(dd_block => {
         const filters_header = dd_block.querySelector('.filters-header');
         const filters_section = dd_block.querySelector('.filters-section, .filters-section-scroll');
-        const chevron = dd_block.querySelector('.filters-chevron');
+        const chevron = dd_block.querySelector('.filters-chevron svg');
         let collapsed = dd_block.dataset.collapsed;
 
         if (collapsed === 'on') {

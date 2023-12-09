@@ -1,8 +1,28 @@
 {
   "resources/css/admin.scss": {
-    "file": "assets/admin-ffdbe64c.css",
+    "file": "assets/admin-7415aefd.css",
     "isEntry": true,
     "src": "resources/css/admin.scss"
+  },
+  "resources/css/common/fonts/NunitoSans_10pt-Bold.ttf": {
+    "file": "assets/NunitoSans_10pt-Bold-0a138b9e.ttf",
+    "src": "resources/css/common/fonts/NunitoSans_10pt-Bold.ttf"
+  },
+  "resources/css/common/fonts/NunitoSans_10pt-ExtraBold.ttf": {
+    "file": "assets/NunitoSans_10pt-ExtraBold-d85f1726.ttf",
+    "src": "resources/css/common/fonts/NunitoSans_10pt-ExtraBold.ttf"
+  },
+  "resources/css/common/fonts/NunitoSans_10pt-Italic.ttf": {
+    "file": "assets/NunitoSans_10pt-Italic-8303c072.ttf",
+    "src": "resources/css/common/fonts/NunitoSans_10pt-Italic.ttf"
+  },
+  "resources/css/common/fonts/NunitoSans_10pt-Light.ttf": {
+    "file": "assets/NunitoSans_10pt-Light-485e6b51.ttf",
+    "src": "resources/css/common/fonts/NunitoSans_10pt-Light.ttf"
+  },
+  "resources/css/common/fonts/NunitoSans_10pt-Regular.ttf": {
+    "file": "assets/NunitoSans_10pt-Regular-77612289.ttf",
+    "src": "resources/css/common/fonts/NunitoSans_10pt-Regular.ttf"
   },
   "resources/css/common/icons/bi-light.woff": {
     "file": "assets/bi-light-7245b81d.woff",

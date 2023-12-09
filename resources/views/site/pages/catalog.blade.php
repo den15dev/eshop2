@@ -1,6 +1,6 @@
 @extends('site.layout')
 
-@section('page_title', 'Процессоры' . ' - ' . config('app.name'))
+@section('page_title', 'Процессоры' . ' - ' . __('general.app_name'))
 
 @section('main_content')
     <div class="container">
@@ -36,8 +36,8 @@
                     @endforeach
 
                     <div class="catalog-filters_btn-cont">
-                        <button type="submit">Применить</button>
-                        <a href="#" class="btn btn-bg-grey">Сброс</a>
+                        <button type="submit">{{ __('catalog.filters.apply') }}</button>
+                        <a href="#" class="btn btn-bg-grey">{{ __('catalog.filters.reset') }}</a>
                     </div>
                 </form>
             </div>
@@ -53,6 +53,13 @@
                 </div>
 
                 Для поддержания стабильной работы процессора AMD Ryzen 5 5600X BOX и предупреждения его перегрева, в комплекте с ним предусмотрена система охлаждения и нанесенный на основание радиатора термоинтерфейс.
+
+                <p>
+                    {{ app()->getLocale() }}
+                </p>
+                <p>
+                    {{ app()->getFallbackLocale() }}
+                </p>
             </div>
         </div>
     </div>

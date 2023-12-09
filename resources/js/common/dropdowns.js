@@ -41,19 +41,19 @@ export default function init() {
 }
 
 export function languageDropdown() {
-    document.querySelectorAll('.lang-menu a').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const checkIcon = btn.parentNode.parentNode.querySelector('.icon-check-lg');
-            const checkIconClone = checkIcon.cloneNode();
-            btn.appendChild(checkIconClone);
-            checkIcon.remove();
-        });
-    });
-
-    document.querySelectorAll('.lang-menu .dropdown-list div').forEach(curLangDiv => {
-        curLangDiv.addEventListener('click', () => {
-            const dropdown_btn = curLangDiv.closest('.lang-menu').querySelector('.dropdown-btn');
-            closeDropdown(dropdown_btn);
-        });
+    document.querySelectorAll('.lang-menu .dropdown-list div').forEach(langDiv => {
+        if (langDiv.dataset.isCurrent) {
+            langDiv.addEventListener('click', () => {
+                const dropdown_btn = langDiv.closest('.lang-menu').querySelector('.dropdown-btn');
+                closeDropdown(dropdown_btn);
+            });
+        } else {
+            langDiv.addEventListener('click', () => {
+                const langId = langDiv.dataset.langId;
+                const langForm = document.querySelector('#changeLanguageForm');
+                langForm.querySelector('[name="new_language"]').value = langId;
+                langForm.submit();
+            });
+        }
     });
 }

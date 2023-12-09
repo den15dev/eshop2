@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
+use App\Models\Language;
 use Illuminate\Support\Collection;
 
 class CatalogController extends Controller
@@ -10,11 +11,11 @@ class CatalogController extends Controller
     public function index(string $category)
     {
         $spec_names = [
-            'Серия',
-            'Разъём подключения последовательного чтения',
-            'Общее количество ядер',
-            'Тип памяти',
-            'Тепловыделение (TDP)',
+            ['Серия', 5],
+            ['Разъём подключения последовательного чтения', 6],
+            ['Общее количество ядер', 10],
+            ['Тип памяти', 5],
+            ['Тепловыделение (TDP)', 8],
         ];
 
         $spec_val_names = [
@@ -34,15 +35,13 @@ class CatalogController extends Controller
 
         $filter_specs = new Collection([]);
 
-        foreach ($spec_names as $ind => $name) {
+        foreach ($spec_names as $ind => $spec_arr) {
             $spec = new \stdClass();
-            $spec->name = $name;
+            $spec->name = $spec_arr[0];
             $spec->id = $ind + 1;
 
-            $val_num = rand(3, 12);
-
             $spec_values = [];
-            for ($i = 0; $i < $val_num; $i++) {
+            for ($i = 0; $i < $spec_arr[1]; $i++) {
                 $name = $spec_val_names[$i];
                 $qty = rand(2, 40);
                 $spec_values[$name] = $qty;
@@ -71,7 +70,7 @@ class CatalogController extends Controller
             $brands->push($brand);
         }
 
-
+//        $def_lang = Language::where('id', 'ru')->first();
 
         return view('site.pages.catalog', compact('filter_specs', 'price_range', 'brands'));
     }

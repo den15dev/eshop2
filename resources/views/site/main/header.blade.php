@@ -12,7 +12,7 @@
     <div class="search-mobile-cont" id="searchMobileCont">
         <div class="container">
             <form class="search-form" method="GET" action="">
-                <input class="search-input-mobile" name="query" placeholder="Поиск" autocomplete="off"
+                <input class="search-input-mobile" name="query" placeholder="{{ __('header.search.search') }}" autocomplete="off"
                        id="searchInputMobile">
                 <span class="btn-icon clear-btn icon-x-lg" id="clearBtnMobile"></span>
                 <button class="btn-icon search-btn" type="submit">
@@ -26,6 +26,10 @@
         <div id="searchResultContMobile"></div>
     </div>
 
+    <form method="POST" action="{{ route('language') }}" id="changeLanguageForm" style="display: none">
+        @csrf
+        <input type="hidden" name="new_language" value="" />
+    </form>
 </header>
 
 <div class="shadow-toggler"></div>

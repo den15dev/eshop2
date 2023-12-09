@@ -4,14 +4,14 @@
             <svg viewBox="0 0 21 19">
                 <use href="#favoriteIcon"/>
             </svg>
-            Избранное
+            {{ __('header.user_menu.favorites') }}
             {{--            <div class="badge-round">2</div>--}}
         </a>
         <a href="#">
             <svg viewBox="0 0 22 22">
                 <use href="#cartIcon"/>
             </svg>
-            Корзина
+            {{ __('header.user_menu.cart') }}
             {{--            <div class="badge-round-red">2</div>--}}
         </a>
         <div style="padding-top: 12px;" id="bottomNavMenuBtn">
@@ -25,14 +25,14 @@
                 <svg viewBox="0 0 23 22">
                     <use href="#filtersIcon"/>
                 </svg>
-                Фильтры
+                {{ __('header.user_menu.filters') }}
             </div>
         @else
             <a href="#">
                 <svg viewBox="0 0 17 21">
                     <use href="#ordersIcon"/>
                 </svg>
-                Заказы
+                {{ __('header.user_menu.orders') }}
             </a>
         @endif
 
@@ -48,7 +48,7 @@
             <svg viewBox="0 0 18 21">
                 <use href="#userIcon"/>
             </svg>
-            Профиль
+            {{ __('header.user_menu.profile') }}
         </div>
     </div>
 

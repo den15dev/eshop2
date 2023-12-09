@@ -8,13 +8,19 @@
         </svg>
     </button>
     <div class="header-logo-mobile">
-        <a href="{{ route('home') }}" class="logo logo-ru">
+        <a href="{{ route('home') }}" class="logo logo-{{ app()->getLocale() === 'ru' ? 'ru' : 'en' }}">
             <svg viewBox="0 0 20 28">
                 <use href="#logoSign"/>
             </svg>
-            <svg viewBox="0 0 155 26">
-                <use href="#logoTitleRu"/>
-            </svg>
+            @if(app()->getLocale() === 'ru')
+                <svg viewBox="0 0 155 26">
+                    <use href="#logoTitleRu"/>
+                </svg>
+            @else
+                <svg viewBox="0 0 138 26">
+                    <use href="#logoTitleEn"/>
+                </svg>
+            @endif
         </a>
     </div>
     <button class="btn-icon search-btn-mobile-nav" id="searchBtnMobileNav">

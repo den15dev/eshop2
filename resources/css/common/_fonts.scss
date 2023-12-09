@@ -1,0 +1,54 @@
+@font-face {
+  font-family: 'Nunito Sans';
+  src: url('common/fonts/NunitoSans_10pt-Light.ttf') format('truetype');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'Nunito Sans';
+  src: url('common/fonts/NunitoSans_10pt-Regular.ttf') format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Nunito Sans';
+  src: url('common/fonts/NunitoSans_10pt-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Nunito Sans';
+  src: url('common/fonts/NunitoSans_10pt-Bold.ttf') format('truetype');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'Nunito Sans';
+  src: url('common/fonts/NunitoSans_10pt-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+}
+
+
+$font: 'Nunito Sans', system-ui, -apple-system, 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Noto Sans', 'Liberation Sans', 'Arial', sans-serif;
+
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-semibold: 600;
+$font-weight-bold: 800;
+
+$font-size-base: 1rem;
+$font-size-lg: $font-size-base * 1.125;
+$font-size-sm: $font-size-base * .875;
+$font-size-xsm: $font-size-base * .7;
+
+$h-font-sizes: (
+        1: 2.5,
+        2: 2,
+        3: 1.75,
+        4: 1.5,
+        5: 1.25,
+        6: 1
+);
+
+$text-color: rgb(47, 47, 47);

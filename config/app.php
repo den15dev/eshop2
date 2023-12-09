@@ -100,6 +100,22 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | URL Priority When Switching Languages
+    |--------------------------------------------------------------------------
+    |
+    | When true, a URL prefix (en, ru, de etc.) will have priority over cookie
+    | and Accept-Language header. This means, when user manually changes
+    | the language URL prefix in browser address bar, and it is different from
+    | his Accept-Language header or cookie, the app locale will be changed
+    | to specified in that URL prefix. Otherwise, the user will be redirected
+    | to URL prefixed with his language.
+    |
+    */
+
+    'lang_url_priority' => false,
+
+    /*
+    |--------------------------------------------------------------------------
     | Faker Locale
     |--------------------------------------------------------------------------
     |
@@ -168,6 +184,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+        App\Providers\ViewServiceProvider::class,
     ])->toArray(),
 
     /*

@@ -1,8 +1,8 @@
 <div class="filters-dropdown" data-collapsed="{{ $collapsed }}">
     <div class="filters-header">
-        <svg class="filters-chevron">
-            <use href="#sidebarChevron"/>
-        </svg>
+        <div class="filters-chevron">
+            <svg><use href="#sidebarChevron"/></svg>
+        </div>
         <div class="filters-title">{{ $title }}</div>
     </div>
     <div class="{{ $ismobile ? 'filters-section' : 'filters-section-scroll scrollbar-thin' }}">

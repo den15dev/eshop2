@@ -25,7 +25,7 @@ services:
     networks:
       - nw1
 
-  db:
+  postgres:
     image: postgres:16.0
     environment:
       POSTGRES_DB: ${DB_DATABASE}
@@ -38,6 +38,13 @@ services:
     volumes:
       - ./docker/postgres/postgresql.conf:/var/lib/postgresql/data/postgresql.conf
       - ./tmp/db:/var/lib/postgresql/data
+    networks:
+      - nw1
+
+  redis:
+    image: redis:7.2.3
+    ports:
+      - "6379:6379"
     networks:
       - nw1
 

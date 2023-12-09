@@ -30,7 +30,8 @@ Frameworks, libraries and tools:
 - Vite
 - Some modules of Bootstrap library
 - Fancybox
-- PostgreSQL database
+- PostgreSQL
+- Redis
 - Docker
 
 Languages:
@@ -44,4 +45,11 @@ Languages:
 
 ## Installation
 
+Install app depencies:  
 `$ composer install`
+
+Run migrations:  
+`$ php artisan migrate`
+
+Run all necessary app installation commands:  
+`$ php artisan app:install`

@@ -1,49 +1,48 @@
 .catalog-btn {
-  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
   width: var(--logo-width1);
   height: 40px;
-  padding: 0.55rem 0;
+  padding: 0;
   font-size: $cat-btn-font-size;
-  text-align: left;
-  text-indent: 26px;
   @include xl {
     width: var(--logo-width2);
-    text-indent: 40px;
-    padding: 0.45rem 0;
     font-size: $cat-btn-font-size * 1.125;
   }
 
-  .svg-catalog-list {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-top: -7px;
-    margin-left: 28px;
-    width: 15px;
-    height: 14px;
-    stroke: color($color1, light, 4);
-    fill: none;
-    @include xl {
-      margin-left: 32px;
-    }
+  .catalog-btn_title {
+    line-height: 1;
   }
-  .svg-close {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-top: -8px;
-    margin-left: 28px;
+  .catalog-btn_icon {
+    position: relative;
     width: 16px;
     height: 16px;
-    stroke: color($color1, light, 4);
-    stroke-width: 3;
-    fill: none;
-    display: none;
-    @include xl {
-      margin-left: 32px;
+
+    .svg-catalog-list {
+      position: absolute;
+      top: 1px;
+      left: 1px;
+      width: 15px;
+      height: 14px;
+      stroke: color($color1, light, 4);
+      fill: none;
+    }
+    .svg-close {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 16px;
+      height: 16px;
+      stroke: color($color1, light, 4);
+      stroke-width: 3;
+      fill: none;
+      display: none;
     }
   }
 }
+
 
 .nav-list-top {
   a, div {
@@ -58,12 +57,6 @@
     font-size: 14px;
     @include xxl {
       font-size: 16px;
-    }
-  }
-  & > li:nth-child(3) {
-    display: none;
-    @include xxl {
-      display: block;
     }
   }
   .tel {

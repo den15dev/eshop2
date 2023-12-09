@@ -4,9 +4,9 @@
 
 .filters-header {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   cursor: pointer;
-  padding: 0.4rem 0.5rem 0.4rem 0.75rem;
+  padding: 0.4rem 0.5rem 0.4rem 0.5rem;
   margin-bottom: 0.25rem;
   @if $border-radius-base > 0 {
     border-radius: $border-radius-base;
@@ -14,20 +14,26 @@
   .filters-chevron {
     width: 16px;
     height: 16px;
-    fill: none;
-    stroke-width: 2;
-    stroke: $grey-200;
-    margin-top: 3px;
-    &.down {
-      transform: rotate(90deg);
+    svg {
+      width: 16px;
+      height: 16px;
+      fill: none;
+      stroke-width: 2;
+      stroke: $grey-200;
+      margin-top: 3px;
+      &.down {
+        transform: rotate(90deg);
+      }
     }
   }
   .filters-title {
     font-weight: $font-weight-bold;
     line-height: 1.4;
   }
-  &:hover {
-    background-color: $grey-245;
+  @include lg {
+    &:hover {
+      color: $color1;
+    }
   }
 }
 
@@ -51,7 +57,7 @@
   li {
     display: flex;
     gap: 0.5rem;
-    padding: 4px 16px;
+    padding: 4px 12px;
     cursor: pointer;
     &:hover:not([disabled]) {
       background-color: $grey-245;

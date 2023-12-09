@@ -39,6 +39,12 @@ footer {
 
 .footer-col-cont {
   flex: 1 1 200px;
+  a {
+    color: $grey-120;
+    &:hover {
+      color: $text-color;
+    }
+  }
   @include lg {
     flex: 0 1 220px;
   }

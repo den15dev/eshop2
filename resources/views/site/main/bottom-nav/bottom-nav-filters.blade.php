@@ -27,8 +27,8 @@
         </div>
 
         <div class="catalog-filters_btn-cont">
-            <button type="submit">Применить</button>
-            <a href="#" class="btn btn-bg-grey">Сброс</a>
+            <button type="submit">{{ __('catalog.filters.apply') }}</button>
+            <a href="#" class="btn btn-bg-grey">{{ __('catalog.filters.reset') }}</a>
         </div>
     </form>
 </div>

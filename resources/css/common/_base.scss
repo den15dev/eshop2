@@ -150,3 +150,18 @@ main {
 .main-tint {
   z-index: 99;
 }
+
+
+// ---------- Other ----------
+
+.dev-monitor {
+  display: none;
+  position: fixed;
+  left: 20px;
+  bottom: 40px;
+  font-size: $font-size-sm;
+  color: $grey-150;
+  @include lg {
+    display: block;
+  }
+}

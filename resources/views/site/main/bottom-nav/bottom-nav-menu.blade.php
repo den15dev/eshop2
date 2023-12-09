@@ -4,50 +4,23 @@
             <svg><use href="#closeIcon" /></svg>
         </div>
 
-        <div class="dropdown lang-menu mb-25">
-            <div class="dropdown-btn">
-                <img src="{{ asset('img/flags/ru.svg') }}" alt="ru">
-                Ru
-                <span class="icon-chevron-down xsmall"></span>
-            </div>
-            <ul class="dropdown-list">
-                <li>
-                    <div>
-                        <img src="{{ asset('img/flags/ru.svg') }}" alt="ru">
-                        Русский
-                        <span class="icon-check-lg me-1 va-1"></span>
-                    </div>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="{{ asset('img/flags/en.svg') }}" alt="en">
-                        English
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="{{ asset('img/flags/de.svg') }}" alt="de">
-                        Deutsch
-                    </a>
-                </li>
-            </ul>
-        </div>
+        <x-languages-dropdown type="mobile" :languages="$languages" :curlang="$languages->first()" />
 
         <ul class="bottom-menu_list">
             <li>
-                <a href="#">Доставка</a>
+                <a href="#">{{ __('header.top_menu.delivery') }}</a>
             </li>
             <li>
-                <a href="#">Магазины</a>
+                <a href="#">{{ __('header.top_menu.shops') }}</a>
             </li>
             <li>
-                <a href="#">Гарантия</a>
+                <a href="#">{{ __('header.top_menu.warranty') }}</a>
             </li>
             <li>
-                <a href="#">Покупателям</a>
+                <a href="#">{{ __('header.top_menu.for_customers') }}</a>
             </li>
             <li>
-                <a href="#">Помощь</a>
+                <a href="#">{{ __('footer.other.help') }}</a>
             </li>
         </ul>
     </div>

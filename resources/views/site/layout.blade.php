@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>@yield('page_title', config('app.name'))</title>
+    <title>@yield('page_title', __('general.app_name'))</title>
 
     @include('site.main.meta-tags')
 
@@ -25,6 +25,8 @@
 </div>
 
 @include('site.main.bottom-nav')
+
+@include('common.monitor')
 
 <div class="main-tint"></div>
 <div class="win-tint"></div>

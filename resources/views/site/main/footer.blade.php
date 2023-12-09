@@ -1,68 +1,72 @@
 <footer>
     <div class="container footer-main-cont">
         <div class="footer-logo-cont">
-            <a href="{{ route('home') }}" class="logo logo-ru">
+            <a href="{{ route('home') }}" class="logo logo-{{ app()->getLocale() === 'ru' ? 'ru' : 'en' }}">
                 <svg viewBox="0 0 20 28"><use href="#logoSign" /></svg>
-                <svg viewBox="0 0 155 26"><use href="#logoTitleRu" /></svg>
+                @if(app()->getLocale() === 'ru')
+                    <svg viewBox="0 0 155 26"><use href="#logoTitleRu" /></svg>
+                @else
+                    <svg viewBox="0 0 138 26"><use href="#logoTitleEn"/></svg>
+                @endif
             </a>
         </div>
         <div class="footer-col-cont">
-            <h5>Компания</h5>
+            <h5>{{ __('footer.company.title') }}</h5>
             <ul class="footer-list">
                 <li>
-                    <a href="#">О компании</a>
+                    <a href="#">{{ __('footer.company.about') }}</a>
                 </li>
                 <li>
-                    <a href="#">Новости</a>
+                    <a href="#">{{ __('footer.company.news') }}</a>
                 </li>
                 <li>
-                    <a href="#">Партнёрам</a>
+                    <a href="#">{{ __('footer.company.for_partners') }}</a>
                 </li>
                 <li>
-                    <a href="#">Вакансии</a>
+                    <a href="#">{{ __('footer.company.vacancies') }}</a>
                 </li>
                 <li>
-                    <a href="#">Политика конфиденциальности</a>
+                    <a href="#">{{ __('footer.company.privacy') }}</a>
                 </li>
             </ul>
         </div>
         <div class="footer-col-cont">
-            <h5>Покупателям</h5>
+            <h5>{{ __('footer.for_buyers.title') }}</h5>
             <ul class="footer-list">
                 <li>
-                    <a href="#">Как оформить заказ</a>
+                    <a href="#">{{ __('footer.for_buyers.make_order') }}</a>
                 </li>
                 <li>
-                    <a href="#">Способы оплаты</a>
+                    <a href="#">{{ __('footer.for_buyers.payment_methods') }}</a>
                 </li>
                 <li>
-                    <a href="#">Кредиты</a>
+                    <a href="#">{{ __('footer.for_buyers.credits') }}</a>
                 </li>
                 <li>
-                    <a href="#">Юридическим лицам</a>
+                    <a href="#">{{ __('footer.for_buyers.for_entities') }}</a>
                 </li>
                 <li>
-                    <a href="#">Корпоративные отделы</a>
+                    <a href="#">{{ __('footer.for_buyers.corp_departments') }}</a>
                 </li>
             </ul>
         </div>
         <div class="footer-col-cont">
-            <h5>Разное</h5>
+            <h5>{{ __('footer.other.title') }}</h5>
             <ul class="footer-list">
                 <li>
-                    <a href="#">Доставка</a>
+                    <a href="#">{{ __('footer.other.delivery') }}</a>
                 </li>
                 <li>
-                    <a href="#">Обмен, возврат</a>
+                    <a href="#">{{ __('footer.other.return') }}</a>
                 </li>
                 <li>
-                    <a href="#">Подарочные карты</a>
+                    <a href="#">{{ __('footer.other.gift_cards') }}</a>
                 </li>
                 <li>
-                    <a href="#">Бонусная программа</a>
+                    <a href="#">{{ __('footer.other.bonus_program') }}</a>
                 </li>
                 <li>
-                    <a href="#">Помощь</a>
+                    <a href="#">{{ __('footer.other.help') }}</a>
                 </li>
             </ul>
         </div>
@@ -70,6 +74,6 @@
 
     <div class="container footer-copyright-cont">
         <hr />
-        &copy; {{ date('Y') }} Это демонстрационный сайт
+        &copy; {{ date('Y') }} {{ __('footer.copyright') }} <a href="https://github.com/den15dev/eshop2" class="link">den15</a>
     </div>
 </footer>
