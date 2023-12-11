@@ -42,7 +42,7 @@
         </div>
 
 
-        <h2>{{ __('home.best_prices') }}</h2>
+        <h3>{{ __('home.best_prices') }}</h3>
 
         <div class="swiper product-carousel mb-6">
             <div class="swiper-wrapper">
@@ -65,7 +65,7 @@
         </div>
 
 
-        <h2>{{ __('home.new') }}</h2>
+        <h3>{{ __('home.new') }}</h3>
 
         <div class="swiper product-carousel mb-6">
             <div class="swiper-wrapper">
@@ -88,7 +88,7 @@
         </div>
 
 
-        <h2>{{ __('home.popular') }}</h2>
+        <h3>{{ __('home.popular') }}</h3>
 
         <div class="swiper product-carousel mb-5">
             <div class="swiper-wrapper">

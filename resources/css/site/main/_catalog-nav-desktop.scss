@@ -60,7 +60,7 @@
   section {
     margin-bottom: 1.75rem;
     break-inside: avoid-column;
-    max-width: 240px;
+    max-width: 250px;
     div, a {
       display: block;
       cursor: pointer;
@@ -78,8 +78,17 @@
     li, ul.dropdown-list li {
       line-height: 1.25rem;
     }
-    li:not(:last-child), ul.dropdown-list li:not(:last-child) {
+
+    li:not(:last-child) {
       margin-bottom: 0.5rem;
+    }
+
+    ul.dropdown-list li:not(:last-child) {
+      margin-bottom: 0;
+    }
+
+    .icon-chevron-right {
+      vertical-align: 2px;
     }
   }
   @include xl {

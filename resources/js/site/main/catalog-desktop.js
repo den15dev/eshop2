@@ -61,14 +61,21 @@ export function catalogDesktopDropdowns() {
         liElem.addEventListener('mouseenter', function () {
             clearTimeout(catalogDDTimeout);
             catalogDDTimeout = setTimeout(() => {
-                // Close other
+                // Close others
                 liElem.dataset.opened = 'off';
                 closeSubCategoryDropdowns(liElem.closest('.catalog-desktop-body-cont'));
-                liElem.querySelector('.dropdown-list').style.display = 'block';
+                // Open current
+                const ddListElem = liElem.querySelector('.dropdown-list');
+                ddListElem.style.display = 'block';
                 liElem.dataset.opened = 'on';
+                // Set left margin if button is multiline
+                const maxWidth = parseInt(getComputedStyle(liElem.closest('section')).maxWidth, 10);
+                const marginLeft = getListLeftMargin(liElem.querySelector('.dropdown-btn'), maxWidth);
+                if (marginLeft) {
+                    ddListElem.style.marginLeft = `${marginLeft}px`;
+                }
             }, 200);
         });
-
 
         liElem.addEventListener('mouseleave', function () {
             clearTimeout(catalogDDTimeout);
@@ -79,4 +86,50 @@ export function catalogDesktopDropdowns() {
             }, 200);
         });
     });
+}
+
+/**
+ * Calculates the actual width of a multiline text block.
+ *
+ * @param buttonElem
+ * @param maxWidth
+ * @returns {number}
+ */
+function getListLeftMargin(buttonElem, maxWidth) {
+    const text = buttonElem.innerText;
+    const origContent = buttonElem.innerHTML;
+    const extraWidth = 18; // Pixels for chevron icon with its spaces
+    let marginLeft = 0;
+
+    let wordArr = text.split(' ');
+    wordArr = wordArr.filter(word => word.length > 0);
+
+    let curLine = '';
+    let curLineWidth = 0;
+    let curButtonWidth = 0;
+    let lineWidthArr = [];
+    wordArr.forEach(word => {
+        curLine === '' ? curLine += word : curLine += ' ' + word;
+        buttonElem.innerHTML = curLine;
+
+        curButtonWidth = buttonElem.offsetWidth;
+        if (maxWidth <= (curButtonWidth + extraWidth)) {
+            lineWidthArr.push(curLineWidth);
+            curLine = word;
+        }
+        curLineWidth = curButtonWidth;
+    });
+
+    buttonElem.innerHTML = curLine;
+    curButtonWidth = buttonElem.offsetWidth;
+    lineWidthArr.push(curButtonWidth + extraWidth);
+
+    buttonElem.innerHTML = origContent;
+
+    if (lineWidthArr.length > 1) {
+        const longestLine = Math.max(...lineWidthArr);
+        marginLeft = -(maxWidth - longestLine);
+    }
+
+    return marginLeft;
 }

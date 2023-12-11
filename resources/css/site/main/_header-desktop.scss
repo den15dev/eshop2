@@ -43,8 +43,16 @@
   }
 }
 
+@mixin nav-horiz-list {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
 
 .nav-list-top {
+  @include nav-horiz-list;
+  gap: 1.25rem;
+
   a, div {
     cursor: pointer;
     color: $grey-120;
@@ -73,8 +81,9 @@
 }
 
 .nav-list-user {
-  gap: 0;
+  @include nav-horiz-list;
   font-size: 12px;
+
   @include xxl {
     font-size: 14px;
   }

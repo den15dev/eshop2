@@ -12,14 +12,26 @@
 
 .product-card_image {
   display: block;
+  position: relative;
+  margin-bottom: 0.5rem;
   img {
-    width: 154px;
-    //border: solid 1px $grey-230;
-    @include md {
-      width: 220px;
-    }
-    @include xl {
-      width: 240px;
+    width: var(--product-card-image);
+  }
+
+  .tint {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $color1;
+    opacity: 0.06;
+  }
+
+  &:hover {
+    .tint {
+      display: block;
     }
   }
 }
@@ -74,8 +86,6 @@
 }
 
 .product-card_buttons {
-  display: block;
-  gap: 1rem;
   color: $grey-150;
   & > div {
     cursor: pointer;
@@ -86,12 +96,5 @@
 
   & > div:not(:last-child) {
     margin-bottom: 0.25rem;
-    @include md {
-      margin-bottom: 0;
-    }
-  }
-
-  @include md {
-    display: flex;
   }
 }

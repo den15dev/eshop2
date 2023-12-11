@@ -1,4 +1,5 @@
-$dropdown-list-paddings: 1.25rem;
+$dropdown-list-paddings: 1rem;
+$dropdown-item-paddings: 0.25rem;
 
 .dropdown,
 .dropdown-hover {
@@ -17,7 +18,7 @@ $dropdown-list-paddings: 1.25rem;
   display: none;
   padding: $dropdown-list-paddings * 0.8 $dropdown-list-paddings;
   z-index: 111;
-  margin-left: -$dropdown-list-paddings;
+  margin-left: -($dropdown-list-paddings + $dropdown-item-paddings);
   margin-top: 0.5rem;
   @if $border-radius-base > 0 {
     border-radius: $border-radius-base;
@@ -26,8 +27,14 @@ $dropdown-list-paddings: 1.25rem;
   li {
     line-height: 1.3em;
   }
+
   li:not(:last-child) {
-    margin-bottom: 0.7em;
+    margin-bottom: 2px;
+  }
+
+  div, a {
+    display: block;
+    padding: $dropdown-item-paddings;
   }
   white-space: nowrap;
   @include dropdown-shadow;
@@ -42,5 +49,9 @@ $dropdown-list-paddings: 1.25rem;
   top: 0;
   left: 105%;
   margin-left: 0;
-  margin-top: -$dropdown-list-paddings * 0.7;
+  margin-top: -($dropdown-list-paddings + $dropdown-item-paddings) * 0.8;
+}
+
+.dd-left-0 {
+  margin-left: 0;
 }

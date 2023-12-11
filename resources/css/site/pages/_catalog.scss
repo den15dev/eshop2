@@ -20,17 +20,18 @@
 
 .catalog-cont {
   flex: 1;
-  //background-color: #e3ece0;
+}
 
-  .layout-cont {
-    display: flex;
-    justify-content: space-between;
+.catalog-cards-cont {
+  display: grid;
+  grid-gap: 1.25rem;
+  grid-template-columns: repeat(auto-fill, minmax(var(--product-card-image), 1fr));
+  margin-bottom: 1rem;
+}
 
-    .sort-cont {
-      background-color: #fffde0;
-    }
-    .settings-cont {
-      background-color: #e0f4ff;
-    }
+.pagination {
+  .page-link {
+    padding-top: 7px;
+    padding-bottom: 4px;
   }
 }

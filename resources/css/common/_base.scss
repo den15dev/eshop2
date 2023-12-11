@@ -69,6 +69,13 @@ textarea {
     margin-bottom: 0.5em;
     font-size: $font-size-base * $mult;
     line-height: 1.2;
+
+    /*@if $size < 4 {
+      @include md {
+        font-size: $font-size-base * $mult;
+      }
+    }*/
+
   }
 }
 
@@ -97,16 +104,6 @@ ul {
   padding: 0;
   margin: 0;
   list-style: none;
-}
-
-
-// -------- Navigation ----------
-
-nav > ul {
-  display: flex;
-  gap: 1.25rem;
-  align-items: center;
-  white-space: nowrap;
 }
 
 
@@ -158,7 +155,7 @@ main {
   display: none;
   position: fixed;
   left: 20px;
-  bottom: 40px;
+  bottom: 30px;
   font-size: $font-size-sm;
   color: $grey-150;
   @include lg {

@@ -16,6 +16,8 @@
 @import 'common/components/fade';
 @import 'common/components/badge_round';
 
+@import 'site/variables';
+
 @import 'site/main/logo';
 @import 'site/main/header';
 @import 'site/main/header-desktop';
@@ -31,6 +33,7 @@
 
 @import 'site/pages/home';
 @import 'site/pages/catalog';
+@import 'site/pages/catalog-layout-panel';
 
 @import 'site/components/product-card';
 @import 'site/components/carousel-nav-btns';

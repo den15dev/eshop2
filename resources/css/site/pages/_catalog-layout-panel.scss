@@ -1,0 +1,57 @@
+.catalog-layout-cont {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .sort-cont {
+    .dropdown-list {
+      margin-left: -0.5rem;
+      @include lg {
+        margin-left: -($dropdown-list-paddings + $dropdown-item-paddings);
+      }
+    }
+  }
+  .settings-cont {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    .sm {
+      display: none;
+      @include sm {
+        display: inline;
+      }
+    }
+
+    svg {
+      display: block;
+      width: 20px;
+      fill: none;
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke: $grey-180;
+    }
+
+    .btn-icon {
+      &.active {
+        cursor: default;
+        svg {
+          stroke: color($color1, light, 3);
+        }
+      }
+      &:hover svg {
+        stroke: color($color1, light, 3);
+      }
+    }
+  }
+
+  .sort-cont, .settings-cont {
+    div {
+      cursor: pointer;
+      color: $grey-120;
+      &:hover {
+        color: color($color1, light, 3);
+      }
+    }
+  }
+}

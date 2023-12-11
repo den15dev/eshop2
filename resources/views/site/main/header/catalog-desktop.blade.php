@@ -65,7 +65,7 @@
                 <li class="dropdown-hover">
                     <div class="dropdown-btn">
                         Накопители&nbsp;<span class="cat-count">182</span>
-                        <span class="icon-chevron-right xsmall va1 ms-1"></span>
+                        <span class="icon-chevron-right xsmall ms-1"></span>
                     </div>
                     <ul class="dropdown-list dd-right-out">
                         <li>
@@ -88,7 +88,7 @@
                 <li class="dropdown-hover">
                     <div class="dropdown-btn">
                         Оперативная память&nbsp;<span class="cat-count">174</span>
-                        <span class="icon-chevron-right xsmall va1 ms-1"></span>
+                        <span class="icon-chevron-right xsmall ms-1"></span>
                     </div>
                     <ul class="dropdown-list dd-right-out">
                         <li>
@@ -158,7 +158,7 @@
                 <li class="dropdown-hover">
                     <div class="dropdown-btn">
                         Ноутбуки&nbsp;<span class="cat-count">65</span>
-                        <span class="icon-chevron-right xsmall va1 ms-1"></span>
+                        <span class="icon-chevron-right xsmall ms-1"></span>
                     </div>
                     <ul class="dropdown-list dd-right-out">
                         <li>
@@ -224,7 +224,7 @@
                 <li class="dropdown-hover">
                     <div class="dropdown-btn">
                         Холодильники <span class="cat-count">182</span>
-                        <span class="icon-chevron-right xsmall va1 ms-1"></span>
+                        <span class="icon-chevron-right xsmall ms-1"></span>
                     </div>
                     <ul class="dropdown-list dd-right-out">
                         <li>
@@ -292,8 +292,8 @@
                 </li>
                 <li class="dropdown-hover">
                     <div class="dropdown-btn">
-                        Профессиональные и строительные пылесосы <span class="cat-count">89</span>
-                        <span class="icon-chevron-right xsmall va1 ms-1"></span>
+                        Профессиональные и строительные пылесосы&nbsp;<span class="cat-count">89</span>
+                        <span class="icon-chevron-right xsmall ms-1"></span>
                     </div>
                     <ul class="dropdown-list dd-right-out">
                         <li>
@@ -420,7 +420,7 @@
                 </li>
                 <li>
                     <a href="#">
-                        Стабилизаторы напряжения <span class="cat-count">59</span>
+                        Стабилизаторы напряжения&nbsp;<span class="cat-count">59</span>
                     </a>
                 </li>
                 <li>
