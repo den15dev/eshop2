@@ -118,16 +118,13 @@
   }
   .dropdown-list {
     margin-top: 12px;
+    font-size: $font-size-base;
   }
   .dropdown-list li > a {
     text-align: left;
-    font-size: 16px;
     color: $grey-120;
     &:hover {
       color: color($color1, light, 2);
     }
-  }
-  .dropdown-list li:not(:last-child) {
-    margin-bottom: 1em;
   }
 }
