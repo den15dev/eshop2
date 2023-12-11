@@ -64,10 +64,12 @@ export function catalogDesktopDropdowns() {
                 // Close others
                 liElem.dataset.opened = 'off';
                 closeSubCategoryDropdowns(liElem.closest('.catalog-desktop-body-cont'));
+
                 // Open current
                 const ddListElem = liElem.querySelector('.dropdown-list');
                 ddListElem.style.display = 'block';
                 liElem.dataset.opened = 'on';
+
                 // Set left margin if button is multiline
                 const maxWidth = parseInt(getComputedStyle(liElem.closest('section')).maxWidth, 10);
                 const marginLeft = getListLeftMargin(liElem.querySelector('.dropdown-btn'), maxWidth);
@@ -89,7 +91,7 @@ export function catalogDesktopDropdowns() {
 }
 
 /**
- * Calculates the actual width of a multiline text block.
+ * Calculates actual width of a multiline text block.
  *
  * @param buttonElem
  * @param maxWidth
@@ -97,9 +99,16 @@ export function catalogDesktopDropdowns() {
  */
 function getListLeftMargin(buttonElem, maxWidth) {
     const text = buttonElem.innerText;
-    const origContent = buttonElem.innerHTML;
     const extraWidth = 18; // Pixels for chevron icon with its spaces
     let marginLeft = 0;
+
+    // Create temporary li and div elements
+    const ulElem = buttonElem.closest('ul');
+    const tempLiElem = document.createElement('li');
+    ulElem.appendChild(tempLiElem);
+    const tempDivElem = document.createElement('div');
+    tempDivElem.style.width = 'fit-content';
+    tempLiElem.appendChild(tempDivElem);
 
     let wordArr = text.split(' ');
     wordArr = wordArr.filter(word => word.length > 0);
@@ -110,9 +119,9 @@ function getListLeftMargin(buttonElem, maxWidth) {
     let lineWidthArr = [];
     wordArr.forEach(word => {
         curLine === '' ? curLine += word : curLine += ' ' + word;
-        buttonElem.innerHTML = curLine;
+        tempDivElem.innerHTML = curLine;
 
-        curButtonWidth = buttonElem.offsetWidth;
+        curButtonWidth = tempDivElem.offsetWidth;
         if (maxWidth <= (curButtonWidth + extraWidth)) {
             lineWidthArr.push(curLineWidth);
             curLine = word;
@@ -120,11 +129,11 @@ function getListLeftMargin(buttonElem, maxWidth) {
         curLineWidth = curButtonWidth;
     });
 
-    buttonElem.innerHTML = curLine;
-    curButtonWidth = buttonElem.offsetWidth;
-    lineWidthArr.push(curButtonWidth + extraWidth);
+    tempDivElem.innerHTML = curLine;
+    lineWidthArr.push(tempDivElem.offsetWidth + extraWidth);
 
-    buttonElem.innerHTML = origContent;
+    // Remove temp elements
+    tempLiElem.remove();
 
     if (lineWidthArr.length > 1) {
         const longestLine = Math.max(...lineWidthArr);

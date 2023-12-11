@@ -123,6 +123,7 @@
                     </div>
                 </div>
 
+
                 <div class="catalog-cards-cont mb-5">
                     <x-product-card num="1" />
                     <x-product-card num="2" />
