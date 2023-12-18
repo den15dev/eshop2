@@ -1,4 +1,4 @@
-<div class="dropdown lang-menu{{ $type == 'mobile' ? ' mb-25' : '' }}">
+<div class="dropdown lang-menu{{ $type == 'mobile' ? ' mb-3' : '' }}">
     <div class="dropdown-btn">
         <img src="{{ get_image('img/flags/' . $curlang->id . '.svg', 'flag') }}" alt="">
         {{ ucfirst($curlang->id) }}

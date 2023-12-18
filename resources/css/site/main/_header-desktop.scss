@@ -95,12 +95,23 @@
       width: 78px;
     }
   }
-  li > a, li > div {
+
+  .outline-btn {
     display: block;
     cursor: pointer;
     position: relative;
     text-align: center;
     color: $grey-150;
+
+    svg {
+      display: block;
+      height: 21px;
+      margin: 0 auto 6px auto;
+      fill: none;
+      stroke-width: 1.6;
+      stroke: $grey-180;
+    }
+
     &:hover {
       color: color($color1, light, 2);
       svg {
@@ -108,23 +119,57 @@
       }
     }
   }
-  svg {
-    display: block;
-    height: 21px;
-    margin: 0 auto 6px auto;
-    fill: none;
-    stroke-width: 1.6;
-    stroke: $grey-180;
+
+  .user-btn {
+    padding-bottom: 2px;
+
+    svg, img {
+      display: block;
+      width: 38px;
+      height: 38px;
+      margin: 0 auto;
+      border-radius: 50%;
+    }
+
+    #userIconBG {
+      fill: $grey-240;
+    }
+    #userIconHead, #userIconBody {
+      fill: $grey-210;
+    }
+
+    &:hover {
+      #userIconBG {
+        fill: color($color1, light, 9);
+      }
+      #userIconHead, #userIconBody {
+        fill: color($color1, light, 6);
+      }
+    }
   }
+
   .dropdown-list {
     margin-top: 12px;
     font-size: $font-size-base;
   }
-  .dropdown-list li > a {
+
+  .user-dd-btn {
+    cursor: pointer;
     text-align: left;
-    color: $grey-120;
+    color: $grey-90;
+    span {
+      color: $grey-180;
+    }
     &:hover {
       color: color($color1, light, 2);
+      span {
+        color: color($color1, light, 4);
+      }
     }
+  }
+
+  .user-dd-name {
+    margin-bottom: 4px;
+    color: color($color1, light, 2);
   }
 }

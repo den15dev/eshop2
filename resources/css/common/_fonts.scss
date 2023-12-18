@@ -29,8 +29,8 @@
   font-weight: 800;
 }
 
-
-$font: 'Nunito Sans', system-ui, -apple-system, 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Noto Sans', 'Liberation Sans', 'Arial', sans-serif;
+$system-stack: system-ui, -apple-system, 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Noto Sans', 'Liberation Sans', 'Arial', sans-serif;
+$font: 'Nunito Sans', $system-stack;
 
 $font-weight-light: 300;
 $font-weight-normal: 400;

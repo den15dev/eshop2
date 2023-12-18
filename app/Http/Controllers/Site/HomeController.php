@@ -10,15 +10,14 @@ class HomeController extends Controller
 {
     public function index(): View
     {
-
         /*
          * $out = DB::table('product_specification')
             ->whereIn('spec_value->ru', ['нет', 'DDR4'])
             ->get();
         */
 
+        $is_login_page = session()->has('login_page');
 
-
-        return view('site.pages.home');
+        return view('site.pages.home', compact('is_login_page'));
     }
 }

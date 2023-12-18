@@ -103,7 +103,7 @@
     <nav class="bottom-right">
         <ul class="nav-list-user">
             <li>
-                <a href="#">
+                <a href="#" class="outline-btn">
                     <svg viewBox="0 0 21 19">
                         <use href="#favoriteIcon"/>
                     </svg>
@@ -112,7 +112,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="#" class="outline-btn">
                     <svg viewBox="0 0 22 22">
                         <use href="#cartIcon"/>
                     </svg>
@@ -121,61 +121,79 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="#" class="outline-btn">
                     <svg viewBox="0 0 17 21">
                         <use href="#ordersIcon"/>
                     </svg>
                     {{ __('header.user_menu.orders') }}
                 </a>
             </li>
-            {{--<li>
-                <a href="#">
+            @guest
+            <li>
+                <div class="outline-btn" id="headerSignInBtn">
                     <svg viewBox="0 0 16 20">
                         <use href="#lockIcon"/>
                     </svg>
-                    {{ __('header.user_menu.login') }}
-                </a>
-            </li>--}}
+                    {{ __('header.user_menu.sign_in') }}
+                </div>
+            </li>
             {{--<li>
-                <a href="#">
+                <a href="#" class="outline-btn">
                     <svg viewBox="0 0 18 21"><use href="#userIcon" /></svg>
                     <span style="margin-left: -2px">Регистрация</span>
                 </a>
             </li>--}}
+            @elseauth
             <li class="dropdown">
-                <div class="dropdown-btn">
-                    <svg viewBox="0 0 18 21">
-                        <use href="#userIcon"/>
-                    </svg>
-                    <span>{{ __('header.user_menu.profile') }}</span>
+                <div class="dropdown-btn user-btn">
+                    @if(Auth::user()->thumbnail)
+                        <img src="{{ asset('storage/images/users/' . Auth::user()->thumbnail) }}" alt="">
+                    @else
+                        <svg viewBox="0 0 38 38">
+                            <path d="M38 0H0V38H38V0Z" id="userIconBG"/>
+                            <path d="M19 21.432C23.4492 21.432 27.056 17.8252 27.056 13.376C27.056 8.9268 23.4492 5.32001 19 5.32001C14.5508 5.32001 10.944 8.9268 10.944 13.376C10.944 17.8252 14.5508 21.432 19 21.432Z" id="userIconHead"/>
+                            <path d="M34.8967 38C34.8967 32.1923 33.1233 23.7943 24.9913 21.736C21.5017 24.3833 16.1817 24.225 13.015 21.736C4.87667 23.7943 3.10333 32.1923 3.10333 38C6.65 38 31.35 38 34.8967 38Z" id="userIconBody"/>
+                        </svg>
+                    @endif
                 </div>
                 <ul class="dropdown-list dd-right">
                     <li>
-                        <a href="#">
-                            <span class="icon-key me-2"></span>
+                        <div class="user-dd-name">
+                            {{ Auth::user()->name }}
+                        </div>
+                    </li>
+                    @if(Auth::user()->isAdmin())
+                    <li>
+                        <a href="#" class="user-dd-btn">
+                            <span class="icon-key me-1"></span>
                             {{ __('header.user_menu.profile_menu.admin_panel') }}
                         </a>
                     </li>
+                    @endif
                     <li>
-                        <a href="#">
-                            <span class="icon-gear me-2"></span>
+                        <a href="#" class="user-dd-btn">
+                            <span class="icon-gear me-1"></span>
                             {{ __('header.user_menu.profile_menu.settings') }}
                         </a>
                     </li>
                     <li>
-                        <a href="#">
-                            <span class="icon-bell me-2"></span>
+                        <a href="#" class="user-dd-btn">
+                            <span class="icon-bell me-1"></span>
                             {{ __('header.user_menu.profile_menu.notifications') }}
                         </a>
                     </li>
                     <li>
-                        <a href="#">
-                            <span class="icon-box-arrow-right me-2"></span>
-                            {{ __('header.user_menu.profile_menu.logout') }}
-                        </a>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <div class="user-dd-btn" id="headerLogoutBtn">
+                                <span class="icon-box-arrow-right me-1"></span>
+                                {{ __('header.user_menu.profile_menu.logout') }}
+                            </div>
+                        </form>
                     </li>
                 </ul>
             </li>
+            @endguest
         </ul>
     </nav>
 </div>

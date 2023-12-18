@@ -13,3 +13,5 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::post('/language', LanguageController::class)->name('language');
 
 Route::get('/catalog/{category}', [CatalogController::class, 'index'])->name('catalog');
+
+require __DIR__.'/auth.php';

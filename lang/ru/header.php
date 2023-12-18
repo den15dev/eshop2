@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'catalog' => 'Каталог',
     'top_menu' => [
@@ -18,7 +20,7 @@ return [
         'favorites' => 'Избранное',
         'cart' => 'Корзина',
         'orders' => 'Заказы',
-        'login' => 'Вход',
+        'sign_in' => 'Вход',
         'profile' => 'Профиль',
         'filters' => 'Фильтры',
         'profile_menu' => [

@@ -59,6 +59,13 @@ textarea {
   line-height: inherit;
 }
 
+form .alert {
+  display: none;
+}
+
+input[type="password"] {
+  font-family: $system-stack;
+}
 
 
 // --------- Headers -----------
@@ -69,13 +76,6 @@ textarea {
     margin-bottom: 0.5em;
     font-size: $font-size-base * $mult;
     line-height: 1.2;
-
-    /*@if $size < 4 {
-      @include md {
-        font-size: $font-size-base * $mult;
-      }
-    }*/
-
   }
 }
 
@@ -128,24 +128,23 @@ main {
   padding-top: 1rem;
 }
 
-.win-tint,
-.main-tint {
+.page-tint,
+.modal-tint {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: black;
-  display: none;
   opacity: $dark-tint-opacity;
+  display: none;
 }
 
-.win-tint {
-  z-index: 200;
-}
-
-.main-tint {
+.page-tint {
   z-index: 99;
+}
+.modal-tint {
+  z-index: 200;
 }
 
 

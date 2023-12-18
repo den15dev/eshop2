@@ -26,7 +26,6 @@
         </footer>
     </div>
 
-    <div class="main-tint"></div>
-    <div class="win-tint"></div>
+    <div class="page-tint"></div>
 </body>
 </html>

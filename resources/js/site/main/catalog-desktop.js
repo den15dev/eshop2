@@ -2,7 +2,6 @@ const bodyConts = Array.from(document.querySelectorAll('#catalogNavDesktop .cata
 let catalogMenuTimeout;
 
 export function catalogDesktopRoot() {
-
     document.querySelectorAll('.catalog-desktop-root-list > li').forEach(newLiElem => {
         newLiElem.addEventListener('mouseenter', function () {
             catalogMenuTimeout = setTimeout(() => {

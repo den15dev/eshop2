@@ -31,6 +31,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         // Registering custom Blade component folders
+        Blade::anonymousComponentPath(__DIR__.'/../../resources/views/common/components');
         Blade::anonymousComponentPath(__DIR__.'/../../resources/views/site/components');
         Blade::anonymousComponentPath(__DIR__.'/../../resources/views/admin/components', 'admin');
 

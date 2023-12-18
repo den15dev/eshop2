@@ -10,12 +10,6 @@ export default function init() {
         const chevron = dd_block.querySelector('.filters-chevron svg');
         let collapsed = dd_block.dataset.collapsed;
 
-        if (collapsed === 'on') {
-            filters_section.style.display = 'none';
-        } else if (collapsed === 'off') {
-            chevron.classList.add('down');
-        }
-
         filters_header.addEventListener('click', () => {
             collapsed = dd_block.dataset.collapsed;
 

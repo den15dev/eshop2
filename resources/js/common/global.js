@@ -1,4 +1,4 @@
-export const pageTint = document.querySelector('.main-tint');
+export const pageTint = document.querySelector('.page-tint');
 export const fadeSpeed = 200;
 export const htmlElem = document.querySelector('html');
 export const lgMedia = window.matchMedia('(min-width: 992px)');

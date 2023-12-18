@@ -64,3 +64,11 @@ $margins-and-paddings: (
 .fw-bold {
   font-weight: $font-weight-bold;
 }
+
+.w-fit {
+  width: fit-content;
+}
+
+.text-center {
+  text-align: center;
+}

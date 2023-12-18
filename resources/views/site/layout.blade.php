@@ -26,9 +26,19 @@
 
 @include('site.main.bottom-nav')
 
-@include('common.monitor')
+<div class="page-tint"></div>
 
-<div class="main-tint"></div>
-<div class="win-tint"></div>
+@guest
+    @include('site.auth.auth-modal')
+@endguest
+
+@if(session()->has('message'))
+    <x-flash-modal
+            type="{{ session('message.type') }}"
+            content="{!! session('message.content') !!}"
+            align="{{ session('message.align') }}" />
+@endif
+
+@include('common.monitor')
 </body>
 </html>

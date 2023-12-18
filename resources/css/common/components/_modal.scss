@@ -1,0 +1,63 @@
+$modal-win-paddings: 32px;
+$modal-win-paddings-sm: 20px;
+
+.modal-win {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 92%;
+  max-width: 480px;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  @if $border-radius-base > 0 {
+    border-radius: $border-radius-base;
+  }
+  padding: $modal-win-paddings-sm $modal-win-paddings-sm * 1.25 $modal-win-paddings-sm * 1.25 $modal-win-paddings-sm * 1.25;
+  z-index: 201;
+  @include sm {
+    padding: $modal-win-paddings $modal-win-paddings * 1.25 $modal-win-paddings * 1.25 $modal-win-paddings * 1.25;
+  }
+  display: none;
+}
+
+.modal-close-btn {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  right: 16px;
+  top: 16px;
+  text-align: center;
+  font-size: 24px;
+  line-height: 26px;
+  color: $grey-200;
+  cursor: pointer;
+  &:hover {
+    color: color($color1, light, 5);
+  }
+  @include sm {
+    right: 18px;
+    top: 18px;
+  }
+}
+
+.modal-icon {
+  text-align: center;
+  margin-bottom: 16px;
+  font-size: 54px;
+
+  &.info, &.confirm {
+    color: color($color1, light, 7);
+  }
+  &.success {
+    color: $color-success;
+  }
+  &.warning {
+    color: color($color-warning, light, 2);
+  }
+}
+
+#flashModal {
+  .modal-tint, .modal-win {
+    display: block;
+  }
+}

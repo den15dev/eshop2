@@ -58,6 +58,10 @@ class SetRouteLanguage
         $url = str_replace(url('/'), '', url()->current());
         $url = Language::buildURL($url, $lang_id);
 
+        if (session()->has('message')) {
+            session()->flash('message', session('message'));
+        }
+
         return redirect($url);
     }
 }

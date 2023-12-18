@@ -1,0 +1,31 @@
+// Fix for Bootstrap tabs
+/*.bs-tab-btn {
+  cursor: pointer;
+
+  &.active {
+    border-bottom-width: 2px !important;
+    margin-bottom: -2px !important;
+  }
+}*/
+
+.tab-cont {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.tab-btn {
+  cursor: pointer;
+  padding-bottom: 6px;
+
+  &.active {
+    border-bottom: color($color1, light, 3) solid 4px;
+  }
+}
+
+.tab-pane {
+  display: none;
+
+  &.active {
+    display: block;
+  }
+}

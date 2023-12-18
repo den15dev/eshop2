@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Site;
 use App\Http\Controllers\Controller;
 use App\Models\Language;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SomeHappen;
 
 class CatalogController extends Controller
 {
@@ -71,6 +73,15 @@ class CatalogController extends Controller
         }
 
 //        $def_lang = Language::where('id', 'ru')->first();
+
+//        Mail::to('dendangler@gmail.com')->send(new SomeHappen());
+/*
+        $request->session()->flash('message', [
+            'type' => 'warning',
+            'content' => 'Адрес электронной почты успешно подтверждён.',
+            'align' => 'center',
+        ]);
+*/
 
         return view('site.pages.catalog', compact('filter_specs', 'price_range', 'brands'));
     }

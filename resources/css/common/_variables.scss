@@ -3,6 +3,10 @@ $color1: #716ef6;
 //$color1: #d75283;
 $color2: #aff66e;
 $color3: #f6b56e;
+
+$color-success: #9cf351;
+$color-warning: #ffc966;
+//$color-warning: #ffc61d;
 $color-red: #e2347a;
 
 // Greys
@@ -16,6 +20,7 @@ $grey-200: rgb(200, 200, 200);
 $grey-210: rgb(210, 210, 210);
 $grey-220: rgb(220, 220, 220);
 $grey-230: rgb(230, 230, 230);
+$grey-235: rgb(235, 235, 235);
 $grey-240: rgb(240, 240, 240);
 $grey-245: rgb(245, 245, 245);
 
@@ -51,7 +56,9 @@ $spacers: (
   2: $spacer * .5,
   25: $spacer * .75,
   3: $spacer,
+  35: $spacer * 1.25,
   4: $spacer * 1.5,
+  45: $spacer * 1.75,
   5: $spacer * 2.25,
   6: $spacer * 3,
 );

@@ -22,6 +22,14 @@
             <li>
                 <a href="#">{{ __('footer.other.help') }}</a>
             </li>
+            <li class="tel">
+                <a href="tel:{{ $phone_tel }}">
+                    <svg class="tel-icon">
+                        <use href="#telIcon"/>
+                    </svg>
+                    {{ $phone }}
+                </a>
+            </li>
         </ul>
     </div>
 </div>
