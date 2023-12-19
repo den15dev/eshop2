@@ -23,7 +23,6 @@ return [
         'back' => 'Back',
         'forgot_note' => 'Please specify your email so we can send you a link for resetting your password.',
         'forgot_send' => 'Send A Link',
-        'error' => 'Error',
         'registration_success' => [
             'welcome' => 'Welcome, :name!',
             'link_sent' => 'An email confirmation link has been sent to you.',

@@ -1,5 +1,4 @@
-<div id="flashModal">
-    <div class="modal-tint"></div>
+<div class="modal-container">
     <div class="modal-win" id="flashModal">
         <button class="btn-icon modal-close-btn">
             <span class="icon-x-lg"></span>

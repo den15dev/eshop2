@@ -1,4 +1,4 @@
-.catalog-layout-cont {
+.catalog-settings-cont {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -11,7 +11,7 @@
       }
     }
   }
-  .settings-cont {
+  .layout-cont {
     display: flex;
     align-items: center;
     gap: 0.75rem;
@@ -45,7 +45,7 @@
     }
   }
 
-  .sort-cont, .settings-cont {
+  .sort-cont, .layout-cont {
     div {
       cursor: pointer;
       color: $grey-120;

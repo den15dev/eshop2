@@ -1,4 +1,4 @@
-import { showModal, closeModal } from "../../common/modals.js";
+import {showModal, closeModal, showClientModal} from "../../common/modals.js";
 
 const headerSignInBtn = document.querySelector('#headerSignInBtn');
 const bnavSignInBtn = document.querySelector('#bnavSignInBtn');
@@ -161,7 +161,10 @@ function submitForm(formElem, submitBtn) {
         clearValidationErrors(formElem);
         handleResponse(result, formElem, formData);
     })
-    .catch(err => showAlert(formElem, 'danger', err.message));
+    .catch(err => {
+        hideButtonPreloader(submitBtn);
+        showAlert(formElem, 'warning', err.message);
+    });
 }
 
 
@@ -230,17 +233,16 @@ function clearValidationErrors(formElem) {
  * @param formElem
  * @param message
  * @param type — one of 'danger', 'warning', 'info', 'success', 'light', etc.
- * @param withPrefix — if true, the prefix 'Error' in particular language
+ * @param errorPrefix — if true, the prefix 'Error' in particular language
  * will be used. Used with unknown http-status codes, e.g. 'Error 404'.
  */
-function showAlert(formElem, type, message, withPrefix = true) {
+function showAlert(formElem, type, message, errorPrefix = true) {
     const alertCont = formElem.querySelector('.alert');
     if (alertCont) {
         alertCont.classList.add(`alert-${type}`);
         let content = message;
-        if (withPrefix) {
-            const errorPrefix = alertCont.dataset.errorPrefix;
-            content = `${errorPrefix} ${message}`;
+        if (errorPrefix) {
+            content = `${trans.error} ${message}`;
         }
         alertCont.innerText = content;
         alertCont.style.display = 'block';
@@ -277,6 +279,9 @@ function logOut(logoutBtn) {
         }
     })
     .catch(err => {
-        // Show modal
+        showClientModal({
+            message: `${trans.error} ${err.message}`,
+            icon: 'warning',
+        });
     });
 }

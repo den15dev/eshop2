@@ -1,5 +1,4 @@
-<div>
-    <div class="modal-tint"></div>
+<div class="modal-container">
     <div class="modal-win" {!! isset($is_login_page) && $is_login_page ? 'data-login-page="1"' : '' !!} id="authModal">
         <button class="btn-icon modal-close-btn">
             <span class="icon-x-lg"></span>

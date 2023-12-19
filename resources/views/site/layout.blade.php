@@ -27,17 +27,22 @@
 @include('site.main.bottom-nav')
 
 <div class="page-tint"></div>
+<div class="modal-tint"></div>
 
 @guest
     @include('site.auth.auth-modal')
 @endguest
 
+@include('common.modal-client')
+
 @if(session()->has('message'))
-    <x-flash-modal
+    <x-modal-flash
             type="{{ session('message.type') }}"
             content="{!! session('message.content') !!}"
-            align="{{ session('message.align') }}" />
+            align="{{ session('message.align') }}"/>
 @endif
+
+@include('site.main.client-translations')
 
 @include('common.monitor')
 </body>

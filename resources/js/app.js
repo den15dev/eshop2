@@ -3,7 +3,7 @@
 import menuOpeners  from './site/main/menu-opener-handler.js';
 import dropdowns, { languageDropdown } from "./common/dropdowns";
 import tabs from "./common/tabs";
-import modals from "./common/modals.js";
+import modals, { showClientModal } from "./common/modals.js";
 import catalogMobile  from './site/main/catalog-mobile.js';
 import { catalogDesktopRoot, catalogDesktopDropdowns } from "./site/main/catalog-desktop.js";
 import search from './site/main/search.js';
@@ -15,13 +15,13 @@ import initCatalogFilters from "./site/catalog-filters.js";
 
 // --------------- Common ------------------
 
-menuOpeners();
 dropdowns();
 tabs();
 modals();
 
 // --------------- Main ------------------
 
+menuOpeners();
 languageDropdown();
 catalogMobile();
 catalogDesktopRoot();

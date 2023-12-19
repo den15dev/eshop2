@@ -76,7 +76,7 @@ class CatalogController extends Controller
 
 //        Mail::to('dendangler@gmail.com')->send(new SomeHappen());
 /*
-        $request->session()->flash('message', [
+        session()->flash('message', [
             'type' => 'warning',
             'content' => 'Адрес электронной почты успешно подтверждён.',
             'align' => 'center',

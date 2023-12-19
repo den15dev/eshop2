@@ -5,7 +5,7 @@
 
         <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
-        <div class="alert alert-danger" data-error-prefix="{{ __('auth.modal.error') }}" role="alert"></div>
+        <div class="alert" role="alert"></div>
         <div class="mb-4">
             <label for="resetPassEmailInput" class="form-label">{{ __('auth.modal.email') }}:</label>
             <input type="email" name="email" class="form-control" id="resetPassEmailInput" value="{{ $request->email }}" autocomplete="email">

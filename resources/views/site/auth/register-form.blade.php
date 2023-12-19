@@ -1,6 +1,6 @@
 <form class="tab-pane" action="{{ route('register') }}" method="POST" id="registerTabPane" novalidate>
     @csrf
-    <div class="alert alert-danger" data-error-prefix="{{ __('auth.modal.error') }}" role="alert"></div>
+    <div class="alert" role="alert"></div>
     <div class="mb-3">
         <label for="registerNameInput" class="form-label">{{ __('auth.modal.name') }}:</label>
         <input type="text" name="name" class="form-control" id="registerNameInput" autocomplete="given-name">
