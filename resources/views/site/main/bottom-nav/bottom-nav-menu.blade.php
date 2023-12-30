@@ -4,7 +4,10 @@
             <svg><use href="#closeIcon" /></svg>
         </div>
 
-        <x-languages-dropdown type="mobile" :languages="$languages" :curlang="$languages->first()" />
+        <div class="localization-cont mb-3">
+            <x-languages-dropdown type="mobile" :languages="$languages" :curlang="$languages->first()" />
+            <x-currencies-dropdown type="mobile" :currencies="$currencies" :curcurr="$currencies->first()" />
+        </div>
 
         <ul class="bottom-menu_list">
             <li>

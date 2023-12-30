@@ -1,0 +1,14 @@
+.product-btn-cont {
+  & > div:not(:last-child) {
+    margin-bottom: 0.375em;
+  }
+}
+
+.product-compare-btn,
+.product-favorite-btn {
+  cursor: pointer;
+  color: $grey-150;
+  &:hover {
+    color: $color1;
+  }
+}

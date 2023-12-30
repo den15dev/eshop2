@@ -184,8 +184,14 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
         App\Providers\ViewServiceProvider::class,
+
+        /*
+         * Module's Service Providers...
+         */
+        App\Modules\Languages\LanguageServiceProvider::class,
+        App\Modules\Currencies\CurrencyServiceProvider::class,
+        App\Modules\Settings\SettingServiceProvider::class,
     ])->toArray(),
 
     /*

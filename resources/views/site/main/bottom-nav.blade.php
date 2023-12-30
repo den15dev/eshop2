@@ -14,7 +14,7 @@
             {{ __('header.user_menu.cart') }}
             {{--            <div class="badge-round-red">2</div>--}}
         </a>
-        <div class="bottom-nav-btn" style="padding-top: 12px;" id="bottomNavMenuBtn">
+        <div class="bottom-nav-btn" style="padding-top: 13px;" id="bottomNavMenuBtn">
             <svg viewBox="0 0 15 14" style="height: 28px;">
                 <use href="#listIcon"/>
             </svg>

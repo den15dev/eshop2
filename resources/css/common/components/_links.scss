@@ -13,3 +13,11 @@
     color: $color1;
   }
 }
+
+.grey-link {
+  cursor: pointer;
+  color: $grey-150;
+  &:hover {
+    color: $color1;
+  }
+}

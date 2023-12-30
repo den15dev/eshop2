@@ -112,7 +112,12 @@ $bottom-nav-color-active: $color1;
   background-color: white;
   display: none;
 
-  .lang-menu li:not(:last-child) {
+  .localization-cont {
+    display: flex;
+    gap: 1.75rem;
+  }
+
+  .local-menu li:not(:last-child) {
     margin-bottom: 0.25rem;
   }
 }

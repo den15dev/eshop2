@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Common;
+namespace App\Modules\Common;
 
 class CommonService
 {

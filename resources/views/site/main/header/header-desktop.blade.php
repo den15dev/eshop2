@@ -66,6 +66,7 @@
         </ul>
     </nav>
     <div class="top-right">
+        <x-currencies-dropdown type="desktop" :currencies="$currencies" :curcurr="$currencies->first()" />
         <x-languages-dropdown type="desktop" :languages="$languages" :curlang="$languages->first()" />
     </div>
 

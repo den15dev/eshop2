@@ -13,6 +13,10 @@ const resetPasswordPage = authModal ? document.querySelector('#resetPasswordPage
 const successPage = authModal ? document.querySelector('#successPage') : undefined;
 
 export default function init() {
+    if (authMainPage) {
+        initAuthModal();
+    }
+
     if (headerSignInBtn) {
         headerSignInBtn.addEventListener('click', showAuthModal);
     }
@@ -52,47 +56,53 @@ function showAuthModal() {
         successPage.style.display = 'none';
 
         showModal(authModal);
-
-        const forgotPasswordBtn = document.querySelector('#forgotPasswordBtn');
-        const backToMainBtn = document.querySelector('#authMainBtn');
-
-        forgotPasswordBtn.addEventListener('click', () => {
-            authMainPage.style.display = 'none';
-            forgotPasswordPage.style.display = 'block';
-        });
-
-        backToMainBtn.addEventListener('click', () => {
-            forgotPasswordPage.style.display = 'none';
-            authMainPage.style.display = 'block';
-        });
-
-        // Sign In (Login) form
-        const loginForm = authMainPage.querySelector('form#signInTabPane');
-        const loginSubmitBtn = loginForm.querySelector('button[type="submit"]');
-
-        loginSubmitBtn.addEventListener('click', e => {
-            e.preventDefault();
-            submitForm(loginForm, loginSubmitBtn);
-        });
-
-        // Register form
-        const registerForm = authMainPage.querySelector('form#registerTabPane');
-        const registerSubmitBtn = registerForm.querySelector('button[type="submit"]');
-
-        registerSubmitBtn.addEventListener('click', e => {
-            e.preventDefault();
-            submitForm(registerForm, registerSubmitBtn);
-        });
-
-        // Form for sending a password reset link
-        const sendLinkForm = forgotPasswordPage.querySelector('form#sendResetLinkForm');
-        const sendSubmitBtn = sendLinkForm.querySelector('button[type="submit"]');
-
-        sendSubmitBtn.addEventListener('click', e => {
-            e.preventDefault();
-            submitForm(sendLinkForm, sendSubmitBtn);
-        });
     }
+}
+
+
+function initAuthModal() {
+    const forgotPasswordBtn = document.querySelector('#forgotPasswordBtn');
+    const backToMainBtn = document.querySelector('#authMainBtn');
+
+    forgotPasswordBtn.addEventListener('click', () => {
+        authMainPage.style.display = 'none';
+        forgotPasswordPage.style.display = 'block';
+    });
+
+    backToMainBtn.addEventListener('click', () => {
+        forgotPasswordPage.style.display = 'none';
+        authMainPage.style.display = 'block';
+    });
+
+    // Sign In (Login) form
+    const loginForm = authMainPage.querySelector('form#signInTabPane');
+    const loginSubmitBtn = loginForm.querySelector('button[type="submit"]');
+
+    loginSubmitBtn.addEventListener('click', e => {
+        e.preventDefault();
+        submitForm(loginForm, loginSubmitBtn);
+    });
+
+    // Register form
+    const registerForm = authMainPage.querySelector('form#registerTabPane');
+    const registerSubmitBtn = registerForm.querySelector('button[type="submit"]');
+
+    registerSubmitBtn.addEventListener('click', e => {
+        e.preventDefault();
+        submitForm(registerForm, registerSubmitBtn);
+    });
+
+    // Form for sending a password reset link
+    const sendLinkForm = forgotPasswordPage.querySelector('form#sendResetLinkForm');
+    const sendSubmitBtn = sendLinkForm.querySelector('button[type="submit"]');
+
+    sendSubmitBtn.addEventListener('click', e => {
+        e.preventDefault();
+        submitForm(sendLinkForm, sendSubmitBtn);
+    });
+
+    // On inputs blur, if the input is empty, clear an error message.
+    clearErrorOnEmptyInputBlur(authModal);
 }
 
 
@@ -226,6 +236,27 @@ function clearValidationErrors(formElem) {
 
     const feedbackConts = formElem.querySelectorAll('.invalid-feedback');
     feedbackConts.forEach(fbCont => fbCont.innerText = '');
+}
+
+
+/**
+ * On inputs blur, if the input is empty, clear an error message.
+ * @param modal
+ */
+function clearErrorOnEmptyInputBlur(modal) {
+    const inputs = modal.querySelectorAll('input');
+
+    inputs.forEach(input => {
+        input.addEventListener('blur', () => {
+            if (input.value === '') {
+                input.classList.remove('is-invalid');
+                const feedbackCont = input.parentNode.querySelector('.invalid-feedback');
+                if (feedbackCont) {
+                    feedbackCont.innerText = '';
+                }
+            }
+        });
+    });
 }
 
 /**

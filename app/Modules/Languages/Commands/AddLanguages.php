@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Modules\Languages\Commands;
 
-use App\Models\Language;
+use App\Modules\Languages\Models\Language;
 use Illuminate\Console\Command;
 
 class AddLanguages extends Command
@@ -32,12 +32,12 @@ class AddLanguages extends Command
 
     private function createLanguages(): void
     {
-        $templates = [
+        $records = [
             ['id' => 'en', 'name' => 'English', 'active' => true, 'default' => true, 'fallback' => true],
             ['id' => 'ru', 'name' => 'Русский', 'active' => true, 'default' => false, 'fallback' => false],
             ['id' => 'de', 'name' => 'Deutsch', 'active' => true, 'default' => false, 'fallback' => false],
         ];
 
-        Language::upsert($templates, 'id');
+        Language::upsert($records, 'id');
     }
 }

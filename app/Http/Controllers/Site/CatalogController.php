@@ -3,10 +3,7 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
-use App\Models\Language;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\SomeHappen;
 
 class CatalogController extends Controller
 {
@@ -72,7 +69,68 @@ class CatalogController extends Controller
             $brands->push($brand);
         }
 
-//        $def_lang = Language::where('id', 'ru')->first();
+        $breadcrumb = new \stdClass();
+        $breadcrumb->active = true;
+        $breadcrumb->parts = [
+            ['url' => '#', 'text' => 'Компьютеры и периферия'],
+            ['url' => '#', 'text' => 'Крупная бытовая техника'],
+            ['url' => '#', 'text' => 'Профессиональные и строительные пылесосы'],
+        ];
+
+
+        $products = new Collection([]);
+        $discounts = [0, 0, 5, 10, 0, 0, 0, 5, 0, 5, 0, 10, 0, 0];
+        for ($i = 1; $i <= 12; $i++) {
+            $product = new \stdClass();
+            $product->id = $i;
+            $product->name = 'Материнская плата MSI MPG B760I EDGE WIFI DDR4';
+            $product->slug = 'processor-amd-ryzen-5-5600x-box';
+            $product->category_slug = 'cpu';
+            $product->category_id = 6;
+            $product->short_descr = 'LGA 1700, 8P x 2.1 ГГц, 8E x 1.5 ГГц, L2 - 24 МБ, L3 - 30 МБ, 2хDDR4, DDR5-5600 МГц, TDP 219 Вт';
+
+            $product->discount_prc = $discounts[$i];
+            $product->price = 60490;
+            if ($product->discount_prc) {
+                $product->final_price = number_format($product->price * (100 - $product->discount_prc)/100, 0, ',', ' ');
+            } else {
+                $product->final_price = $product->price;
+            }
+            $product->price = number_format($product->price, 0, ',', ' ');
+
+            $product->rating = 3.85;
+            $product->vote_num = 208;
+
+            $products->push($product);
+        }
+
+
+        $recent_products = new Collection([]);
+        for ($i = 1; $i <= 8; $i++) {
+            $product = new \stdClass();
+            $product->id = $i;
+            $product->name = 'Материнская плата MSI MPG B760I EDGE WIFI DDR4';
+            $product->slug = 'processor-amd-ryzen-5-5600x-box';
+            $product->category_slug = 'cpu';
+            $product->category_id = 6;
+            $product->short_descr = 'LGA 1700, 8P x 2.1 ГГц, 8E x 1.5 ГГц, L2 - 24 МБ, L3 - 30 МБ, 2хDDR4, DDR5-5600 МГц, TDP 219 Вт';
+
+            $product->discount_prc = $discounts[$i];
+            $product->price = 60490;
+            if ($product->discount_prc) {
+                $product->final_price = number_format($product->price * (100 - $product->discount_prc)/100, 0, ',', ' ');
+            } else {
+                $product->final_price = $product->price;
+            }
+            $product->price = number_format($product->price, 0, ',', ' ');
+
+            $product->rating = 3.85;
+            $product->vote_num = 208;
+
+            $recent_products->push($product);
+        }
+
+
 
 //        Mail::to('dendangler@gmail.com')->send(new SomeHappen());
 /*
@@ -83,6 +141,13 @@ class CatalogController extends Controller
         ]);
 */
 
-        return view('site.pages.catalog', compact('filter_specs', 'price_range', 'brands'));
+        return view('site.pages.catalog', compact(
+            'breadcrumb',
+            'filter_specs',
+            'products',
+            'recent_products',
+            'price_range',
+            'brands'
+        ));
     }
 }

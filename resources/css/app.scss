@@ -8,6 +8,7 @@
 
 @import 'common/vendors/bootstrap';
 @import 'common/vendors/swiper';
+@import 'common/vendors/fancybox';
 
 @import 'common/components/buttons';
 @import 'common/components/scrollbar-thin';
@@ -17,6 +18,8 @@
 @import 'common/components/badge_round';
 @import 'common/components/modal';
 @import 'common/components/tabs';
+@import 'common/components/breadcrumb';
+@import 'common/components/not-found';
 
 @import 'site/variables';
 
@@ -31,15 +34,19 @@
 @import 'site/main/catalog-nav-desktop';
 @import 'site/main/footer';
 @import 'site/main/bottom-nav-mobile';
-@import 'site/main/language-menu';
+@import 'site/main/localization-menu';
 
 @import 'site/pages/home';
 @import 'site/pages/catalog';
 @import 'site/pages/catalog-settings';
+@import 'site/pages/product';
 
 @import 'site/components/product-card';
+@import 'site/components/rating-stars';
 @import 'site/components/carousel-nav-btns';
 @import 'site/components/catalog-filters';
+@import 'site/components/quantity-btns';
+@import 'site/components/product-btns';
 
 @import 'common/utilities';
 @import 'common/icons/bi-light';

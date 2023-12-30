@@ -1,10 +1,3 @@
-.breadcrumb-cont {
-  display: none;
-  @include md {
-    display: block;
-  }
-}
-
 .catalog-page-wrap {
   display: flex;
   gap: 1.5rem;

@@ -117,7 +117,7 @@ if (!function_exists('getImageByNameBase')) {
 
 if (!function_exists('get_image')) {
     /**
-     * Looks if an image exists, if it doesn't returns a placeholder.
+     * Looks if an image exists, if it doesn't, returns a placeholder.
      *
      * @param string $image_path - like 'storage/images/...'.
      * @param int|string $placeholder_resolution

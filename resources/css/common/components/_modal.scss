@@ -38,13 +38,14 @@ $modal-win-paddings-sm: 20px;
 
 .modal-close-btn {
   position: absolute;
-  width: 28px;
-  height: 28px;
+  width: 36px;
+  height: 36px;
   right: 16px;
   top: 16px;
+  padding: 4px;
   text-align: center;
   font-size: 24px;
-  line-height: 26px;
+  line-height: 18px;
   color: $grey-200;
   cursor: pointer;
   &:hover {

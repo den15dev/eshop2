@@ -30,6 +30,10 @@
         @csrf
         <input type="hidden" name="new_language" value="" />
     </form>
+    <form method="POST" action="{{ route('currency') }}" id="changeCurrencyForm" style="display: none">
+        @csrf
+        <input type="hidden" name="new_currency" value="" />
+    </form>
 </header>
 
 <div class="shadow-toggler"></div>

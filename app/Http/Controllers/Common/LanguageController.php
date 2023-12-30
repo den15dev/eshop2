@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Site;
+namespace App\Http\Controllers\Common;
 
 use App\Http\Controllers\Controller;
-use App\Models\Language;
+use App\Modules\Languages\Models\Language;
 use Illuminate\Http\Request;
 
 class LanguageController extends Controller

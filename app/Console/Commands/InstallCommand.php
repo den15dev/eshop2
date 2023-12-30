@@ -2,6 +2,9 @@
 
 namespace App\Console\Commands;
 
+use App\Modules\Currencies\Commands\AddCurrencies;
+use App\Modules\Languages\Commands\AddLanguages;
+use App\Modules\Settings\Commands\AddSettings;
 use Illuminate\Console\Command;
 
 class InstallCommand extends Command
@@ -26,6 +29,7 @@ class InstallCommand extends Command
     public function handle(): void
     {
         $this->call(AddLanguages::class);
+        $this->call(AddCurrencies::class);
         $this->call(AddSettings::class);
         $this->info('Application installed');
     }

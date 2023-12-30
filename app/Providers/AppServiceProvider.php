@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Models\Language;
-use App\Services\Common\CommonService;
+use App\Modules\Common\CommonService;
+use App\Modules\Languages\Models\Language;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\DB;
@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->configureForCLI();
+        $this->configureForConsole();
 
         DB::listen(function() {
             CommonService::$db_query_cnt++;
@@ -41,9 +41,9 @@ class AppServiceProvider extends ServiceProvider
     }
 
 
-    private function configureForCLI(): void
+    private function configureForConsole(): void
     {
-        if (!app()->environment(['production']) && !request()->server('SERVER_ADDR')) {
+        if (!app()->environment(['production']) && app()->runningInConsole()) {
             config([
                 'database.connections.pgsql.host' => env('APP_URL'),
                 'database.redis.default.host' => env('APP_URL'),

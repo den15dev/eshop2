@@ -1,0 +1,49 @@
+.quantity-btns {
+  display: flex;
+
+  button {
+    background-color: $grey-245;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+
+    svg {
+      display: block;
+      margin: 0 auto;
+      stroke: $grey-120;
+      stroke-width: 1.4px;
+      fill: none;
+    }
+
+    &:hover {
+      background-color: $grey-240;
+    }
+  }
+
+  .btn-qty-minus {
+    svg {
+      width: 10px;
+    }
+  }
+
+  .btn-qty-plus {
+    svg {
+      width: 11px;
+    }
+  }
+
+  input {
+    width: 42px;
+    text-align: center;
+    border: none;
+    @if $border-radius-base > 0 {
+      border-radius: $border-radius-base;
+    }
+    z-index: 50;
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 8px color($color1, light, 8);
+    }
+  }
+}

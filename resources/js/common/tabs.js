@@ -2,7 +2,7 @@ export default function init() {
     const tabContainers = document.querySelectorAll('.tab-cont');
 
     tabContainers.forEach(tabCont => {
-        const tabs = tabCont.querySelectorAll('.tab-btn');
+        const tabs = tabCont.querySelectorAll('div.tab-btn');
 
         tabs.forEach(tabBtn => {
             tabBtn.addEventListener('click', () => {

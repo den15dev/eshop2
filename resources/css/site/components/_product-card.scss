@@ -58,43 +58,22 @@
   }
 }
 
-.product-card_rating {
-  display: flex;
-  align-items: center;
-  ul {
-    display: flex;
-    gap: 0.125rem;
-    margin-right: 0.4rem;
-    li {
-      color: #fabb16;
-    }
-    .bi-star {
-      color: #c9c9c9;
-    }
-  }
-  div {
-    color: $grey-150;
-  }
-}
-
 .product-card_price {
-  font-size: $font-size-base * 1.4;
+  font-size: $font-size-base * 1.375;
   font-weight: $font-weight-semibold;
   @include sm {
     font-size: $font-size-base * 1.5;
   }
 }
 
-.product-card_buttons {
+.product-card_old-price {
+  font-size: $font-size-base * 1;
   color: $grey-150;
-  & > div {
-    cursor: pointer;
-    &:hover {
-      color: $color1;
-    }
+  margin-bottom: -0.5rem;
+  del {
+    text-decoration-color: $color-red;
   }
-
-  & > div:not(:last-child) {
-    margin-bottom: 0.25rem;
+  @include sm {
+    font-size: $font-size-base * 1.125;
   }
 }

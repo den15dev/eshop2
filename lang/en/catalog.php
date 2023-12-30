@@ -18,8 +18,8 @@ return [
         'on_page' => 'On page:',
     ],
     'product_card' => [
-        'add_to_cart' => 'Add To Card',
-        'in_cart' => 'In Card',
+        'add_to_cart' => 'Add To Cart',
+        'in_cart' => 'In Cart',
         'compare' => 'Compare',
         'comparing' => 'Comparing',
         'add_to_fav' => 'Add To Favorites',

@@ -74,8 +74,16 @@ input[type="password"] {
   h#{$size} {
     margin-top: 0;
     margin-bottom: 0.5em;
-    font-size: $font-size-base * $mult;
     line-height: 1.2;
+
+    @if $size < 4 {
+      font-size: $font-size-base * ($mult - 0.25);
+      @include sm {
+        font-size: $font-size-base * $mult;
+      }
+    } @else {
+      font-size: $font-size-base * $mult;
+    }
   }
 }
 
@@ -107,6 +115,28 @@ ul {
   margin: 0;
   list-style: none;
 }
+
+
+// ------------- Tables (copied from Bootstrap's _reboot.scss) ---------------
+
+// Prevent double borders
+table {
+  caption-side: bottom;
+  border-collapse: collapse;
+}
+
+// Add bottom borders
+thead,
+tbody,
+tfoot,
+tr,
+td,
+th {
+  border-color: inherit;
+  border-style: solid;
+  border-width: 0;
+}
+
 
 
 // -------- Prevent scrolling when any modal is opened ----------

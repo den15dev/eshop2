@@ -130,4 +130,13 @@
     <symbol viewBox="0 0 8 14" id="sidebarChevron">
         <path d="M1.5 12L6.5 7L1.5 2" stroke-linecap="square"/>
     </symbol>
+
+    <symbol viewBox="0 0 10 1" id="minusIcon">
+        <path d="M0 1H10"/>
+    </symbol>
+
+    <symbol viewBox="0 0 12 12" id="plusIcon">
+        <path d="M0 6H12"/>
+        <path d="M6 0V12"/>
+    </symbol>
 </svg>

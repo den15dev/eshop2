@@ -46,15 +46,11 @@
 
         <div class="swiper product-carousel mb-6">
             <div class="swiper-wrapper">
-                <div class="swiper-slide"><x-product-card num="1" /></div>
-                <div class="swiper-slide"><x-product-card num="2" /></div>
-                <div class="swiper-slide"><x-product-card num="3" /></div>
-                <div class="swiper-slide"><x-product-card num="4" /></div>
-                <div class="swiper-slide"><x-product-card num="5" /></div>
-                <div class="swiper-slide"><x-product-card num="6" /></div>
-                <div class="swiper-slide"><x-product-card num="7" /></div>
-                <div class="swiper-slide"><x-product-card num="8" /></div>
-                <div class="swiper-slide"><x-product-card num="9" /></div>
+                @foreach($products as $product)
+                    <div class="swiper-slide">
+                        <x-product-card :product="$product" />
+                    </div>
+                @endforeach
             </div>
             <div class="carousel-next-btn">
                 <span class="icon-chevron-right"></span>
@@ -69,15 +65,11 @@
 
         <div class="swiper product-carousel mb-6">
             <div class="swiper-wrapper">
-                <div class="swiper-slide"><x-product-card num="1" /></div>
-                <div class="swiper-slide"><x-product-card num="2" /></div>
-                <div class="swiper-slide"><x-product-card num="3" /></div>
-                <div class="swiper-slide"><x-product-card num="4" /></div>
-                <div class="swiper-slide"><x-product-card num="5" /></div>
-                <div class="swiper-slide"><x-product-card num="6" /></div>
-                <div class="swiper-slide"><x-product-card num="7" /></div>
-                <div class="swiper-slide"><x-product-card num="8" /></div>
-                <div class="swiper-slide"><x-product-card num="9" /></div>
+                @foreach($products as $product)
+                    <div class="swiper-slide">
+                        <x-product-card :product="$product" />
+                    </div>
+                @endforeach
             </div>
             <div class="carousel-next-btn">
                 <span class="icon-chevron-right"></span>
@@ -92,8 +84,11 @@
 
         <div class="swiper product-carousel mb-5">
             <div class="swiper-wrapper">
-                <div class="swiper-slide"><x-product-card num="1" /></div>
-                <div class="swiper-slide"><x-product-card num="2" /></div>
+                @foreach($popular_products as $product)
+                    <div class="swiper-slide">
+                        <x-product-card :product="$product" />
+                    </div>
+                @endforeach
             </div>
             <div class="carousel-next-btn">
                 <span class="icon-chevron-right"></span>

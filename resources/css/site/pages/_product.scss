@@ -1,0 +1,133 @@
+.product-code {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.product-main-cont {
+  display: flex;
+  column-gap: 7%;
+  row-gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.product-main_image {
+  flex-basis: 100%;
+  @include sm {
+    flex-basis: 60%;
+  }
+  @include lg {
+    flex-basis: 40%;
+  }
+
+  img {
+    width: 100%;
+  }
+}
+
+.product-main_specs {
+  flex-basis: 100%;
+  order: 1;
+  @include lg {
+    order: 0;
+    flex-basis: 23%;
+  }
+}
+
+.product-main_price {
+  flex-basis: 100%;
+  @include sm {
+    flex-basis: auto;
+  }
+}
+
+// ----- Fancybox ------
+
+#productImages img {
+  width: 100%;
+}
+
+.f-carousel__thumbs,
+.f-thumbs__slide {
+  --f-thumb-width: 80px;
+  --f-thumb-height: 80px;
+}
+
+.fancybox__backdrop {
+  opacity: $dark-tint-opacity !important;
+}
+
+// --------------------
+
+.product-main_spec-list {
+  column-count: 2;
+  column-gap: 2rem;
+  column-width: 260px;
+  line-height: 1.3;
+
+  li {
+    margin-bottom: 5px;
+    span {
+      color: $grey-150;
+    }
+  }
+}
+
+.product-main_brand {
+  display: block;
+  width: 140px;
+  img {
+    width: 100%;
+  }
+}
+
+
+.product-main_cur-price {
+  font-size: $font-size-base * 1.75;
+  font-weight: $font-weight-semibold;
+}
+
+.product-main_old-price {
+  font-size: $font-size-base * 1.25;
+  color: $grey-150;
+  margin-bottom: -0.5rem;
+  del {
+    text-decoration-color: $color-red;
+  }
+}
+
+
+.product-main_add-btn-cont {
+  display: flex;
+  gap: 2rem;
+  @include sm {
+    display: block;
+    .quantity-btns {
+      margin-bottom: 24px;
+    }
+  }
+}
+
+// ------- Specs section --------
+
+.spec_table {
+  width: 100%;
+  font-size: $font-size-sm;
+  line-height: 1.3;
+  @include sm {
+    font-size: $font-size-base;
+    line-height: 1.55;
+  }
+  @include md {
+    width: 90%;
+  }
+  @include lg {
+    width: 80%;
+  }
+  @include xl {
+    width: 70%;
+  }
+  @include xxl {
+    width: 60%;
+  }
+}

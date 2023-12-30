@@ -10,6 +10,7 @@
         "build": "npm run build:site & npm run build:admin"
     },
     "devDependencies": {
+        "@fancyapps/ui": "^5.0.32",
         "axios": "^1.1.2",
         "bootstrap": "^5.3.1",
         "laravel-vite-plugin": "^0.7.5",

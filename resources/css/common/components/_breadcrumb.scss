@@ -1,0 +1,10 @@
+.breadcrumb-cont {
+  font-size: $font-size-sm;
+  @include md {
+    font-size: $font-size-base;
+  }
+}
+
+.breadcrumb-item.active {
+  color: color($color1, light, 2);
+}

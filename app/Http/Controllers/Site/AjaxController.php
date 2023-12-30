@@ -10,7 +10,7 @@ class AjaxController extends Controller
     public function __invoke(Request $request)
     {
         if ($request->has('service') && $request->has('action')) {
-            $serviceClass = 'App\\Services\\Admin\\' . ucfirst($request->input('service')) . 'Service';
+            $serviceClass = 'App\\Modules\\Admin\\' . ucfirst($request->input('service')) . 'Service';
             $service = new $serviceClass();
             $action = camel_case($request->input('action'));
 
