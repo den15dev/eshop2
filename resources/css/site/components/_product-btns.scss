@@ -12,3 +12,11 @@
     color: $color1;
   }
 }
+
+.product-compare-btn.active > span {
+  color: $color1;
+}
+
+.product-favorite-btn.active > span {
+  color: $color-red;
+}

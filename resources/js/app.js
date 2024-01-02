@@ -12,6 +12,7 @@ import auth from "./site/main/auth";
 import { initProductCarousels } from "./site/home.js";
 import initCatalogFilters from "./site/catalog-filters.js";
 import initProductPage from "./site/product.js";
+import initReviews from "./site/reviews.js";
 
 
 // --------------- Common ------------------
@@ -42,5 +43,9 @@ initCatalogFilters();
 // --------------- Product ------------------
 
 initProductPage();
+
+// --------------- Reviews ------------------
+
+initReviews();
 
 // console.log(document.querySelectorAll('#catalogNavMobile .catalog-mobile-list > li').length);

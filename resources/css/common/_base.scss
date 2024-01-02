@@ -29,6 +29,10 @@ a {
   color: $text-color;
 }
 
+p {
+  margin: 0 0 0.75rem 0;
+}
+
 
 // ---------- Text colors -----------
 
@@ -37,7 +41,11 @@ a {
 }
 
 .lightgrey-text {
-  color: rgb(180, 180, 180);
+  color: $grey-180;
+}
+
+.red-text {
+  color: $color-red;
 }
 
 
@@ -65,6 +73,16 @@ form .alert {
 
 input[type="password"] {
   font-family: $system-stack;
+}
+
+select {
+  cursor: pointer;
+}
+
+.invalid-cont {
+  color: $color-red;
+  display: none;
+  margin-top: 0.5rem;
 }
 
 

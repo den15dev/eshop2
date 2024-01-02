@@ -7,12 +7,16 @@
         <x-breadcrumb :breadcrumb="$breadcrumb" />
 
         <h3 class="mb-3">
-            Процессор AMD Ryzen 5 5600X BOX
+            {{ $product->name }}
         </h3>
 
         <div class="product-code mb-3">
             <div>{{ __('product.product_id') }}: 38</div>
-            <x-rating-stars size="small" :product="$product" />
+
+            <x-rating size="small"
+                      :url="route('reviews', [$product->category_slug, $product->slug . '-' . $product->id])"
+                      :rating="$product->rating"
+                      :num="$product->vote_num"/>
         </div>
 
         <div class="product-main-cont mb-5">
@@ -89,7 +93,7 @@
         </div>
 
 
-        <div class="mb-5">
+        <div class="mb-6">
             <nav class="tab-cont mb-4">
                 <div class="tab-btn active" role="button" id="descriptionTab">
                     {{ __('product.description') }}
@@ -97,7 +101,7 @@
                 <div class="tab-btn link" role="button" id="specTab">
                     {{ __('product.specs') }}
                 </div>
-                <a href="#" class="tab-btn link">
+                <a href="{{ route('reviews', [$product->category_slug, $product->slug . '-' . $product->id]) }}" class="tab-btn link">
                     {{ __('product.reviews') }}
                 </a>
             </nav>
@@ -135,5 +139,9 @@
                 </table>
             </div>
         </div>
+
+        @if($recently_viewed->count())
+            @include('site.includes.recently-viewed')
+        @endif
     </div>
 @endsection

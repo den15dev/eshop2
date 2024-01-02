@@ -1,21 +1,21 @@
-.rating-stars {
+.rating {
   display: flex;
   align-items: center;
-
-  ul {
-    display: flex;
-    gap: 0.125rem;
-    margin-right: 0.4rem;
-    li {
-      color: #fabb16;
-    }
-    .icon-star {
-      color: #c9c9c9;
-    }
-  }
 
   .vote-num {
     color: $grey-150;
     padding-top: 2px;
+  }
+}
+
+ul.rating-stars {
+  display: flex;
+  gap: 0.125rem;
+  margin-right: 0.4rem;
+  li {
+    color: #fabb16;
+  }
+  .icon-star {
+    color: $grey-200;
   }
 }

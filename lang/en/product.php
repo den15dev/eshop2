@@ -9,4 +9,5 @@ return [
     'all_specs' => 'All Specifications',
     'description' => 'Description',
     'reviews' => 'Reviews',
+    'no_marks' => 'No rating',
 ];

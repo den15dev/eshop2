@@ -40,12 +40,18 @@ button,
   }
 }
 
-.btn-icon {
+.btn-icon,
+.btn-link {
   @include btn-base;
   background: none;
   &:hover {
     background: none;
   }
+}
+
+.btn-link {
+  width: fit-content;
+  text-align: inherit;
 }
 
 .btn-bg-grey {

@@ -9,4 +9,5 @@ return [
     'all_specs' => 'Все характеристики',
     'description' => 'Описание',
     'reviews' => 'Отзывы',
+    'no_marks' => 'Нет оценок',
 ];

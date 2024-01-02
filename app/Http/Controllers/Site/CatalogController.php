@@ -94,9 +94,8 @@ class CatalogController extends Controller
             if ($product->discount_prc) {
                 $product->final_price = number_format($product->price * (100 - $product->discount_prc)/100, 0, ',', ' ');
             } else {
-                $product->final_price = $product->price;
+                $product->final_price = number_format($product->price, 0, ',', ' ');
             }
-            $product->price = number_format($product->price, 0, ',', ' ');
 
             $product->rating = 3.85;
             $product->vote_num = 208;
@@ -105,7 +104,7 @@ class CatalogController extends Controller
         }
 
 
-        $recent_products = new Collection([]);
+        $recently_viewed = new Collection([]);
         for ($i = 1; $i <= 8; $i++) {
             $product = new \stdClass();
             $product->id = $i;
@@ -120,14 +119,13 @@ class CatalogController extends Controller
             if ($product->discount_prc) {
                 $product->final_price = number_format($product->price * (100 - $product->discount_prc)/100, 0, ',', ' ');
             } else {
-                $product->final_price = $product->price;
+                $product->final_price = number_format($product->price, 0, ',', ' ');
             }
-            $product->price = number_format($product->price, 0, ',', ' ');
 
             $product->rating = 3.85;
             $product->vote_num = 208;
 
-            $recent_products->push($product);
+            $recently_viewed->push($product);
         }
 
 
@@ -145,7 +143,7 @@ class CatalogController extends Controller
             'breadcrumb',
             'filter_specs',
             'products',
-            'recent_products',
+            'recently_viewed',
             'price_range',
             'brands'
         ));

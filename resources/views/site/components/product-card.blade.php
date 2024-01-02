@@ -13,7 +13,12 @@
     <div class="product-card_description mb-1">
         {{ $product->short_descr }}
     </div>
-    <x-rating-stars size="small" mb="1" :product="$product" />
+
+    <x-rating size="small"
+              mb="1"
+              :url="route('reviews', [$product->category_slug, $product->slug . '-' . $product->id])"
+              :rating="$product->rating"
+              :num="$product->vote_num"/>
 
     <div class="mb-2">
         @if($product->discount_prc)

@@ -47,32 +47,7 @@
                     </div>
 
 
-                    <p class="small grey-text">
-                        {{ __('pagination.shown', ['start' => 1, 'end' => 12, 'total' => 18]) }}
-                    </p>
-
-                    <nav class="mb-0" id="pagination">
-                        <ul class="pagination">
-                            <li class="page-item disabled">
-                                <span class="page-link">&lsaquo;</span>
-                            </li>
-                            <li class="page-item active">
-                                <span class="page-link">1</span>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link dark-link" href="#">2</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link dark-link" href="#">3</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link dark-link" href="#">4</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link dark-link" href="#" rel="next">&rsaquo;</a>
-                            </li>
-                        </ul>
-                    </nav>
+                    @include('site.includes.pagination')
                 @else
                     <div class="items-not-found">
                         Нет товаров
@@ -82,23 +57,8 @@
         </div>
 
 
-        <h3>{{ __('catalog.recent') }}</h3>
-
-        <div class="swiper product-carousel">
-            <div class="swiper-wrapper">
-                @foreach($recent_products as $product)
-                    <div class="swiper-slide">
-                        <x-product-card :product="$product" />
-                    </div>
-                @endforeach
-            </div>
-            <div class="carousel-next-btn">
-                <span class="icon-chevron-right"></span>
-            </div>
-            <div class="carousel-prev-btn">
-                <span class="icon-chevron-left"></span>
-            </div>
-        </div>
-
+        @if($recently_viewed->count())
+            @include('site.includes.recently-viewed')
+        @endif
     </div>
 @endsection

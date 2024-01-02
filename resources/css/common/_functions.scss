@@ -7,3 +7,8 @@
   }
   @return color.scale($color, $lightness: $strength * -5%, $saturation: $strength * -5%);
 }
+
+// Convert hex color to rgb
+@function toRGB ($color) {
+  @return "rgb(" + red($color) + ", " + green($color) + ", " + blue($color)+ ")";
+}

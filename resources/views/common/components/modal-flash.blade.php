@@ -1,9 +1,5 @@
 <div class="modal-container">
     <div class="modal-win" id="flashModal">
-        <button class="btn-icon modal-close-btn">
-            <span class="icon-x-lg"></span>
-        </button>
-
         @if($type === 'info')
             <div class="modal-icon info"><span class="icon-info-circle"></span></div>
         @elseif($type === 'success')

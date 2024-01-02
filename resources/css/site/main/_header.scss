@@ -6,6 +6,7 @@ $header-grey-color4: #787878; // 120
 
 :root {
   --header-row1-height: 44px;
+  --header-row2-height: 58px;
   --header-desktop-margin-top: 10px;
   --logo-width1: 138px;
   --logo-width2: 177px;
@@ -47,7 +48,7 @@ header {
   @include lg {
     display: grid;
     grid-template-columns: max-content auto max-content;
-    grid-template-rows: var(--header-row1-height) 58px;
+    grid-template-rows: var(--header-row1-height) var(--header-row2-height);
     align-items: center;
     column-gap: 18px;
   }

@@ -1,0 +1,150 @@
+.reviews-page-cont {
+  display: flex;
+  gap: 2rem;
+}
+
+.reviews-main-cont {
+  flex: 1;
+}
+
+.reviews-side-cont {
+  flex: 0 0 300px;
+  display: none;
+  @include lg {
+    display: block;
+  }
+}
+
+// ------- Reviews head section ---------
+
+.reviews-head-cont {
+  display: block;
+  margin-bottom: 1rem;
+
+  & > a {
+    display: block;
+    height: 80px;
+    width: 80px;
+    margin-bottom: 0.75rem;
+
+    img {
+      width: 100%;
+    }
+
+    @include sm {
+      height: 120px;
+      flex: 0 0 120px;
+      margin-bottom: 0;
+    }
+  }
+
+  @include sm {
+    display: flex;
+    column-gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.reviews-head-name-cont {
+  padding-top: 0;
+
+  a:hover {
+    color: color($color1, dark, 2);
+  }
+
+  h5 {
+    margin-bottom: 0;
+    font-size: $font-size-base;
+    @include sm {
+      font-size: $font-size-base * 1.25;
+    }
+  }
+
+  @include sm {
+    padding-top: 1.5em;
+  }
+}
+
+
+// ------- Reviews info section ---------
+
+.reviews-rating-cont {
+  position: sticky;
+  top: calc(var(--header-row2-height) + 1rem);
+  margin-top: 0.5rem;
+}
+
+.reviews-rating-cont-mobile {
+  display: block;
+
+  @include sm {
+    display: flex;
+    gap: 2.5rem;
+  }
+
+  @include lg {
+    display: none;
+  }
+}
+
+.reviews-rating-total {
+  margin-bottom: 1rem;
+
+  .total-mark {
+    font-size: $font-size-base * 3;
+    line-height: 1;
+  }
+}
+
+.rating-chart-bar {
+  width: 170px;
+  height: 4px;
+  background-color: $grey-235;
+  margin-right: 12px;
+
+  .fill {
+    background-color: $color1;
+    height: 100%;
+  }
+}
+
+
+// ------------ Review form -------------
+
+.reviews-form {
+  width: 100%;
+
+  textarea {
+    height: 6rem;
+
+    &::placeholder {
+      font-style: italic;
+    }
+  }
+
+  @include lg {
+    width: 70%;
+  }
+}
+
+ul.rating-stars.rate {
+  font-size: 32px;
+  gap: 0.25rem;
+  line-height: 1.1;
+
+  li {
+    cursor: pointer;
+  }
+
+  .icon-star {
+    color: $grey-220;
+  }
+}
+
+#termOfUseSelect {
+  width: fit-content;
+}
+
+.reviews-guest-message {
+
+}
