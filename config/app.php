@@ -192,6 +192,7 @@ return [
         App\Modules\Languages\LanguageServiceProvider::class,
         App\Modules\Currencies\CurrencyServiceProvider::class,
         App\Modules\Settings\SettingServiceProvider::class,
+        App\Modules\Categories\CategoryServiceProvider::class,
     ])->toArray(),
 
     /*

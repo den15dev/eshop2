@@ -1,19 +1,16 @@
 <?php
 
-namespace App\Modules\Currencies\Models;
+namespace App\Modules\Categories\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
 use Spatie\Translatable\HasTranslations;
 
-class Currency extends Model
+class Category extends Model
 {
     use HasTranslations;
 
     public array $translatable = ['name'];
-
-    protected $keyType = 'string';
-    public $incrementing = false;
 
     protected $guarded = [];
 
@@ -21,15 +18,15 @@ class Currency extends Model
     public static function booted(): void
     {
         static::saved(function (self $model) {
-            Cache::forget('currencies');
+            Cache::forget('categories');
         });
 
         static::updated(function (self $model) {
-            Cache::forget('currencies');
+            Cache::forget('categories');
         });
 
         static::deleted(function (self $model) {
-            Cache::forget('currencies');
+            Cache::forget('categories');
         });
     }
 }

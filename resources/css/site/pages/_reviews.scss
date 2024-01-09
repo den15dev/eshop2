@@ -41,6 +41,7 @@
   @include sm {
     display: flex;
     column-gap: 1.5rem;
+    align-items: center;
     margin-bottom: 1.5rem;
   }
 }
@@ -54,14 +55,11 @@
 
   h5 {
     margin-bottom: 0;
+    line-height: 1.4;
     font-size: $font-size-base;
     @include sm {
       font-size: $font-size-base * 1.25;
     }
-  }
-
-  @include sm {
-    padding-top: 1.5em;
   }
 }
 

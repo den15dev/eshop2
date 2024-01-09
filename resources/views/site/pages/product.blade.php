@@ -6,9 +6,9 @@
     <div class="container">
         <x-breadcrumb :breadcrumb="$breadcrumb" />
 
-        <h3 class="mb-3">
+        <h4 class="mb-3">
             {{ $product->name }}
-        </h3>
+        </h4>
 
         <div class="product-code mb-3">
             <div>{{ __('product.product_id') }}: 38</div>
@@ -71,7 +71,7 @@
                             <del>{{ $product->price }} ₽</del>
                         </div>
                     @endif
-                    <div class="product-main_cur-price">{{ $product->final_price }} ₽</div>
+                    <div class="product-main_cur-price">{{ $product->final_price }} &#8381;</div>
                 </div>
 
                 <div class="product-main_add-btn-cont mb-4">

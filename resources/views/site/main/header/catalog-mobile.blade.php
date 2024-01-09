@@ -1,176 +1,56 @@
 <div class="container px-0 scrollbar-thin" id="catalogNavMobile">
     <ul class="catalog-mobile-list">
-        <li>
-            <div class="cat-btn1">
-                <div class="cat-icon-cont">
-                    <svg viewBox="0 0 20 19" style="height: 60%">
-                        <use href="#catalogIcon_pc-parts"/>
-                    </svg>
-                </div>
-                <span class="cat-btn1-text">Компьютерные комплектующие</span>
-            </div>
-            <ul class="catalog-mobile-sublist">
-                <li>
-                    <a href="{{ route('catalog', 'cpu') }}" class="cat-btn2">
-                        Процессоры <span class="cat-count">65</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="cat-btn2">
-                        Материнские платы <span class="cat-count">248</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="cat-btn2">
-                        Видеокарты <span class="cat-count">93</span>
-                    </a>
-                </li>
-                <li>
-                    <div class="cat-btn2">
-                        Накопители <span class="cat-count">182</span>
-                        <span class="icon-chevron-down xsmall va1"></span>
+
+        @foreach($categories as $category)
+            <li>
+                <div class="cat-btn1">
+                    <div class="cat-icon-cont">
+                        <svg viewBox="{{ $catalog_icons[$category['slug']]['viewbox'] }}" style="height: {{ $catalog_icons[$category['slug']]['height_prc'] }}%">
+                            <use href="#catalogIcon_{{ $category['slug'] }}"/>
+                        </svg>
                     </div>
-                    <ul class="catalog-mobile-sublist">
-                        <li>
-                            <a href="#" class="cat-btn2">
-                                HDD <span class="cat-count">65</span>
-                            </a>
-                        </li>
+                    <span class="cat-btn1-text">{{ $category['name'] }}</span>
+                </div>
+                <ul class="catalog-mobile-sublist">
+                    @foreach($category['subcategories'] as $subcat2)
                         <li>
                             <div class="cat-btn2">
-                                SSD M.2 <span class="cat-count">65</span>
-                                <span class="icon-chevron-down xsmall va1"></span>
+                                {{ $subcat2['name'] }}<span class="icon-chevron icon-chevron-right"></span>
                             </div>
                             <ul class="catalog-mobile-sublist">
-                                <li>
-                                    <a href="#" class="cat-btn2">
-                                        Красные <span class="cat-count">65</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="cat-btn2">
-                                        Синие <span class="cat-count">65</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="cat-btn2">
-                                        Для ноутбуков <span class="cat-count">248</span>
-                                    </a>
-                                </li>
+                                @foreach($subcat2['subcategories'] as $subcat3)
+                                    @if(isset($subcat3['subcategories']))
+
+                                        <li>
+                                            <div class="cat-btn2">
+                                                {{ $subcat3['name'] }}&nbsp;@if($subcat3['product_count'])<span class="cat-count">{{ $subcat3['product_count'] }}</span>@endif<span class="icon-chevron icon-chevron-right"></span>
+                                            </div>
+                                            <ul class="catalog-mobile-sublist">
+                                                @foreach($subcat3['subcategories'] as $subcat4)
+                                                    <li>
+                                                        <a href="{{ route('catalog', $subcat4['slug']) }}" class="cat-btn2">
+                                                            {{ $subcat4['name'] }}&nbsp;@if($subcat4['product_count'])<span class="cat-count">{{ $subcat4['product_count'] }}</span>@endif
+                                                        </a>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </li>
+
+                                    @else
+                                        <li>
+                                            <a href="{{ route('catalog', $subcat3['slug']) }}" class="cat-btn2">
+                                                {{ $subcat3['name'] }}&nbsp;@if($subcat3['product_count'])<span class="cat-count">{{ $subcat3['product_count'] }}</span>@endif
+                                            </a>
+                                        </li>
+                                    @endif
+                                @endforeach
                             </ul>
                         </li>
-                        <li>
-                            <a href="#" class="cat-btn2">
-                                SSD <span class="cat-count">248</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#" class="cat-btn2">
-                        Оперативная память <span class="cat-count">174</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="cat-btn2">
-                        Блоки питания <span class="cat-count">59</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <div class="cat-btn1">
-                <div class="cat-icon-cont">
-                    <svg viewBox="0 0 16 18" style="height: 60%;">
-                        <use href="#catalogIcon_appliances"/>
-                    </svg>
-                </div>
-                <span class="cat-btn1-text">Бытовая техника</span>
-            </div>
-            <ul class="catalog-mobile-sublist">
-                <li>
-                    <a href="#" class="cat-btn2">
-                        Стиральные машины <span class="cat-count">65</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="cat-btn2">
-                        Пылесосы <span class="cat-count">248</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="cat-btn2">
-                        Микроволновые печи <span class="cat-count">93</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="cat-btn2">
-                        Холодильники <span class="cat-count">182</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="cat-btn2">
-                        Тостеры <span class="cat-count">174</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="cat-btn2">
-                        Посудомоечные машины <span class="cat-count">59</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <div class="cat-btn1">
-                <div class="cat-icon-cont">
-                    <svg viewBox="0 0 20 17" style="height: 60%">
-                        <use href="#catalogIcon_tvs-and-accessories"/>
-                    </svg>
-                </div>
-                <span class="cat-btn1-text">Телевизоры и аксессуары</span>
-            </div>
-            <ul class="catalog-mobile-sublist">
-                <li>
-                    <a href="#" class="cat-btn2">
-                        LCD телевизоры <span class="cat-count">65</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="cat-btn2">
-                        QLED телевизоры <span class="cat-count">248</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="cat-btn2">
-                        Кронштейны <span class="cat-count">93</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="cat-btn2">
-                        Пульты ДУ <span class="cat-count">182</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <div class="cat-btn1">
-                <div class="cat-icon-cont">
-                    <svg viewBox="0 0 21 17" style="height: 56%">
-                        <use href="#catalogIcon_audio"/>
-                    </svg>
-                </div>
-                <span class="cat-btn1-text">Аудиотехника</span>
-            </div>
-        </li>
-        <li>
-            <div class="cat-btn1">
-                <div class="cat-icon-cont">
-                    <svg viewBox="0 0 13 18" style="height: 56%">
-                        <use href="#catalogIcon_smartphones-and-tablets"/>
-                    </svg>
-                </div>
-                <span class="cat-btn1-text">Смартфоны и планшеты</span>
-            </div>
-        </li>
+
+                    @endforeach
+                </ul>
+            </li>
+        @endforeach
+
     </ul>
 </div>

@@ -1,6 +1,6 @@
 ## About This App
 
-This is the second version of classic multi-page E-commerce web application (work in progress). The following features will be (or already have been) implemented:
+This is a second version of classic multi-page E-commerce web application (work in progress). The following features will be (or already have been) implemented:
 
 - 4 levels of categories
 - Each category can have an individual set of product specifications

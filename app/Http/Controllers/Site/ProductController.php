@@ -22,8 +22,8 @@ class ProductController extends Controller
 
         $product = new \stdClass();
         $product->id = 38;
-        $product->name = 'Процессор AMD Ryzen 5 5600X BOX';
-        $product->slug = 'processor-amd-ryzen-5-5600x-box';
+        $product->name = 'Материнская плата ASUS TUF GAMING B660M-PLUS WIFI D4';
+        $product->slug = 'materinskaia-plata-asus-tuf-gaming-b660m-plus-wifi-d4';
         $product->category_slug = 'cpu';
 
         $product->discount_prc = 5;

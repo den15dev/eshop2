@@ -31,6 +31,7 @@ class HomeController extends Controller
             $product->discount_prc = '5';
             $product->price = '60490';
             $product->final_price = '57465';
+            $product->currency_id = 'rub';
             $product->rating = 3.85;
             $product->vote_num = 208;
 

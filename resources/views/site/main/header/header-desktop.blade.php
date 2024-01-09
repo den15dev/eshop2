@@ -138,12 +138,6 @@
                     {{ __('header.user_menu.sign_in') }}
                 </div>
             </li>
-            {{--<li>
-                <a href="#" class="outline-btn">
-                    <svg viewBox="0 0 18 21"><use href="#userIcon" /></svg>
-                    <span style="margin-left: -2px">Регистрация</span>
-                </a>
-            </li>--}}
             @elseauth
             <li class="dropdown">
                 <div class="dropdown-btn user-btn">

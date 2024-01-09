@@ -19,7 +19,7 @@
                     $marks_max = $marks ? max($marks) : 0;
                 @endphp
 
-                <a href="{{ $product_url }}" class="btn-link link mb-2">
+                <a href="{{ $product_url }}" class="btn-link link mb-25">
                     <span class="icon-chevron-left small va1"></span>
                     {{ __('reviews.back_to_product') }}
                 </a>

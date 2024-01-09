@@ -2,9 +2,11 @@
 
 namespace App\Http\Middleware;
 
-use App\Modules\Languages\Models\Language;
+use App\Modules\Languages\LanguageService;
 use Closure;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use Symfony\Component\HttpFoundation\Response;
 
 class SetRouteLanguage
@@ -19,7 +21,7 @@ class SetRouteLanguage
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $this->prefix = Language::getRoutePrefix();
+        $this->prefix = LanguageService::getRoutePrefix($request->segment(1));
         $this->cur_lang = app()->getLocale();
 
         if (config('app.lang_url_priority')) {
@@ -42,7 +44,7 @@ class SetRouteLanguage
     private function handleWithURLPriority(Request $request, Closure $next): Response
     {
         if ($this->prefix && $this->prefix !== $this->cur_lang) {
-            Language::setLocale($this->prefix);
+            LanguageService::setLocale($this->prefix);
         }
 
         if (!$this->prefix) {
@@ -53,10 +55,10 @@ class SetRouteLanguage
     }
 
 
-    private function redirectToLang($lang_id)
+    private function redirectToLang($lang_id): RedirectResponse|Redirector
     {
         $url = str_replace(url('/'), '', url()->current());
-        $url = Language::buildURL($url, $lang_id);
+        $url = LanguageService::modifyURL($url, $lang_id);
 
         if (session()->has('message')) {
             session()->flash('message', session('message'));

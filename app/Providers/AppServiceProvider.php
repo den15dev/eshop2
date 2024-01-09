@@ -3,8 +3,7 @@
 namespace App\Providers;
 
 use App\Modules\Common\CommonService;
-use App\Modules\Languages\Models\Language;
-use Illuminate\Support\Carbon;
+use App\Modules\Languages\LanguageService;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
@@ -26,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->configureForConsole();
 
+        // Count DB queries for monitoring
         DB::listen(function() {
             CommonService::$db_query_cnt++;
         });
@@ -35,12 +35,18 @@ class AppServiceProvider extends ServiceProvider
         Blade::anonymousComponentPath(__DIR__.'/../../resources/views/site/components');
         Blade::anonymousComponentPath(__DIR__.'/../../resources/views/admin/components', 'admin');
 
-        // Get default and fallback languages
-        $this->setDefaultLanguage();
-        $this->setFallbackLanguage();
+        // Set default and fallback languages
+        LanguageService::setDefaultLanguage();
+        LanguageService::setFallbackLanguage();
     }
 
 
+    /**
+     * In case of development with Docker, configure DB hosts
+     * in order to "php artisan" commands work properly.
+     *
+     * @return void
+     */
     private function configureForConsole(): void
     {
         if (!app()->environment(['production']) && app()->runningInConsole()) {
@@ -49,25 +55,6 @@ class AppServiceProvider extends ServiceProvider
                 'database.redis.default.host' => env('APP_URL'),
                 'database.redis.cache.host' => env('APP_URL'),
             ]);
-        }
-    }
-
-
-    private function setDefaultLanguage(): void
-    {
-        $default_language = Language::getDefault();
-        if ($default_language) {
-            Language::setLocale($default_language->id);
-        }
-    }
-
-
-    private function setFallbackLanguage(): void
-    {
-        $fb_language = Language::getFallback();
-        if ($fb_language) {
-            app()->setFallbackLocale($fb_language->id);
-            Carbon::setFallbackLocale($fb_language->id);
         }
     }
 }

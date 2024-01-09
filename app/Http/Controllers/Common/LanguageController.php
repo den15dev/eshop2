@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Common;
 
 use App\Http\Controllers\Controller;
+use App\Modules\Languages\LanguageService;
 use App\Modules\Languages\Models\Language;
 use Illuminate\Http\Request;
 
@@ -28,10 +29,9 @@ class LanguageController extends Controller
     }
 
 
-    private function withURLPriority($cookie, $new_lang_id)
-    {
+    private function withURLPriority($cookie, $new_lang_id) {
         $previous_url = str_replace(url('/'), '', url()->previous());
-        $modified_url = Language::buildURL($previous_url, $new_lang_id);
+        $modified_url = LanguageService::modifyURL($previous_url, $new_lang_id);
         return redirect($modified_url)->withCookie($cookie);
     }
 }

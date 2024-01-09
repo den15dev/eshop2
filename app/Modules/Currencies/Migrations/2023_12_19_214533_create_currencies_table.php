@@ -14,6 +14,10 @@ return new class extends Migration
         Schema::create('currencies', function (Blueprint $table) {
             $table->string('id')->unique();
             $table->jsonb('name');
+            $table->string('symbol');
+            $table->boolean('symbol_precedes');
+            $table->string('thousands_sep')->nullable();
+            $table->string('decimal_sep');
             $table->string('language_id')->nullable();
             $table->foreign('language_id')->references('id')->on('languages')->onUpdate('cascade')->onDelete('set null');
             $table->timestamps();

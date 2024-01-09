@@ -2,8 +2,9 @@
 
 namespace App\View\Composers;
 
-use App\Modules\Currencies\Models\Currency;
-use App\Modules\Languages\Models\Language;
+use App\Modules\Categories\CategoryService;
+use App\Modules\Currencies\CurrencyService;
+use App\Modules\Languages\LanguageService;
 use App\Modules\Settings\Models\Setting;
 use Illuminate\View\View;
 
@@ -11,8 +12,9 @@ class LayoutComposer
 {
     public function compose(View $view): void
     {
-        $currencies = Currency::getAll();
-        $languages = Language::getActive();
+        $currencies = CurrencyService::getAll();
+        $languages = LanguageService::getActive();
+        $categories = CategoryService::buildCategoryTree();
 
         $settings = Setting::getAll();
         $phone = $settings->firstWhere('name', 'phone')->val;
@@ -22,7 +24,8 @@ class LayoutComposer
             'currencies',
             'languages',
             'phone',
-            'phone_tel'
+            'phone_tel',
+            'categories',
         ));
     }
 }

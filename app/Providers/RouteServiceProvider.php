@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Modules\Languages\Models\Language;
+use App\Modules\Languages\LanguageService;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -30,7 +30,9 @@ class RouteServiceProvider extends ServiceProvider
         });
 
         $this->routes(function () {
-            Route::prefix(Language::getRoutePrefix())
+            $languagePrefix = LanguageService::getRoutePrefix(request()->segment(1));
+
+            Route::prefix($languagePrefix)
                 ->group(function () {
                     Route::middleware('web')
                         ->group(base_path('routes/site.php'));

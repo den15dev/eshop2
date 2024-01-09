@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Modules\Languages\Models\Language;
+use App\Modules\Languages\LanguageService;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,7 +18,7 @@ class SetPreferredLanguage
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $languages = Language::getActive();
+        $languages = LanguageService::getActive();
 
         $cookie_lang_id = $request->cookie('lang');
 
@@ -29,7 +29,7 @@ class SetPreferredLanguage
         }
 
         if ($pref_lang_id) {
-            Language::setLocale($pref_lang_id);
+            LanguageService::setLocale($pref_lang_id);
         }
 
         return $next($request);

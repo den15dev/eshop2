@@ -42,9 +42,9 @@ export function catalogMobileReset() {
     });
     document.querySelectorAll('#catalogNavMobile div.cat-btn1, #catalogNavMobile div.cat-btn2').forEach(catBtn => {
         catBtn.classList.remove('active');
-        let chevronIcon = catBtn.querySelector('.icon-chevron-up');
-        chevronIcon?.classList.remove('icon-chevron-up');
-        chevronIcon?.classList.add('icon-chevron-down');
+        let chevronIcon = catBtn.querySelector('.icon-chevron-down');
+        chevronIcon?.classList.remove('icon-chevron-down');
+        chevronIcon?.classList.add('icon-chevron-right');
     });
 }
 
@@ -58,9 +58,9 @@ export default function init() {
         catBtn.addEventListener('click', () => {
             catBtn.parentNode.querySelector('ul.catalog-mobile-sublist')?.slideToggle(slideSpeed);
             catBtn.classList.toggle('active');
-            let chevronIcon = catBtn.querySelector('.icon-chevron-down, .icon-chevron-up');
+            let chevronIcon = catBtn.querySelector('.icon-chevron-right, .icon-chevron-down');
+            chevronIcon?.classList.toggle('icon-chevron-right');
             chevronIcon?.classList.toggle('icon-chevron-down');
-            chevronIcon?.classList.toggle('icon-chevron-up');
         });
     });
 }
