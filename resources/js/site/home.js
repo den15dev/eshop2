@@ -68,7 +68,7 @@ export function initProductCarousels() {
 function calculateBreakpoints(spaceBetween) {
     let breakpoints = {};
     if (productCarousels.length) {
-        const productImgWidth = productCarousels[0].querySelector('.product-card_image img').offsetWidth;
+        const productImgWidth = productCarousels[0].querySelector('.product-card_image').offsetWidth;
         const mainContainer = document.querySelector('main .container');
         const containerMargins = parseInt(getComputedStyle(mainContainer).getPropertyValue('padding-left'), 10);
 

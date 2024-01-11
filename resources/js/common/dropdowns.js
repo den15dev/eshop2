@@ -11,7 +11,7 @@ function openDropdown(dropdown_btn) {
     document.addEventListener('click', closeOnClickOutside);
 }
 
-function closeDropdown(dropdown_btn) {
+export function closeDropdown(dropdown_btn) {
     fadeOut(dropdown_btn.parentNode.querySelector('.dropdown-list'), fadeSpeed);
     dropdown_btn.dataset.opened = 'off';
     document.removeEventListener('click', closeOnClickOutside);

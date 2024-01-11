@@ -20,5 +20,6 @@ Route::get('/catalog/{category}', [CatalogController::class, 'index'])->name('ca
 Route::get('/catalog/{category}/{product}', [ProductController::class, 'show'])->name('product');
 Route::get('/catalog/{category}/{product}/reviews', [ReviewController::class, 'index'])->name('reviews');
 Route::post('/catalog/{category}/{product}/reviews', [ReviewController::class, 'store'])->name('review.add');
+Route::post('/catalog/preferences', [CatalogController::class, 'setLayout'])->name('catalog.preferences');
 
 require __DIR__.'/auth.php';

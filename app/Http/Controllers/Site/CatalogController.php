@@ -3,12 +3,31 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
+use App\Modules\Catalog\CatalogService;
+use App\Modules\Catalog\Enums\ProductSorting;
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
 class CatalogController extends Controller
 {
-    public function index(string $category)
-    {
+    public function index(
+        Request $request,
+        CatalogService $catalogService,
+        string $category
+    ) {
+        $catalog_prefs_arr = json_decode($request->cookie(CatalogService::PREF_COOKIE)) ?? [ProductSorting::New->value, 12, 1];
+
+        $sorting_list = $catalogService->getProductSorting($catalog_prefs_arr[0]);
+        $per_page_list = $catalogService->getProductsPerPage(intval($catalog_prefs_arr[1]));
+
+        $prefs = new \stdClass();
+        $prefs->sorting = $sorting_list;
+        $prefs->sorting_active = $sorting_list->firstWhere('is_active', true);
+        $prefs->per_page = $per_page_list;
+        $prefs->per_page_active = $per_page_list->firstWhere('is_active', true);
+        $prefs->layout = intval($catalog_prefs_arr[2]);
+
+
         $spec_names = [
             ['Серия', 5],
             ['Разъём подключения последовательного чтения', 6],
@@ -123,7 +142,7 @@ class CatalogController extends Controller
             }
 
             $product->rating = 3.85;
-            $product->vote_num = 208;
+            $product->vote_num = 209;
 
             $recently_viewed->push($product);
         }
@@ -141,11 +160,32 @@ class CatalogController extends Controller
 
         return view('site.pages.catalog', compact(
             'breadcrumb',
+            'prefs',
             'filter_specs',
             'products',
             'recently_viewed',
             'price_range',
             'brands'
         ));
+    }
+
+
+    public function setLayout(Request $request)
+    {
+        $validated = $request->validate([
+            'sort' => 'required|max:20',
+            'per_page' => 'required|numeric',
+            'layout' => 'required|numeric',
+        ]);
+
+        $prefs = json_encode([
+            $validated['sort'],
+            $validated['per_page'],
+            $validated['layout'],
+        ]);
+
+        $cookie = cookie()->forever(CatalogService::PREF_COOKIE, $prefs);
+
+        return back()->withCookie($cookie);
     }
 }

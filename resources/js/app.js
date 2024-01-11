@@ -11,6 +11,7 @@ import auth from "./site/main/auth";
 
 import { initProductCarousels } from "./site/home.js";
 import initCatalogFilters from "./site/catalog-filters.js";
+import initCatalogPreferences from "./site/catalog-prefs.js";
 import initProductPage from "./site/product.js";
 import initReviews from "./site/reviews.js";
 
@@ -39,6 +40,7 @@ initProductCarousels();
 // --------------- Catalog ------------------
 
 initCatalogFilters();
+initCatalogPreferences();
 
 // --------------- Product ------------------
 

@@ -2,12 +2,22 @@
   & > div:not(:last-child) {
     margin-bottom: 0.375em;
   }
+
+  &.btns-row {
+    display: flex;
+    gap: 1.25rem;
+  }
 }
 
 .product-compare-btn,
 .product-favorite-btn {
   cursor: pointer;
   color: $grey-150;
+
+  & > span {
+    margin-right: 0.125rem;
+  }
+
   &:hover {
     color: $color1;
   }

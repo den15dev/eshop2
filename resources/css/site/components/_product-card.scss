@@ -2,21 +2,22 @@
   a {
     width: fit-content;
   }
-  button.btn-2sizes {
-    margin-bottom: 0.8rem;
-    @include md {
-      margin-bottom: 0.875rem;
-    }
+}
+
+.catalog-add-to-cart-btn {
+  white-space: nowrap;
+  margin-bottom: 0.8rem;
+  @include md {
+    margin-bottom: 0.875rem;
   }
 }
 
-.product-card_image {
+.product-card_image-link {
   display: block;
+  width: fit-content;
   position: relative;
   margin-bottom: 0.5rem;
-  img {
-    width: var(--product-card-image);
-  }
+  line-height: 0.8;
 
   .tint {
     display: none;
@@ -34,6 +35,10 @@
       display: block;
     }
   }
+}
+
+.product-card_image {
+  width: var(--product-card-image);
 }
 
 .product-card_name {
@@ -58,8 +63,13 @@
   }
 }
 
+.product-card_price,
+.product-card_old-price {
+  white-space: nowrap;
+}
+
 .product-card_price {
-  font-size: $font-size-base * 1.375;
+  font-size: $font-size-base * 1.25;
   font-weight: $font-weight-semibold;
   @include sm {
     font-size: $font-size-base * 1.5;

@@ -1,49 +1,53 @@
 <div class="catalog-settings-cont mb-25">
+    <form method="POST" action="{{ route('catalog.preferences') }}" style="display: none" id="catalogPrefForm">
+        @csrf
+        <input type="hidden" name="sort" value="{{ $prefs->sorting_active->sorting }}" />
+        <input type="hidden" name="per_page" value="{{ $prefs->per_page_active->num }}" />
+        <input type="hidden" name="layout" value="{{ $prefs->layout }}" />
+    </form>
+
     <div class="sort-cont dropdown">
-        <div class="dropdown-btn">
-            {{ __('catalog.layout_settings.sort.cheap') }}
+        <div class="dropdown-btn" data-sort="{{ $prefs->sorting_active->sorting }}">
+            {{ $prefs->sorting_active->description }}
             <span class="icon-chevron-down xsmall"></span>
         </div>
         <ul class="dropdown-list">
-            <li>
-                <div>
-                    {{ __('catalog.layout_settings.sort.expensive') }}
-                </div>
-            </li>
-            <li>
-                <div>
-                    {{ __('catalog.layout_settings.sort.new') }}
-                </div>
-            </li>
-            <li>
-                <div>
-                    {{ __('catalog.layout_settings.sort.popular') }}
-                </div>
-            </li>
-            <li>
-                <div>
-                    {{ __('catalog.layout_settings.sort.discounted') }}
-                </div>
-            </li>
+            @foreach($prefs->sorting as $sort_type)
+                @if($sort_type->is_active)
+                    <li>
+                        <div class="active" data-sort="{{ $sort_type->sorting }}">
+                            {{ $sort_type->description }} <span class="icon-check-lg"></span>
+                        </div>
+                    </li>
+                @else
+                    <li>
+                        <div data-sort="{{ $sort_type->sorting }}">
+                            {{ $sort_type->description }}
+                        </div>
+                    </li>
+                @endif
+            @endforeach
         </ul>
     </div>
 
     <div class="layout-cont">
         <div class="dropdown">
             <div class="dropdown-btn">
-                <span class="sm">{{ __('catalog.layout_settings.on_page') }} </span>12
+                <span class="sm">{{ __('catalog.layout_settings.on_page') }} </span>{{ $prefs->per_page_active->num }}
                 <span class="icon-chevron-down xsmall"></span>
             </div>
             <ul class="dropdown-list dd-right">
-                <li>
-                    <div>24</div>
-                </li>
-                <li>
-                    <div>36</div>
-                </li>
-                <li>
-                    <div>48</div>
-                </li>
+                @foreach($prefs->per_page as $per_page)
+                    @if($per_page->is_active)
+                        <li>
+                            <div class="active">{{ $per_page->num }} <span class="icon-check-lg"></span></div>
+                        </li>
+                    @else
+                        <li>
+                            <div>{{ $per_page->num }}</div>
+                        </li>
+                    @endif
+                @endforeach
             </ul>
         </div>
 
@@ -65,12 +69,12 @@
             </symbol>
         </svg>
 
-        <div class="btn-icon active" id="catalogLayoutGrid">
+        <div class="btn-icon {{ $prefs->layout === 1 ? 'active' : '' }}" id="catalogLayoutGrid">
             <svg viewBox="0 0 22 22">
                 <use href="#catalogGrid"/>
             </svg>
         </div>
-        <div class="btn-icon" id="catalogLayoutList">
+        <div class="btn-icon {{ $prefs->layout === 2 ? 'active' : '' }}" id="catalogLayoutList">
             <svg viewBox="0 0 23 18">
                 <use href="#catalogList"/>
             </svg>

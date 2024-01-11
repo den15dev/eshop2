@@ -6,6 +6,7 @@
   .sort-cont {
     .dropdown-list {
       margin-left: -0.5rem;
+
       @include lg {
         margin-left: -($dropdown-list-paddings + $dropdown-item-paddings);
       }
@@ -15,8 +16,10 @@
     display: flex;
     align-items: center;
     gap: 0.75rem;
+
     .sm {
       display: none;
+
       @include sm {
         display: inline;
       }
@@ -49,8 +52,13 @@
     div {
       cursor: pointer;
       color: $grey-120;
+
       &:hover {
         color: color($color1, light, 3);
+      }
+
+      &.active {
+        color: $grey-220;
       }
     }
   }

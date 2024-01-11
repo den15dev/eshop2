@@ -1,0 +1,19 @@
+.product-row {
+  display: block;
+  margin-bottom: 1rem;
+
+  @include xs {
+    display: flex;
+    gap: 1.5rem;
+  }
+}
+
+.product-row_group1 {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.product-row_image {
+  width: var(--product-row-image);
+}

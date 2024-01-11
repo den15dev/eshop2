@@ -4,7 +4,7 @@
 
 @section('main_content')
     <div class="container">
-        <x-breadcrumb :breadcrumb="$breadcrumb" />
+        <x-breadcrumb :breadcrumb="$breadcrumb"/>
 
         <div class="catalog-page-wrap mb-6">
             <div class="sidebar-cont">
@@ -13,20 +13,20 @@
                                                 title="Цена"
                                                 :data="$price_range"
                                                 collapsed="off"
-                                                :ismobile="false" />
+                                                :ismobile="false"/>
 
                     <x-catalog-filters-dropdown type="brands"
                                                 title="Бренды"
                                                 :data="$brands"
                                                 collapsed="off"
-                                                :ismobile="false" />
+                                                :ismobile="false"/>
 
                     @foreach($filter_specs as $spec)
                         <x-catalog-filters-dropdown type="specs"
                                                     title="{{ $spec->name }}"
                                                     :data="$spec"
                                                     collapsed="{{ $loop->index > 0 ? 'on' : 'off' }}"
-                                                    :ismobile="false" />
+                                                    :ismobile="false"/>
                     @endforeach
 
                     <div class="catalog-filters_btn-cont">
@@ -37,15 +37,21 @@
             </div>
 
             <div class="catalog-cont">
-                @include('site.pages.catalog-settings')
+                @include('site.pages.catalog-prefs')
 
                 @if($products->count())
-                    <div class="catalog-cards-cont mb-5">
-                        @foreach($products as $product)
-                            <x-product-card :product="$product" />
-                        @endforeach
-                    </div>
+                    @if($prefs->layout === 1)
+                        <div class="catalog-cards-cont mb-5">
+                            @foreach($products as $product)
+                                <x-product-card :product="$product"/>
+                            @endforeach
+                        </div>
 
+                    @elseif($prefs->layout === 2)
+                        @foreach($products as $product)
+                            <x-product-row :product="$product"/>
+                        @endforeach
+                    @endif
 
                     @include('site.includes.pagination')
                 @else
