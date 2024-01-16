@@ -3,23 +3,32 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
+use App\Modules\Categories\CategoryService;
+use App\Modules\Products\ProductService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 
 class ProductController extends Controller
 {
-    public function show(string $category_slug, string $product_slug): View
-    {
-        $breadcrumb = new \stdClass();
-        $breadcrumb->active = false;
-        $breadcrumb->parts = [
-            ['url' => '#', 'text' => 'Компьютеры и периферия'],
-            ['url' => '#', 'text' => 'Крупная бытовая техника'],
-            ['url' => route('catalog', ['cpu']), 'text' => 'Профессиональные и строительные пылесосы'],
-        ];
+    public function show(
+        CategoryService $categoryService,
+        string $category_slug,
+        string $product_slug
+    ): View {
+
+        $category = $categoryService->getCategoryBySlug($category_slug);
+        abort_if(!$category, 404);
+        $breadcrumb = $categoryService->getBreadcrumb($category, false);
 
 
+        $temp_slug_arr = explode('-', $product_slug);
+        $temp_slug_num = count($temp_slug_arr);
+        $product_id = $temp_slug_arr[$temp_slug_num-1];
+
+        $product = ProductService::getOneProduct($product_id);
+
+        /*
         $product = new \stdClass();
         $product->id = 38;
         $product->name = 'Материнская плата ASUS TUF GAMING B660M-PLUS WIFI D4';
@@ -39,7 +48,7 @@ class ProductController extends Controller
         $product->vote_num = 208;
 
         $product->images = ['01', '02', '03', '04'];
-
+*/
 
         $specs = new Collection([]);
         $specs_data = [
@@ -81,31 +90,7 @@ class ProductController extends Controller
         $product->specifications = $specs;
 
 
-        $discounts = [0, 0, 5, 10, 0, 0, 0, 5, 0, 5, 0, 10, 0, 0];
-        $recently_viewed = new Collection([]);
-        for ($i = 1; $i <= 8; $i++) {
-            $temp_product = new \stdClass();
-            $temp_product->id = $i;
-            $temp_product->name = 'Материнская плата MSI MPG B760I EDGE WIFI DDR4';
-            $temp_product->slug = 'processor-amd-ryzen-5-5600x-box';
-            $temp_product->category_slug = 'cpu';
-            $temp_product->category_id = 6;
-            $temp_product->short_descr = 'LGA 1700, 8P x 2.1 ГГц, 8E x 1.5 ГГц, L2 - 24 МБ, L3 - 30 МБ, 2хDDR4, DDR5-5600 МГц, TDP 219 Вт';
-
-            $temp_product->discount_prc = $discounts[$i];
-            $temp_product->price = 60490;
-            if ($temp_product->discount_prc) {
-                $temp_product->final_price = number_format($temp_product->price * (100 - $temp_product->discount_prc)/100, 0, ',', ' ');
-            } else {
-                $temp_product->final_price = $temp_product->price;
-            }
-            $temp_product->price = number_format($temp_product->price, 0, ',', ' ');
-
-            $temp_product->rating = 3.85;
-            $temp_product->vote_num = 208;
-
-            $recently_viewed->push($temp_product);
-        }
+        $recently_viewed = ProductService::getSomeProducts(8);
 
 
         return view('site.pages.product', compact(

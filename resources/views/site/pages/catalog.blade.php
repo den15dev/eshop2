@@ -1,6 +1,6 @@
 @extends('site.layout')
 
-@section('page_title', 'Процессоры' . ' - ' . __('general.app_name'))
+@section('page_title', $category->name . ' - ' . __('general.app_name'))
 
 @section('main_content')
     <div class="container">

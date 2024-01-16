@@ -20,8 +20,13 @@ button,
   }
   font-family: $font;
   color: white;
+
   &:hover {
     background-color: color($button-bg-color, dark, 1);
+  }
+
+  &:active {
+    background-color: color($button-bg-color, dark, 3);
   }
 }
 

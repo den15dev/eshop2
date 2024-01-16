@@ -5,16 +5,30 @@ namespace App\Http\Controllers\Site;
 use App\Http\Controllers\Controller;
 use App\Modules\Catalog\CatalogService;
 use App\Modules\Catalog\Enums\ProductSorting;
+use App\Modules\Categories\CategoryService;
+use App\Modules\Products\ProductService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\View\View;
 
 class CatalogController extends Controller
 {
     public function index(
         Request $request,
+        CategoryService $categoryService,
         CatalogService $catalogService,
-        string $category
-    ) {
+        string $category_slug
+    ): View {
+        $category = $categoryService->getCategoryBySlug($category_slug);
+        abort_if(!$category, 404);
+
+
+        $children = $categoryService->getChildren($category->id);
+        if ($children) {
+            return view('site.pages.categories', compact('category', 'children'));
+        }
+
+
         $catalog_prefs_arr = json_decode($request->cookie(CatalogService::PREF_COOKIE)) ?? [ProductSorting::New->value, 12, 1];
 
         $sorting_list = $catalogService->getProductSorting($catalog_prefs_arr[0]);
@@ -88,65 +102,13 @@ class CatalogController extends Controller
             $brands->push($brand);
         }
 
-        $breadcrumb = new \stdClass();
-        $breadcrumb->active = true;
-        $breadcrumb->parts = [
-            ['url' => '#', 'text' => 'Компьютеры и периферия'],
-            ['url' => '#', 'text' => 'Крупная бытовая техника'],
-            ['url' => '#', 'text' => 'Профессиональные и строительные пылесосы'],
-        ];
+
+        $breadcrumb = $categoryService->getBreadcrumb($category, true);
 
 
-        $products = new Collection([]);
-        $discounts = [0, 0, 5, 10, 0, 0, 0, 5, 0, 5, 0, 10, 0, 0];
-        for ($i = 1; $i <= 12; $i++) {
-            $product = new \stdClass();
-            $product->id = $i;
-            $product->name = 'Материнская плата MSI MPG B760I EDGE WIFI DDR4';
-            $product->slug = 'processor-amd-ryzen-5-5600x-box';
-            $product->category_slug = 'cpu';
-            $product->category_id = 6;
-            $product->short_descr = 'LGA 1700, 8P x 2.1 ГГц, 8E x 1.5 ГГц, L2 - 24 МБ, L3 - 30 МБ, 2хDDR4, DDR5-5600 МГц, TDP 219 Вт';
+        $products = ProductService::getSomeProducts(12);
 
-            $product->discount_prc = $discounts[$i];
-            $product->price = 60490;
-            if ($product->discount_prc) {
-                $product->final_price = number_format($product->price * (100 - $product->discount_prc)/100, 0, ',', ' ');
-            } else {
-                $product->final_price = number_format($product->price, 0, ',', ' ');
-            }
-
-            $product->rating = 3.85;
-            $product->vote_num = 208;
-
-            $products->push($product);
-        }
-
-
-        $recently_viewed = new Collection([]);
-        for ($i = 1; $i <= 8; $i++) {
-            $product = new \stdClass();
-            $product->id = $i;
-            $product->name = 'Материнская плата MSI MPG B760I EDGE WIFI DDR4';
-            $product->slug = 'processor-amd-ryzen-5-5600x-box';
-            $product->category_slug = 'cpu';
-            $product->category_id = 6;
-            $product->short_descr = 'LGA 1700, 8P x 2.1 ГГц, 8E x 1.5 ГГц, L2 - 24 МБ, L3 - 30 МБ, 2хDDR4, DDR5-5600 МГц, TDP 219 Вт';
-
-            $product->discount_prc = $discounts[$i];
-            $product->price = 60490;
-            if ($product->discount_prc) {
-                $product->final_price = number_format($product->price * (100 - $product->discount_prc)/100, 0, ',', ' ');
-            } else {
-                $product->final_price = number_format($product->price, 0, ',', ' ');
-            }
-
-            $product->rating = 3.85;
-            $product->vote_num = 209;
-
-            $recently_viewed->push($product);
-        }
-
+        $recently_viewed = ProductService::getSomeProducts(8);
 
 
 //        Mail::to('dendangler@gmail.com')->send(new SomeHappen());
@@ -159,6 +121,8 @@ class CatalogController extends Controller
 */
 
         return view('site.pages.catalog', compact(
+            'category',
+            'category_slug',
             'breadcrumb',
             'prefs',
             'filter_specs',

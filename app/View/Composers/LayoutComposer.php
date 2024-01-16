@@ -14,7 +14,7 @@ class LayoutComposer
     {
         $currencies = CurrencyService::getAll();
         $languages = LanguageService::getActive();
-        $categories = CategoryService::buildCategoryTree();
+        $categories = (new CategoryService())->buildCategoryTree();
 
         $settings = Setting::getAll();
         $phone = $settings->firstWhere('name', 'phone')->val;

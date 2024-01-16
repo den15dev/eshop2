@@ -18,23 +18,6 @@
   position: relative;
   margin-bottom: 0.5rem;
   line-height: 0.8;
-
-  .tint {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: $color1;
-    opacity: 0.06;
-  }
-
-  &:hover {
-    .tint {
-      display: block;
-    }
-  }
 }
 
 .product-card_image {

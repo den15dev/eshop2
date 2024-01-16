@@ -85,6 +85,11 @@ select {
   margin-top: 0.5rem;
 }
 
+.required:after {
+  content:" *";
+  color: $color-red;
+}
+
 
 // --------- Headers -----------
 

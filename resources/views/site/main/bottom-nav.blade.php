@@ -1,3 +1,7 @@
+@php
+    $show_catalog_filters = request()->routeIs('catalog') && !isset($children);
+@endphp
+
 <div class="bottom-nav">
     <div class="bottom-nav_cont">
         <a href="#" class="bottom-nav-btn">
@@ -7,7 +11,7 @@
             {{ __('header.user_menu.favorites') }}
             {{--            <div class="badge-round">2</div>--}}
         </a>
-        <a href="#" class="bottom-nav-btn">
+        <a href="{{ route('cart') }}" class="bottom-nav-btn">
             <svg viewBox="0 0 22 22">
                 <use href="#cartIcon"/>
             </svg>
@@ -20,7 +24,7 @@
             </svg>
         </div>
 
-        @if(request()->routeIs('catalog'))
+        @if($show_catalog_filters)
             <div class="bottom-nav-btn" id="bottomNavFiltersBtn">
                 <svg viewBox="0 0 23 22">
                     <use href="#filtersIcon"/>
@@ -58,7 +62,7 @@
 
     @include('site.main.bottom-nav.bottom-nav-menu')
 
-    @if(request()->routeIs('catalog'))
+    @if($show_catalog_filters)
         @include('site.main.bottom-nav.bottom-nav-filters')
     @endif
 

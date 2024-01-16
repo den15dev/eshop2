@@ -11,7 +11,7 @@
         </h4>
 
         <div class="product-code mb-3">
-            <div>{{ __('product.product_id') }}: 38</div>
+            <div>{{ __('product.product_id') }}: {{ $product->id }}</div>
 
             <x-rating size="small"
                       :url="route('reviews', [$product->category_slug, $product->slug . '-' . $product->id])"
@@ -25,10 +25,10 @@
                     @if($product->images)
                         @foreach($product->images as $image)
                             <div class="f-carousel__slide"
-                                 data-thumb-src="{{ get_image('storage/images/products/4/' . $image . '_80.jpg', 80) }}"
+                                 data-thumb-src="{{ get_image('storage/images/products/' . (($product->id - 1) % 4 + 1) . '/' . $image . '_80.jpg', 80) }}"
                                  data-fancybox="product_images"
-                                 data-src="{{ get_image('storage/images/products/4/' . $image . '_1400.jpg', 1400) }}">
-                                <img src="{{ get_image('storage/images/products/4/' . $image . '_600.jpg', 600) }}" alt="">
+                                 data-src="{{ get_image('storage/images/products/' . (($product->id - 1) % 4 + 1) . '/' . $image . '_1400.jpg', 1400) }}">
+                                <img src="{{ get_image('storage/images/products/' . (($product->id - 1) % 4 + 1) . '/' . $image . '_600.jpg', 600) }}" alt="">
                             </div>
                         @endforeach
                     @else
@@ -68,10 +68,10 @@
                 <div class="mb-3">
                     @if($product->discount_prc)
                         <div class="product-main_old-price">
-                            <del>{{ $product->price }} ₽</del>
+                            <del>{{ number_format($product->price, 0, ',', ' ') }} ₽</del>
                         </div>
                     @endif
-                    <div class="product-main_cur-price">{{ $product->final_price }} &#8381;</div>
+                    <div class="product-main_cur-price">{{ number_format($product->final_price, 0, ',', ' ') }} &#8381;</div>
                 </div>
 
                 <div class="product-main_add-btn-cont mb-4">

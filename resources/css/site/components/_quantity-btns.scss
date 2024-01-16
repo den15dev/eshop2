@@ -1,10 +1,12 @@
+$qty-btns-height: 40px;
+
 .quantity-btns {
   display: flex;
 
   button {
     background-color: $grey-245;
     width: 40px;
-    height: 40px;
+    height: $qty-btns-height;
     padding: 0;
 
     svg {
@@ -17,6 +19,10 @@
 
     &:hover {
       background-color: $grey-240;
+    }
+
+    &:active {
+      background-color: $grey-230;
     }
   }
 
@@ -34,6 +40,7 @@
 
   input {
     width: 42px;
+    height: $qty-btns-height;
     text-align: center;
     border: none;
     @if $border-radius-base > 0 {

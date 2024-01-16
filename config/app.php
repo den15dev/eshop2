@@ -193,6 +193,10 @@ return [
         App\Modules\Currencies\CurrencyServiceProvider::class,
         App\Modules\Settings\SettingServiceProvider::class,
         App\Modules\Categories\CategoryServiceProvider::class,
+        App\Modules\Brands\BrandServiceProvider::class,
+        App\Modules\Promos\PromoServiceProvider::class,
+        App\Modules\Products\ProductServiceProvider::class,
+        App\Modules\Shops\ShopServiceProvider::class,
     ])->toArray(),
 
     /*

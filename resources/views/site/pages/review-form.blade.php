@@ -1,4 +1,4 @@
-<form class="reviews-form mb-6" method="POST" action="{{ route('review.add', [$product->category_slug, $product->slug . '-' . $product->id]) }}">
+<form class="reviews-form mb-6" method="POST" action="{{ route('reviews.add', [$product->category_slug, $product->slug . '-' . $product->id]) }}">
     @csrf
     <h4 class="mb-3">{{ __('reviews.form.title') }}</h4>
 

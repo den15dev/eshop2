@@ -1,0 +1,171 @@
+.cart-item {
+  display: flex;
+  column-gap: 1.5rem;
+  row-gap: 0.25rem;
+  align-items: start;
+  flex-wrap: wrap;
+  padding-bottom: 0.75rem;
+  padding-top: 0.75rem;
+  border-bottom: $grey-240 solid 1px;
+
+  .product-card_old-price {
+    font-size: $font-size-base;
+  }
+
+  .flex-wrap-separator {
+    order: 3;
+  }
+}
+
+.cart-item_number {
+  order: 0;
+}
+
+.flex-wrap-separator {
+  height: 0;
+  flex: 0 0 100%;
+  display: block;
+
+  @include sm {
+    display: none;
+  }
+}
+
+.cart-item_image-link {
+  display: block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+  order: 1;
+
+  img {
+    width: 100%;
+  }
+
+  @include md {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+.cart-item_details {
+  flex: 0 0 100%;
+  margin-bottom: 0.375rem;
+  order: 4;
+
+  @include sm {
+    margin-bottom: 0.25rem;
+    flex: 1;
+  }
+}
+
+.cart-item_short-descr {
+  color: $grey-150;
+  display: none;
+  margin-bottom: 0.5rem;
+
+  @include md {
+    display: block;
+  }
+}
+
+.cart-item_name {
+  display: block;
+  font-weight: $font-weight-semibold;
+  margin-bottom: 0;
+
+  @include sm {
+    margin-bottom: 0.375rem;
+  }
+
+  @include md {
+    margin-bottom: 0;
+  }
+}
+
+.cart-item_product-id {
+  font-size: $font-size-sm;
+  margin-bottom: 0.5rem;
+  line-height: 1;
+
+  @include sm {
+    margin-bottom: 0.375rem;
+  }
+}
+
+.cart-item_qty-sum-cont {
+  .quantity-btns {
+    margin-top: 0.125rem;
+    margin-bottom: 0.75rem;
+  }
+
+  display: block;
+  order: 5;
+  margin-left: auto;
+
+  @include lg {
+    display: flex;
+    gap: 2rem;
+  }
+}
+
+.cart-item_id-price,
+.cart-item_id-price-mobile {
+  .product-card_price {
+    font-size: $font-size-base * 1.125;
+    font-weight: $font-weight-normal;
+    @include sm {
+      font-size: $font-size-base * 1.25;
+    }
+  }
+}
+
+.cart-item_id-price {
+  display: none;
+
+  @include sm {
+    display: block;
+  }
+}
+
+.cart-item_id-price-mobile {
+  display: block;
+  order: 4;
+
+  @include sm {
+    display: none;
+  }
+}
+
+.cart-item_sum {
+  text-align: right;
+
+  .product-card_price {
+    font-size: $font-size-base * 1.25;
+  }
+}
+
+.cart-item_btns {
+  order: 2;
+  margin-left: auto;
+
+  .btn-icon {
+    width: 36px;
+    height: 36px;
+    padding: 8px 0 0 0;
+    line-height: 1;
+    color: $grey-200;
+
+    &:hover {
+      color: color($color1, light, 3);
+    }
+  }
+
+  .icon-x-lg {
+    font-size: 20px;
+  }
+
+  @include sm {
+    order: 6;
+  }
+}

@@ -9,10 +9,12 @@
 
 .catalog-desktop-root-list {
   white-space: nowrap;
+
   & > li, div {
     height: 32px;
     color: black;
   }
+
   & > li {
     display: flex;
     align-items: center;
@@ -22,6 +24,7 @@
     border-left: 4px solid white;
     transition-property: color, border-left-color;
     transition-duration: 0.3s;
+
     &.active {
       color: $color1;
       border-left-color: $color2;
@@ -29,6 +32,7 @@
       transition-duration: 0.3s;
     }
   }
+
   .icon-cont {
     display: flex;
     align-items: center;
@@ -40,6 +44,7 @@
       stroke: color($color1, light, 4);
     }
   }
+
   .item-text {
     display: block;
     padding-top: 1px;
@@ -54,27 +59,16 @@
   padding-left: 2rem;
   border-left: solid 1px $grey-230;
   display: none;
+
   h6 {
     margin-bottom: 0.6rem;
   }
+
   section {
     margin-bottom: 1.75rem;
     break-inside: avoid-column;
     max-width: 250px;
-    div, a {
-      display: block;
-      cursor: pointer;
-      color: $grey-120;
-      &:hover {
-        color: $color1;
-        .icon-chevron-right {
-          color: $grey-120;
-        }
-      }
-    }
-    .cat-count {
-      color: $grey-210;
-    }
+
     li, ul.dropdown-list li {
       line-height: 1.25rem;
     }
@@ -91,6 +85,23 @@
       vertical-align: 2px;
     }
   }
+
+  .section-item {
+    display: block;
+    cursor: pointer;
+    color: $grey-120;
+    &:hover {
+      color: $color1;
+      .icon-chevron-right {
+        color: $grey-120;
+      }
+    }
+  }
+
+  .product-count {
+    color: $grey-210;
+  }
+
   @include xl {
     column-gap: 2rem;
     padding-left: 2.25rem;

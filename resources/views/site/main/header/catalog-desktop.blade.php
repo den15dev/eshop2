@@ -17,20 +17,22 @@
 
             @foreach($category['subcategories'] as $subcat2)
                 <section>
-                    <h6>{{ $subcat2['name'] }}</h6>
+                    <h6>
+                        <a href="{{ route('catalog', $subcat2['slug']) }}" class="dark-link">{{ $subcat2['name'] }}</a>
+                    </h6>
                     <ul>
                         @foreach($subcat2['subcategories'] as $subcat3)
 
                             @if(isset($subcat3['subcategories']))
                                 <li class="dropdown-hover">
-                                    <div class="dropdown-btn">
-                                        {{ $subcat3['name'] }}&nbsp;@if($subcat3['product_count'])<span class="cat-count">{{ $subcat3['product_count'] }}</span>@endif<span class="icon-chevron-right xsmall ms-1"></span>
-                                    </div>
+                                    <a href="{{ route('catalog', $subcat3['slug']) }}" class="dropdown-btn section-item">
+                                        {{ $subcat3['name'] }}&nbsp;@if($subcat3['product_count'])<span class="product-count">{{ $subcat3['product_count'] }}</span>@endif<span class="icon-chevron-right xsmall ms-1"></span>
+                                    </a>
                                     <ul class="dropdown-list dd-right-out">
                                         @foreach($subcat3['subcategories'] as $subcat4)
                                             <li>
-                                                <a href="{{ route('catalog', $subcat4['slug']) }}">
-                                                    {{ $subcat4['name'] }}&nbsp;@if($subcat4['product_count'])<span class="cat-count">{{ $subcat4['product_count'] }}</span>@endif
+                                                <a href="{{ route('catalog', $subcat4['slug']) }}" class="section-item">
+                                                    {{ $subcat4['name'] }}&nbsp;@if($subcat4['product_count'])<span class="product-count">{{ $subcat4['product_count'] }}</span>@endif
                                                 </a>
                                             </li>
                                         @endforeach
@@ -38,8 +40,8 @@
                                 </li>
                             @else
                                 <li>
-                                    <a href="{{ route('catalog', $subcat3['slug']) }}">
-                                        {{ $subcat3['name'] }}&nbsp;@if($subcat3['product_count'])<span class="cat-count">{{ $subcat3['product_count'] }}</span>@endif
+                                    <a href="{{ route('catalog', $subcat3['slug']) }}" class="section-item">
+                                        {{ $subcat3['name'] }}&nbsp;@if($subcat3['product_count'])<span class="product-count">{{ $subcat3['product_count'] }}</span>@endif
                                     </a>
                                 </li>
                             @endif

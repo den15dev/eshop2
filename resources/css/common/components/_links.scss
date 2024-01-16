@@ -1,23 +1,49 @@
 .link {
   cursor: pointer;
   color: $color1;
+
   &:hover {
     color: color($color1, light, 3);
+  }
+
+  &:active {
+    color: color($color1, dark, 4);
   }
 }
 
 .dark-link {
   cursor: pointer;
   color: $text-color;
+
   &:hover {
     color: $color1;
+  }
+
+  &:active {
+    color: color($color1, dark, 4);
   }
 }
 
 .grey-link {
   cursor: pointer;
   color: $grey-150;
+
   &:hover {
     color: $color1;
+  }
+}
+
+.image-link-tint {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $color1;
+  opacity: 0;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.1;
   }
 }

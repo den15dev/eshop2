@@ -9,11 +9,14 @@ import { catalogDesktopRoot, catalogDesktopDropdowns } from "./site/main/catalog
 import search from './site/main/search.js';
 import auth from "./site/main/auth";
 
+import initQuantityButtons from "./site/components/quantity-buttons.js";
+
 import { initProductCarousels } from "./site/home.js";
 import initCatalogFilters from "./site/catalog-filters.js";
 import initCatalogPreferences from "./site/catalog-prefs.js";
 import initProductPage from "./site/product.js";
 import initReviews from "./site/reviews.js";
+import initCart from "./site/cart.js";
 
 
 // --------------- Common ------------------
@@ -32,6 +35,9 @@ catalogDesktopDropdowns();
 search();
 auth();
 
+// --------------- Components ------------------
+
+initQuantityButtons();
 
 // --------------- Home ------------------
 
@@ -49,5 +55,9 @@ initProductPage();
 // --------------- Reviews ------------------
 
 initReviews();
+
+// --------------- Cart ------------------
+
+initCart();
 
 // console.log(document.querySelectorAll('#catalogNavMobile .catalog-mobile-list > li').length);
