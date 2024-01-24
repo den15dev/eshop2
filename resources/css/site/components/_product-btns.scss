@@ -12,6 +12,7 @@
 .product-compare-btn,
 .product-favorite-btn {
   cursor: pointer;
+  width: fit-content;
   color: $grey-150;
 
   & > span {

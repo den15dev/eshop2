@@ -1,6 +1,7 @@
 .rating {
   display: flex;
   align-items: center;
+  width: fit-content;
 
   .vote-num {
     color: $grey-150;

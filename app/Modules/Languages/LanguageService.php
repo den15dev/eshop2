@@ -2,6 +2,7 @@
 
 namespace App\Modules\Languages;
 
+use App\Modules\Languages\Actions\GetImageURLAction;
 use App\Modules\Languages\Actions\ModifyURLAction;
 use App\Modules\Languages\Models\Language;
 use Illuminate\Database\Eloquent\Collection;
@@ -61,14 +62,14 @@ class LanguageService
         return self::getAll()->where('active', true);
     }
 
-    private static function getDefault(): Language
+    public static function getDefault(): Language
     {
         return self::getActive()
             ->where('default', true)
             ->first();
     }
 
-    private static function getFallback(): Language
+    public static function getFallback(): Language
     {
         return self::getActive()
             ->where('fallback', true)
@@ -79,9 +80,6 @@ class LanguageService
     /**
      * For convenience, move preferred language
      * to the beginning of the collection.
-     *
-     * @param string $pref_lang_id
-     * @return void
      */
     private static function sortLanguages(string $pref_lang_id): void
     {
@@ -91,7 +89,7 @@ class LanguageService
     }
 
 
-    public static function setLocale($lang_id): void
+    public static function setLocale(string $lang_id): void
     {
         self::sortLanguages($lang_id);
         app()->setLocale($lang_id);
@@ -117,13 +115,10 @@ class LanguageService
     /**
      * Check if a URL has a language prefix and such
      * a language exists in the language list.
-     *
-     * @param string|null $urlSegment1
-     * @return string|null
      */
-    public static function getRoutePrefix(?string $urlSegment1): string|null
+    public static function getRoutePrefix(?string $urlSegment1): ?string
     {
-        return LanguageService::getActive()->doesntContain('id', $urlSegment1)
+        return self::getActive()->doesntContain('id', $urlSegment1)
             ? null
             : $urlSegment1;
     }
@@ -134,11 +129,24 @@ class LanguageService
      * of the URL.
      *
      * @param string $orig_url - without 'http://example.com'
-     * @param string|null $lang_id
+     * @param ?string $lang_id
      * @return string
      */
-    public static function modifyURL(string $orig_url, string|null $lang_id): string
+    public static function modifyURL(string $orig_url, ?string $lang_id): string
     {
         return ModifyURLAction::run($orig_url, $lang_id);
+    }
+
+
+    /**
+     * Get image for current language. If it is not found
+     * get image for default of fallback languages.
+     *
+     * @param string $img_dirname - e.g. 'promos/2'
+     * @param string $img_filename - e.g. 'ryzen-processors-promo_992.jpg'
+     */
+    public static function getImageURL(string $img_dirname, string $img_filename): ?string
+    {
+        return GetImageURLAction::run($img_dirname, $img_filename);
     }
 }

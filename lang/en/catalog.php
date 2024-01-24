@@ -26,4 +26,5 @@ return [
         'in_fav' => 'In Favorites',
     ],
     'recent' => 'Recently Viewed',
+    'product_num' => ':count product|:count products',
 ];

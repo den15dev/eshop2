@@ -9,16 +9,15 @@ use Illuminate\View\View;
 
 class ReviewController extends Controller
 {
-    public function index(): View
-    {
-        $product = new \stdClass();
-        $product->id = 38;
-        $product->name = 'Материнская плата ASUS TUF GAMING B660M-PLUS WIFI D4';
-        $product->slug = 'processor-amd-ryzen-5-5600x-box';
-        $product->category_slug = 'cpu';
+    public function index(
+        string $category_slug,
+        string $product_slug_id
+    ): View {
+        $slug_id = parse_slug($product_slug_id);
+        $product_id = $slug_id[1];
+        $product_slug = $slug_id[0];
 
-        $product->rating = 4.47;
-        $product->vote_num = 208;
+        $product = ProductService::getOneProduct($product_id);
 
         $marks = [2, 0, 3, 15, 4];
 

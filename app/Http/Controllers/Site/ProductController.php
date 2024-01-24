@@ -14,7 +14,7 @@ class ProductController extends Controller
     public function show(
         CategoryService $categoryService,
         string $category_slug,
-        string $product_slug
+        string $product_slug_id
     ): View {
 
         $category = $categoryService->getCategoryBySlug($category_slug);
@@ -22,9 +22,9 @@ class ProductController extends Controller
         $breadcrumb = $categoryService->getBreadcrumb($category, false);
 
 
-        $temp_slug_arr = explode('-', $product_slug);
-        $temp_slug_num = count($temp_slug_arr);
-        $product_id = $temp_slug_arr[$temp_slug_num-1];
+        $slug_id = parse_slug($product_slug_id);
+        $product_id = $slug_id[1];
+        $product_slug = $slug_id[0];
 
         $product = ProductService::getOneProduct($product_id);
 

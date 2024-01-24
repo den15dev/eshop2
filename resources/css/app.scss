@@ -43,8 +43,10 @@
 @import 'site/pages/reviews';
 @import 'site/pages/review-block';
 @import 'site/pages/cart';
+@import 'site/pages/promo';
 
 @import 'site/components/product-card';
+@import 'site/components/category-card';
 @import 'site/components/product-row';
 @import 'site/components/rating-stars';
 @import 'site/components/carousel-nav-btns';
@@ -52,6 +54,7 @@
 @import 'site/components/quantity-btns';
 @import 'site/components/product-btns';
 @import 'site/components/cart-item';
+@import 'site/components/promo-badge';
 
 @import 'common/utilities';
 @import 'common/icons/bi-light';

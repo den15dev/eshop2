@@ -47,6 +47,12 @@
   width: 100%;
 }
 
+// Fix the issue when an edge of a next image is shown on the right.
+// Probably, because of none integer pixel width of container.
+.f-carousel {
+  --f-carousel-spacing: 1px;
+}
+
 .f-carousel__thumbs,
 .f-thumbs__slide {
   --f-thumb-width: 80px;

@@ -6,7 +6,7 @@ use App\Modules\Languages\LanguageService;
 
 class ModifyURLAction
 {
-    public static function run(string $orig_url, string|null $lang_id): string
+    public static function run(string $orig_url, ?string $lang_id): string
     {
         $url = $lang_id;
         $segments = explode('/', trim($orig_url, '/'));

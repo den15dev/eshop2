@@ -4,12 +4,11 @@
 
 @section('main_content')
     <div class="container">
-        <div>
-            Category: {{ $category->name }}
-        </div>
-        <div>
+        <x-breadcrumb :breadcrumb="$breadcrumb"/>
+
+        <div class="catalog-cards-cont mb-5">
             @foreach($children as $child)
-                {{ $child->name }} ({{ $child->product_count }})<br>
+                <x-category-card :category="$child" />
             @endforeach
         </div>
     </div>

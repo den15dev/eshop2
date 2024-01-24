@@ -26,4 +26,5 @@ return [
         'in_fav' => 'В избранном',
     ],
     'recent' => 'Недавно просмотренные',
+    'product_num' => ':count товар|:count товара|:count товаров',
 ];

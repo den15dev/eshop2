@@ -49,18 +49,20 @@
 .reviews-head-name-cont {
   padding-top: 0;
 
-  a:hover {
-    color: color($color1, dark, 2);
-  }
-
   h5 {
-    margin-bottom: 0;
+    margin-bottom: 0.25rem;
     line-height: 1.4;
     font-size: $font-size-base;
+
     @include sm {
+      margin-bottom: 0;
       font-size: $font-size-base * 1.25;
     }
   }
+}
+
+.reviews-head-name:hover {
+  color: color($color1, dark, 2);
 }
 
 

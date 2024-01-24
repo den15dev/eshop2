@@ -23,10 +23,10 @@ if (!function_exists('parse_slug')) {
     /**
      * Explodes "slug-id"-type slug to array [slug, id].
      *
-     * @param $slug_id - incoming "slug-id"-type slug.
+     * @param string $slug_id - incoming "slug-id"-type slug.
      * @return array - like [slug, id].
      */
-    function parse_slug($slug_id): array
+    function parse_slug(string $slug_id): array
     {
         $slug_arr = explode('-', $slug_id);
         $id = intval($slug_arr[count($slug_arr) - 1]);

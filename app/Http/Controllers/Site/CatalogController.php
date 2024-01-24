@@ -23,9 +23,16 @@ class CatalogController extends Controller
         abort_if(!$category, 404);
 
 
+        $breadcrumb = $categoryService->getBreadcrumb($category, true);
+
+
         $children = $categoryService->getChildren($category->id);
         if ($children) {
-            return view('site.pages.categories', compact('category', 'children'));
+            return view('site.pages.categories', compact(
+                'category',
+                'breadcrumb',
+                'children'
+            ));
         }
 
 
@@ -102,8 +109,6 @@ class CatalogController extends Controller
             $brands->push($brand);
         }
 
-
-        $breadcrumb = $categoryService->getBreadcrumb($category, true);
 
 
         $products = ProductService::getSomeProducts(12);

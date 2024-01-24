@@ -3,9 +3,9 @@
 @endphp
 
 <div class="product-row">
-    <a href="{{ $url }}" class="product-card_image-link">
+    <a href="{{ $url }}" class="product-row_image-link">
         <img src="{{ asset('storage/images/products/1/01_230.jpg') }}" class="product-row_image" alt="{{ $product->name }}">
-        <div class="tint"></div>
+        <div class="image-link-tint"></div>
     </a>
 
     <div>
@@ -26,10 +26,10 @@
             <div class="mb-2">
                 @if($product->discount_prc)
                     <div class="product-card_old-price">
-                        <del>{{ $product->price }} ₽</del>
+                        <del>{{ number_format($product->price, 0, ',', ' ') }} ₽</del>
                     </div>
                 @endif
-                <div class="product-card_price">{{ $product->final_price }} ₽</div>
+                <div class="product-card_price">{{ number_format($product->final_price, 0, ',', ' ') }} ₽</div>
             </div>
 
             <button class="btn-2sizes catalog-add-to-cart-btn">{{ __('catalog.product_card.add_to_cart') }}</button>

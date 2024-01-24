@@ -5,36 +5,18 @@
         <div class="promo-banner mb-4">
             <div class="swiper">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <a href="#">
-                            <picture>
-                                <source srcset="{{ asset('storage/images/promos/1/akcia_na_videokarty_nvidia.jpg') }}" media="(min-width: 1140px)" />
-                                <source srcset="{{ asset('storage/images/promos/1/akcia_na_videokarty_nvidia_1140.jpg') }}" media="(min-width: 992px)" />
-                                <source srcset="{{ asset('storage/images/promos/1/akcia_na_videokarty_nvidia_992.jpg') }}" media="(min-width: 768px)" />
-                                <img src="{{ asset('storage/images/promos/1/akcia_na_videokarty_nvidia_788.jpg') }}" alt="" />
-                            </picture>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#">
-                            <picture>
-                                <source srcset="{{ asset('storage/images/promos/2/amd_cpu_promo_001.jpg') }}" media="(min-width: 1140px)" />
-                                <source srcset="{{ asset('storage/images/promos/2/amd_cpu_promo_001_1140.jpg') }}" media="(min-width: 992px)" />
-                                <source srcset="{{ asset('storage/images/promos/2/amd_cpu_promo_001_992.jpg') }}" media="(min-width: 768px)" />
-                                <img src="{{ asset('storage/images/promos/2/amd_cpu_promo_001_788.jpg') }}" alt="" />
-                            </picture>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#">
-                            <picture>
-                                <source srcset="{{ asset('storage/images/promos/3/intel_13gen_promo_001.jpg') }}" media="(min-width: 1140px)" />
-                                <source srcset="{{ asset('storage/images/promos/3/intel_13gen_promo_001_1140.jpg') }}" media="(min-width: 992px)" />
-                                <source srcset="{{ asset('storage/images/promos/3/intel_13gen_promo_001_992.jpg') }}" media="(min-width: 768px)" />
-                                <img src="{{ asset('storage/images/promos/3/intel_13gen_promo_001_788.jpg') }}" alt="" />
-                            </picture>
-                        </a>
-                    </div>
+                    @foreach($promos as $promo)
+                        <div class="swiper-slide">
+                            <a href="{{ route('promo', $promo->slug . '-' . $promo->id) }}">
+                                <picture>
+                                    <source srcset="{{ $promo->images->size_1296 }}" media="(min-width: 1140px)" />
+                                    <source srcset="{{ $promo->images->size_1140 }}" media="(min-width: 992px)" />
+                                    <source srcset="{{ $promo->images->size_992 }}" media="(min-width: 768px)" />
+                                    <img src="{{ $promo->images->size_788 }}" alt="" />
+                                </picture>
+                            </a>
+                        </div>
+                    @endforeach
                 </div>
                 <div class="swiper-pagination"></div>
             </div>

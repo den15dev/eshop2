@@ -29,9 +29,14 @@
                         <img src="{{ asset('storage/images/products/4/01_230.jpg') }}" alt="{{ $product->name }}">
                     </a>
                     <div class="reviews-head-name-cont">
-                        <a class="btn-link mb-1" href="{{ $product_url }}">
-                            <h5>{{ $product->name }}</h5>
-                        </a>
+                        <h5>
+                            <a class="reviews-head-name mb-1" href="{{ $product_url }}">
+                            {{ $product->name }}
+                            </a>
+                            @if($product->promo_id)
+                            &nbsp;<a href="{{ route('promo', $product->promo_url_slug) }}" class="product-name_badge-small" title="{{ $product->promo_name }}">-{{ $product->discount_prc }}%</a>
+                            @endif
+                        </h5>
                         {{ trans_choice('reviews.reviews_num', $reviews->count()) }}
                     </div>
                 </div>

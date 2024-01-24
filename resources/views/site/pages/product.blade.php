@@ -8,6 +8,9 @@
 
         <h4 class="mb-3">
             {{ $product->name }}
+            @if($product->promo_id)
+            &nbsp;<a href="{{ route('promo', $product->promo_url_slug) }}" class="product-name_badge" title="{{ $product->promo_name }}">-{{ $product->discount_prc }}%</a>
+            @endif
         </h4>
 
         <div class="product-code mb-3">

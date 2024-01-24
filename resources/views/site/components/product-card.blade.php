@@ -1,8 +1,13 @@
 <div class="product-card">
-    <a href="{{ $product->url }}" class="product-card_image-link">
-        <img src="{{ asset('storage/images/products/' . (($product->id - 1) % 4 + 1) . '/01_230.jpg') }}" class="product-card_image" alt="{{ $product->name }}">
-        <div class="image-link-tint"></div>
-    </a>
+    <div class="product-card_image-cont">
+        <a href="{{ $product->url }}" class="product-card_image-link">
+            <img src="{{ asset('storage/images/products/' . (($product->id - 1) % 4 + 1) . '/01_230.jpg') }}" class="product-card_image" alt="{{ $product->name }}">
+            <div class="image-link-tint"></div>
+        </a>
+        @if($product->promo_id)
+            <a href="{{ route('promo', $product->promo_url_slug) }}" class="product-card_badge" title="{{ $product->promo_name }}">-{{ $product->discount_prc }}%</a>
+        @endif
+    </div>
     <a href="{{ $product->url }}" class="product-card_name mb-1">
         {{ $product->name }}
     </a>

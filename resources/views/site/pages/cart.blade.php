@@ -4,7 +4,7 @@
 
 @section('main_content')
     <div class="container">
-        <div class="cart-cont mb-4">
+        <div class="cart-cont mb-5">
             <div class="cart-head-cont">
                 <h3 class="mb-0">{{ __('cart.cart') }}</h3>
                 <div class="btn-link link" role="button">{{ __('cart.clear_cart') }}</div>

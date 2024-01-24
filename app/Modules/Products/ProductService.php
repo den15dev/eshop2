@@ -3,6 +3,7 @@
 namespace App\Modules\Products;
 
 use App\Modules\Categories\CategoryService;
+use App\Modules\Promos\PromoService;
 use Illuminate\Database\Eloquent\Collection;
 
 class ProductService
@@ -44,6 +45,7 @@ class ProductService
         $number = 8;
         $products = new Collection();
         $discounts = [0, 5, 0, 0, 10, 0, 5, 0];
+        $promo_ids = [0, 1, 0, 0, 2, 0, 0, 0];
         $prices = [550, 2490, 60490, 14490, 8190, 52350, 990, 24490];
         $names = [
             'Процессор AMD Ryzen 7 5800X3D BOX',
@@ -93,7 +95,6 @@ class ProductService
             $product->discount_prc = $discounts[$i % 8];
             $product->price = $prices[$i % 8];
             if ($product->discount_prc) {
-//                $product->final_price = number_format($product->price * (100 - $product->discount_prc)/100, 0, ',', ' ');
                 $product->final_price = $product->price * (100 - $product->discount_prc)/100;
             } else {
                 $product->final_price = $product->price;
@@ -103,6 +104,12 @@ class ProductService
             $product->vote_num = $vote_nums[$i % 8];
 
             $product->images = ['01', '02', '03', '04'];
+
+            $promo_id = $promo_ids[$i % 8];
+            $promo = PromoService::getActive()->firstWhere('id', $promo_id);
+            $product->promo_id = $promo ? $promo_id : null;
+            $product->promo_url_slug = $promo ? $promo->slug . '-' . $promo_id : null;
+            $product->promo_name = $promo ? $promo->name : null;
 
             $products->push($product);
         }
