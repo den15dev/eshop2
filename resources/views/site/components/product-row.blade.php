@@ -1,15 +1,11 @@
-@php
-    $url = route('product', [$product->category_slug, $product->slug . '-' . $product->id]);
-@endphp
-
 <div class="product-row">
-    <a href="{{ $url }}" class="product-row_image-link">
-        <img src="{{ asset('storage/images/products/1/01_230.jpg') }}" class="product-row_image" alt="{{ $product->name }}">
+    <a href="{{ $product->url }}" class="product-row_image-link">
+        <img src="{{ asset('storage/images/products/' . (($product->id - 1) % 4 + 1) . '/01_230.jpg') }}" class="product-row_image" alt="{{ $product->name }}">
         <div class="image-link-tint"></div>
     </a>
 
     <div>
-        <a href="{{ $url }}" class="product-card_name mb-1">
+        <a href="{{ $product->url }}" class="product-card_name mb-1">
             {{ $product->name }}
         </a>
         <div class="product-card_description mb-1">

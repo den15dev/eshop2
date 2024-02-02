@@ -8,6 +8,12 @@ use Illuminate\View\View;
 
 class OrderController extends Controller
 {
+    public function index(): View
+    {
+        return view('site.pages.orders');
+    }
+
+
     public function store(Request $request)
     {
         $order = new \stdClass();

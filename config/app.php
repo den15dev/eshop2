@@ -197,6 +197,7 @@ return [
         App\Modules\Promos\PromoServiceProvider::class,
         App\Modules\Products\ProductServiceProvider::class,
         App\Modules\Shops\ShopServiceProvider::class,
+        App\Modules\Orders\OrderServiceProvider::class,
     ])->toArray(),
 
     /*

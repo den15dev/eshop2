@@ -122,7 +122,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="outline-btn">
+                <a href="{{ route('orders') }}" class="outline-btn">
                     <svg viewBox="0 0 17 21">
                         <use href="#ordersIcon"/>
                     </svg>

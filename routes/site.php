@@ -30,6 +30,7 @@ Route::get('/promo/{promo}', [PromoController::class, 'show'])->name('promo');
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
 
+Route::get('/orders', [OrderController::class, 'index'])->name('orders');
 Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
 Route::get('/new-order/{order_id}', [OrderController::class, 'new'])->whereNumber('order_id')->name('orders.new');
 

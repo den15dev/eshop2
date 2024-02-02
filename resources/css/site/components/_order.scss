@@ -1,0 +1,197 @@
+$order-new-color: $color1;
+$order-accepted-color: #6ea9f6;
+$order-ready-color: #6ece14;
+$order-completed-color: $grey-150;
+$order-cancelled-color: #f6b56e;
+
+$order-not-payed-color: $color-red;
+$order-payed-color: $order-ready-color;
+
+
+.order-title {
+  font-size: $font-size-base;
+
+  @include sm {
+    font-size: $font-size-lg;
+  }
+}
+
+.order_details-cont {
+  column-count: 2;
+  column-gap: 2rem;
+  column-width: 260px;
+  font-size: $font-size-sm;
+  width: 100%;
+
+  @include md {
+    font-size: $font-size-base;
+  }
+
+  @include lg {
+    width: 80%;
+  }
+
+  @include xl {
+    width: 70%;
+  }
+}
+
+.order-table {
+  width: 100%;
+  text-align: center;
+
+  td {
+    border: 0 solid transparent;
+    background-clip: padding-box;
+  }
+
+  tr > td + td {
+    border-left-width: 10px;
+  }
+
+  .order-table_body td {
+    border-top-width: 12px;
+  }
+
+  tfoot td {
+    border-top-width: 8px;
+  }
+
+  // Product ID column
+  td:nth-child(4) {
+    display: none;
+
+    @include md {
+      display: table-cell;
+    }
+  }
+
+  // Price column
+  td:nth-child(5) {
+    display: none;
+
+    @include sm {
+      display: table-cell;
+    }
+  }
+
+  .nowrap {
+    white-space: nowrap;
+  }
+}
+
+.order-table_head {
+  font-size: $font-size-sm;
+  color: $grey-180;
+  line-height: 1.2;
+
+  tr:nth-child(1) > td {
+    padding: 0 0 8px 0;
+  }
+}
+
+.order-table_qty-text {
+  display: none;
+
+  @include sm {
+    display: inline;
+  }
+}
+
+.order-table_body {
+  font-size: $font-size-sm;
+
+  @include md {
+    font-size: $font-size-base;
+  }
+}
+
+.order-table_image {
+  a {
+    display: block;
+    width: 40px;
+    height: 40px;
+    margin: 0 auto;
+
+    img {
+      width: 100%;
+    }
+  }
+}
+
+.order-table_description {
+  text-align: left;
+}
+
+.order-table_name {
+  display: block;
+}
+
+.order-table_qty {
+  color: $grey-150;
+
+  @include sm {
+    color: $text-color;
+  }
+}
+
+tfoot {
+  .total {
+    font-weight: $font-weight-semibold;
+    white-space: nowrap;
+  }
+}
+
+.order-table_line {
+  height: 1px;
+  padding: 1px 0 0 0;
+  background-color: $grey-230;
+}
+
+.order-table_prod-id-md {
+  display: block;
+
+  @include md {
+    display: none;
+  }
+}
+
+.order-table_price-sm {
+  display: block;
+
+  @include sm {
+    display: none;
+  }
+}
+
+// ----- Order Statuses -----
+
+.order-status_new {
+  color: $order-new-color;
+}
+
+.order-status_accepted {
+  color: $order-accepted-color;
+}
+
+.order-status_ready {
+  color: $order-ready-color;
+}
+
+.order-status_sent {
+  color: $order-ready-color;
+}
+
+.order-status_completed {
+  color: $order-completed-color;
+}
+
+.order-status_cancelled {
+  color: $order-cancelled-color;
+}
+
+// ----- Payment Statuses -----
+
+.payment-status_not-payed {
+  color: $order-not-payed-color;
+}

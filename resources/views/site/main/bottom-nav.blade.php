@@ -32,7 +32,7 @@
                 {{ __('header.user_menu.filters') }}
             </div>
         @else
-            <a href="#" class="bottom-nav-btn">
+            <a href="{{ route('orders') }}" class="bottom-nav-btn">
                 <svg viewBox="0 0 17 21">
                     <use href="#ordersIcon"/>
                 </svg>
