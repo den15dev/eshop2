@@ -5,16 +5,26 @@ namespace App\View\Composers;
 use App\Modules\Categories\CategoryService;
 use App\Modules\Currencies\CurrencyService;
 use App\Modules\Languages\LanguageService;
+use App\Modules\Products\ComparisonService;
 use App\Modules\Settings\Models\Setting;
 use Illuminate\View\View;
 
 class LayoutComposer
 {
+    public function __construct(
+        private readonly CategoryService $categoryService,
+        private readonly ComparisonService $comparisonService,
+    ) {}
+
     public function compose(View $view): void
     {
         $currencies = CurrencyService::getAll();
         $languages = LanguageService::getActive();
-        $categories = (new CategoryService())->buildCategoryTree();
+        $categories = $this->categoryService->buildCategoryTree();
+
+        $comparisonData = ComparisonService::get();
+        $comparison_products = $this->comparisonService->getPopupProducts();
+        $is_popup_collapsed = $comparisonData?->is_popup_collapsed;
 
         $settings = Setting::getAll();
         $phone = $settings->firstWhere('name', 'phone')->val;
@@ -26,6 +36,8 @@ class LayoutComposer
             'phone',
             'phone_tel',
             'categories',
+            'is_popup_collapsed',
+            'comparison_products',
         ));
     }
 }

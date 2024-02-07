@@ -32,5 +32,8 @@
 
     <button class="btn-2sizes catalog-add-to-cart-btn">{{ __('catalog.product_card.add_to_cart') }}</button>
 
-    <x-product-btns size="small" :id="$product->id"/>
+    <div class="product-btn-cont small">
+        <x-product-btn-compare :id="$product->id" :catid="$product->category_id" :active="$product->is_comparing" />
+        <x-product-btn-favorites :id="$product->id" :active="false" />
+    </div>
 </div>

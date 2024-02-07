@@ -10,6 +10,7 @@ use Illuminate\View\View;
 class ReviewController extends Controller
 {
     public function index(
+        ProductService $productService,
         string $category_slug,
         string $product_slug_id
     ): View {
@@ -17,7 +18,7 @@ class ReviewController extends Controller
         $product_id = $slug_id[1];
         $product_slug = $slug_id[0];
 
-        $product = ProductService::getOneProduct($product_id);
+        $product = $productService->getOneProduct($product_id);
 
         $marks = [2, 0, 3, 15, 4];
 
@@ -41,7 +42,8 @@ class ReviewController extends Controller
         }
 
 
-        $recently_viewed = ProductService::getSomeProducts(8);
+        $recently_viewed_ids = [3, 9, 17, 18, 21, 25, 27, 28];
+        $recently_viewed = $productService->getRecentlyViewed($recently_viewed_ids);
 
 
         return view('site.pages.reviews', compact(

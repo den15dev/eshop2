@@ -54,7 +54,7 @@
         <div id="searchResultContMobile"></div>
     </div>
 
-    <form method="POST" action="{{ route('language') }}" id="changeLanguageForm" style="display: none">
+    <form method="POST" action="{{ route('language.set') }}" id="changeLanguageForm" style="display: none">
         @csrf
         <input type="hidden" name="new_language" value=""/>
     </form>

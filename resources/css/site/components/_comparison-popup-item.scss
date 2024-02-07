@@ -1,0 +1,30 @@
+.comparison-popup_item {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+
+  .btn-link {
+    padding: 8px;
+    font-size: $font-size-base;
+    color: $grey-180;
+
+    &:hover {
+      color: $color1;
+    }
+  }
+}
+
+.comparison-popup_item-img-link {
+  display: block;
+  flex: 0 0 50px;
+  height: 50px;
+
+  img {
+    width: 100%;
+  }
+}
+
+.comparison-popup_item-name-link {
+  display: block;
+  flex: 1;
+}

@@ -1,20 +1,20 @@
-export function fadeIn(element, fadeSpeed) {
+export function fadeIn(element, fadeSpeed, callback) {
     if (!isDisplayed(element)) {
-        doFadeIn(element, fadeSpeed);
+        doFadeIn(element, fadeSpeed, callback);
     }
 }
 
-export function fadeOut(element, fadeSpeed) {
+export function fadeOut(element, fadeSpeed, callback) {
     if (isDisplayed(element)) {
-        doFadeOut(element, fadeSpeed);
+        doFadeOut(element, fadeSpeed, callback);
     }
 }
 
-export function fadeToggle(element, fadeSpeed) {
+export function fadeToggle(element, fadeSpeed, callback) {
     if (isDisplayed(element)) {
-        doFadeOut(element, fadeSpeed);
+        doFadeOut(element, fadeSpeed, callback);
     } else {
-        doFadeIn(element, fadeSpeed);
+        doFadeIn(element, fadeSpeed, callback);
     }
 }
 
@@ -33,19 +33,25 @@ function isDisplayed(element) {
     return getComputedStyle(element).getPropertyValue('display') !== 'none';
 }
 
-function doFadeIn(element, fadeSpeed) {
+function doFadeIn(element, fadeSpeed, callback) {
     element.addEventListener('animationend', removeFadeInAnimation, false);
     setFadeSpeed(element, fadeSpeed);
     setMaxOpacity(element);
     element.style.display = 'block';
     element.classList.add('fade-in');
+    if (typeof callback === 'function') {
+        setTimeout(() => callback(), fadeSpeed + 50);
+    }
 }
 
-function doFadeOut(element, fadeSpeed) {
+function doFadeOut(element, fadeSpeed, callback) {
     element.addEventListener('animationend', removeFadeOutAnimation, false);
     setFadeSpeed(element, fadeSpeed);
     setMaxOpacity(element);
     element.classList.add('fade-out');
+    if (typeof callback === 'function') {
+        setTimeout(() => callback(), fadeSpeed + 50);
+    }
 }
 
 function removeFadeInAnimation(event) {

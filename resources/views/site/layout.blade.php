@@ -35,6 +35,7 @@
 
 @include('common.modal-client')
 
+{{-- ----- Flash message ----- --}}
 @if(session()->has('message'))
     <x-modal-flash
             type="{{ session('message.type') }}"
@@ -42,8 +43,18 @@
             align="{{ session('message.align') }}"/>
 @endif
 
-@include('site.main.client-translations')
+{{-- ----- Comparison popup ----- --}}
+@unless(request()->routeIs('comparison'))
+    @if($comparison_products->count())
+        <div class="comparison-popup {{ $is_popup_collapsed ? 'collapsed' : '' }}">
+            @include('site.includes.comparison-popup')
+        </div>
+    @else
+        <div class="comparison-popup" style="display: none"></div>
+    @endif
+@endunless
 
+{{-- ----- Monitoring page load time and number of DB queries ----- --}}
 @include('common.monitor')
 </body>
 </html>

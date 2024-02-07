@@ -3,6 +3,7 @@
 namespace App\Modules\Products;
 
 use App\Modules\Categories\CategoryService;
+use App\Modules\Categories\Models\Category;
 use App\Modules\Promos\PromoService;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -57,7 +58,8 @@ class ProductService
             'Видеокарта ASUS GeForce RTX 4070 Ti ROG Strix OC Edition',
             '8 ТБ Жесткий диск Seagate Exos 7E10',
         ];
-        $category_ids = [3, 7, 4, 20, 31, 39, 54, 61];
+//        $category_ids = [3, 7, 4, 20, 31, 39, 54, 61];
+        $category_id = fake()->numberBetween(1, 30);
         $category_slugs = [
             'cpu',
             'hdd',
@@ -81,6 +83,8 @@ class ProductService
         $ratings = [3.85, 2.15, 4.58, 4.2, 4.85, 1.25, 4.15, 3.25];
         $vote_nums = [208, 4, 26, 12, 57, 184, 12, 79];
 
+        $comparisonIds = ComparisonService::get()?->product_ids ?? [];
+
         for ($i = 0; $i < $number; $i++) {
             $product = new \stdClass();
             $product->id = $i + 1;
@@ -89,7 +93,8 @@ class ProductService
             $product->slug = str($name)->slug()->value();
             $product->category_slug = $category_slugs[$i % 8];
             $product->url = route('product', [$product->category_slug, $product->slug . '-' . $product->id]);
-            $product->category_id = $category_ids[$i % 8];
+//            $product->category_id = $category_ids[$i % 8];
+            $product->category_id = $category_id;
             $product->short_descr = $short_descrs[$i % 8];
 
             $product->discount_prc = $discounts[$i % 8];
@@ -111,6 +116,8 @@ class ProductService
             $product->promo_url_slug = $promo ? $promo->slug . '-' . $promo_id : null;
             $product->promo_name = $promo ? $promo->name : null;
 
+            $product->is_comparing = in_array($product->id, $comparisonIds);
+
             $products->push($product);
         }
 
@@ -118,25 +125,98 @@ class ProductService
     }
 
 
-    public static function getSomeProducts(int $number): Collection
+    public function getTempSpecs(): Collection
+    {
+        $spec_values = [
+            'AMD Ryzen 5',
+            '5600X',
+            'AM4',
+            '2020',
+            'AMD Vermeer',
+            'TSMC 7FF',
+            '6',
+            '12',
+            '6',
+            'нет',
+            '3',
+            '32',
+            '3.7',
+            '4.6',
+            'есть',
+            'DDR4',
+            '128',
+            '2',
+            '3200',
+            'нет',
+            '65',
+            '95',
+            'есть',
+            'нет',
+            'PCI-E',
+            '20',
+        ];
+
+        return CategoryService::getSpecs(2)->each(function ($spec, $index) use ($spec_values) {
+            $pivot = new \stdClass();
+            $pivot->specification_id = $index;
+            $pivot->spec_value = $spec_values[$index];
+            $spec->pivot = $pivot;
+        });
+    }
+
+
+    public function getSomeProducts(int|array $ids): Collection
     {
         $tempProducts = self::getTempProducts();
         $tempNum = $tempProducts->count();
 
+        $count = is_array($ids) ? count($ids) : $ids;
+
         $products = new Collection();
-        for ($i = 0; $i < $number; $i++) {
-            $products->push($tempProducts[$i % $tempNum]);
+        for ($i = 0; $i < $count; $i++) {
+            $product = $tempProducts[$i % $tempNum];
+            if (is_array($ids)) {
+                $product->id = $ids[$i];
+                $product->url = route('product', [$product->category_slug, $product->slug . '-' . $ids[$i]]);
+            }
+            $products->push($product);
         }
 
         return $products;
     }
 
-    public static function getOneProduct(int $id): \stdClass
+    public function getOneProduct(int $id): \stdClass
     {
         $tempProducts = self::getTempProducts();
         $tempNum = $tempProducts->count();
         $inner_id = ($id - 1) % $tempNum + 1;
 
         return $tempProducts->firstWhere('id', $inner_id);
+    }
+
+
+    public function getProductPageProduct(int $id): \stdClass
+    {
+        $product = $this->getOneProduct($id);
+
+        $product->specifications = self::getTempSpecs();
+
+        return $product;
+    }
+
+
+    public function getRecentlyViewed(array $ids): Collection
+    {
+        return $this->getSomeProducts($ids);
+    }
+
+
+    public function getCatalogProducts(Category $category, int $num): Collection
+    {
+        return $this->getSomeProducts($num)->each(function ($product) use ($category) {
+            $product->category_id = $category->id;
+            $product->category_slug = $category->slug;
+            $product->url = route('product', [$product->category_slug, $product->slug . '-' . $product->id]);
+        });
     }
 }

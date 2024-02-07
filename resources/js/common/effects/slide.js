@@ -8,10 +8,12 @@ HTMLElement.prototype.slideToggle = function(duration, callback) {
     }
 };
 
+// Collapse
 HTMLElement.prototype.slideUp = function(duration, callback) {
     _s(this, duration, callback);
 };
 
+// Unfold
 HTMLElement.prototype.slideDown = function (duration, callback) {
     _s(this, duration, callback, true);
 };

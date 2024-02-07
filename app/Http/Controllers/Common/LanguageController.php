@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Common;
 use App\Http\Controllers\Controller;
 use App\Modules\Languages\LanguageService;
 use App\Modules\Languages\Models\Language;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Lang;
 
 class LanguageController extends Controller
 {
-    public function __invoke(Request $request)
+    public function set(Request $request)
     {
         $new_lang_id = $request->input('new_language');
         abort_unless(Language::where('id', $new_lang_id)->exists(), 404);
@@ -20,6 +22,17 @@ class LanguageController extends Controller
             return $this->withURLPriority($cookie, $new_lang_id);
         }
         return $this->withLanguagePriority($cookie);
+    }
+
+
+    public function translations(): JsonResponse
+    {
+        $trans_arr = [];
+
+        $trans_arr['general'] = Lang::get('general', [], app()->getLocale());
+        $trans_arr['comparison'] = Lang::get('comparison', [], app()->getLocale());
+
+        return response()->json($trans_arr);
     }
 
 

@@ -4,7 +4,7 @@
 
 <div class="bottom-nav">
     <div class="bottom-nav_cont">
-        <a href="#" class="bottom-nav-btn">
+        <a href="{{ route('favorites') }}" class="bottom-nav-btn">
             <svg viewBox="0 0 21 19">
                 <use href="#favoriteIcon"/>
             </svg>

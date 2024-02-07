@@ -1,3 +1,4 @@
+import { translations } from "../../common/global.js";
 import {showModal, closeModal, showClientModal} from "../../common/modals.js";
 
 const headerSignInBtn = document.querySelector('#headerSignInBtn');
@@ -273,7 +274,7 @@ function showAlert(formElem, type, message, errorPrefix = true) {
         alertCont.classList.add(`alert-${type}`);
         let content = message;
         if (errorPrefix) {
-            content = `${trans.error} ${message}`;
+            content = `${translations.general.messages.error} ${message}`;
         }
         alertCont.innerText = content;
         alertCont.style.display = 'block';
@@ -311,7 +312,7 @@ function logOut(logoutBtn) {
     })
     .catch(err => {
         showClientModal({
-            message: `${trans.error} ${err.message}`,
+            message: `${translations.general.messages.error} ${err.message}`,
             icon: 'warning',
         });
     });

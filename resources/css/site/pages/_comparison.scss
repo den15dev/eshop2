@@ -1,0 +1,51 @@
+.comparison-table_cont {
+  overflow-x: auto;
+}
+
+.comparison-table {
+  width: auto;
+  font-size: $font-size-sm;
+  text-align: center;
+
+  @include sm {
+    font-size: $font-size-base;
+  }
+
+  tr td:first-child {
+    text-align: left;
+    color: $grey-150;
+  }
+
+  thead td {
+    vertical-align: top;
+  }
+
+  tbody td {
+    vertical-align: middle;
+  }
+}
+
+.comparison-table_col1 {
+  width: 400px;
+}
+
+.comparison-table_col {
+  width: 220px;
+  min-width: 140px;
+}
+
+.comparison-table_img-link {
+  display: block;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+
+  img {
+    width: auto;
+  }
+}
+
+.comparison-table_name {
+  display: block;
+  font-weight: $font-weight-semibold;
+}

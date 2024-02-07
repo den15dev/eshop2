@@ -5,8 +5,12 @@ declare(strict_types=1);
 return [
     'app_name' => 'Electronics',
 
-    'modal' => [
+    'messages' => [
         'error' => 'Error',
-        'cancel' => 'Cancel',
+        'error_occurred' => 'An error has occurred',
     ],
+
+    'modal' => [
+        'cancel' => 'Cancel',
+    ]
 ];

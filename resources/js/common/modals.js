@@ -2,7 +2,6 @@ import { fadeSpeed } from './global.js';
 import { fadeIn, fadeOut } from "./effects/fade.js";
 
 const tint = document.querySelector('.modal-tint');
-let fadeTimeout;
 
 export default function init() {
     const closeBtns = document.querySelectorAll('.modal-close-btn');
@@ -19,12 +18,7 @@ export default function init() {
 
 
 export function closeModal(modalElem) {
-    clearTimeout(fadeTimeout);
-    fadeTimeout = setTimeout(() => {
-        hideModalContainer(modalElem);
-    }, fadeSpeed + 50);
-
-    fadeOut(modalElem, fadeSpeed);
+    fadeOut(modalElem, fadeSpeed, () => hideModalContainer(modalElem));
     fadeOut(tint, fadeSpeed);
 }
 

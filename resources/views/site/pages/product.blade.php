@@ -91,7 +91,10 @@
                     <button>{{ __('catalog.product_card.add_to_cart') }}</button>
                 </div>
 
-                <x-product-btns mb="3" :id="$product->id"/>
+                <div class="product-btn-cont mb-3">
+                    <x-product-btn-compare :id="$product->id" :catid="$product->category_id" :active="$product->is_comparing" />
+                    <x-product-btn-favorites :id="$product->id" :active="false" />
+                </div>
             </div>
         </div>
 
@@ -127,9 +130,9 @@
                         <tr>
                             <td>{{ $spec->name }}</td>
                             @php
-                                $spec_value = $spec->spec_value;
+                                $spec_value = $spec->pivot->spec_value;
                                 $units = $spec->units ? ' ' . $spec->units : '';
-                                if (in_array($spec->spec_value, ['нет', 'да', 'есть', '-'])) $units = '';
+                                if (in_array($spec_value, ['нет', 'да', 'есть', '-'])) $units = '';
                             @endphp
                             @if($loop->first)
                                 <td class="item_spec_col2">{{ $spec_value . $units }}</td>
@@ -140,6 +143,10 @@
                     @endforeach
                     </tbody>
                 </table>
+
+                <div class="product-btn-cont mb-4">
+                    <x-product-btn-compare :id="$product->id" :catid="$product->category_id" :active="$product->is_comparing" />
+                </div>
             </div>
         </div>
 

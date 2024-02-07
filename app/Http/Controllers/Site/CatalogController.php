@@ -17,6 +17,7 @@ class CatalogController extends Controller
         Request $request,
         CategoryService $categoryService,
         CatalogService $catalogService,
+        ProductService $productService,
         string $category_slug
     ): View {
         $category = $categoryService->getCategoryBySlug($category_slug);
@@ -111,9 +112,10 @@ class CatalogController extends Controller
 
 
 
-        $products = ProductService::getSomeProducts(12);
+        $products = $productService->getCatalogProducts($category, 12);
 
-        $recently_viewed = ProductService::getSomeProducts(8);
+        $recently_viewed_ids = [3, 9, 17, 18, 21, 25, 27, 28];
+        $recently_viewed = $productService->getRecentlyViewed($recently_viewed_ids);
 
 
 //        Mail::to('dendangler@gmail.com')->send(new SomeHappen());

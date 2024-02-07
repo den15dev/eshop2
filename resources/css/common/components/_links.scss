@@ -1,13 +1,15 @@
+$link-color: $color1;
+
 .link {
   cursor: pointer;
-  color: $color1;
+  color: $link-color;
 
   &:hover {
-    color: color($color1, light, 3);
+    color: color($link-color, light, 3);
   }
 
   &:active {
-    color: color($color1, dark, 4);
+    color: color($link-color, dark, 4);
   }
 }
 
@@ -16,11 +18,11 @@
   color: $text-color;
 
   &:hover {
-    color: $color1;
+    color: $link-color;
   }
 
   &:active {
-    color: color($color1, dark, 4);
+    color: color($link-color, dark, 4);
   }
 }
 
@@ -29,7 +31,7 @@
   color: $grey-150;
 
   &:hover {
-    color: $color1;
+    color: $link-color;
   }
 }
 
@@ -39,7 +41,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: $color1;
+  background-color: $link-color;
   opacity: 0;
   transition: opacity 0.2s;
 

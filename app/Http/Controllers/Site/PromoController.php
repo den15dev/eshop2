@@ -13,6 +13,7 @@ class PromoController extends Controller
 {
     public function show(
         PromoService $promoService,
+        ProductService $productService,
         string $promo_slug_id
     ): View {
         $slug_id = parse_slug($promo_slug_id);
@@ -27,7 +28,7 @@ class PromoController extends Controller
 
         $promo->images = $promoService->getBannerImages($promo->id, $promo->slug);
 
-        $products = ProductService::getSomeProducts(8);
+        $products = $productService->getSomeProducts(8);
 
         return view('site.pages.promo', compact(
             'promo',

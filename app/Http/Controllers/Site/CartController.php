@@ -10,9 +10,10 @@ use Illuminate\View\View;
 
 class CartController extends Controller
 {
-    public function index(): View
-    {
-        $products = ProductService::getSomeProducts(3);
+    public function index(
+        ProductService $productService
+    ): View {
+        $products = $productService->getSomeProducts(3);
 
 
         $total = new \stdClass();

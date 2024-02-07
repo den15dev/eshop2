@@ -1,5 +1,6 @@
 // import './bootstrap';
 
+import { getTranslations } from "./common/global.js";
 import menuOpeners from './site/main/menu-opener-handler.js';
 import dropdowns, { localizationDropdowns } from "./common/dropdowns";
 import tabs from "./common/tabs";
@@ -17,6 +18,7 @@ import initCatalogPreferences from "./site/catalog-prefs.js";
 import initProductPage from "./site/product.js";
 import initReviews from "./site/reviews.js";
 import initCart from "./site/cart.js";
+import initComparison from "./site/comparison.js";
 
 
 // --------------- Common ------------------
@@ -60,4 +62,10 @@ initReviews();
 
 initCart();
 
-// console.log(document.querySelectorAll('#catalogNavMobile .catalog-mobile-list > li').length);
+// --------------- Comparison ------------------
+
+initComparison();
+
+// --------------- Get all client translations ------------------
+
+getTranslations();

@@ -20,10 +20,6 @@ return [
     'product_card' => [
         'add_to_cart' => 'Add To Cart',
         'in_cart' => 'In Cart',
-        'compare' => 'Compare',
-        'comparing' => 'Comparing',
-        'add_to_fav' => 'Add To Favorites',
-        'in_fav' => 'In Favorites',
     ],
     'recent' => 'Recently Viewed',
     'product_num' => ':count product|:count products',

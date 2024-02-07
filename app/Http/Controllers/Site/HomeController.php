@@ -9,15 +9,17 @@ use Illuminate\View\View;
 
 class HomeController extends Controller
 {
-    public function index(PromoService $promoService): View
-    {
+    public function index(
+        PromoService $promoService,
+        ProductService $productService
+    ): View {
         $promos = $promoService->getBanners();
 
         $is_login_page = session()->has('login_page');
 
-        $products = ProductService::getSomeProducts(8);
+        $products = $productService->getSomeProducts(8);
 
-        $popular_products = ProductService::getSomeProducts(8);
+        $popular_products = $productService->getSomeProducts(8);
 
         return view('site.pages.home', compact(
             'is_login_page',

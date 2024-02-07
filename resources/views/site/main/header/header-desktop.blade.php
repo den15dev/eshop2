@@ -104,7 +104,7 @@
     <nav class="bottom-right">
         <ul class="nav-list-user">
             <li>
-                <a href="#" class="outline-btn">
+                <a href="{{ route('favorites') }}" class="outline-btn">
                     <svg viewBox="0 0 21 19">
                         <use href="#favoriteIcon"/>
                     </svg>

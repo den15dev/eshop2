@@ -1,3 +1,21 @@
+:root {
+  --product-card-image: 154px;
+  --product-row-image: 120px;
+
+  @include sm {
+    --product-row-image: 154px;
+  }
+
+  @include md {
+    --product-card-image: 220px;
+    --product-row-image: 200px;
+  }
+
+  @include xl {
+    --product-card-image: 230px;
+  }
+}
+
 .catalog-page-wrap {
   display: flex;
   gap: 1.5rem;

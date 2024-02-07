@@ -41,6 +41,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\SetPreferredLanguage::class,
             \App\Http\Middleware\SetRouteLanguage::class,
             \App\Http\Middleware\SetCurrency::class,
+            \App\Http\Middleware\SetComparisonData::class,
         ],
 
         'api' => [

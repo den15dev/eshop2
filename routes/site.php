@@ -4,6 +4,8 @@ use App\Http\Controllers\Common\CurrencyController;
 use App\Http\Controllers\Common\LanguageController;
 use App\Http\Controllers\Site\CartController;
 use App\Http\Controllers\Site\CatalogController;
+use App\Http\Controllers\Site\ComparisonController;
+use App\Http\Controllers\Site\FavoriteController;
 use App\Http\Controllers\Site\HomeController;
 use App\Http\Controllers\Site\OrderController;
 use App\Http\Controllers\Site\ProductController;
@@ -15,7 +17,8 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::post('/language', LanguageController::class)->name('language');
+Route::post('/language', [LanguageController::class, 'set'])->name('language.set');
+Route::get('/translations', [LanguageController::class, 'translations'])->name('translations');
 Route::post('/currency', CurrencyController::class)->name('currency');
 
 Route::get('/temp', [TempController::class, 'temp'])->name('temp');
@@ -33,5 +36,10 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::get('/orders', [OrderController::class, 'index'])->name('orders');
 Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
 Route::get('/new-order/{order_id}', [OrderController::class, 'new'])->whereNumber('order_id')->name('orders.new');
+
+Route::get('/comparison', [ComparisonController::class, 'index'])->name('comparison');
+Route::get('/comparison/popup', [ComparisonController::class, 'popup'])->name('comparison.popup');
+
+Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites');
 
 require __DIR__.'/auth.php';
