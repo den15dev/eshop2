@@ -104,12 +104,12 @@
     <nav class="bottom-right">
         <ul class="nav-list-user">
             <li>
-                <a href="{{ route('favorites') }}" class="outline-btn">
+                <a href="{{ route('favorites') }}" class="outline-btn" id="favoritesBtnDesktop">
                     <svg viewBox="0 0 21 19">
                         <use href="#favoriteIcon"/>
                     </svg>
                     {{ __('header.user_menu.favorites') }}
-                    <div class="badge-round">2</div>
+                    <div class="badge-round {{ $favorites_num ? 'active' : '' }}">{{ $favorites_num }}</div>
                 </a>
             </li>
             <li>

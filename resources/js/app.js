@@ -19,6 +19,7 @@ import initProductPage from "./site/product.js";
 import initReviews from "./site/reviews.js";
 import initCart from "./site/cart.js";
 import initComparison from "./site/comparison.js";
+import initFavorites from "./site/favorites.js";
 
 
 // --------------- Common ------------------
@@ -65,6 +66,10 @@ initCart();
 // --------------- Comparison ------------------
 
 initComparison();
+
+// --------------- Favorites ------------------
+
+initFavorites();
 
 // --------------- Get all client translations ------------------
 

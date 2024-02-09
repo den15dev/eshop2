@@ -4,6 +4,9 @@ export const htmlElem = document.querySelector('html');
 export const lgMedia = window.matchMedia('(min-width: 992px)');
 export const smMedia = window.matchMedia('(min-width: 576px)');
 
+export const csrf = document.querySelector('meta[name="csrf-token"]').content;
+export const lang = document.documentElement.lang;
+
 export let translations;
 
 export function getMobileWinHeight() {

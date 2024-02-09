@@ -56,7 +56,7 @@
                     @include('site.includes.pagination')
                 @else
                     <div class="items-not-found">
-                        Нет товаров
+                        {{ __('catalog.no_products') }}
                     </div>
                 @endif
             </div>

@@ -14,7 +14,7 @@ This is a second version of a multi-page E-commerce web application (work in pro
 - An order system.
 - User notifications about order status changes.
 - Adding products to Favorites.
-- Comparing products and their specifications.
+- Comparing products by their specifications.
 - Any user regardless of authentication can use a product cart, make an order, see his order history, manage Favorites section, and compare products.
 - An Admin panel for managing everything: add, search, explore, edit, delete — categories, products, specifications, reviews, promos, languages and translations, as well as viewing log, the dashboard with sales and rate statistics, managing orders and users.
 - Multi-language support.

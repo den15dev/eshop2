@@ -41,5 +41,6 @@ Route::get('/comparison', [ComparisonController::class, 'index'])->name('compari
 Route::get('/comparison/popup', [ComparisonController::class, 'popup'])->name('comparison.popup');
 
 Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites');
+Route::post('/favorites', [FavoriteController::class, 'store'])->name('favorites.store');
 
 require __DIR__.'/auth.php';

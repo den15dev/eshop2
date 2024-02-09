@@ -84,6 +84,7 @@ class ProductService
         $vote_nums = [208, 4, 26, 12, 57, 184, 12, 79];
 
         $comparisonIds = ComparisonService::get()?->product_ids ?? [];
+        $favoriteIds = FavoriteService::get() ?? [];
 
         for ($i = 0; $i < $number; $i++) {
             $product = new \stdClass();
@@ -117,6 +118,7 @@ class ProductService
             $product->promo_name = $promo ? $promo->name : null;
 
             $product->is_comparing = in_array($product->id, $comparisonIds);
+            $product->is_favorite = in_array($product->id, $favoriteIds);
 
             $products->push($product);
         }

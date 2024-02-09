@@ -23,4 +23,5 @@ return [
     ],
     'recent' => 'Recently Viewed',
     'product_num' => ':count product|:count products',
+    'no_products' => 'No products',
 ];

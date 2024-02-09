@@ -3,7 +3,7 @@
 $badge-size-px: 18px;
 
 .badge-round {
-  display: block;
+  display: none;
   position: absolute;
   top: -5px;
   right: 20%;
@@ -15,12 +15,18 @@ $badge-size-px: 18px;
   background-color: color($color1, light, 3);
   color: white;
   border-radius: math.div($badge-size-px, 2);
+
   &-grey {
     @extend .badge-round;
     background-color: $grey-200;
   }
+
   &-red {
     @extend .badge-round;
     background-color: $color-red;
+  }
+
+  &.active {
+    display: block;
   }
 }

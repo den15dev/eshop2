@@ -4,12 +4,12 @@
 
 <div class="bottom-nav">
     <div class="bottom-nav_cont">
-        <a href="{{ route('favorites') }}" class="bottom-nav-btn">
+        <a href="{{ route('favorites') }}" class="bottom-nav-btn" id="favoritesBtnMobile">
             <svg viewBox="0 0 21 19">
                 <use href="#favoriteIcon"/>
             </svg>
             {{ __('header.user_menu.favorites') }}
-            {{--            <div class="badge-round">2</div>--}}
+            <div class="badge-round {{ $favorites_num ? 'active' : '' }}">{{ $favorites_num }}</div>
         </a>
         <a href="{{ route('cart') }}" class="bottom-nav-btn">
             <svg viewBox="0 0 22 22">

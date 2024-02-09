@@ -1,7 +1,8 @@
-import { fadeSpeed } from './global.js';
+import { fadeSpeed, translations } from './global.js';
 import { fadeIn, fadeOut } from "./effects/fade.js";
 
 const tint = document.querySelector('.modal-tint');
+const flashModal = document.querySelector('#flashModal');
 
 export default function init() {
     const closeBtns = document.querySelectorAll('.modal-close-btn');
@@ -13,7 +14,9 @@ export default function init() {
         });
     });
 
-    showFlashModal();
+    if (flashModal) {
+        showFlashModal();
+    }
 }
 
 
@@ -31,20 +34,17 @@ export function showModal(modalElem) {
 
 
 function showFlashModal() {
-    const flashModal = document.querySelector('#flashModal');
-    if (flashModal) {
-        showModalContainer(flashModal);
+    showModalContainer(flashModal);
 
-        tint.style.display = 'block';
-        flashModal.style.display = 'block';
+    tint.style.display = 'block';
+    flashModal.style.display = 'block';
 
-        const flashOkBtn = document.querySelector('#flashOkBtn');
+    const flashOkBtn = document.querySelector('#flashOkBtn');
 
-        flashOkBtn.addEventListener('click', () => {
-            const modal = flashOkBtn.closest('.modal-win');
-            closeModal(modal);
-        });
-    }
+    flashOkBtn.addEventListener('click', () => {
+        const modal = flashOkBtn.closest('.modal-win');
+        closeModal(modal);
+    });
 }
 
 
@@ -123,4 +123,13 @@ export function showClientModal(data = {}) {
     }
 
     showModal(clientModal);
+}
+
+
+export function showErrorMessage(message) {
+    showClientModal({
+        message: translations.general.messages.error_occurred,
+        icon: 'warning',
+    });
+    console.error(message);
 }

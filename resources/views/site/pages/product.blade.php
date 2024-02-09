@@ -93,7 +93,7 @@
 
                 <div class="product-btn-cont mb-3">
                     <x-product-btn-compare :id="$product->id" :catid="$product->category_id" :active="$product->is_comparing" />
-                    <x-product-btn-favorites :id="$product->id" :active="false" />
+                    <x-product-btn-favorites :id="$product->id" :active="$product->is_favorite" />
                 </div>
             </div>
         </div>

@@ -23,4 +23,5 @@ return [
     ],
     'recent' => 'Недавно просмотренные',
     'product_num' => ':count товар|:count товара|:count товаров',
+    'no_products' => 'Нет товаров',
 ];

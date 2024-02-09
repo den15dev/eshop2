@@ -26,20 +26,29 @@
   &:active {
     color: color($link-color, light, 4);
   }
-}
 
-.product-compare-btn.active {
-  color: $color1;
+  &.active {
+    color: $color1;
 
-  &:hover {
-    color: color($color1, light, 3);
+    &:hover {
+      color: color($color1, light, 3);
+    }
   }
 }
 
-.product-favorite-btn.active {
-  color: $color-red;
 
-  &:hover {
-    color: color($color-red, light, 3);
-  }
-}
+//.product-compare-btn.active {
+//  color: $color1;
+//
+//  &:hover {
+//    color: color($color1, light, 3);
+//  }
+//}
+//
+//.product-favorite-btn.active {
+//  color: $color-red;
+//
+//  &:hover {
+//    color: color($color-red, light, 3);
+//  }
+//}

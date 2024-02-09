@@ -28,9 +28,9 @@ class LanguageController extends Controller
     public function translations(): JsonResponse
     {
         $trans_arr = [];
-
-        $trans_arr['general'] = Lang::get('general', [], app()->getLocale());
-        $trans_arr['comparison'] = Lang::get('comparison', [], app()->getLocale());
+        $trans_arr['general'] = Lang::get(key: 'general', locale: app()->getLocale());
+        $trans_arr['comparison'] = Lang::get(key: 'comparison', locale: app()->getLocale());
+        $trans_arr['favorites'] = Lang::get(key: 'favorites', locale: app()->getLocale());
 
         return response()->json($trans_arr);
     }

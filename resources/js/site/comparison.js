@@ -1,7 +1,6 @@
-import { translations } from "../common/global.js";
+import { translations, getCookieValue } from "../common/global.js";
 import '../common/effects/slide.js';
-import { getCookieValue } from "../common/global.js";
-import { showClientModal } from "../common/modals.js";
+import { showClientModal, showErrorMessage } from "../common/modals.js";
 import { fadeIn, fadeOut } from "../common/effects/fade.js";
 
 const popup = document.querySelector('.comparison-popup');
@@ -108,6 +107,7 @@ function initPopup() {
 function updateList(product_id, category_id) {
     product_id = parseInt(product_id, 10);
     category_id = parseInt(category_id, 10);
+    let firstShow = false;
 
     if (comparisonArr) {
         if (comparisonArr[0] === category_id) {
@@ -117,19 +117,13 @@ function updateList(product_id, category_id) {
                     return id !== product_id;
                 });
 
-                if (comparisonArr[1].length > 0) {
-                    setCookie(comparisonArr);
-                    getPopup();
-                    makeButtonsInactive(product_id);
-                } else {
+                if (!comparisonArr[1].length) {
                     clearList();
+                    return;
                 }
 
             } else {
                 comparisonArr[1].push(product_id);
-                setCookie(comparisonArr);
-                getPopup();
-                makeButtonsActive(product_id);
             }
 
         } else {
@@ -138,18 +132,27 @@ function updateList(product_id, category_id) {
                 message: translations.comparison.modal.another_category,
                 okText: translations.comparison.modal.proceed,
                 okAction: function () {
-                    setCookie([category_id, [product_id], 0]);
-                    getPopup();
-                    makeButtonsActive(product_id);
+                    comparisonArr = [category_id, [product_id], 0];
+                    doUpdate(comparisonArr, firstShow, product_id);
                 },
             });
+
+            return;
         }
 
     } else {
-        setCookie([category_id, [product_id], 0]);
-        getPopup(true);
-        makeButtonsActive(product_id);
+        comparisonArr = [category_id, [product_id], 0];
+        firstShow = true;
     }
+
+    doUpdate(comparisonArr, firstShow, product_id);
+}
+
+
+function doUpdate(comparisonArr, firstShow, product_id) {
+    setCookie(comparisonArr);
+    getPopup(firstShow);
+    inverseButtons(product_id);
 }
 
 
@@ -165,12 +168,12 @@ function clearList() {
 
 
 function setCookie(newComparisonArr) {
-    document.cookie = cookieName + '=' + encodeURIComponent(JSON.stringify(newComparisonArr)) + '; path=/;  max-age=157680000';
+    document.cookie = cookieName + '=' + encodeURIComponent(JSON.stringify(newComparisonArr)) + '; path=/;  max-age=2592000';
     comparisonArr = newComparisonArr;
 }
 
 function removeCookie() {
-    document.cookie = cookieName + '=; path=/;  Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    document.cookie = cookieName + '=; path=/;  max-age=-1';
     comparisonArr = null;
 }
 
@@ -187,7 +190,7 @@ function getPopup(firstShow = false) {
         method: 'get',
     })
     .then(response => {
-        if (!response.ok) throw new Error(`${response.status}`);
+        if (!response.ok) throw new Error(`${response.status} (${response.statusText})`);
         return response.text();
     })
     .then(result => {
@@ -195,13 +198,7 @@ function getPopup(firstShow = false) {
         initPopup();
         if (firstShow) { showPopup(); }
     })
-    .catch(err => {
-        showClientModal({
-            message: translations.general.messages.error_occurred,
-            icon: 'warning',
-        });
-        console.error(err.message);
-    });
+    .catch(err => showErrorMessage(err.message));
 }
 
 
@@ -214,35 +211,24 @@ function showPopup() {
 }
 
 
-function makeButtonsActive(product_id) {
+function inverseButtons(product_id) {
     const btns = document.querySelectorAll(`.product-compare-btn[data-id="${product_id}"]`);
 
     btns.forEach(btn => {
-        btn.classList.add('active');
-
         const iconSpan = btn.querySelector('.compare-btn-icon');
-        iconSpan.classList.replace('icon-bar-chart', 'icon-bar-chart-fill');
-
         const textSpan = btn.querySelector('.compare-btn-text');
-        textSpan.innerText = translations.comparison.in_list;
 
-        btn.title = translations.comparison.remove_title;
-    });
-}
-
-function makeButtonsInactive(product_id) {
-    const btns = document.querySelectorAll(`.product-compare-btn[data-id="${product_id}"]`);
-
-    btns.forEach(btn => {
-        btn.classList.remove('active');
-
-        const iconSpan = btn.querySelector('.compare-btn-icon');
-        iconSpan.classList.replace('icon-bar-chart-fill', 'icon-bar-chart');
-
-        const textSpan = btn.querySelector('.compare-btn-text');
-        textSpan.innerText = translations.comparison.compare;
-
-        btn.removeAttribute('title');
+        if (btn.classList.contains('active')) {
+            btn.classList.remove('active');
+            iconSpan.classList.replace('icon-bar-chart-fill', 'icon-bar-chart');
+            textSpan.innerText = translations.comparison.compare;
+            btn.removeAttribute('title');
+        } else {
+            btn.classList.add('active');
+            iconSpan.classList.replace('icon-bar-chart', 'icon-bar-chart-fill');
+            textSpan.innerText = translations.comparison.in_list;
+            btn.title = translations.comparison.remove_title;
+        }
     });
 }
 
