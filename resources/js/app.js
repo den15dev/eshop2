@@ -8,7 +8,7 @@ import modals from "./common/modals.js";
 import catalogMobile  from './site/main/catalog-mobile.js';
 import { catalogDesktopRoot, catalogDesktopDropdowns } from "./site/main/catalog-desktop.js";
 import search from './site/main/search.js';
-import auth from "./site/main/auth";
+import auth, { handlePasswordEyeBtns } from "./site/main/auth";
 
 import initQuantityButtons from "./site/components/quantity-buttons.js";
 
@@ -37,6 +37,7 @@ catalogDesktopRoot();
 catalogDesktopDropdowns();
 search();
 auth();
+handlePasswordEyeBtns();
 
 // --------------- Components ------------------
 

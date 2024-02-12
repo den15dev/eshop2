@@ -32,12 +32,13 @@ $dropdown-item-paddings: 0.25rem;
     margin-bottom: 2px;
   }
 
-  div, a {
-    display: block;
-    padding: $dropdown-item-paddings;
-  }
   white-space: nowrap;
   @include dropdown-shadow;
+}
+
+.dropdown-item {
+  display: block;
+  padding: $dropdown-item-paddings;
 }
 
 .dd-right {

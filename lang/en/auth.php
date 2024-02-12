@@ -25,7 +25,7 @@ return [
         'forgot_send' => 'Send A Link',
         'registration_success' => [
             'welcome' => 'Welcome, :name!',
-            'link_sent' => 'An email confirmation link has been sent to you.',
+            'link_sent' => 'An email confirmation link has been sent to :address.',
         ],
         'password_reset' => [
             'title' => 'Password Reset',

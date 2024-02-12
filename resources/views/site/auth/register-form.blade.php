@@ -13,8 +13,11 @@
     </div>
     <div class="mb-3">
         <label for="registerPasswordInput" class="form-label">{{ __('auth.modal.password') }}:</label>
-        <input type="password" name="password" class="form-control" id="registerPasswordInput" autocomplete="new-password">
-        <div id="registerPasswordInputFeedback" class="invalid-feedback"></div>
+        <div class="password-eye_cont">
+            <input type="password" name="password" class="form-control" id="registerPasswordInput" autocomplete="new-password">
+            <div id="registerPasswordInputFeedback" class="invalid-feedback"></div>
+            <div class="password-eye_show"></div>
+        </div>
     </div>
     <div class="mb-4">
         <label for="registerConfirmPasswordInput" class="form-label">{{ __('auth.modal.confirm_password') }}:</label>

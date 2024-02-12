@@ -7,7 +7,7 @@
     <ul class="dropdown-list{{ $type == 'desktop' ? ' dd-right' : '' }}">
         @foreach($languages as $lang)
             <li>
-                <div data-item-id="{{ $lang->id }}"{!! !$loop->index ? ' data-is-current="true"' : '' !!}>
+                <div class="dropdown-item" data-item-id="{{ $lang->id }}"{!! !$loop->index ? ' data-is-current="true"' : '' !!}>
                     <img src="{{ get_image('img/flags/' . $lang->id . '.svg', 'flag') }}" alt="">
                     {{ $lang->name }}
                     @if($loop->index === 0)

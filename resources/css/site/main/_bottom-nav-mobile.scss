@@ -155,6 +155,10 @@ $bottom-nav-color-active: $color1;
   .user-name {
     color: color($color1, light, 2);
   }
+
+  svg {
+    @include menu-inline-svg;
+  }
 }
 
 .bottom-menu_close-btn {

@@ -1,0 +1,80 @@
+@use 'sass:math';
+
+$badge-round-size-px: 18px;
+$badge-dot-size-px: 8px;
+
+.badge-round {
+  display: none;
+  position: absolute;
+  top: -5px;
+  right: 20%;
+  height: $badge-round-size-px;
+  min-width: $badge-round-size-px;
+  padding: 4px 6px;
+  font-size: 11px;
+  line-height: 11px;
+  background-color: color($color1, light, 3);
+  color: white;
+  border-radius: math.div($badge-round-size-px, 2);
+
+  &-grey {
+    @extend .badge-round;
+    background-color: $grey-200;
+  }
+
+  &-red {
+    @extend .badge-round;
+    background-color: $color-red;
+  }
+
+  &.active {
+    display: block;
+  }
+}
+
+.badge-round_inline,
+.badge-round_inline-big {
+  display: none;
+  text-align: center;
+  line-height: 11px;
+  margin-left: 1px;
+  background-color: color($color1, light, 3);
+  color: white;
+
+  &.active {
+    display: inline-block;
+  }
+}
+
+.badge-round_inline {
+  height: 18px;
+  min-width: 18px;
+  padding: 4px 5px;
+  vertical-align: 2px;
+  font-size: 11px;
+  border-radius: 9px;
+}
+
+.badge-round_inline-big {
+  height: 20px;
+  min-width: 20px;
+  padding: 5px 7px;
+  vertical-align: 3px;
+  font-size: 12px;
+  border-radius: 10px;
+}
+
+.badge-dot {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 20px;
+  width: $badge-dot-size-px;
+  height: $badge-dot-size-px;
+  border-radius: math.div($badge-round-size-px, 2);
+  background-color: color($color1, light, 3);
+
+  &.active {
+    display: block;
+  }
+}

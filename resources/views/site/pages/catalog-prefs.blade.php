@@ -15,13 +15,13 @@
             @foreach($prefs->sorting as $sort_type)
                 @if($sort_type->is_active)
                     <li>
-                        <div class="active" data-sort="{{ $sort_type->sorting }}">
+                        <div class="dropdown-item active" data-sort="{{ $sort_type->sorting }}">
                             {{ $sort_type->description }} <span class="icon-check-lg"></span>
                         </div>
                     </li>
                 @else
                     <li>
-                        <div data-sort="{{ $sort_type->sorting }}">
+                        <div class="dropdown-item" data-sort="{{ $sort_type->sorting }}">
                             {{ $sort_type->description }}
                         </div>
                     </li>
@@ -40,11 +40,11 @@
                 @foreach($prefs->per_page as $per_page)
                     @if($per_page->is_active)
                         <li>
-                            <div class="active">{{ $per_page->num }} <span class="icon-check-lg"></span></div>
+                            <div class="dropdown-item active">{{ $per_page->num }} <span class="icon-check-lg"></span></div>
                         </li>
                     @else
                         <li>
-                            <div>{{ $per_page->num }}</div>
+                            <div class="dropdown-item">{{ $per_page->num }}</div>
                         </li>
                     @endif
                 @endforeach

@@ -12,6 +12,8 @@ use App\Http\Controllers\Site\ProductController;
 use App\Http\Controllers\Site\PromoController;
 use App\Http\Controllers\Site\ReviewController;
 use App\Http\Controllers\Site\TempController;
+use App\Http\Controllers\Site\UserNotificationController;
+use App\Http\Controllers\Site\UserProfileController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -42,5 +44,11 @@ Route::get('/comparison/popup', [ComparisonController::class, 'popup'])->name('c
 
 Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites');
 Route::post('/favorites', [FavoriteController::class, 'store'])->name('favorites.store');
+
+Route::middleware('auth')->prefix('user')->group(function () {
+    Route::get('/profile', [UserProfileController::class, 'show'])->name('profile');
+    Route::post('/profile', [UserProfileController::class, 'store'])->name('profile.store');
+    Route::get('/notifications', [UserNotificationController::class, 'index'])->name('notifications');
+});
 
 require __DIR__.'/auth.php';

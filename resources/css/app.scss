@@ -15,7 +15,7 @@
 @import 'common/components/links';
 @import 'common/components/dropdowns';
 @import 'common/components/fade';
-@import 'common/components/badge_round';
+@import 'common/components/badges';
 @import 'common/components/modal';
 @import 'common/components/tabs';
 @import 'common/components/breadcrumb';
@@ -43,7 +43,9 @@
 @import 'site/pages/cart';
 @import 'site/pages/promo';
 @import 'site/pages/comparison';
+@import 'site/pages/user-profile';
 
+@import 'site/components/auth';
 @import 'site/components/product-card';
 @import 'site/components/category-card';
 @import 'site/components/product-row';

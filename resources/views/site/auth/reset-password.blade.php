@@ -3,12 +3,12 @@
     <form method="POST" action="{{ route('password.store') }}" id="resetPasswordForm" novalidate>
         @csrf
 
-        <input type="hidden" name="token" value="{{ $request->route('token') }}">
+        <input type="hidden" name="token" value="{{ $new_password['change_pass_token'] }}">
 
         <div class="alert" role="alert"></div>
         <div class="mb-4">
             <label for="resetPassEmailInput" class="form-label">{{ __('auth.modal.email') }}:</label>
-            <input type="email" name="email" class="form-control" id="resetPassEmailInput" value="{{ $request->email }}" autocomplete="email">
+            <input type="email" name="email" class="form-control" id="resetPassEmailInput" value="{{ $new_password['email'] }}" autocomplete="email">
             <div id="resetPassEmailInputFeedback" class="invalid-feedback"></div>
         </div>
         <div class="mb-3">

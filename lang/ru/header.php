@@ -21,11 +21,10 @@ return [
         'cart' => 'Корзина',
         'orders' => 'Заказы',
         'sign_in' => 'Вход',
-        'profile' => 'Профиль',
         'filters' => 'Фильтры',
         'profile_menu' => [
             'admin_panel' => 'Панель администратора',
-            'settings' => 'Настройки',
+            'profile' => 'Профиль',
             'notifications' => 'Уведомления',
             'logout' => 'Выход',
         ],

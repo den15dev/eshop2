@@ -12,23 +12,30 @@
             </li>
             @if(Auth::user()?->isAdmin())
             <li>
-                <span class="icon-key lightgrey-text me-1"></span>
-                <a href="#">{{ __('header.user_menu.profile_menu.admin_panel') }}</a>
+                <a href="{{ route('admin.dashboard') }}">
+                    <svg><use href="#adminPanelIcon"/></svg>
+                    {{ __('header.user_menu.profile_menu.admin_panel') }}
+                </a>
             </li>
             @endif
             <li>
-                <span class="icon-gear lightgrey-text me-1"></span>
-                <a href="#">{{ __('header.user_menu.profile_menu.settings') }}</a>
+                <a href="{{ route('profile') }}">
+                    <svg><use href="#profileSettingsIcon"/></svg>
+                    {{ __('header.user_menu.profile_menu.profile') }}
+                </a>
             </li>
             <li>
-                <span class="icon-bell lightgrey-text me-1"></span>
-                <a href="#">{{ __('header.user_menu.profile_menu.notifications') }}</a>
+                <a href="{{ route('notifications') }}">
+                    <svg><use href="#profileNotificationsIcon"/></svg>
+                    {{ __('header.user_menu.profile_menu.notifications') }}
+                    <div class="badge-round_inline-big">2</div>
+                </a>
             </li>
             <li>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <div id="bnavLogoutBtn">
-                        <span class="icon-box-arrow-right lightgrey-text me-1"></span>
+                        <svg style="margin-left: -2px"><use href="#profileLogoutIcon"/></svg>
                         {{ __('header.user_menu.profile_menu.logout') }}
                     </div>
                 </form>

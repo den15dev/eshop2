@@ -39,17 +39,17 @@
                 </div>
                 <ul class="dropdown-list">
                     <li>
-                        <a href="#">
+                        <a href="#" class="dropdown-item">
                             {{ __('header.top_menu.bonuses') }}
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="#" class="dropdown-item">
                             {{ __('header.top_menu.return') }}
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="#" class="dropdown-item">
                             {{ __('header.top_menu.service') }}
                         </a>
                     </li>
@@ -150,38 +150,40 @@
                             <path d="M34.8967 38C34.8967 32.1923 33.1233 23.7943 24.9913 21.736C21.5017 24.3833 16.1817 24.225 13.015 21.736C4.87667 23.7943 3.10333 32.1923 3.10333 38C6.65 38 31.35 38 34.8967 38Z" id="userIconBody"/>
                         </svg>
                     @endif
+                    <div class="badge-dot"></div>
                 </div>
                 <ul class="dropdown-list dd-right">
                     <li>
-                        <div class="user-dd-name">
+                        <div class="dropdown-item user-dd-name">
                             {{ Auth::user()->name }}
                         </div>
                     </li>
                     @if(Auth::user()->isAdmin())
                     <li>
-                        <a href="#" class="user-dd-btn">
-                            <span class="icon-key me-1"></span>
+                        <a href="{{ route('admin.dashboard') }}" class="dropdown-item user-dd-btn">
+                            <svg><use href="#adminPanelIcon"/></svg>
                             {{ __('header.user_menu.profile_menu.admin_panel') }}
                         </a>
                     </li>
                     @endif
                     <li>
-                        <a href="#" class="user-dd-btn">
-                            <span class="icon-gear me-1"></span>
-                            {{ __('header.user_menu.profile_menu.settings') }}
+                        <a href="{{ route('profile') }}" class="dropdown-item user-dd-btn">
+                            <svg><use href="#profileSettingsIcon"/></svg>
+                            {{ __('header.user_menu.profile_menu.profile') }}
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="user-dd-btn">
-                            <span class="icon-bell me-1"></span>
+                        <a href="{{ route('notifications') }}" class="dropdown-item user-dd-btn">
+                            <svg><use href="#profileNotificationsIcon"/></svg>
                             {{ __('header.user_menu.profile_menu.notifications') }}
+                            <div class="badge-round_inline">2</div>
                         </a>
                     </li>
                     <li>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-                            <div class="user-dd-btn" id="headerLogoutBtn">
-                                <span class="icon-box-arrow-right me-1"></span>
+                            <div class="dropdown-item user-dd-btn" id="headerLogoutBtn">
+                                <svg style="margin-left: -2px"><use href="#profileLogoutIcon"/></svg>
                                 {{ __('header.user_menu.profile_menu.logout') }}
                             </div>
                         </form>

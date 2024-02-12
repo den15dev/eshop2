@@ -21,11 +21,10 @@ return [
         'cart' => 'Cart',
         'orders' => 'Orders',
         'sign_in' => 'Sign In',
-        'profile' => 'Profile',
         'filters' => 'Filters',
         'profile_menu' => [
             'admin_panel' => 'Admin Panel',
-            'settings' => 'Settings',
+            'profile' => 'Profile',
             'notifications' => 'Notifications',
             'logout' => 'Logout',
         ],

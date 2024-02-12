@@ -26,7 +26,7 @@
         @endif
 
         <div id="successPage" style="display: none">
-            <p class="mb-45"></p>
+            <p class="mt-3 mb-45 text-center"></p>
             <button class="mx-auto">Ok</button>
         </div>
     </div>

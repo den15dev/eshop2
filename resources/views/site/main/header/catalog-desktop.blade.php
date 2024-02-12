@@ -31,7 +31,7 @@
                                     <ul class="dropdown-list dd-right-out">
                                         @foreach($subcat3['subcategories'] as $subcat4)
                                             <li>
-                                                <a href="{{ route('catalog', $subcat4['slug']) }}" class="section-item">
+                                                <a href="{{ route('catalog', $subcat4['slug']) }}" class="dropdown-item section-item">
                                                     {{ $subcat4['name'] }}&nbsp;@if($subcat4['product_count'])<span class="product-count">{{ $subcat4['product_count'] }}</span>@endif
                                                 </a>
                                             </li>

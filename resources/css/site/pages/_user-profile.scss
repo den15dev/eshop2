@@ -1,0 +1,18 @@
+@mixin small-italic {
+  font-size: $font-size-sm;
+  font-style: italic;
+}
+
+.profile_verification {
+  color: $color-red;
+  @include small-italic;
+
+  &.verified {
+    color: $color-success-text;
+  }
+}
+
+.profile_link-sent {
+  color: $color1;
+  @include small-italic;
+}

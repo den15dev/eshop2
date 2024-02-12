@@ -8,8 +8,11 @@
     </div>
     <div class="mb-3">
         <label for="signInPasswordInput" class="form-label">{{ __('auth.modal.password') }}:</label>
-        <input type="password" name="password" class="form-control" id="signInPasswordInput" autocomplete="current-password">
-        <div id="signInPasswordInputFeedback" class="invalid-feedback"></div>
+        <div class="password-eye_cont">
+            <input type="password" name="password" class="form-control" id="signInPasswordInput" autocomplete="current-password">
+            <div id="signInPasswordInputFeedback" class="invalid-feedback"></div>
+            <div class="password-eye_show"></div>
+        </div>
     </div>
     <div class="form-check mb-3">
         <input class="form-check-input" name="remember" type="checkbox" role="switch" id="signInRememberCheck">

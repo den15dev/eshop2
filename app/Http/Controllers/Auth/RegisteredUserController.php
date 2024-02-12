@@ -39,8 +39,8 @@ class RegisteredUserController extends Controller
         return response()->json([
             'status' => 'registered',
             'message' => [
-                'welcome' => __('auth.modal.registration_success.welcome', ['name' => $request->name]),
-                'link_sent' => __('auth.modal.registration_success.link_sent'),
+                'welcome' => __('auth.modal.registration_success.welcome', ['name' => $user->name]),
+                'link_sent' => __('auth.modal.registration_success.link_sent', ['address' => $user->email]),
             ],
         ]);
     }

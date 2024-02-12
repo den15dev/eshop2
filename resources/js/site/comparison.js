@@ -167,9 +167,8 @@ function clearList() {
 }
 
 
-function setCookie(newComparisonArr) {
-    document.cookie = cookieName + '=' + encodeURIComponent(JSON.stringify(newComparisonArr)) + '; path=/;  max-age=2592000';
-    comparisonArr = newComparisonArr;
+function setCookie(comparisonArr) {
+    document.cookie = cookieName + '=' + encodeURIComponent(JSON.stringify(comparisonArr)) + '; path=/;  max-age=2592000';
 }
 
 function removeCookie() {

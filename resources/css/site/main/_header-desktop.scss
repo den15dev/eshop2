@@ -80,6 +80,19 @@
   }
 }
 
+@mixin menu-inline-svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: $grey-200;
+  vertical-align: -5px;
+  margin-left: -4px;
+  margin-right: 2px;
+}
+
 .nav-list-user {
   @include nav-horiz-list;
   font-size: 12px;
@@ -154,17 +167,21 @@
   }
 
   .user-dd-btn {
+    position: relative;
     cursor: pointer;
     text-align: left;
     color: $grey-90;
-    span {
-      color: $grey-180;
-    }
+
     &:hover {
       color: color($color1, light, 2);
-      span {
-        color: color($color1, light, 4);
+
+      svg {
+        stroke: color($color1, light, 4);
       }
+    }
+
+    svg {
+      @include menu-inline-svg;
     }
   }
 
