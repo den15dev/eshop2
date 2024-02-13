@@ -11,7 +11,7 @@
             </a>
         </div>
         <div class="footer-col-cont">
-            <h5>{{ __('footer.company.title') }}</h5>
+            <div class="footer_section-title">{{ __('footer.company.title') }}</div>
             <ul class="footer-list">
                 <li>
                     <a href="#">{{ __('footer.company.about') }}</a>
@@ -31,7 +31,7 @@
             </ul>
         </div>
         <div class="footer-col-cont">
-            <h5>{{ __('footer.for_buyers.title') }}</h5>
+            <div class="footer_section-title">{{ __('footer.for_buyers.title') }}</div>
             <ul class="footer-list">
                 <li>
                     <a href="#">{{ __('footer.for_buyers.make_order') }}</a>
@@ -51,7 +51,7 @@
             </ul>
         </div>
         <div class="footer-col-cont">
-            <h5>{{ __('footer.other.title') }}</h5>
+            <div class="footer_section-title">{{ __('footer.other.title') }}</div>
             <ul class="footer-list">
                 <li>
                     <a href="#">{{ __('footer.other.delivery') }}</a>

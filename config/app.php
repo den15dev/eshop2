@@ -198,6 +198,7 @@ return [
         App\Modules\Products\ProductServiceProvider::class,
         App\Modules\Shops\ShopServiceProvider::class,
         App\Modules\Orders\OrderServiceProvider::class,
+        App\Modules\Users\UserServiceProvider::class,
     ])->toArray(),
 
     /*

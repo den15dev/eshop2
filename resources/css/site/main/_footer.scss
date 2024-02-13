@@ -15,6 +15,7 @@ footer {
   color: $grey-150;
   text-align: center;
   font-size: $font-size-sm;
+
   hr {
     margin: 2rem 0 1.2rem 0;
     height: 1px;
@@ -27,9 +28,11 @@ footer {
   width: 100%;
   padding-right: 3rem;
   margin-bottom: 0.5rem;
+
   @include lg {
     width: auto;
   }
+
   .logo {
     width: var(--logo-width1);
     @include sm {
@@ -40,21 +43,42 @@ footer {
 
 .footer-col-cont {
   flex: 1 1 200px;
+
   a {
     color: $grey-120;
     &:hover {
       color: $text-color;
     }
   }
+
   @include lg {
     flex: 0 1 220px;
   }
+
   @include xl {
     flex: 0 1 260px;
   }
 }
 
-.footer-list li {
-  line-height: 1.2rem;
-  margin-bottom: 0.6rem;
+.footer-list {
+  font-size: $font-size-sm;
+
+  @include sm {
+    font-size: $font-size-base;
+  }
+
+  li {
+    line-height: 1.2;
+    margin-bottom: 0.6rem;
+  }
+}
+
+.footer_section-title {
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+
+  @include sm {
+    font-size: 1.125rem;
+  }
 }

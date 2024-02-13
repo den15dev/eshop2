@@ -1,0 +1,132 @@
+.user-notifications_top-cont {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  font-size: $font-size-sm;
+  line-height: 1.3;
+
+  @include sm {
+    font-size: $font-size-base;
+  }
+}
+
+.user-notifications_count {
+  color: $grey-120;
+  white-space: nowrap;
+}
+
+.user-notifications_wrap {
+  width: 100%;
+
+  @include lg {
+    width: 80%;
+  }
+}
+
+.user-notification {
+  margin-bottom: 0.75rem;
+
+  @include sm {
+    margin-bottom: 1rem;
+  }
+}
+
+.user-notification_head {
+  display: flex;
+  gap: 0.5rem;
+  align-items: start;
+  cursor: pointer;
+  line-height: 1.3;
+
+  &:hover {
+    .user-notification_title {
+      color: $link-color;
+    }
+  }
+
+  &.active {
+    svg {
+      transform: rotate(90deg);
+    }
+
+    .user-notification_chevron {
+      padding-top: 1px;
+    }
+  }
+
+  &.unread {
+    .user-notification_title {
+      font-weight: $font-weight-bold;
+      color: $text-color;
+    }
+
+    svg {
+      stroke: color($color-red, light, 2);
+    }
+
+    .user-notification_date {
+      color: $text-color;
+      font-weight: $font-weight-semibold;
+    }
+
+    &:hover {
+      .user-notification_title {
+        color: $link-color;
+      }
+    }
+  }
+}
+
+.user-notification_title {
+  color: $grey-120;
+  font-size: $font-size-sm;
+  margin-right: 0.5rem;
+
+  @include sm {
+    font-size: $font-size-base;
+  }
+}
+
+.user-notification_chevron {
+  --chevron-size: 10px;
+  width: var(--chevron-size);
+
+  svg {
+    width: var(--chevron-size);
+    height: var(--chevron-size);
+    fill: none;
+    stroke-width: 3;
+    stroke: $grey-220;
+    vertical-align: 2px;
+
+    @include sm {
+      vertical-align: 0;
+    }
+  }
+
+  @include sm {
+    --chevron-size: 12px;
+  }
+}
+
+.user-notification_date {
+  margin-left: auto;
+  color: $grey-150;
+  font-size: $font-size-sm;
+  text-align: right;
+}
+
+.user-notification_message {
+  display: none;
+  padding: 0.5rem 0 0.75rem 1.125rem;
+  border-left: solid 1px $grey-230;
+  margin-left: 0.25rem;
+  font-size: $font-size-sm;
+
+  @include sm {
+    font-size: $font-size-base;
+    margin-left: 0.325rem;
+    padding: 0.75rem 0 0.75rem 1.375rem;
+  }
+}
