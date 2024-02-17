@@ -1,11 +1,4 @@
-<div class="catalog-settings-cont mb-25">
-    <form method="POST" action="{{ route('catalog.preferences') }}" style="display: none" id="catalogPrefForm">
-        @csrf
-        <input type="hidden" name="sort" value="{{ $prefs->sorting_active->sorting }}" />
-        <input type="hidden" name="per_page" value="{{ $prefs->per_page_active->num }}" />
-        <input type="hidden" name="layout" value="{{ $prefs->layout }}" />
-    </form>
-
+<div class="catalog-settings-cont mb-3">
     <div class="sort-cont dropdown">
         <div class="dropdown-btn" data-sort="{{ $prefs->sorting_active->sorting }}">
             {{ $prefs->sorting_active->description }}

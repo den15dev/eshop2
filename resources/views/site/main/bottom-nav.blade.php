@@ -1,7 +1,3 @@
-@php
-    $show_catalog_filters = request()->routeIs('catalog') && !isset($children);
-@endphp
-
 <div class="bottom-nav">
     <div class="bottom-nav_cont">
         <a href="{{ route('favorites') }}" class="bottom-nav-btn" id="favoritesBtnMobile">
@@ -24,7 +20,7 @@
             </svg>
         </div>
 
-        @if($show_catalog_filters)
+        @isset($filters)
             <div class="bottom-nav-btn" id="bottomNavFiltersBtn">
                 <svg viewBox="0 0 23 22">
                     <use href="#filtersIcon"/>
@@ -38,7 +34,7 @@
                 </svg>
                 {{ __('header.user_menu.orders') }}
             </a>
-        @endif
+        @endisset
 
         @guest
         <div class="bottom-nav-btn" id="bnavSignInBtn">
@@ -63,9 +59,9 @@
 
     @include('site.main.bottom-nav.bottom-nav-menu')
 
-    @if($show_catalog_filters)
-        @include('site.main.bottom-nav.bottom-nav-filters')
-    @endif
+    @isset($filters)
+        @include('site.main.bottom-nav.bottom-nav-filters', ['ismobile' => true])
+    @endisset
 
     @include('site.main.bottom-nav.bottom-nav-profile')
 </div>

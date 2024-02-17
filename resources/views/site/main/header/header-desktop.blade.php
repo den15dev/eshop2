@@ -88,7 +88,7 @@
     </div>
 
     <div class="bottom-center">
-        <form class="search-form" method="GET" action="">
+        <form class="search-form" method="GET" action="{{ route('search') }}">
             <div class="search_results_cont" id="searchResultCont"></div>
             <input class="search-input bordered" name="query" placeholder="{{ __('header.search.search') }}" autocomplete="off" id="searchInput">
             <span class="btn-icon clear-btn icon-x-lg" id="clearBtn"></span>

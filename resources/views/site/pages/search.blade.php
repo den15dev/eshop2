@@ -1,10 +1,10 @@
 @extends('site.layout')
 
-@section('page_title', $category->name . ' - ' . __('general.app_name'))
+@section('page_title', __('search.search_results') . ' - ' . __('general.app_name'))
 
 @section('main_content')
     <div class="container">
-        <x-breadcrumb :breadcrumb="$breadcrumb"/>
+        <h4 class="mb-4">{{ __('search.query_results', ['query' => $search_query, 'num' => 19]) }}</h4>
 
         <div class="catalog-page-wrap mb-6">
             <div class="sidebar-cont">

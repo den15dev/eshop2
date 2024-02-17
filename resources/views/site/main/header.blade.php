@@ -38,7 +38,7 @@
 
     <div class="search-mobile-cont" id="searchMobileCont">
         <div class="container">
-            <form class="search-form" method="GET" action="">
+            <form class="search-form" method="GET" action="{{ route('search') }}">
                 <input class="search-input-mobile" name="query" placeholder="{{ __('header.search.search') }}"
                        autocomplete="off"
                        id="searchInputMobile">

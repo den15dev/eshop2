@@ -24,6 +24,7 @@
 .sidebar-cont {
   display: none;
   flex: 0 0 280px;
+
   @include lg {
     display: block;
   }

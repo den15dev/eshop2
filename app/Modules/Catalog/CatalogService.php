@@ -10,6 +10,26 @@ class CatalogService
     public const PREF_COOKIE = 'catalog_prefs';
 
 
+    public function getPreferences(?string $pref_cookie): \stdClass
+    {
+        $catalog_prefs_arr = $pref_cookie ? json_decode($pref_cookie) : [ProductSorting::New->value, 12, 1];
+
+        $sorting_list = $this->getProductSorting($catalog_prefs_arr[0]);
+        $per_page_list = $this->getProductsPerPage(intval($catalog_prefs_arr[1]));
+
+        $prefs = new \stdClass();
+        $prefs->sorting = $sorting_list;
+        $prefs->sorting_active = $sorting_list->firstWhere('is_active', true);
+
+        $prefs->per_page = $per_page_list;
+        $prefs->per_page_active = $per_page_list->firstWhere('is_active', true);
+
+        $prefs->layout = intval($catalog_prefs_arr[2]);
+
+        return $prefs;
+    }
+
+
     public function getProductSorting(string $current_sorting): Collection
     {
         $current_case = ProductSorting::tryFrom($current_sorting) ?? ProductSorting::New;

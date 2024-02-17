@@ -11,6 +11,7 @@ use App\Http\Controllers\Site\OrderController;
 use App\Http\Controllers\Site\ProductController;
 use App\Http\Controllers\Site\PromoController;
 use App\Http\Controllers\Site\ReviewController;
+use App\Http\Controllers\Site\SearchController;
 use App\Http\Controllers\Site\TempController;
 use App\Http\Controllers\Site\UserNotificationController;
 use App\Http\Controllers\Site\UserProfileController;
@@ -25,7 +26,6 @@ Route::post('/currency', CurrencyController::class)->name('currency');
 
 Route::get('/temp', [TempController::class, 'temp'])->name('temp');
 
-Route::post('/catalog/preferences', [CatalogController::class, 'setLayout'])->name('catalog.preferences');
 Route::get('/catalog/{category}', [CatalogController::class, 'index'])->name('catalog');
 Route::get('/catalog/{category}/{product}', [ProductController::class, 'show'])->name('product');
 Route::get('/catalog/{category}/{product}/reviews', [ReviewController::class, 'index'])->name('reviews');
@@ -38,6 +38,9 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::get('/orders', [OrderController::class, 'index'])->name('orders');
 Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
 Route::get('/new-order/{order_id}', [OrderController::class, 'new'])->whereNumber('order_id')->name('orders.new');
+
+Route::get('/search', [SearchController::class, 'index'])->name('search');
+Route::get('/search/autocomplete', [SearchController::class, 'autocomplete'])->name('search.autocomplete');
 
 Route::get('/comparison', [ComparisonController::class, 'index'])->name('comparison');
 Route::get('/comparison/popup', [ComparisonController::class, 'popup'])->name('comparison.popup');
