@@ -89,9 +89,9 @@
 
     <div class="bottom-center">
         <form class="search-form" method="GET" action="{{ route('search') }}">
-            <div class="search_results_cont" id="searchResultCont"></div>
+            <div class="search-dropdown_cont" id="searchResultCont"></div>
             <input class="search-input bordered" name="query" placeholder="{{ __('header.search.search') }}" autocomplete="off" id="searchInput">
-            <span class="btn-icon clear-btn icon-x-lg" id="clearBtn"></span>
+            <span class="btn-icon search_clear-btn icon-x-lg" id="clearBtn"></span>
 
             <button class="btn-icon search-btn" type="submit">
                 <svg>
@@ -99,6 +99,8 @@
                 </svg>
             </button>
         </form>
+
+        <div class="search-tint"></div>
     </div>
 
     <nav class="bottom-right">

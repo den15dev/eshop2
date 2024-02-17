@@ -16,7 +16,7 @@ class FilterService
             'Gigabyte'
         ];
 
-        $brands = new Collection([]);
+        $brands = new Collection();
 
         foreach ($brand_names as $ind => $name) {
             $brand = new \stdClass();
@@ -40,7 +40,7 @@ class FilterService
             'Cables And Adapters',
         ];
 
-        $categories = new Collection([]);
+        $categories = new Collection();
 
         foreach ($category_names as $ind => $name) {
             $category = new \stdClass();

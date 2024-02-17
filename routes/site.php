@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Common\CurrencyController;
 use App\Http\Controllers\Common\LanguageController;
+use App\Http\Controllers\Site\BrandController;
 use App\Http\Controllers\Site\CartController;
 use App\Http\Controllers\Site\CatalogController;
 use App\Http\Controllers\Site\ComparisonController;
@@ -33,6 +34,8 @@ Route::post('/catalog/{category}/{product}/reviews', [ReviewController::class, '
 
 Route::get('/promo/{promo}', [PromoController::class, 'show'])->name('promo');
 
+Route::get('/brands/{brand}', [BrandController::class, 'show'])->name('brand');
+
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
 
 Route::get('/orders', [OrderController::class, 'index'])->name('orders');
@@ -40,7 +43,7 @@ Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
 Route::get('/new-order/{order_id}', [OrderController::class, 'new'])->whereNumber('order_id')->name('orders.new');
 
 Route::get('/search', [SearchController::class, 'index'])->name('search');
-Route::get('/search/autocomplete', [SearchController::class, 'autocomplete'])->name('search.autocomplete');
+Route::get('/search/dropdown', [SearchController::class, 'dropdown'])->name('search.dropdown');
 
 Route::get('/comparison', [ComparisonController::class, 'index'])->name('comparison');
 Route::get('/comparison/popup', [ComparisonController::class, 'popup'])->name('comparison.popup');

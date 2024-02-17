@@ -94,7 +94,8 @@ class ProductService
             $product->slug = str($name)->slug()->value();
             $product->category_slug = $category_slugs[$i % 8];
             $product->url = route('product', [$product->category_slug, $product->slug . '-' . $product->id]);
-//            $product->category_id = $category_ids[$i % 8];
+            $product->reviews_url = route('reviews', [$product->category_slug, $product->slug . '-' . $product->id]);
+
             $product->category_id = $category_id;
             $product->short_descr = $short_descrs[$i % 8];
 
@@ -106,9 +107,15 @@ class ProductService
                 $product->final_price = $product->price;
             }
 
+            $product->price_formatted = number_format($product->price, 0, ',', ' ') . ' &#8381;';
+            $product->final_price_formatted = number_format($product->final_price, 0, ',', ' ') . ' &#8381;';
+
             $product->rating = $ratings[$i % 8];
             $product->vote_num = $vote_nums[$i % 8];
 
+            $image_base = 'storage/images/products/' . (($product->id - 1) % 4 + 1) . '/01_';
+            $product->image_sm = asset($image_base . '80.jpg');
+            $product->image_md = asset($image_base . '230.jpg');
             $product->images = ['01', '02', '03', '04'];
 
             $promo_id = $promo_ids[$i % 8];

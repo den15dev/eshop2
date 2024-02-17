@@ -42,7 +42,7 @@
                 <input class="search-input-mobile" name="query" placeholder="{{ __('header.search.search') }}"
                        autocomplete="off"
                        id="searchInputMobile">
-                <span class="btn-icon clear-btn icon-x-lg" id="clearBtnMobile"></span>
+                <span class="btn-icon search_clear-btn icon-x-lg" id="clearBtnMobile"></span>
                 <button class="btn-icon search-btn" type="submit">
                     <svg>
                         <use href="#searchIcon"/>

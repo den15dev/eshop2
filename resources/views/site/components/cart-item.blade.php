@@ -2,7 +2,7 @@
     <div class="cart-item_number">{{ $num }}</div>
 
     <a href="{{ $product->url }}" class="cart-item_image-link">
-        <img src="{{ asset('storage/images/products/' . $product->id . '/01_230.jpg') }}" alt="{{ $product->name }}">
+        <img src="{{ $product->image_md }}" alt="{{ $product->name }}">
         <div class="image-link-tint"></div>
     </a>
 

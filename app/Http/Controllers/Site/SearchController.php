@@ -51,10 +51,19 @@ class SearchController extends Controller
     }
 
 
-    public function autocomplete(Request $request): View
+    public function dropdown(Request $request): View
     {
-        $query = $request->query('query');
+        $search_query = $request->query('query');
 
-        return view('site.pages.search-autocomplete');
+        $total_products = $this->searchService->countDropdownProductResults($search_query);
+        $brands = $this->searchService->getDropdownBrands($search_query, 1);
+        $products = $this->searchService->getDropdownProducts($search_query, 6);
+
+        return view('site.pages.search-dropdown', compact(
+            'search_query',
+            'total_products',
+            'brands',
+            'products',
+        ));
     }
 }

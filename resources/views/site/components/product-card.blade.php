@@ -1,7 +1,7 @@
 <div class="product-card">
     <div class="product-card_image-cont">
         <a href="{{ $product->url }}" class="product-card_image-link">
-            <img src="{{ asset('storage/images/products/' . (($product->id - 1) % 4 + 1) . '/01_230.jpg') }}" class="product-card_image" alt="{{ $product->name }}">
+            <img src="{{ $product->image_md }}" class="product-card_image" alt="{{ $product->name }}">
             <div class="image-link-tint"></div>
         </a>
         @if($product->promo_id)
@@ -17,17 +17,17 @@
 
     <x-rating size="small"
               mb="1"
-              :url="route('reviews', [$product->category_slug, $product->slug . '-' . $product->id])"
+              :url="$product->reviews_url"
               :rating="$product->rating"
               :num="$product->vote_num"/>
 
     <div class="mb-2">
         @if($product->discount_prc)
             <div class="product-card_old-price">
-                <del>{{ number_format($product->price, 0, ',', ' ') }} ₽</del>
+                <del>{!! $product->price_formatted !!}</del>
             </div>
         @endif
-        <div class="product-card_price">{{ number_format($product->final_price, 0, ',', ' ') }} ₽</div>
+        <div class="product-card_price">{!! $product->final_price_formatted !!}</div>
     </div>
 
     <button class="btn-2sizes catalog-add-to-cart-btn">{{ __('catalog.product_card.add_to_cart') }}</button>
