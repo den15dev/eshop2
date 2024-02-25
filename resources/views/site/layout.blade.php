@@ -58,5 +58,7 @@
 
 {{-- ----- Monitoring page load time and number of DB queries ----- --}}
 @include('common.monitor')
+
+@stack('scripts')
 </body>
 </html>

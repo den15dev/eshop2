@@ -10,10 +10,14 @@ use Illuminate\View\View;
 
 class CartController extends Controller
 {
-    public function index(
-        ProductService $productService
-    ): View {
-        $products = $productService->getSomeProducts(3);
+    public function __construct(
+        private readonly ProductService $productService,
+        private readonly ShopService $shopService,
+    ) {}
+
+    public function index(): View
+    {
+        $products = $this->productService->getSomeProducts(3);
 
 
         $total = new \stdClass();
@@ -36,7 +40,7 @@ class CartController extends Controller
 
         $user = Auth::user();
 
-        $shops = ShopService::getSomeShops();
+        $shops = $this->shopService->getShopsForCart();
 
 
         return view('site.pages.cart', compact(

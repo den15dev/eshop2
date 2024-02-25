@@ -1,11 +1,14 @@
 import { lgMedia, lang } from '../../common/global.js';
 import { showErrorMessage } from "../../common/modals.js";
+import { fadeIn, fadeOut } from "../../common/effects/fade.js";
 
 let searchResCont;
 let searchInput;
 let clearBtn;
 let searchInputTimeOut;
 let searchTint;
+
+const fadeSpeed = 200;
 
 export default function init() {
     activateSearchInput(lgMedia);
@@ -76,7 +79,7 @@ function showSearchResults(results) {
     searchResCont.innerHTML = results;
     clearBtn.style.display = 'block';
     if (searchTint) {
-        searchTint.style.display = 'block';
+        fadeIn(searchTint, fadeSpeed);
     }
 
     searchResCont.onmouseover = () => searchInput.onblur = null;
@@ -102,7 +105,7 @@ function hideSearchResults() {
     searchResCont.style.display = 'none';
     searchInput.classList.add('bordered');
     if (searchTint) {
-        searchTint.style.display = 'none';
+        fadeOut(searchTint, fadeSpeed);
     }
     window.removeEventListener('resize', setMobileSearchResContHeight);
 }
@@ -113,7 +116,7 @@ function clearSearchResults() {
     searchResCont.style.display = 'none';
     searchInput.classList.add('bordered');
     if (searchTint) {
-        searchTint.style.display = 'none';
+        fadeOut(searchTint, fadeSpeed);
     }
 
     searchResCont.onmouseover = null;

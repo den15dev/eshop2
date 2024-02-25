@@ -2,76 +2,43 @@
 
 namespace App\Modules\Shops;
 
+use App\Modules\Shops\Actions\GetOpeningHoursForHumanAction;
+use App\Modules\Shops\Models\Shop;
 use Illuminate\Support\Collection;
 
 class ShopService
 {
-    public static function getSomeShops(): Collection
+    public function getAll(): Collection
     {
-        $shop_arr = [
-            [
-                "id" => 1,
-                "name" => "ТЦ «Метрополис»",
-                "address" => "Ленинградское ш., 16А, стр. 4, ТЦ «Метрополис»",
-                "location" => [55.82362, 37.49649],
-                "opening_hours" => [[9, 20], [9, 20], [9, 20], [9, 20], [9, 20], [10, 18], []],
-                "info" => "Магазин находится на 2 этаже торгового центра «Метрополис», павильон К204. На территории торгового центра по будним дням парковка бесплатная.",
-                "images" => NULL,
-                "sort" => 1,
-                "is_active" => 1,
-            ],
-            [
-                "id" => 2,
-                "name" => "ТЦ «Щёлковский»",
-                "address" => "Щёлковское ш., 75, ТЦ «Щёлковский»",
-                "location" => [55.81116, 37.80088],
-                "opening_hours" => [[9, 20], [9, 20], [9, 20], [9, 20], [9, 20], [9, 20], [10, 18]],
-                "info" => "Магазин находится в нескольких минутах ходьбы от станции метро «Комсомольская», торговый центр «Щёлковский», 3 этаж, павильон 318.",
-                "images" => NULL,
-                "sort" => 2,
-                "is_active" => 1,
-            ],
-            [
-                "id" => 3,
-                "name" => "ТЦ «Город»",
-                "address" => "ш. Энтузиастов, 12, корп. 2, ТЦ «Город»",
-                "location" => [55.74739, 37.70706],
-                "opening_hours" => [[9, 20], [9, 20], [9, 20], [9, 20], [9, 20], [10, 18], []],
-                "info" => "Магазин находится на 3 этаже торгового центра «Город». Чтобы найти нас, поднимитесь на лифте на 3 этаж, далее идите налево до конца холла, затем поверните направо.",
-                "images" => NULL,
-                "sort" => 3,
-                "is_active" => 1,
-            ],
-            [
-                "id" => 4,
-                "name" => "ТЦ «Мозаика»",
-                "address" => "7-я Кожуховская ул., 9, ТЦ «Мозаика»",
-                "location" => [55.71066, 37.67488],
-                "opening_hours" => [[9, 20], [9, 20], [9, 20], [9, 20], [9, 20], [10, 18], []],
-                "info" => "Магазин находится на 1 этаже торгового центра «Мозаика», павильон К105. На территории торгового центра по будним дням парковка бесплатная.",
-                "images" => NULL,
-                "sort" => 4,
-                "is_active" => 1,
-            ],
-            [
-                "id" => 5,
-                "name" => "ТЦ «Черёмушки»",
-                "address" => "Профсоюзная ул., 56, ТЦ «Черёмушки»",
-                "location" => [55.67021, 37.55203],
-                "opening_hours" => [[9, 20], [9, 20], [9, 20], [9, 20], [9, 20], [9, 20], [10, 18]],
-                "info" => "Магазин находится в нескольких минутах ходьбы от станции метро «Полежаевская», торговый центр «Черёмушки», 3 этаж, павильон 318.",
-                "images" => NULL,
-                "sort" => 5,
-                "is_active" => 1,
-            ],
-        ];
+        return Shop::orderBy('sort')->get();
+    }
 
-        $shops = new Collection();
-        foreach ($shop_arr as $shop) {
-            $shops->push((object) $shop);
+
+    public function getShopsForCart(): Collection
+    {
+        return Shop::select(['id', 'address', 'sort'])
+            ->orderBy('sort')
+            ->get();
+    }
+
+
+    public static function getOpeningHoursForHuman(array $opening_hours): array
+    {
+        return GetOpeningHoursForHumanAction::run($opening_hours);
+    }
+
+
+    public function getJSON(Collection $shops): string
+    {
+        $shops_data = [];
+        foreach ($shops as $shop) {
+            $shops_data[] = [
+                $shop->id,
+                [$shop->name, $shop->address, $shop->opening_hours_human->implode('<br>')],
+                $shop->location,
+            ];
         }
 
-
-        return $shops;
+        return json_encode($shops_data, JSON_UNESCAPED_UNICODE);
     }
 }

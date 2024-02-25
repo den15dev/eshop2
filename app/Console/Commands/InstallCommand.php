@@ -6,6 +6,7 @@ use App\Modules\Categories\Commands\AddCategories;
 use App\Modules\Currencies\Commands\AddCurrencies;
 use App\Modules\Languages\Commands\AddLanguages;
 use App\Modules\Settings\Commands\AddSettings;
+use App\Modules\Shops\Commands\AddShops;
 use Illuminate\Console\Command;
 
 class InstallCommand extends Command
@@ -32,6 +33,7 @@ class InstallCommand extends Command
         $this->call(AddLanguages::class);
         $this->call(AddCurrencies::class);
         $this->call(AddSettings::class);
+        $this->call(AddShops::class);
         $this->call(AddCategories::class);
         $this->info('Application installed');
     }

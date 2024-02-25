@@ -6,7 +6,7 @@ export default function init() {
 
         tabs.forEach(tabBtn => {
             tabBtn.addEventListener('click', () => {
-                const activeTabBtn = Array.from(tabs).find(tabBtn => tabBtn.classList.contains('active'));
+                const activeTabBtn = tabCont.querySelector('.tab-btn.active');
 
                 if (!tabBtn.isEqualNode(activeTabBtn)) {
                     const activePaneId = activeTabBtn.id;

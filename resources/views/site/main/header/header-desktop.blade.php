@@ -18,12 +18,12 @@
     <nav class="top-center">
         <ul class="nav-list-top">
             <li>
-                <a href="#">
+                <a href="{{ route('delivery') }}">
                     {{ __('header.top_menu.delivery') }}
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="{{ route('shops') }}">
                     {{ __('header.top_menu.shops') }}
                 </a>
             </li>

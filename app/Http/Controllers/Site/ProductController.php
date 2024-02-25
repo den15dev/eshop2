@@ -25,7 +25,7 @@ class ProductController extends Controller
         $product_id = $slug_id[1];
         $product_slug = $slug_id[0];
 
-        $product = $productService->getProductPageProduct($product_id);
+        $product = $productService->getProduct($product_id);
 
         $recently_viewed_ids = [3, 9, 17, 18, 21, 25, 27, 28];
         $recently_viewed = $productService->getRecentlyViewed($recently_viewed_ids);

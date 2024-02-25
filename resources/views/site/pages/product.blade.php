@@ -61,8 +61,8 @@
                     </ul>
                 </div>
 
-                <a href="#" class="product-main_brand">
-                    <img src="{{ asset('storage/images/brands/1/amd.svg') }}" alt="AMD">
+                <a href="{{ $product->brand->url }}" class="product-main_brand">
+                    <img src="{{ $product->brand->image_url }}" alt="{{ $product->brand->name }}">
                 </a>
             </div>
 
@@ -71,10 +71,10 @@
                 <div class="mb-3">
                     @if($product->discount_prc)
                         <div class="product-main_old-price">
-                            <del>{{ number_format($product->price, 0, ',', ' ') }} ₽</del>
+                            <del>{!! $product->price_formatted !!}</del>
                         </div>
                     @endif
-                    <div class="product-main_cur-price">{{ number_format($product->final_price, 0, ',', ' ') }} &#8381;</div>
+                    <div class="product-main_cur-price">{!! $product->final_price_formatted !!}</div>
                 </div>
 
                 <div class="product-main_add-btn-cont mb-4">

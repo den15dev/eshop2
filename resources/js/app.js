@@ -21,6 +21,7 @@ import initCart from "./site/cart.js";
 import initComparison from "./site/comparison.js";
 import initFavorites from "./site/favorites.js";
 import initNotifications from "./site/user-notifications.js"
+import initShops from "./site/shops.js"
 
 
 // --------------- Common ------------------
@@ -76,6 +77,10 @@ initFavorites();
 // --------------- User notifications ------------------
 
 initNotifications();
+
+// --------------- User notifications ------------------
+
+initShops();
 
 // --------------- Get all client translations ------------------
 

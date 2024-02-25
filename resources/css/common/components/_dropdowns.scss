@@ -17,7 +17,7 @@ $dropdown-item-paddings: 0.25rem;
   cursor: default;
   display: none;
   padding: $dropdown-list-paddings * 0.8 $dropdown-list-paddings;
-  z-index: 111;
+  z-index: 131;
   margin-left: -($dropdown-list-paddings + $dropdown-item-paddings);
   margin-top: 0.5rem;
   @if $border-radius-base > 0 {

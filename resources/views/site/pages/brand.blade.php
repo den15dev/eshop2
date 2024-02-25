@@ -4,8 +4,20 @@
 
 @section('main_content')
     <div class="container">
-        <h3 class="mb-3">{{ $brand->name }}</h3>
+        <div class="brand_image-cont mt-2 mb-4">
+            <img src="{{ $brand->image_url }}" alt="{{ $brand->name }}">
+        </div>
 
+        <div class="brand_descr-cont mb-5">
+            {!! to_paragraphs($brand->description) !!}
+        </div>
 
+        <h4 class="mb-3">{{ __('brand.products_in_categories', ['brand' => $brand->name]) }}</h4>
+
+        <div class="catalog-cards-cont mb-5">
+            @foreach($brand_categories as $category)
+                <x-category-card :category="$category" />
+            @endforeach
+        </div>
     </div>
 @endsection

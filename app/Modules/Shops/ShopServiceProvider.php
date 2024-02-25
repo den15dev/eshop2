@@ -2,6 +2,7 @@
 
 namespace App\Modules\Shops;
 
+use App\Modules\Shops\Commands\AddShops;
 use Illuminate\Support\ServiceProvider;
 
 class ShopServiceProvider extends ServiceProvider
@@ -21,6 +22,10 @@ class ShopServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->loadMigrationsFrom(__DIR__ . '/Migrations');
+
+            $this->commands([
+                AddShops::class,
+            ]);
         }
     }
 }

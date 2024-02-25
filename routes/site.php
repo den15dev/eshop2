@@ -6,6 +6,7 @@ use App\Http\Controllers\Site\BrandController;
 use App\Http\Controllers\Site\CartController;
 use App\Http\Controllers\Site\CatalogController;
 use App\Http\Controllers\Site\ComparisonController;
+use App\Http\Controllers\Site\DeliveryController;
 use App\Http\Controllers\Site\FavoriteController;
 use App\Http\Controllers\Site\HomeController;
 use App\Http\Controllers\Site\OrderController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\Site\ProductController;
 use App\Http\Controllers\Site\PromoController;
 use App\Http\Controllers\Site\ReviewController;
 use App\Http\Controllers\Site\SearchController;
+use App\Http\Controllers\Site\ShopController;
 use App\Http\Controllers\Site\TempController;
 use App\Http\Controllers\Site\UserNotificationController;
 use App\Http\Controllers\Site\UserProfileController;
@@ -56,5 +58,8 @@ Route::middleware('auth')->prefix('user')->group(function () {
     Route::post('/profile', [UserProfileController::class, 'store'])->name('profile.store');
     Route::get('/notifications', [UserNotificationController::class, 'index'])->name('notifications');
 });
+
+Route::get('/delivery', DeliveryController::class)->name('delivery');
+Route::get('/shops', ShopController::class)->name('shops');
 
 require __DIR__.'/auth.php';

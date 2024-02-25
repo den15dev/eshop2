@@ -204,11 +204,20 @@ class ProductService
     }
 
 
-    public function getProductPageProduct(int $id): \stdClass
+    public function getProduct(int $id): \stdClass
     {
         $product = $this->getOneProduct($id);
 
         $product->specifications = self::getTempSpecs();
+
+        $brand = new \stdClass();
+        $brand->id = 1;
+        $brand->name = 'AMD';
+        $brand->slug = str($brand->name)->slug()->value();
+        $brand->url = route('brand', [$brand->slug]);
+        $brand->image_url = asset('storage/images/brands/' . $brand->id . '/' . $brand->slug . '.svg');
+
+        $product->brand = $brand;
 
         return $product;
     }

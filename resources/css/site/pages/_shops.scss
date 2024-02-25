@@ -1,0 +1,68 @@
+.shops_cont {
+  display: block;
+
+  @include md {
+    display: flex;
+    gap: 3rem;
+
+    & > div {
+      flex: 1;
+    }
+
+    .tab-pane {
+      display: block;
+    }
+  }
+
+  @include lg {
+    gap: 4rem;
+  }
+}
+
+.shops_tabs {
+  display: flex;
+
+  @include md {
+    display: none;
+  }
+}
+
+.shops_item {
+  cursor: pointer;
+  margin-bottom: 1.75rem;
+
+  &:hover {
+    .shops_item-name {
+      color: $link-color;
+    }
+  }
+
+  &.active {
+    padding-left: 1rem;
+    border-left: solid 2px $color2;
+    margin-left: -1rem;
+  }
+}
+
+.shops_item-name {
+  font-weight: $font-weight-bold;
+}
+
+.shops_item-address {
+  margin-bottom: 0.5rem;
+}
+
+.shops_item-hours {
+  color: $grey-120;
+  font-size: $font-size-sm;
+  margin-bottom: 0.5rem;
+}
+
+.shops_item-info {
+  display: none;
+  font-size: $font-size-sm;
+}
+
+.shops_map {
+  height: 628px;
+}

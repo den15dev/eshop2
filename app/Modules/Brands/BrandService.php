@@ -3,6 +3,7 @@
 namespace App\Modules\Brands;
 
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\DB;
 
 class BrandService
 {
@@ -26,6 +27,7 @@ class BrandService
             $brand->name = $names[$i];
             $brand->slug = str($names[$i])->slug()->value();
             $brand->url = route('brand', [$brand->slug]);
+            $brand->image_url = asset('storage/images/brands/' . $brand->id . '/' . $brand->slug . '.svg');
 
             $brands->push($brand);
         }
@@ -55,15 +57,52 @@ class BrandService
     }
 
 
-    public function getOneBrand(int $id): \stdClass
+    public function getBrand(string $slug): \stdClass
     {
         $tempBrands = self::getTempBrands();
-        $tempNum = $tempBrands->count();
-        $inner_id = ($id - 1) % $tempNum + 1;
 
-        $brand = $tempBrands->firstWhere('id', $inner_id);
-        $brand->description = fake()->realText(300);
+        $brand = $tempBrands->firstWhere('slug', $slug);
+        $brand->description = fake()->realText(600);
 
-        return $tempBrands->firstWhere('id', $inner_id);
+        return $brand;
+    }
+
+
+    public function getBrandCategories(int $brand_id): Collection
+    {
+        /*return DB::table('products')
+            ->join('categories', 'categories.id', '=', 'products.category_id')
+            ->selectRaw('categories.name, categories.slug, count(*) as products_total')
+            ->where('brand_id', $brand_id)
+            ->groupBy('category_id')
+            ->get();*/
+
+        $brand_categories = new Collection();
+
+        $category_arr = [
+            [
+                'name' => 'CPU',
+                'slug' => 'cpu',
+            ],
+            [
+                'name' => 'Webcams',
+                'slug' => 'webcams',
+            ],
+            [
+                'name' => 'Laptop backpacks',
+                'slug' => 'laptop-backpacks',
+            ],
+        ];
+
+        foreach ($category_arr as $category) {
+            $cat = new \stdClass();
+            $cat->name = $category['name'];
+            $cat->slug = $category['slug'];
+            $cat->level = 2;
+            $cat->product_count = fake()->numberBetween(5, 300);
+            $brand_categories->push($cat);
+        }
+
+        return $brand_categories;
     }
 }
