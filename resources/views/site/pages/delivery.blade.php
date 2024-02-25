@@ -6,62 +6,63 @@
     <div class="container">
         <h3 class="mb-4">{{ __('delivery.delivery') }}</h3>
 
-        <h4 class="mt-45 mb-3">Экспресс-доставка «День в день»</h4>
+        <h4 class="mt-45 mb-3">{{ __('delivery.express.title') }}</h4>
         <p>
-            Доставка осуществляется по Москве после 100% предоплаты на сайте.<br>
-            Выбранные товары должны быть в наличии в одном из магазинов Москвы.<br>
-            Звонок курьера осуществляется за 30 минут до доставки, в выбранный Вами день и интервал на момент оформления заказа на сайте.<br>
-            Заявки на курьерскую экспресс-доставку принимаются до 17:30 в день доставки.
+            {{ __('delivery.express.pre_payment') }}<br>
+            {{ __('delivery.express.in_stock') }}<br>
+            {{ __('delivery.express.courier_call') }}<br>
+            {{ __('delivery.express.end_time') }}
         </p>
         <p>
-            Стоимость доставки товара в 2-х часовой интервал до 15 кг.: <span class="fw-semibold">850 рублей</span>.<br>
-            Стоимость доставки товара в 4-х часовой интервал до 15 кг.: <span class="fw-semibold">750 рублей</span>.<br>
-            Стоимость доставки товара в 4-х часовой интервал свыше 15 кг.: <span class="fw-semibold">4000 рублей</span>.<br>
-            Возможность оформления экспресс-доставки отображается при размещении заказа.
+            {{ $params->express_cost1->description }}: <span class="fw-semibold">{{ $params->express_cost1->val }}</span><br>
+            {{ $params->express_cost2->description }}: <span class="fw-semibold">{{ $params->express_cost2->val }}</span><br>
+            {{ $params->express_cost3->description }}: <span class="fw-semibold">{{ $params->express_cost3->val }}</span><br>
         </p>
         <p>
-            Интервалы доставки:
+            {{ __('delivery.express.availability') }}
+        </p>
+        <p>
+            {{ __('delivery.express.intervals') }}:
             <ul style="list-style: unset; padding-left: 1.75rem;">
-                <li>с 12.00 до 14.00</li>
-                <li>с 12.00 до 16.00</li>
-                <li>с 14.00 до 16.00</li>
-                <li>с 16.00 до 18.00</li>
-                <li>с 18.00 до 20.00</li>
-                <li>с 18.00 до 22.00</li>
+                <li>{{ __('delivery.express.from_to', ['start' => '12:00', 'end' => '14:00']) }}</li>
+                <li>{{ __('delivery.express.from_to', ['start' => '14:00', 'end' => '16:00']) }}</li>
+                <li>{{ __('delivery.express.from_to', ['start' => '16:00', 'end' => '18:00']) }}</li>
+                <li>{{ __('delivery.express.from_to', ['start' => '18:00', 'end' => '20:00']) }}</li>
+                <li>{{ __('delivery.express.from_to', ['start' => '20:00', 'end' => '22:00']) }}</li>
             </ul>
         </p>
 
-        <h4 class="mt-45 mb-3">Обычная доставка</h4>
+        <h4 class="mt-45 mb-3">{{ __('delivery.regular.title') }}</h4>
         <p>
-            Звонок курьера осуществляется за час до доставки, в выбранный Вами день и интервал на момент оформления заказа на сайте.<br>
-            Заявки на курьерскую доставку принимаются до 20:00 текущего дня с доставкой на следующий день.
+            {{ __('delivery.regular.courier_call') }}<br>
+            {{ __('delivery.regular.end_time') }}
         </p>
         <p>
-            Стоимость доставки товара в интервал с 10.00 до 22.00:<br>
-            Вес до 10 кг.: <span class="fw-semibold">599 рублей</span>.<br>
-            Вес от 10 до 25 кг.: <span class="fw-semibold">799 рублей</span>.<br>
-            Вес от 25 до 100 кг.: <span class="fw-semibold">899 рублей</span>.<br>
-            Вес от 100 до 300 кг.: <span class="fw-semibold">1990 рублей</span>.
+            {{ __('delivery.regular.cost') }}:<br>
+            {{ $params->cost_under10->description }}: <span class="fw-semibold">{{ $params->cost_under10->val }}</span><br>
+            {{ $params->cost_10_25->description }}: <span class="fw-semibold">{{ $params->cost_10_25->val }}</span><br>
+            {{ $params->cost_25_100->description }}: <span class="fw-semibold">{{ $params->cost_25_100->val }}</span><br>
+            {{ $params->cost_100_300->description }}: <span class="fw-semibold">{{ $params->cost_100_300->val }}</span><br>
         </p>
         <p>
-            Возможность доставки заказа свыше 300 кг и тариф утверждаются Продавцом в индивидуальном порядке.
+            {{ __('delivery.over_300') }}
         </p>
 
-        <h4 class="mt-45 mb-3">Условия доставки</h4>
+        <h4 class="mt-45 mb-3">{{ __('delivery.conditions.title') }}</h4>
 
         <ul class="mb-3" style="list-style: unset; padding-left: 1.75rem;">
-            <li>Приобретаемый товар доставляется в квартиру (коттедж, дачу) только при наличии подъездных путей к подъезду дома (дачи, коттеджа). В двухуровневых квартирах, многоэтажных коттеджах и дачах товар заносится на первый этаж.</li>
-            <li>При ручном подъеме товара лестничные проходы и пролеты до места доставки не должны быть загромождены или заставлены.</li>
-            <li>Лестничные проходы и дверные проемы должны быть свободны и позволять свободно занести товар в помещение в упаковке (при перемещении товара сквозь проем, ширина с каждой стороны должна быть не менее 10 см между товаром и стороной проема). В случае отсутствия возможности занести товар в квартиру(офис) товар передается клиенту на месте, до которого удалось осуществить доставку.</li>
-            <li>Упакованный товар заносится за порог помещения в который доставляется заказ, перемещение товара в другие точки помещения не осуществляются.</li>
-            <li>В стоимость тарифа на доставку входит подъем товара (в том числе и крупного габаритного товара) до квартиры.</li>
-            <li>При доставке на территорию с платным въездом стоимость въезда оплачивает покупатель. В иных случаях доставка осуществляется только до места платного въезда.</li>
-            <li>Магазин вправе отказать в доставке товара, если доставка осуществляется в лечебно-профилактические учреждения.</li>
-            <li>Проверка работоспособности товаров, а также консультация по эксплуатации, сотрудниками доставки не производится.</li>
-            <li>Дополнительные услуги сотрудниками доставки не осуществляются.</li>
+            <li>{{ __('delivery.conditions.access_roads') }}</li>
+            <li>{{ __('delivery.conditions.stairs') }}</li>
+            <li>{{ __('delivery.conditions.doors') }}</li>
+            <li>{{ __('delivery.conditions.threshold') }}</li>
+            <li>{{ __('delivery.conditions.lifting') }}</li>
+            <li>{{ __('delivery.conditions.paid_entry') }}</li>
+            <li>{{ __('delivery.conditions.medical') }}</li>
+            <li>{{ __('delivery.conditions.testing') }}</li>
+            <li>{{ __('delivery.conditions.additional') }}</li>
         </ul>
         <p>
-            Возможность доставки заказа свыше 300 кг и тариф утверждаются Продавцом в индивидуальном порядке.
+            {{ __('delivery.over_300') }}
         </p>
     </div>
 @endsection

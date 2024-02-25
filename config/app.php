@@ -191,7 +191,7 @@ return [
          */
         App\Modules\Languages\LanguageServiceProvider::class,
         App\Modules\Currencies\CurrencyServiceProvider::class,
-        App\Modules\Settings\SettingServiceProvider::class,
+        App\Modules\StaticPages\StaticPageServiceProvider::class,
         App\Modules\Categories\CategoryServiceProvider::class,
         App\Modules\Brands\BrandServiceProvider::class,
         App\Modules\Promos\PromoServiceProvider::class,

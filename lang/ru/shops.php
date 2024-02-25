@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 return [
     'shops' => 'Магазины',
+    'list' => 'Список',
+    'map' => 'Карта',
     'weekdays' => [
         'mo' => 'Пн',
         'tu' => 'Вт',

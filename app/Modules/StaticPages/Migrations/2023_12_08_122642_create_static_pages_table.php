@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('settings', function (Blueprint $table) {
+        Schema::create('static_pages', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            $table->jsonb('val')->nullable();
+            $table->string('slug')->unique();
+            $table->jsonb('name');
             $table->timestamps();
         });
     }
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('settings');
+        Schema::dropIfExists('static_pages');
     }
 };

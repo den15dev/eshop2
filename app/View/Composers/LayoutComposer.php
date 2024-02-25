@@ -7,7 +7,7 @@ use App\Modules\Currencies\CurrencyService;
 use App\Modules\Languages\LanguageService;
 use App\Modules\Products\ComparisonService;
 use App\Modules\Products\FavoriteService;
-use App\Modules\Settings\Models\Setting;
+use App\Modules\StaticPages\Models\StaticPageParam;
 use Illuminate\View\View;
 
 class LayoutComposer
@@ -29,7 +29,7 @@ class LayoutComposer
 
         $favorites_num = FavoriteService::count();
 
-        $settings = Setting::getAll();
+        $settings = StaticPageParam::getGeneral();
         $phone = $settings->firstWhere('name', 'phone')->val;
         $phone_tel = str_replace([' ', '(', ')', '-'], '', $phone);
 

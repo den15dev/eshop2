@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 return [
     'shops' => 'Shops',
+    'list' => 'List',
+    'map' => 'Map',
     'weekdays' => [
         'mo' => 'Mo',
         'tu' => 'Tu',

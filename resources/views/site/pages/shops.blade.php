@@ -8,10 +8,10 @@
 
         <nav class="shops_tabs tab-cont mb-4">
             <div class="tab-btn active" role="button" id="shopListTab">
-                Список
+                {{ __('shops.list') }}
             </div>
             <div class="tab-btn link" role="button" id="shopMapTab">
-                Карта
+                {{ __('shops.map') }}
             </div>
         </nav>
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Modules\Settings;
+namespace App\Modules\StaticPages;
 
-use App\Modules\Settings\Commands\AddSettings;
+use App\Modules\StaticPages\Commands\AddStaticPageParams;
 use Illuminate\Support\ServiceProvider;
 
-class SettingServiceProvider extends ServiceProvider
+class StaticPageServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
@@ -24,7 +24,7 @@ class SettingServiceProvider extends ServiceProvider
             $this->loadMigrationsFrom(__DIR__ . '/Migrations');
 
             $this->commands([
-                AddSettings::class,
+                AddStaticPageParams::class,
             ]);
         }
     }
