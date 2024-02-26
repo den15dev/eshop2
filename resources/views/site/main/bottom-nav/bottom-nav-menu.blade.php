@@ -11,13 +11,13 @@
 
         <ul class="bottom-menu_list">
             <li>
-                <a href="{{ route('delivery') }}">{{ __('header.top_menu.delivery') }}</a>
+                <a href="{{ route('delivery') }}">{{ __('delivery.delivery') }}</a>
             </li>
             <li>
-                <a href="{{ route('shops') }}">{{ __('header.top_menu.shops') }}</a>
+                <a href="{{ route('shops') }}">{{ __('shops.shops') }}</a>
             </li>
             <li>
-                <a href="#">{{ __('header.top_menu.warranty') }}</a>
+                <a href="{{ route('warranty') }}">{{ __('warranty.warranty') }}</a>
             </li>
             <li>
                 <a href="#">{{ __('header.top_menu.for_customers') }}</a>

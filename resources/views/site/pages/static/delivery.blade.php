@@ -23,7 +23,7 @@
         </p>
         <p>
             {{ __('delivery.express.intervals') }}:
-            <ul style="list-style: unset; padding-left: 1.75rem;">
+            <ul class="text-list">
                 <li>{{ __('delivery.express.from_to', ['start' => '12:00', 'end' => '14:00']) }}</li>
                 <li>{{ __('delivery.express.from_to', ['start' => '14:00', 'end' => '16:00']) }}</li>
                 <li>{{ __('delivery.express.from_to', ['start' => '16:00', 'end' => '18:00']) }}</li>
@@ -50,7 +50,7 @@
 
         <h4 class="mt-45 mb-3">{{ __('delivery.conditions.title') }}</h4>
 
-        <ul class="mb-3" style="list-style: unset; padding-left: 1.75rem;">
+        <ul class="text-list mb-3">
             <li>{{ __('delivery.conditions.access_roads') }}</li>
             <li>{{ __('delivery.conditions.stairs') }}</li>
             <li>{{ __('delivery.conditions.doors') }}</li>

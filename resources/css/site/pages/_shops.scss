@@ -64,5 +64,9 @@
 }
 
 .shops_map {
-  height: 628px;
+  height: 460px;
+
+  @include sm {
+    height: 628px;
+  }
 }

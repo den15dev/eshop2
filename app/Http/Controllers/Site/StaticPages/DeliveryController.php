@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Site;
+namespace App\Http\Controllers\Site\StaticPages;
 
 use App\Http\Controllers\Controller;
 use App\Modules\StaticPages\Models\StaticPage;
@@ -12,6 +12,6 @@ class DeliveryController extends Controller
     {
         $params = $staticPage->getParams('delivery');
 
-        return view('site.pages.delivery', compact('params'));
+        return view('site.pages.static.delivery', compact('params'));
     }
 }

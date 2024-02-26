@@ -1,12 +1,12 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Common\CurrencyController;
 use App\Http\Controllers\Common\LanguageController;
 use App\Http\Controllers\Site\BrandController;
 use App\Http\Controllers\Site\CartController;
 use App\Http\Controllers\Site\CatalogController;
 use App\Http\Controllers\Site\ComparisonController;
-use App\Http\Controllers\Site\DeliveryController;
 use App\Http\Controllers\Site\FavoriteController;
 use App\Http\Controllers\Site\HomeController;
 use App\Http\Controllers\Site\OrderController;
@@ -18,8 +18,8 @@ use App\Http\Controllers\Site\ShopController;
 use App\Http\Controllers\Site\TempController;
 use App\Http\Controllers\Site\UserNotificationController;
 use App\Http\Controllers\Site\UserProfileController;
-use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Site\StaticPages\DeliveryController;
+use App\Http\Controllers\Site\StaticPages\WarrantyController;
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -59,7 +59,11 @@ Route::middleware('auth')->prefix('user')->group(function () {
     Route::get('/notifications', [UserNotificationController::class, 'index'])->name('notifications');
 });
 
-Route::get('/delivery', DeliveryController::class)->name('delivery');
 Route::get('/shops', ShopController::class)->name('shops');
+
+// ---------- Static pages ----------
+
+Route::get('/delivery', DeliveryController::class)->name('delivery');
+Route::get('/warranty', WarrantyController::class)->name('warranty');
 
 require __DIR__.'/auth.php';

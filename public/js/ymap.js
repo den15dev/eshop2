@@ -43,13 +43,13 @@ function mapInit(){
         zoom: mapZoom
     });
 
-    for (let i=0; i<shops_data.length; i++) {
+    shops_data.forEach(shop => {
         let placemark = new ymaps.Placemark(
-            shops_data[i][2],
+            shop[2],
             {
-                balloonContentHeader: shops_data[i][1][0],
-                balloonContentBody: shops_data[i][1][1],
-                balloonContentFooter: shops_data[i][1][2],
+                balloonContentHeader: shop[1][0],
+                balloonContentBody: shop[1][1],
+                // balloonContentFooter: shop[1][2],
             },
             {
                 hideIconOnBalloonOpen: false,
@@ -59,7 +59,7 @@ function mapInit(){
         eshopMap.geoObjects.add(placemark);
 
         placemark.events.add('click', function () {
-            hilightListItem(shops_data[i][0]);
+            hilightListItem(shop[0]);
         });
 
         placemark.events.add('balloonopen', function (e) {
@@ -70,40 +70,42 @@ function mapInit(){
             e.get('target').options.set('preset', 'islands#blueIcon');
         });
 
-        shops_data[i].push(placemark);
-    }
+        shop.push(placemark);
+    });
 
     eshopMap.events.add('balloonclose', closeAllItems);
 
     shopItems.forEach(shopItem => {
-        shopItem.onclick = function (event) {
-            const item_id = event.currentTarget.getAttribute('data-shopid');
-            hilightListItem(item_id);
-
-            if (lgMedia.matches) {
-                let current_shop = [];
-                for (let i = 0; i < shops_data.length; i++) {
-                    if (shops_data[i][0] === parseInt(item_id, 10)) {
-                        current_shop = shops_data[i];
-                    }
-                }
-
-                const center = current_shop[2];
-                const placemark = current_shop[3];
-
-                eshopMap.setCenter(center, 14, {
-                    duration: 500,
-                    timingFunction: 'ease',
-                }).then(function () {
-                    placemark.balloon.open();
-                });
-            }
-        }
+        shopItem.addEventListener('click', () => {
+            panMapToLocation(eshopMap, shopItem);
+        });
     });
 
     eshopMap.controls.remove('searchControl');
     eshopMap.controls.remove('typeSelector');
     eshopMap.controls.remove('trafficControl');
 }
+
+
+function panMapToLocation(eshopMap, shopItem) {
+    const item_id = shopItem.dataset.shopid;
+
+    if (lgMedia.matches) {
+        const current_shop = shops_data.find(
+            shop => shop[0] === parseInt(item_id, 10)
+        );
+
+        const center = current_shop[2];
+        const placemark = current_shop[3];
+
+        eshopMap.setCenter(center, 14, {
+            duration: 500,
+            timingFunction: 'ease',
+        }).then(function () {
+            placemark.balloon.open();
+        });
+    }
+}
+
 
 ymaps.ready(mapInit);

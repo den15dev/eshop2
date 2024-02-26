@@ -147,6 +147,11 @@ ul {
   list-style: none;
 }
 
+.text-list {
+  list-style: unset;
+  padding-left: 1.75rem;
+}
+
 
 // ------------- Tables (copied from Bootstrap's _reboot.scss) ---------------
 

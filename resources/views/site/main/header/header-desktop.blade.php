@@ -19,17 +19,17 @@
         <ul class="nav-list-top">
             <li>
                 <a href="{{ route('delivery') }}">
-                    {{ __('header.top_menu.delivery') }}
+                    {{ __('delivery.delivery') }}
                 </a>
             </li>
             <li>
                 <a href="{{ route('shops') }}">
-                    {{ __('header.top_menu.shops') }}
+                    {{ __('shops.shops') }}
                 </a>
             </li>
             <li>
-                <a href="#">
-                    {{ __('header.top_menu.warranty') }}
+                <a href="{{ route('warranty') }}">
+                    {{ __('warranty.warranty') }}
                 </a>
             </li>
             <li class="dropdown">
