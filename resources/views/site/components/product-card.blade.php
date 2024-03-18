@@ -5,7 +5,9 @@
             <div class="image-link-tint"></div>
         </a>
         @if($product->promo_id)
-            <a href="{{ route('promo', $product->promo_url_slug) }}" class="product-card_badge" title="{{ $product->promo_name }}">-{{ $product->discount_prc }}%</a>
+            <a href="{{ route('promo', $product->promo_url_slug) }}" class="product-card_badge-link" title="{{ $product->promo_name }}">-{{ $product->discount_prc }}%</a>
+        @elseif($product->discount_prc)
+            <div class="product-card_badge">-{{ $product->discount_prc }}%</div>
         @endif
     </div>
     <a href="{{ $product->url }}" class="product-card_name mb-1">

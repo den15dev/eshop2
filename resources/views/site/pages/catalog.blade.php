@@ -13,7 +13,7 @@
 
                     <div class="filters_btn-cont">
                         <button type="submit">{{ __('catalog.filters.apply') }}</button>
-                        <a href="#" class="btn btn-bg-grey">{{ __('catalog.filters.reset') }}</a>
+                        <a href="{{ route('catalog', $category->slug) }}" class="btn btn-bg-grey">{{ __('catalog.filters.reset') }}</a>
                     </div>
                 </form>
             </div>
@@ -35,7 +35,9 @@
                         @endforeach
                     @endif
 
-                    @include('site.includes.pagination')
+                    {{ $products->links('common.pagination.results-shown') }}
+                    {{ $products->onEachSide(1)->withQueryString()->links('common.pagination.page-links') }}
+
                 @else
                     <div class="items-not-found">
                         {{ __('catalog.no_products') }}

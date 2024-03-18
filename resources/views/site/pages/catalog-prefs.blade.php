@@ -26,7 +26,7 @@
     <div class="layout-cont">
         <div class="dropdown">
             <div class="dropdown-btn">
-                <span class="sm">{{ __('catalog.layout_settings.on_page') }} </span>{{ $prefs->per_page_active->num }}
+                <span class="sm">{{ __('catalog.layout_settings.on_page') }} </span>{{ $prefs->per_page_num }}
                 <span class="icon-chevron-down xsmall"></span>
             </div>
             <ul class="dropdown-list dd-right">

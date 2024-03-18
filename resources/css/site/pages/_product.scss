@@ -87,6 +87,30 @@
   }
 }
 
+.variant-cont {
+  .dropdown-item,
+  .dropdown-btn {
+    cursor: pointer;
+
+    &:hover {
+      color: color($color1, light, 3);
+    }
+
+    &.active:hover {
+      cursor: default;
+      color: unset;
+    }
+
+    &.disabled {
+      cursor: default;
+      color: $grey-220;
+    }
+  }
+
+  .icon-chevron-down {
+    color: $grey-180;
+  }
+}
 
 .product-main_cur-price {
   font-size: $font-size-base * 1.75;

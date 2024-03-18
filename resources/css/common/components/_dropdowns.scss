@@ -41,6 +41,10 @@ $dropdown-item-paddings: 0.25rem;
   padding: $dropdown-item-paddings;
 }
 
+.dropdown-label {
+  color: $grey-150;
+}
+
 .dd-right {
   margin-left: 0;
   right: 0;

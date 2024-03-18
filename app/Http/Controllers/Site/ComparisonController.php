@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
+use App\Modules\Catalog\ComparisonService;
 use App\Modules\Categories\CategoryService;
-use App\Modules\Products\ComparisonService;
 use App\Modules\Products\ProductService;
 use Illuminate\View\View;
 

@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Modules\Common\CommonService;
 use App\Modules\Languages\LanguageService;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
@@ -15,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        bcscale(2);
     }
 
     /**
@@ -24,6 +25,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->configureForConsole();
+
+        // During development, throw an exception when attempting to fill an unfillable attribute
+        Model::preventSilentlyDiscardingAttributes(!app()->isProduction());
 
         // Count DB queries for monitoring
         DB::listen(function() {

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
-use App\Modules\Products\FavoriteService;
+use App\Modules\Favorites\FavoriteService;
 use App\Modules\Products\ProductService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;

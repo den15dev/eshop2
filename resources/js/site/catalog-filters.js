@@ -37,6 +37,16 @@ export default function init() {
             setDuplicateInputValue(input_elem, '#filterFormDesktop');
         });
     });
+
+    // ----- Remove empty inputs' values from formData (min and max prices) -----
+    document.querySelectorAll('#filterFormDesktop, #filterFormMobile').forEach(form => {
+        form.addEventListener('formdata', event => {
+            let formData = event.formData;
+            for (let [name, value] of Array.from(formData.entries())) {
+                if (value === '') formData.delete(name);
+            }
+        });
+    });
 }
 
 function setDuplicateInputValue(current_input, formId) {

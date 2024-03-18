@@ -32,7 +32,7 @@ class AddCategories extends Command
 
     private function createCategories(): void
     {
-        $categories = include_once __DIR__ . '/categories.php';
+        $categories = include_once __DIR__ . '/../Data/categories.php';
         $records = self::buildCategoryList($categories);
 
         Category::upsert($records, 'id');

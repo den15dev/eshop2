@@ -2,8 +2,10 @@
 
 namespace App\Modules\Products;
 
+use App\Modules\Catalog\ComparisonService;
 use App\Modules\Categories\CategoryService;
 use App\Modules\Categories\Models\Category;
+use App\Modules\Favorites\FavoriteService;
 use App\Modules\Promos\PromoService;
 use Illuminate\Database\Eloquent\Collection;
 

@@ -193,12 +193,16 @@ return [
         App\Modules\Currencies\CurrencyServiceProvider::class,
         App\Modules\StaticPages\StaticPageServiceProvider::class,
         App\Modules\Categories\CategoryServiceProvider::class,
+        App\Modules\Users\UserServiceProvider::class,
         App\Modules\Brands\BrandServiceProvider::class,
         App\Modules\Promos\PromoServiceProvider::class,
-        App\Modules\Products\ProductServiceProvider::class,
         App\Modules\Shops\ShopServiceProvider::class,
+        App\Modules\Products\ProductServiceProvider::class,
+        App\Modules\Catalog\CatalogServiceProvider::class,
+        App\Modules\Reviews\ReviewServiceProvider::class,
+        App\Modules\Cart\CartServiceProvider::class,
         App\Modules\Orders\OrderServiceProvider::class,
-        App\Modules\Users\UserServiceProvider::class,
+        App\Modules\Favorites\FavoriteServiceProvider::class,
     ])->toArray(),
 
     /*

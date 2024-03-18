@@ -1,6 +1,6 @@
 .product-row {
   display: block;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.75rem;
 
   @include xs {
     display: flex;
@@ -14,18 +14,29 @@
   align-items: center;
 }
 
-.product-row_image-link {
-  display: block;
+.product-row_image-cont {
   flex: 0 0 var(--product-row-image);
   width: var(--product-row-image);
   height: var(--product-row-image);
   position: relative;
-  margin-bottom: 0.5rem;
-  line-height: 0.8;
+  margin-bottom: 0.75rem;
 
   @include xs {
     margin-bottom: 0;
   }
+}
+
+.product-row_main-cont {
+  flex: 1;
+}
+
+.product-row_image-link {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  font-size: $font-size-sm;
+  line-height: 1.3;
 }
 
 .product-row_image {

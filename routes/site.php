@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Common\CurrencyController;
 use App\Http\Controllers\Common\LanguageController;
 use App\Http\Controllers\Site\BrandController;
@@ -15,11 +14,12 @@ use App\Http\Controllers\Site\PromoController;
 use App\Http\Controllers\Site\ReviewController;
 use App\Http\Controllers\Site\SearchController;
 use App\Http\Controllers\Site\ShopController;
-use App\Http\Controllers\Site\TempController;
-use App\Http\Controllers\Site\UserNotificationController;
-use App\Http\Controllers\Site\UserProfileController;
 use App\Http\Controllers\Site\StaticPages\DeliveryController;
 use App\Http\Controllers\Site\StaticPages\WarrantyController;
+use App\Http\Controllers\Site\Temp\TempController;
+use App\Http\Controllers\Site\UserNotificationController;
+use App\Http\Controllers\Site\UserProfileController;
+use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');

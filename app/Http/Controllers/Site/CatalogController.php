@@ -37,25 +37,23 @@ class CatalogController extends Controller
         $prefs_cookie = $request->cookie(CatalogService::PREF_COOKIE);
         $prefs = $catalogService->getPreferences($prefs_cookie);
 
+        $db_query = $filterService->buildFilteredQuery($category->id, $request->query());
+        $db_query = $filterService->sortQuery($db_query, $prefs->sorting_active);
 
-        $price_range = $filterService->getPriceRange();
-        $filter_brands = $filterService->getBrandsByCategory($category->id);
-        $filter_specs = $filterService->getSpecs($category->id);
+        $price_range = $filterService->getPriceRange($db_query);
+        $filter_brands = $filterService->getBrandsByCategory($category->id, $request->query('brands'));
+        $filter_specs = $filterService->getSpecs($category->id, $request->query('specs'));
 
-        $products = $productService->getCatalogProducts($category, 12);
+//        dd($filter_specs);
+
+        $products = $db_query->paginate($prefs->per_page_num);
 
         $recently_viewed_ids = [3, 9, 17, 18, 21, 25, 27, 28];
         $recently_viewed = $productService->getRecentlyViewed($recently_viewed_ids);
 
 
 //        Mail::to('dendangler@gmail.com')->send(new SomeHappen());
-/*
-        session()->flash('message', [
-            'type' => 'warning',
-            'content' => 'Адрес электронной почты успешно подтверждён.',
-            'align' => 'center',
-        ]);
-*/
+
         $filters = 'catalog';
 
         return view('site.pages.catalog', compact(

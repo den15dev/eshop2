@@ -3,6 +3,8 @@
 namespace App\Modules\Catalog;
 
 use App\Modules\Catalog\Enums\ProductSorting;
+use App\Modules\Products\Models\Sku;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 
 class CatalogService
@@ -22,7 +24,7 @@ class CatalogService
         $prefs->sorting_active = $sorting_list->firstWhere('is_active', true);
 
         $prefs->per_page = $per_page_list;
-        $prefs->per_page_active = $per_page_list->firstWhere('is_active', true);
+        $prefs->per_page_num = $per_page_list->firstWhere('is_active', true)->num;
 
         $prefs->layout = intval($catalog_prefs_arr[2]);
 

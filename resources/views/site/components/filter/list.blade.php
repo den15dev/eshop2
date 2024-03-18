@@ -10,12 +10,12 @@
         <li @disabled($disabled)>
             <input class="form-check-input"
                    type="checkbox"
-                   name="{{ $name }}[{{ $item->id }}]"
-                   value="{{ $item->name }}"
+                   name="{{ $name }}[{{ $loop->index }}]"
+                   value="{{ $item->id }}"
                    id="{{ $elem_id }}"
-                    @disabled($disabled)>
+                   {{ $item->is_checked ? 'checked' : '' }} @disabled($disabled)>
             <label class="form-check-label" for="{{ $elem_id }}">
-                {{ $item->name }} <span class="lightgrey-text"> ({{ $item->product_num }})</span>
+                {{ $item->name }} <span class="lightgrey-text"> ({{ $item->skus_num }})</span>
             </label>
         </li>
     @endforeach

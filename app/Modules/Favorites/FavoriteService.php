@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Modules\Products;
+namespace App\Modules\Favorites;
 
+use App\Modules\Products\ProductService;
 use Illuminate\Database\Eloquent\Collection;
 
 class FavoriteService

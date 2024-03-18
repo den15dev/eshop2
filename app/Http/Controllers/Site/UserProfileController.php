@@ -20,6 +20,22 @@ class UserProfileController extends Controller
     public function store(
         UpdateProfileRequest $request,
     ) {
+        $message = 'Профиль обновлён.';
+
+        $user = Auth::user();
+
+        $user->phone = $request->input('phone');
+
+        $user->save();
+
+        if ($message) {
+            $request->session()->flash('message', [
+                'type' => 'info',
+                'content' => $message,
+                'align' => 'center',
+            ]);
+        }
+
         return back();
     }
 }

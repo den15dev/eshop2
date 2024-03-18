@@ -2,11 +2,11 @@
 
 namespace App\View\Composers;
 
+use App\Modules\Catalog\ComparisonService;
 use App\Modules\Categories\CategoryService;
 use App\Modules\Currencies\CurrencyService;
+use App\Modules\Favorites\FavoriteService;
 use App\Modules\Languages\LanguageService;
-use App\Modules\Products\ComparisonService;
-use App\Modules\Products\FavoriteService;
 use App\Modules\StaticPages\Models\StaticPageParam;
 use Illuminate\View\View;
 

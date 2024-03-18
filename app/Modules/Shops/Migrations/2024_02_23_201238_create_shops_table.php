@@ -18,7 +18,7 @@ return new class extends Migration
             $table->jsonb('location');
             $table->jsonb('opening_hours');
             $table->jsonb('info')->nullable();
-            $table->json('images')->nullable();
+            $table->jsonb('images')->nullable();
             $table->unsignedInteger('sort');
             $table->boolean('is_active')->default(true);
             $table->timestamps();

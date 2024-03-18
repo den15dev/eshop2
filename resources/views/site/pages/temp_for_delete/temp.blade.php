@@ -5,6 +5,10 @@
         <p>Version 2.0.1.18<br>The app plugged to Docker.</p>
 
 
+        <div class="mb-3">{{ $str_orig }}</div>
+
+        <div class="mb-3">{{ $str_en }}</div>
+
         <h1>Very big title</h1>
         <div class="mb-4">
             To maintain the stable operation of the AMD Ryzen 5 5600X BOX processor and prevent it from overheating, it comes with a cooling system and a thermal interface applied to the base of the radiator.

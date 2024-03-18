@@ -5,6 +5,8 @@ import menuOpeners from './site/main/menu-opener-handler.js';
 import dropdowns, { localizationDropdowns } from "./common/dropdowns";
 import tabs from "./common/tabs";
 import modals from "./common/modals.js";
+import initPagination from "./common/pagination.js";
+
 import catalogMobile  from './site/main/catalog-mobile.js';
 import { catalogDesktopRoot, catalogDesktopDropdowns } from "./site/main/catalog-desktop.js";
 import search from './site/main/search.js';
@@ -29,6 +31,7 @@ import initShops from "./site/shops.js"
 dropdowns();
 tabs();
 modals();
+initPagination();
 
 // --------------- Main ------------------
 
@@ -85,3 +88,4 @@ initShops();
 // --------------- Get all client translations ------------------
 
 getTranslations();
+

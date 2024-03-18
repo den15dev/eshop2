@@ -3,6 +3,7 @@
 namespace App\Modules\Currencies;
 
 use App\Modules\Currencies\Commands\AddCurrencies;
+use App\Modules\Currencies\Commands\UpdateRates;
 use Illuminate\Support\ServiceProvider;
 
 class CurrencyServiceProvider extends ServiceProvider
@@ -25,6 +26,7 @@ class CurrencyServiceProvider extends ServiceProvider
 
             $this->commands([
                 AddCurrencies::class,
+                UpdateRates::class,
             ]);
         }
     }

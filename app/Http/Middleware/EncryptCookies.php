@@ -3,8 +3,8 @@
 namespace App\Http\Middleware;
 
 use App\Modules\Catalog\CatalogService;
-use App\Modules\Products\ComparisonService;
-use App\Modules\Products\FavoriteService;
+use App\Modules\Catalog\ComparisonService;
+use App\Modules\Favorites\FavoriteService;
 use Illuminate\Cookie\Middleware\EncryptCookies as Middleware;
 
 class EncryptCookies extends Middleware

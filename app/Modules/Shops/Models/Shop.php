@@ -2,8 +2,10 @@
 
 namespace App\Modules\Shops\Models;
 
+use App\Modules\Orders\Models\Order;
 use App\Modules\Shops\ShopService;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
 use Spatie\Translatable\HasTranslations;
 
@@ -23,6 +25,12 @@ class Shop extends Model
     ];
 
     protected $guarded = [];
+
+
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class);
+    }
 
 
     public function getOpeningHoursHumanAttribute(): Collection

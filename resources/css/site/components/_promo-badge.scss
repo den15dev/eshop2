@@ -2,7 +2,9 @@
   background-color: $color-promo1;
   color: white;
   font-size: $font-size-sm;
+}
 
+@mixin promo-badge-link {
   &:hover {
     background-color: $color1;
   }
@@ -12,7 +14,8 @@
   }
 }
 
-.product-card_badge {
+.product-card_badge,
+.product-card_badge-link {
   display: block;
   position: absolute;
   top: 0;
@@ -24,9 +27,18 @@
   @include promo-badge;
 }
 
+.product-card_badge {
+  cursor: default;
+}
+
+.product-card_badge-link {
+  @include promo-badge-link;
+}
+
 
 @mixin promo-badge-inline {
   @include promo-badge;
+  @include promo-badge-link;
 
   display: inline-block;
   font-weight: $font-weight-normal;

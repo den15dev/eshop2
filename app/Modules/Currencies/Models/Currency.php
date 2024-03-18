@@ -2,7 +2,12 @@
 
 namespace App\Modules\Currencies\Models;
 
+use App\Modules\Currencies\Sources\SourceEnum;
+use App\Modules\Languages\Models\Language;
+use App\Modules\Products\Models\Sku;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Cache;
 use Spatie\Translatable\HasTranslations;
 
@@ -16,6 +21,10 @@ class Currency extends Model
     public $incrementing = false;
 
     protected $guarded = [];
+
+    protected $casts = [
+        'source' => SourceEnum::class,
+    ];
 
 
     public static function booted(): void
@@ -31,5 +40,16 @@ class Currency extends Model
         static::deleted(function (self $model) {
             Cache::forget('currencies');
         });
+    }
+
+
+    public function language(): BelongsTo
+    {
+        return $this->belongsTo(Language::class);
+    }
+
+    public function skus(): HasMany
+    {
+        return $this->hasMany(Sku::class);
     }
 }

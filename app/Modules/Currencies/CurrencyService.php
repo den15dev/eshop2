@@ -2,7 +2,11 @@
 
 namespace App\Modules\Currencies;
 
+use App\Modules\Currencies\Actions\UpdateCurrencyRatesAction;
 use App\Modules\Currencies\Models\Currency;
+use App\Modules\Currencies\Sources\Source;
+use App\Modules\Currencies\Sources\SourceEnum;
+use App\Modules\Currencies\Sources\SourceFactory;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Cache;
 
@@ -10,10 +14,8 @@ class CurrencyService
 {
     /**
      * Current preferred currency.
-     *
-     * @var string
      */
-    public static string $pref_currency = 'usd';
+    public static Currency $cur_currency;
 
     /**
      * All currencies will be stored here.
@@ -82,6 +84,17 @@ class CurrencyService
     public static function setCurrency($currency_id): void
     {
         self::sortCurrency($currency_id);
-        self::$pref_currency = $currency_id;
+        self::$cur_currency = self::$currencies->firstWhere('id', $currency_id);
+    }
+
+
+    public function getSource(SourceEnum $source): Source
+    {
+        return SourceFactory::make($source);
+    }
+
+    public function updateRates(): UpdateCurrencyRatesAction
+    {
+        return app(UpdateCurrencyRatesAction::class);
     }
 }

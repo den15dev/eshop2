@@ -30,7 +30,7 @@
                             <div class="f-carousel__slide"
                                  data-thumb-src="{{ get_image('storage/images/products/' . (($product->id - 1) % 4 + 1) . '/' . $image . '_80.jpg', 80) }}"
                                  data-fancybox="product_images"
-                                 data-src="{{ get_image('storage/images/products/' . (($product->id - 1) % 4 + 1) . '/' . $image . '_1400.jpg', 1400) }}">
+                                 data-src="{{ get_image('storage/images/products/' . (($product->id - 1) % 4 + 1) . '/' . $image . '_big.jpg', 1400) }}">
                                 <img src="{{ get_image('storage/images/products/' . (($product->id - 1) % 4 + 1) . '/' . $image . '_600.jpg', 600) }}" alt="">
                             </div>
                         @endforeach
@@ -68,6 +68,71 @@
 
 
             <div class="product-main_price">
+
+                <div class="mb-35">
+                    <div class="variant-cont dropdown mb-3">
+                        <div class="dropdown-label small">Color:</div>
+                        <div class="dropdown-btn" data-variant-id="1">
+                            Black
+                            <span class="icon-chevron-down xsmall"></span>
+                        </div>
+                        <ul class="dropdown-list">
+                            <li>
+                                <div class="dropdown-item active" data-variant-id="2">
+                                    Black <span class="icon-check-lg"></span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="dropdown-item" data-variant-id="3">
+                                    White
+                                </div>
+                            </li>
+                            <li>
+                                <div class="dropdown-item disabled" data-variant-id="4">
+                                    Silver
+                                </div>
+                            </li>
+                            <li>
+                                <div class="dropdown-item" data-variant-id="4">
+                                    Purple
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="variant-cont dropdown mb-3">
+                        <div class="dropdown-label small">Memory capacity:</div>
+                        <div class="dropdown-btn" data-variant-id="1">
+                            64Gb
+                            <span class="icon-chevron-down xsmall"></span>
+                        </div>
+                        <ul class="dropdown-list">
+                            <li>
+                                <div class="dropdown-item active" data-variant-id="2">
+                                    64Gb <span class="icon-check-lg"></span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="dropdown-item" data-variant-id="3">
+                                    128Gb
+                                </div>
+                            </li>
+                            <li>
+                                <div class="dropdown-item disabled" data-variant-id="3">
+                                    256Gb
+                                </div>
+                            </li>
+                            <li>
+                                <div class="dropdown-item" data-variant-id="3">
+                                    512Gb
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+
                 <div class="mb-3">
                     @if($product->discount_prc)
                         <div class="product-main_old-price">

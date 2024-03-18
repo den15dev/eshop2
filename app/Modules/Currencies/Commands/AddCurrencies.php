@@ -3,6 +3,7 @@
 namespace App\Modules\Currencies\Commands;
 
 use App\Modules\Currencies\Models\Currency;
+use App\Modules\Currencies\Sources\SourceEnum;
 use Illuminate\Console\Command;
 
 class AddCurrencies extends Command
@@ -41,6 +42,9 @@ class AddCurrencies extends Command
                 'thousands_sep' => ',',
                 'decimal_sep' => '.',
                 'language_id' => 'en',
+                'exchange_rate' => 92,
+                'exchange_to' => 'rub',
+                'source' => SourceEnum::Cbrf,
             ],
             [
                 'id' => 'rub',
@@ -49,7 +53,10 @@ class AddCurrencies extends Command
                 'symbol_precedes' => false,
                 'thousands_sep' => ' ',
                 'decimal_sep' => ',',
-                'language_id' => 'ru'
+                'language_id' => 'ru',
+                'exchange_rate' => 1,
+                'exchange_to' => 'rub',
+                'source' => SourceEnum::Manual,
             ],
             [
                 'id' => 'eur',
@@ -58,7 +65,10 @@ class AddCurrencies extends Command
                 'symbol_precedes' => true,
                 'thousands_sep' => ',',
                 'decimal_sep' => '.',
-                'language_id' => 'de'
+                'language_id' => 'de',
+                'exchange_rate' => 96,
+                'exchange_to' => 'rub',
+                'source' => SourceEnum::Cbrf,
             ],
         ];
 

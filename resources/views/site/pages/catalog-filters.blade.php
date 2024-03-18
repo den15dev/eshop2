@@ -11,9 +11,25 @@
         <x-filter.list name="brands" :data="$filter_brands" :ismobile="$ismobile" />
     </x-filter.dropdown>
 
+    @php
+        $is_any_checked = false;
+        foreach ($filter_specs as $spec) {
+            if ($spec->has_checked) {
+                $is_any_checked = true;
+                break;
+            }
+        }
+    @endphp
+
     @foreach($filter_specs as $spec)
+        @php
+            $collapsed = 'on';
+            if ($spec->has_checked) $collapsed = 'off';
+            if (!$is_any_checked && !$ismobile && !$loop->index) $collapsed = 'off';
+        @endphp
+
         <x-filter.dropdown title="{{ $spec->name }}"
-                           collapsed="{{ $ismobile ? 'on' : ($loop->index > 0 ? 'on' : 'off') }}"
+                           :collapsed="$collapsed"
                            :ismobile="$ismobile">
             <x-filter.specs :data="$spec" :ismobile="$ismobile" />
         </x-filter.dropdown>

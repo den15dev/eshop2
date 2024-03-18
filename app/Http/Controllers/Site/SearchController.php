@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Site;
 use App\Http\Controllers\Controller;
 use App\Modules\Catalog\CatalogService;
 use App\Modules\Catalog\FilterService;
+use App\Modules\Catalog\SearchService;
 use App\Modules\Products\ProductService;
-use App\Modules\Products\SearchService;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -28,7 +28,7 @@ class SearchController extends Controller
         $prefs = $this->catalogService->getPreferences($prefs_cookie);
 
         $price_range = $this->filterService->getPriceRange();
-        $filter_brands = $this->filterService->getBrandsBySearchQuery($search_query);
+        $filter_brands = $this->filterService->getBrandsBySearchQuery($search_query, $request->query('brands'));
         $filter_categories = $this->filterService->getCategoriesBySearchQuery($search_query);
 
         $products = $this->searchService->getResultsPage($search_query);

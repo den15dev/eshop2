@@ -8,7 +8,7 @@
 
         <div class="filters_btn-cont">
             <button type="submit">{{ __('catalog.filters.apply') }}</button>
-            <a href="#" class="btn btn-bg-grey">{{ __('catalog.filters.reset') }}</a>
+            <a href="{{ route('catalog', $category->slug) }}" class="btn btn-bg-grey">{{ __('catalog.filters.reset') }}</a>
         </div>
     </form>
 </div>
