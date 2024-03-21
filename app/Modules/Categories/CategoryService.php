@@ -43,8 +43,6 @@ class CategoryService
     /**
      * Build a multidimensional array with nested subcategories
      * from a Collection of categories.
-     *
-     * @return array
      */
     public function buildCategoryTree(): array
     {
@@ -57,9 +55,6 @@ class CategoryService
 
     /**
      * Get children categories, each with 'product_count' property.
-     *
-     * @param int $category_id
-     * @return Collection|null
      */
     public function getChildren(int $category_id): ?Collection
     {
@@ -77,10 +72,6 @@ class CategoryService
      * or as an active category;
      * 'parts' - a collection of objects, each with 2 properties:
      * 'url' and 'text'.
-     *
-     * @param Category $category
-     * @param bool $last_is_current
-     * @return \stdClass
      */
     public function getBreadcrumb(Category $category, bool $last_is_current): \stdClass
     {

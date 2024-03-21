@@ -18,12 +18,12 @@
 
 .catalog-page-wrap {
   display: flex;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
 .sidebar-cont {
   display: none;
-  flex: 0 0 280px;
+  flex: 0 0 272px;
 
   @include lg {
     display: block;

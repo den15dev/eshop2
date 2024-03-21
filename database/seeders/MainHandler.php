@@ -69,6 +69,9 @@ class MainHandler
                             // Fix spec units (deletes all translations!)
                             // ProductDataFixer::fixSpecUnits($dir, $filename);
 
+                            // Fix Version attribute (BOX, OEM) in CPUs
+                            // ProductDataFixer::fixCPUVersionAttribute($dir, $filename);
+
                             if ($is_counted) {
                                 $translation_count++;
                                 echo 'Total handled: ' . $translation_count . "\n";

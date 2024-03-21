@@ -33,7 +33,7 @@ class Product extends Model
         return $this->hasMany(Sku::class);
     }
 
-    public function attribute(): HasMany
+    public function attributes(): HasMany
     {
         return $this->hasMany(Attribute::class);
     }

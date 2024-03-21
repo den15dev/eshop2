@@ -4,25 +4,28 @@ namespace App\Modules\Products;
 
 use App\Modules\Catalog\ComparisonService;
 use App\Modules\Categories\CategoryService;
-use App\Modules\Categories\Models\Category;
 use App\Modules\Favorites\FavoriteService;
+use App\Modules\Products\Actions\GetAttributesAction;
+use App\Modules\Products\Actions\GetSkuAction;
+use App\Modules\Products\Models\Sku;
 use App\Modules\Promos\PromoService;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection as ECollection;
+use Illuminate\Database\Query\JoinClause;
+use Illuminate\Support\Collection;
 
 class ProductService
 {
     /**
      * Get a collection of objects, each with 2 properties:
      * 'category_id' and 'product_count'.
-     *
-     * @return Collection
      */
-    public function countByCategories(): Collection
+    public function countByCategories(): ECollection
     {
 //        $categories = Product::select('category_id', DB::raw('count(*) as product_count'))->groupBy('category_id')->get();
 //        $categories->firstWhere('level', 3)?->product_count;
 
-        $product_counts = new Collection();
+        $product_counts = new ECollection();
         $categories = CategoryService::getAll();
 
         foreach ($categories as $category) {
@@ -40,8 +43,6 @@ class ProductService
 
     /**
      * TEMPORARY product generator.
-     *
-     * @return Collection
      */
     private static function getTempProducts(): Collection
     {
@@ -206,37 +207,27 @@ class ProductService
     }
 
 
-    public function getProduct(int $id): \stdClass
+    public function getSku(int $id): Sku
     {
-        $product = $this->getOneProduct($id);
-
-        $product->specifications = self::getTempSpecs();
-
-        $brand = new \stdClass();
-        $brand->id = 1;
-        $brand->name = 'AMD';
-        $brand->slug = str($brand->name)->slug()->value();
-        $brand->url = route('brand', [$brand->slug]);
-        $brand->image_url = asset('storage/images/brands/' . $brand->id . '/' . $brand->slug . '.svg');
-
-        $product->brand = $brand;
-
-        return $product;
+        return GetSkuAction::run($id);
     }
 
 
-    public function getRecentlyViewed(array $ids): Collection
+    public function getAttributes(int $product_id, int $sku_id): Collection
     {
-        return $this->getSomeProducts($ids);
+        return GetAttributesAction::run($product_id, $sku_id);
     }
 
 
-    public function getCatalogProducts(Category $category, int $num): Collection
+    /**
+     * Explode "slug-id"-type slug to array [slug, id].
+     */
+    public static function parseSlug(string $slug_id): array
     {
-        return $this->getSomeProducts($num)->each(function ($product) use ($category) {
-            $product->category_id = $category->id;
-            $product->category_slug = $category->slug;
-            $product->url = route('product', [$product->category_slug, $product->slug . '-' . $product->id]);
-        });
+        $slug_arr = explode('-', $slug_id);
+        $id = array_pop($slug_arr);
+        $slug = count($slug_arr) > 1 ? implode('-', $slug_arr) : $slug_arr[0];
+
+        return [$slug, $id];
     }
 }

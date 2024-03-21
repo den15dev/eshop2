@@ -5,14 +5,18 @@ namespace App\Http\Controllers\Site;
 use App\Http\Controllers\Controller;
 use App\Modules\Categories\CategoryService;
 use App\Modules\Products\ProductService;
+use App\Modules\Products\RecentlyViewedService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\View\View;
 
 class ProductController extends Controller
 {
     public function show(
+        Request $request,
         CategoryService $categoryService,
         ProductService $productService,
+        RecentlyViewedService $recentlyViewedService,
         string $category_slug,
         string $product_slug_id
     ): View {
@@ -21,19 +25,22 @@ class ProductController extends Controller
         abort_if(!$category, 404);
         $breadcrumb = $categoryService->getBreadcrumb($category, false);
 
-        $slug_id = parse_slug($product_slug_id);
-        $product_id = $slug_id[1];
-        $product_slug = $slug_id[0];
+        $slug_id = $productService::parseSlug($product_slug_id);
+        $sku_id = $slug_id[1];
 
-        $product = $productService->getProduct($product_id);
+        $sku = $productService->getSku($sku_id);
+        $attributes = $productService->getAttributes($sku->product_id, $sku_id);
 
-        $recently_viewed_ids = [3, 9, 17, 18, 21, 25, 27, 28];
-        $recently_viewed = $productService->getRecentlyViewed($recently_viewed_ids);
-
+        $rv_cookie = $request->cookie(RecentlyViewedService::COOKIE);
+        $recently_viewed = $recentlyViewedService->get($rv_cookie, $sku_id);
+        $recently_viewed_arr = $recentlyViewedService->update($rv_cookie, $sku_id);
+        Cookie::queue(RecentlyViewedService::COOKIE, json_encode($recently_viewed_arr), 1440);
 
         return view('site.pages.product', compact(
             'breadcrumb',
-            'product',
+            'category',
+            'sku',
+            'attributes',
             'recently_viewed',
         ));
     }

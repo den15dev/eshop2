@@ -6,27 +6,32 @@ export default function init() {
 
         tabs.forEach(tabBtn => {
             tabBtn.addEventListener('click', () => {
-                const activeTabBtn = tabCont.querySelector('.tab-btn.active');
-
-                if (!tabBtn.isEqualNode(activeTabBtn)) {
-                    const activePaneId = activeTabBtn.id;
-                    const activePane = document.querySelector(`#${activePaneId}Pane`);
-                    const paneId = tabBtn.id;
-                    const pane = document.querySelector(`#${paneId}Pane`);
-
-                    if (pane && activePane) {
-                        activeTabBtn.classList.remove('active');
-                        activeTabBtn.classList.add('link');
-                        tabBtn.classList.remove('link');
-                        tabBtn.classList.add('active');
-
-                        activePane.classList.remove('active');
-                        pane.classList.add('active');
-                    } else {
-                        console.error('Tab pane not found.');
-                    }
-                }
+                switchTabTo(tabCont, tabBtn);
             });
         });
     });
+}
+
+
+export function switchTabTo(tabContainer, tabBtn) {
+    const activeTabBtn = tabContainer.querySelector('.tab-btn.active');
+
+    if (!tabBtn.isEqualNode(activeTabBtn)) {
+        const activePaneId = activeTabBtn.id;
+        const activePane = document.querySelector(`#${activePaneId}Pane`);
+        const paneId = tabBtn.id;
+        const pane = document.querySelector(`#${paneId}Pane`);
+
+        if (pane && activePane) {
+            activeTabBtn.classList.remove('active');
+            activeTabBtn.classList.add('link');
+            tabBtn.classList.remove('link');
+            tabBtn.classList.add('active');
+
+            activePane.classList.remove('active');
+            pane.classList.add('active');
+        } else {
+            console.error('Tab pane not found.');
+        }
+    }
 }

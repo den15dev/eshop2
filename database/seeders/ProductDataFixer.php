@@ -54,4 +54,45 @@ class ProductDataFixer
             echo $log;
         }
     }
+
+
+    public static function fixCPUVersionAttribute(string $dir, string $filename): void
+    {
+        $file_ru = $dir . '/ru/' . $filename;
+        $obj_ru = json_decode(file_get_contents($file_ru));
+        $file_en = $dir . '/en/' . $filename;
+        $obj_en = json_decode(file_get_contents($file_en));
+        $file_de = $dir . '/de/' . $filename;
+        $obj_de = json_decode(file_get_contents($file_de));
+
+        if (isset($obj_ru->attributes)) {
+            $attributes = $obj_ru->attributes;
+
+            $is_changed = false;
+            foreach ($attributes as $key => $attr_ru) {
+                if ($attr_ru->name === 'Комплектация' || $attr_ru->name === 'Тип поставки') {
+                    $variants = $attr_ru->variants;
+                    $is_cpu_version = false;
+                    foreach ($variants as $variant) {
+                        if ($variant->name === 'BOX' || $variant->name === 'OEM') {
+                            $is_cpu_version = true;
+                        }
+                    }
+
+                    if ($is_cpu_version) {
+                        $attr_ru->name = 'Версия';
+                        $obj_en->attributes[$key]->name = 'Version';
+                        $obj_de->attributes[$key]->name = 'Ausführung';
+                        $is_changed = true;
+                    }
+                }
+            }
+
+            if ($is_changed) {
+                file_put_contents($file_ru, json_encode($obj_ru, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
+                file_put_contents($file_en, json_encode($obj_en, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
+                file_put_contents($file_de, json_encode($obj_de, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
+            }
+        }
+    }
 }

@@ -20,7 +20,8 @@ return new class extends Migration
             $table->jsonb('name');
             $table->jsonb('units')->nullable();
             $table->unsignedSmallInteger('sort');
-            $table->boolean('is_filter')->default(false);
+            $table->boolean('is_filter')->default(false)->comment('Specs that will be as filters in catalog');
+            $table->boolean('is_main')->default(false)->comment('Specs that will be shown in a main section of a product page');
             $table->timestamps();
         });
 

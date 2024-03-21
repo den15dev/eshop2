@@ -88,7 +88,7 @@ if (!function_exists('parse_price')) {
 }
 
 
-if (!function_exists('getImageByNameBase')) {
+if (!function_exists('getImageBySlug')) {
     /**
      * Looks if any of *.svg, *.png, or *.jpg image exists.
      *
@@ -97,7 +97,7 @@ if (!function_exists('getImageByNameBase')) {
      *                          for example: 'storage/images/brands/amd'.
      * @return string - path to asset or empty string
      */
-    function getImageByNameBase(string $image_path_base): string
+    function getImageBySlug(string $image_path_base): string
     {
         $path_base = str_replace('storage', config('filesystems.disks.public.root'), $image_path_base);
 
@@ -144,7 +144,7 @@ if (!function_exists('to_paragraphs')) {
     function to_paragraphs(string $text): string
     {
         $tags = '</p>' . "\n" . '<p>';
-        $text = str_replace(array("\r\n","\r","\n","\\r","\\n","\\r\\n"), $tags, $text);
+        $text = str_replace(["\r\n","\r","\n","\\r","\\n","\\r\\n"], $tags, $text);
         return '<p>' . $text . '</p>';
     }
 }

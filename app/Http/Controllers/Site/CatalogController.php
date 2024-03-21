@@ -7,6 +7,7 @@ use App\Modules\Catalog\CatalogService;
 use App\Modules\Catalog\FilterService;
 use App\Modules\Categories\CategoryService;
 use App\Modules\Products\ProductService;
+use App\Modules\Products\RecentlyViewedService;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -17,7 +18,7 @@ class CatalogController extends Controller
         CategoryService $categoryService,
         CatalogService $catalogService,
         FilterService $filterService,
-        ProductService $productService,
+        RecentlyViewedService $recentlyViewedService,
         string $category_slug
     ): View {
         $category = $categoryService->getCategoryBySlug($category_slug);
@@ -44,15 +45,10 @@ class CatalogController extends Controller
         $filter_brands = $filterService->getBrandsByCategory($category->id, $request->query('brands'));
         $filter_specs = $filterService->getSpecs($category->id, $request->query('specs'));
 
-//        dd($filter_specs);
-
         $products = $db_query->paginate($prefs->per_page_num);
 
-        $recently_viewed_ids = [3, 9, 17, 18, 21, 25, 27, 28];
-        $recently_viewed = $productService->getRecentlyViewed($recently_viewed_ids);
-
-
-//        Mail::to('dendangler@gmail.com')->send(new SomeHappen());
+        $rv_cookie = $request->cookie(RecentlyViewedService::COOKIE);
+        $recently_viewed = $recentlyViewedService->get($rv_cookie);
 
         $filters = 'catalog';
 

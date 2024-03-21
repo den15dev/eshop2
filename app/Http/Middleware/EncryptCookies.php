@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Modules\Catalog\CatalogService;
 use App\Modules\Catalog\ComparisonService;
 use App\Modules\Favorites\FavoriteService;
+use App\Modules\Products\RecentlyViewedService;
 use Illuminate\Cookie\Middleware\EncryptCookies as Middleware;
 
 class EncryptCookies extends Middleware
@@ -18,5 +19,6 @@ class EncryptCookies extends Middleware
         CatalogService::PREF_COOKIE,
         ComparisonService::COOKIE,
         FavoriteService::COOKIE,
+        RecentlyViewedService::COOKIE,
     ];
 }

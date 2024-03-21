@@ -27,5 +27,5 @@ return [
         'bonus_program' => 'Bonus Program',
         'help' => 'Help',
     ],
-    'copyright' => 'Demo-project by',
+    'copyright' => 'Demo app by',
 ];

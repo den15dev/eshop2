@@ -3,6 +3,7 @@
 namespace App\Modules\Categories\Models;
 
 use App\Modules\Products\Models\Sku;
+use App\Modules\Products\Models\SpecValue;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -27,6 +28,6 @@ class Specification extends Model
 
     public function skus(): BelongsToMany
     {
-        return $this->belongsToMany(Sku::class)->withPivot('id', 'spec_value');
+        return $this->belongsToMany(Sku::class)->withPivot('id', 'spec_value')->using(SpecValue::class);
     }
 }

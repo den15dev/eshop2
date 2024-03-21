@@ -10,6 +10,7 @@ use App\Modules\Products\Models\Sku;
 use App\Modules\Products\ValueObjects\Price;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Query\Builder as QBuilder;
+use Illuminate\Database\Query\JoinClause;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
@@ -21,6 +22,12 @@ class FilterService
     public function buildFilteredQuery(int|string $category_id, array $query_arr): Builder
     {
         $db_query = Sku::join('products', 'skus.product_id', 'products.id')
+            ->leftJoin('promos', function (JoinClause $join) {
+                $current_date = date('Y-m-d H:i:s');
+                $join->on('skus.promo_id', '=', 'promos.id')
+                    ->whereDate('promos.starts_at', '<=', $current_date)
+                    ->whereDate('promos.ends_at', '>=', $current_date);
+            })
             ->when(isset($query_arr['specs']), function (Builder $query) {
                 $query->join('sku_specification AS ss', 'skus.id', 'ss.sku_id');
             })
@@ -35,7 +42,10 @@ class FilterService
                 'skus.discount_prc',
                 'skus.final_price',
                 'skus.rating',
-                'skus.vote_num'
+                'skus.vote_num',
+                'promos.id as promo_id',
+                'promos.name as promo_name',
+                'promos.slug as promo_slug',
             )
             ->where('products.category_id', $category_id);
 

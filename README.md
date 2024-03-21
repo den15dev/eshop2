@@ -3,23 +3,25 @@
 This is a second version of a multi-page E-commerce web application (work in progress). The following features will be (or already have been) implemented:
 
 - 4 levels of categories.
-- Each category can have an individual set of product specifications.
-- Product catalog with a set of filters by price, brand, and selected product specifications.
-- A product page where users can see all product's specifications, images, rate the product, leave reviews, and rate other's reviews.
+- Every category with products has an individual set of product specifications.
+- A product catalog with a set of filters by price, brand, and selected product specifications.
+- Products can have any number of variants grouped by attributes.
+- A product page where users can see all product's specifications, images, rate the product, leave reviews, and rate others' reviews.
 - Promo and discount system.
-- Live search in products and brands.
+- Live search by products and brands.
 - User registration and authentication system with email confirmation and password reset.
 - User profile page with ability to edit all personal data.
 - A product cart.
 - An order system.
-- User notifications about order status changes.
+- User notifications about changes of order statuses.
 - Adding products to Favorites.
 - Comparing products by their specifications.
-- Any user regardless of authentication can use a product cart, make an order, see his order history, manage Favorites section, and compare products.
-- An Admin panel for managing everything: add, search, explore, edit, delete — categories, products, specifications, reviews, promos, languages and translations, as well as viewing log, the dashboard with sales and rate statistics, managing orders and users.
+- Any user regardless of authentication status can use a product cart, make an order, see his order history, manage Favorites section, and compare products.
+- Products have "Available at" and "Available until" properties that can be used to schedule their availability in stock.
 - Multi-language support.
-- Multi-currency support.
+- Multi-currency support. Every product's price can be set in arbitrary currency. Prices calculated according to exchange rates which updates daily. 
 - Correct responsive layout for all devices: smartphones, tablets, laptops and PCs.
+- An Admin panel for managing everything: adding, searching, exploring, editing, deleting — categories, products, attributes, variants, specifications, reviews, promos, languages and translations, currencies, as well as viewing log, the dashboard with sales and rate statistics, managing orders and users.
 
 Currently, the work in progress.
 
