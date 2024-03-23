@@ -3,8 +3,6 @@
 namespace App\Modules\Catalog;
 
 use App\Modules\Catalog\Enums\ProductSorting;
-use App\Modules\Products\Models\Sku;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 
 class CatalogService

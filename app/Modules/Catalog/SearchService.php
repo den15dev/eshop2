@@ -2,49 +2,58 @@
 
 namespace App\Modules\Catalog;
 
-use App\Modules\Brands\BrandService;
-use App\Modules\Products\ProductService;
-use Illuminate\Database\Eloquent\Collection;
+use App\Modules\Brands\Models\Brand;
+use App\Modules\Products\Models\Sku;
+use Illuminate\Support\Collection;
 
 class SearchService
 {
-    public function __construct(
-        private readonly ProductService $productService,
-        private readonly BrandService $brandService,
-    ) {}
+    private const SKU_LIMIT = 6;
+    private const BRAND_LIMIT = 3;
 
 
-    public function getResultsPage(string $search_query): Collection
+    public function countDropdownProductResults(string $search_query): \stdClass
     {
-        return $this->productService->getSomeProducts(12);
-    }
+        $total = new \stdClass();
 
-
-    public function countDropdownProductResults(string $search_query): int
-    {
-        $total = 25;
-
-        /*$total->brands = DB::table('brands')
-            ->where('name', 'like', '%' . $search_query . '%')
+        $total->brands = Brand::where('name', 'ilike', '%' . $search_query . '%')
             ->count();
 
-        $total->products = DB::table('products')
-            ->where('name', 'like', '%' . $search_query . '%')
-            ->where('is_active', 1)
-            ->count();*/
+        $total->skus = Sku::where('name->' . app()->getLocale(), 'ilike', '%' . $search_query . '%')
+            ->active()
+            ->count();
 
         return $total;
     }
     
     
-    public function getDropdownProducts(string $search_query, int $limit): Collection
+    public function getDropdownSkus(string $search_query): Collection
     {
-        return $this->productService->getSomeProducts($limit);
+        return Sku::join('products', 'skus.product_id', 'products.id')
+            ->select(
+                'skus.id',
+                'skus.name',
+                'skus.slug',
+                'products.category_id',
+                'skus.currency_id',
+                'skus.final_price',
+            )
+            ->where('skus.name->' . app()->getLocale(), 'ilike', '%' . $search_query . '%')
+            ->active()
+            ->limit(self::SKU_LIMIT)
+            ->get();
     }
 
 
-    public function getDropdownBrands(string $search_query, int $limit): Collection
+    public function getDropdownBrands(string $search_query): Collection
     {
-        return $this->brandService->getSomeBrands($limit);
+        return Brand::select(
+                'id',
+                'name',
+                'slug',
+            )
+            ->where('name', 'ilike', '%' . $search_query . '%')
+            ->limit(self::BRAND_LIMIT)
+            ->get();
     }
 }

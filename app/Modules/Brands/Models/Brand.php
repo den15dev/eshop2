@@ -23,4 +23,10 @@ class Brand extends Model
     {
         return $this->hasMany(Product::class);
     }
+
+
+    public function getUrlAttribute(): ?string
+    {
+        return $this->slug ? route('brand', $this->slug) : null;
+    }
 }

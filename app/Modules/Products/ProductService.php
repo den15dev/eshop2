@@ -9,9 +9,7 @@ use App\Modules\Products\Actions\GetAttributesAction;
 use App\Modules\Products\Actions\GetSkuAction;
 use App\Modules\Products\Models\Sku;
 use App\Modules\Promos\PromoService;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection as ECollection;
-use Illuminate\Database\Query\JoinClause;
 use Illuminate\Support\Collection;
 
 class ProductService

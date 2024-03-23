@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Modules\Catalog\CatalogService;
 use App\Modules\Catalog\FilterService;
 use App\Modules\Catalog\SearchService;
-use App\Modules\Products\ProductService;
+use App\Modules\Products\RecentlyViewedService;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -14,7 +14,7 @@ class SearchController extends Controller
 {
     public function __construct(
         private readonly SearchService $searchService,
-        private readonly ProductService $productService,
+        private readonly RecentlyViewedService $recentlyViewedService,
         private readonly CatalogService $catalogService,
         private readonly FilterService $filterService,
     ) {}
@@ -27,24 +27,28 @@ class SearchController extends Controller
         $prefs_cookie = $request->cookie(CatalogService::PREF_COOKIE);
         $prefs = $this->catalogService->getPreferences($prefs_cookie);
 
-        $price_range = $this->filterService->getPriceRange();
-        $filter_brands = $this->filterService->getBrandsBySearchQuery($search_query, $request->query('brands'));
-        $filter_categories = $this->filterService->getCategoriesBySearchQuery($search_query);
-
-        $products = $this->searchService->getResultsPage($search_query);
-
-        $recently_viewed_ids = [3, 9, 17, 18, 21, 25, 27, 28];
-        $recently_viewed = $this->productService->getRecentlyViewed($recently_viewed_ids);
+        $db_query = $this->filterService->buildSearchDBQuery($search_query, $request->query());
+        $db_query = $this->filterService->sortQuery($db_query, $prefs->sorting_active);
 
         $filters = 'search';
+        $price_range = $this->filterService->getPriceRange($db_query);
+        $filter_brands = $this->filterService->getBrandsBySearchQuery($search_query, $request->query('brands'));
+        $filter_categories = $this->filterService->getCategories($search_query, $request->query('categories'));
+        $filter_reset_url = route('search', ['query' => $search_query]);
+
+        $products = $db_query->paginate($prefs->per_page_num);
+
+        $rv_cookie = $request->cookie(RecentlyViewedService::COOKIE);
+        $recently_viewed = $this->recentlyViewedService->get($rv_cookie);
 
         return view('site.pages.search', compact(
             'search_query',
             'prefs',
+            'filters',
             'price_range',
             'filter_brands',
             'filter_categories',
-            'filters',
+            'filter_reset_url',
             'products',
             'recently_viewed',
         ));
@@ -55,13 +59,13 @@ class SearchController extends Controller
     {
         $search_query = $request->query('query');
 
-        $total_products = $this->searchService->countDropdownProductResults($search_query);
-        $brands = $this->searchService->getDropdownBrands($search_query, 1);
-        $products = $this->searchService->getDropdownProducts($search_query, 6);
+        $total = $this->searchService->countDropdownProductResults($search_query);
+        $brands = $this->searchService->getDropdownBrands($search_query);
+        $products = $this->searchService->getDropdownSkus($search_query);
 
         return view('site.pages.search-dropdown', compact(
             'search_query',
-            'total_products',
+            'total',
             'brands',
             'products',
         ));

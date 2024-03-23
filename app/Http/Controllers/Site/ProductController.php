@@ -20,7 +20,6 @@ class ProductController extends Controller
         string $category_slug,
         string $product_slug_id
     ): View {
-
         $category = $categoryService->getCategoryBySlug($category_slug);
         abort_if(!$category, 404);
         $breadcrumb = $categoryService->getBreadcrumb($category, false);
@@ -29,12 +28,14 @@ class ProductController extends Controller
         $sku_id = $slug_id[1];
 
         $sku = $productService->getSku($sku_id);
+        abort_if($sku->slug !== $slug_id[0], 404);
+
         $attributes = $productService->getAttributes($sku->product_id, $sku_id);
 
         $rv_cookie = $request->cookie(RecentlyViewedService::COOKIE);
         $recently_viewed = $recentlyViewedService->get($rv_cookie, $sku_id);
         $recently_viewed_arr = $recentlyViewedService->update($rv_cookie, $sku_id);
-        Cookie::queue(RecentlyViewedService::COOKIE, json_encode($recently_viewed_arr), 1440);
+        Cookie::queue(RecentlyViewedService::COOKIE, json_encode($recently_viewed_arr), 2880);
 
         return view('site.pages.product', compact(
             'breadcrumb',

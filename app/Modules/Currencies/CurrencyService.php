@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Cache;
 
 class CurrencyService
 {
+    public const RATE_SUBQUERY = '(SELECT currencies.exchange_rate FROM currencies where skus.currency_id = currencies.id)';
+
+
     /**
      * Current preferred currency.
      */

@@ -1,4 +1,6 @@
 <div class="filters-cont">
+    <input type="hidden" name="query" value="{{ $search_query }}">
+
     <x-filter.dropdown title="{{ __('filters.titles.category') }}"
                        collapsed="off"
                        :ismobile="$ismobile">

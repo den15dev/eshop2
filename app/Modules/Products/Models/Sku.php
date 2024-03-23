@@ -5,12 +5,12 @@ namespace App\Modules\Products\Models;
 use App\Modules\Cart\Models\CartItem;
 use App\Modules\Categories\CategoryService;
 use App\Modules\Categories\Models\Specification;
+use App\Modules\Currencies\CurrencyService;
 use App\Modules\Currencies\Models\Currency;
 use App\Modules\Favorites\Models\Favorite;
 use App\Modules\Orders\Models\OrderItem;
 use App\Modules\Products\ValueObjects\Price;
 use App\Modules\Promos\Models\Promo;
-use App\Modules\Promos\PromoService;
 use App\Modules\Reviews\Models\Review;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Query\JoinClause;
+use Illuminate\Support\Facades\DB;
 use Spatie\Translatable\HasTranslations;
 
 class Sku extends Model
@@ -94,6 +95,57 @@ class Sku extends Model
                     ->orWhereNull('skus.available_until');
             });
     }
+
+    public function scopeJoinPromos(Builder $query): void
+    {
+        $query->leftJoin('promos', function (JoinClause $join) {
+            $current_date = date('Y-m-d H:i:s');
+            $join->on('skus.promo_id', '=', 'promos.id')
+                ->whereDate('promos.starts_at', '<=', $current_date)
+                ->whereDate('promos.ends_at', '>=', $current_date);
+        });
+    }
+
+    public function scopeSelectForCards(Builder $query): void
+    {
+        $query->select(
+            'skus.id',
+            'skus.name',
+            'skus.slug',
+            'products.category_id',
+            'skus.short_descr',
+            'skus.currency_id',
+            'skus.price',
+            'skus.discount_prc',
+            'skus.final_price',
+            'skus.rating',
+            'skus.vote_num',
+            'promos.id as promo_id',
+            'promos.name as promo_name',
+            'promos.slug as promo_slug',
+        );
+    }
+
+    public function scopeFilterByBrands(Builder $query, array $query_arr): void
+    {
+        if (isset($query_arr['brands'])) {
+            $query = $query->whereIn('products.brand_id', $query_arr['brands']);
+        }
+    }
+
+    public function scopeFilterByPrice(Builder $query, array $query_arr): void
+    {
+        if (isset($query_arr['price_min']) && is_numeric($query_arr['price_min'])) {
+            $price_min = bcmul(Price::parse($query_arr['price_min']), CurrencyService::$cur_currency->exchange_rate);
+            $query = $query->where(DB::raw('skus.final_price * ' . CurrencyService::RATE_SUBQUERY), '>=', $price_min);
+        }
+
+        if (isset($query_arr['price_max']) && is_numeric($query_arr['price_max'])) {
+            $price_max = bcmul(Price::parse($query_arr['price_max']), CurrencyService::$cur_currency->exchange_rate);
+            $query = $query->where(DB::raw('skus.final_price * ' . CurrencyService::RATE_SUBQUERY), '<=', $price_max);
+        }
+    }
+
 
     public function getCategorySlugAttribute()
     {

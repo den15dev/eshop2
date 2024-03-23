@@ -1,4 +1,4 @@
-<div class="catalog-settings-cont mb-3">
+<div class="catalog-settings-cont mb-4">
     <div class="sort-cont dropdown">
         <div class="dropdown-btn" data-sort="{{ $prefs->sorting_active->sorting }}">
             {{ $prefs->sorting_active->description }}

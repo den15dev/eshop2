@@ -11,12 +11,7 @@ class GetSkuAction
     {
         $sku = Sku::join('products', 'skus.product_id', 'products.id')
             ->join('brands', 'products.brand_id', 'brands.id')
-            ->leftJoin('promos', function (JoinClause $join) {
-                $current_date = date('Y-m-d H:i:s');
-                $join->on('skus.promo_id', '=', 'promos.id')
-                    ->whereDate('promos.starts_at', '<=', $current_date)
-                    ->whereDate('promos.ends_at', '>=', $current_date);
-            })
+            ->joinPromos()
             ->select(
                 'skus.*',
                 'products.category_id',
