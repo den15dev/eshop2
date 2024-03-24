@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Support\Facades\Cache;
+
 class MainHandler
 {
     const DATA_DIR = 'storage/app/data/products';
@@ -17,6 +19,9 @@ class MainHandler
 
         $categories = require_once self::CATEGORIES;
         $translated_num = self::handleData($categories, $category_slug, 500);
+
+        Cache::forget('categories');
+        echo 'Categories\' cache has been cleared to update skus count' . "\n";
 
         if (!$translated_num) {
             echo 'All files translated' . "\n";

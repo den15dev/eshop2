@@ -30,7 +30,7 @@ class ProductDBSeeder
             ->first()?->id;
 
         if ($files_ru_count) {
-            if ($files_en_count === $files_ru_count && $files_de_count === $files_ru_count) {
+            if ($files_en_count >= $files_ru_count && $files_de_count >= $files_ru_count) {
 
                 $specs = self::collectSpecs();
                 self::seedSpecs($specs);

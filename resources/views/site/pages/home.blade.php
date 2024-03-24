@@ -28,9 +28,9 @@
 
         <div class="swiper product-carousel mb-6">
             <div class="swiper-wrapper">
-                @foreach($products as $product)
+                @foreach($skus_discounted as $sku)
                     <div class="swiper-slide">
-                        <x-product-card :product="$product" />
+                        <x-product-card :product="$sku" />
                     </div>
                 @endforeach
             </div>
@@ -47,9 +47,9 @@
 
         <div class="swiper product-carousel mb-6">
             <div class="swiper-wrapper">
-                @foreach($products as $product)
+                @foreach($skus_latest as $sku)
                     <div class="swiper-slide">
-                        <x-product-card :product="$product" />
+                        <x-product-card :product="$sku" />
                     </div>
                 @endforeach
             </div>
@@ -66,9 +66,9 @@
 
         <div class="swiper product-carousel mb-5">
             <div class="swiper-wrapper">
-                @foreach($popular_products as $product)
+                @foreach($skus_popular as $sku)
                     <div class="swiper-slide">
-                        <x-product-card :product="$product" />
+                        <x-product-card :product="$sku" />
                     </div>
                 @endforeach
             </div>

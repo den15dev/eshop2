@@ -20,12 +20,13 @@ class GetPriceRangeAction
 
         $prices = [];
         foreach ($skus as $sku) {
-            $prices[] = Price::from($sku->final_price, $sku->currency_id)->formatted;
+            $prices[] = Price::from($sku->final_price, $sku->currency_id)->converted;
         }
 
-        if ($prices) {
-            $price_range->min = min($prices);
-            $price_range->max = max($prices);
+        if (count($prices)) {
+            $curr_id = CurrencyService::$cur_currency->id;
+            $price_range->min = Price::from(min($prices), $curr_id)->formatted;
+            $price_range->max = Price::from(max($prices), $curr_id)->formatted;
         }
 
         return $price_range;

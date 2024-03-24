@@ -13,22 +13,22 @@ class HomeController extends Controller
         PromoService $promoService,
         ProductService $productService
     ): View {
-        $promos = $promoService->getBanners();
-
         $is_login_page = session()->has('login_page');
-
         $new_password = session()->has('new_password') ? session('new_password') : null;
 
-        $products = $productService->getSomeProducts(8);
+        $promos = $promoService->getBanners();
 
-        $popular_products = $productService->getSomeProducts(8);
+        $skus_discounted = $productService->getDiscounted();
+        $skus_latest = $productService->getLatest();
+        $skus_popular = $productService->getPopular();
 
         return view('site.pages.home', compact(
             'is_login_page',
             'new_password',
             'promos',
-            'products',
-            'popular_products',
+            'skus_discounted',
+            'skus_latest',
+            'skus_popular',
         ));
     }
 }

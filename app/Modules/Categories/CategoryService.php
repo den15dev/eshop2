@@ -6,31 +6,55 @@ use App\Modules\Categories\Actions\GetBreadcrumbAction;
 use App\Modules\Categories\Actions\BuildCategoryTreeAction;
 use App\Modules\Categories\Actions\GetChildrenAction;
 use App\Modules\Categories\Models\Category;
-use App\Modules\Products\ProductService;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 
 class CategoryService
 {
     private static ?Collection $categories = null;
 
-    private ProductService $productService;
 
-
-    public function __construct() {
-        $this->productService = new ProductService();
-    }
-
-
-    public static function getAll(): ?Collection
+    public static function getAll(): Collection
     {
         if (self::$categories === null) {
             self::$categories = Cache::rememberForever('categories', function () {
-                return Category::all();
+                $sku_active_filter = 'WHERE skus.available_from <= NOW() AND (skus.available_until > NOW() OR skus.available_until IS NULL)';
+
+                $categories = Category::leftJoin('products', 'products.category_id', 'categories.id')
+                    ->leftJoin('skus', 'skus.product_id', 'products.id')
+                    ->select('categories.*')
+                    ->selectRaw('count(skus.id) filter (' . $sku_active_filter . ') AS sku_num')
+                    ->groupBy('categories.id')
+                    ->orderBy('categories.id')
+                    ->get();
+
+                return self::countChildrenSkus($categories);
             });
         }
 
         return self::$categories;
+    }
+
+
+    private static function countChildrenSkus(Collection $categories): Collection
+    {
+        foreach ($categories as $category) {
+            $cur_category = $category;
+            $parent_id = $cur_category->parent_id;
+
+            $prod_self = $cur_category->sku_num;
+            $cur_category->sku_num_children += $prod_self;
+
+            while ($parent_id) {
+                $parent = $categories->where('id', $cur_category->parent_id)->first();
+                $parent->sku_num_children += $prod_self;
+
+                $cur_category = $parent;
+                $parent_id = $cur_category->parent_id;
+            }
+        }
+
+        return $categories;
     }
 
 
@@ -46,10 +70,7 @@ class CategoryService
      */
     public function buildCategoryTree(): array
     {
-        return BuildCategoryTreeAction::run(
-            self::getAll(),
-            $this->productService->countByCategories()
-        );
+        return BuildCategoryTreeAction::run(self::getAll());
     }
 
 
@@ -60,8 +81,7 @@ class CategoryService
     {
         return GetChildrenAction::run(
             $category_id,
-            self::getAll(),
-            $this->productService->countByCategories()
+            self::getAll()
         );
     }
 

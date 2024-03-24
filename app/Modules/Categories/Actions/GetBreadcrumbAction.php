@@ -3,7 +3,7 @@
 namespace App\Modules\Categories\Actions;
 
 use App\Modules\Categories\Models\Category;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 
 class GetBreadcrumbAction
 {

@@ -26,6 +26,10 @@
   width: fit-content;
   margin: 0 auto;
   color: $grey-180;
+
+  &.empty {
+    color: $grey-220;
+  }
 }
 
 .category-card_title-cont,

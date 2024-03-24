@@ -9,7 +9,8 @@ class Price
 {
     public readonly ?string $value;
     public readonly string $currency_id;
-    public readonly string $formatted;
+    public readonly string $converted; // Clean numeric
+    public readonly string $formatted; // With thousands separators
     public readonly string $formatted_full; // With currency sign
 
     private readonly Currency $cur_currency;
@@ -21,6 +22,7 @@ class Price
         $this->currency_id = $currency_id;
         $this->cur_currency = CurrencyService::$cur_currency;
 
+        $this->converted = $this->getConverted();
         $this->formatted = $this->getFormatted();
         $this->formatted_full = $this->getFormattedFull();
     }
@@ -32,7 +34,7 @@ class Price
     }
 
 
-    private function getFormatted(): string
+    private function getConverted(): string
     {
         $currencies = CurrencyService::getAll();
         $cur_currency = $this->cur_currency;
@@ -42,9 +44,15 @@ class Price
         $exchanging_value = bcmul($this->value, $sku_exch_rate);
 
         // Calculate in current currency
-        $out_value = bcdiv($exchanging_value, $cur_currency->exchange_rate);
+        return bcdiv($exchanging_value, $cur_currency->exchange_rate);
+    }
 
-        $formatted = number_format($out_value, 2, $cur_currency->decimal_sep, $cur_currency->thousands_sep);
+
+    private function getFormatted(): string
+    {
+        $cur_currency = $this->cur_currency;
+
+        $formatted = number_format($this->converted, 2, $cur_currency->decimal_sep, $cur_currency->thousands_sep);
         $formatted = preg_replace('/(.+)[,.]00$/', '$1', $formatted);
 
         return $formatted;

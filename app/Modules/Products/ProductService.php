@@ -9,34 +9,11 @@ use App\Modules\Products\Actions\GetAttributesAction;
 use App\Modules\Products\Actions\GetSkuAction;
 use App\Modules\Products\Models\Sku;
 use App\Modules\Promos\PromoService;
-use Illuminate\Database\Eloquent\Collection as ECollection;
 use Illuminate\Support\Collection;
 
 class ProductService
 {
-    /**
-     * Get a collection of objects, each with 2 properties:
-     * 'category_id' and 'product_count'.
-     */
-    public function countByCategories(): ECollection
-    {
-//        $categories = Product::select('category_id', DB::raw('count(*) as product_count'))->groupBy('category_id')->get();
-//        $categories->firstWhere('level', 3)?->product_count;
-
-        $product_counts = new ECollection();
-        $categories = CategoryService::getAll();
-
-        foreach ($categories as $category) {
-            if ($category->level > 2) {
-                $count = new \stdClass();
-                $count->category_id = $category->id;
-                $count->product_count = fake()->numberBetween(5, 300);
-                $product_counts->push($count);
-            }
-        }
-
-        return $product_counts;
-    }
+    private const HOME_CAROUSEL_LIMIT = 10;
 
 
     /**
@@ -214,6 +191,33 @@ class ProductService
     public function getAttributes(int $product_id, int $sku_id): Collection
     {
         return GetAttributesAction::run($product_id, $sku_id);
+    }
+
+
+    public function getDiscounted()
+    {
+        return Sku::getCards()
+            ->orderByDesc('skus.discount_prc')
+            ->orderByDesc('skus.created_at')
+            ->limit(self::HOME_CAROUSEL_LIMIT)
+            ->get();
+    }
+
+    public function getLatest()
+    {
+        return Sku::getCards()
+            ->orderByDesc('skus.created_at')
+            ->limit(self::HOME_CAROUSEL_LIMIT)
+            ->get();
+    }
+
+    public function getPopular()
+    {
+        return Sku::getCards()
+            ->orderByRaw('skus.rating IS NULL, skus.rating DESC')
+            ->orderByDesc('skus.vote_num')
+            ->limit(self::HOME_CAROUSEL_LIMIT)
+            ->get();
     }
 
 

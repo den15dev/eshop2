@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Query\JoinClause;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Spatie\Translatable\HasTranslations;
 
@@ -86,6 +87,30 @@ class Sku extends Model
         return $this->hasMany(OrderItem::class);
     }
 
+
+    public static function booted(): void
+    {
+        static::saved(function (self $model) {
+            Cache::forget('categories');
+        });
+
+        static::updated(function (self $model) {
+            Cache::forget('categories');
+        });
+
+        static::deleted(function (self $model) {
+            Cache::forget('categories');
+        });
+    }
+
+
+    public function scopeGetCards(Builder $query): void
+    {
+        $query->join('products', 'skus.product_id', 'products.id')
+            ->joinPromos()
+            ->selectForCards()
+            ->active();
+    }
 
     public function scopeActive(Builder $query): void
     {

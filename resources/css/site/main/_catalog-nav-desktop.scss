@@ -90,11 +90,16 @@
     display: block;
     cursor: pointer;
     color: $grey-120;
+
     &:hover {
       color: $color1;
       .icon-chevron-right {
         color: $grey-120;
       }
+    }
+
+    &.inactive {
+      color: $grey-200;
     }
   }
 

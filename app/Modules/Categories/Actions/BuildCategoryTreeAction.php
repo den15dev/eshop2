@@ -2,7 +2,7 @@
 
 namespace App\Modules\Categories\Actions;
 
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 
 class BuildCategoryTreeAction
 {
@@ -11,10 +11,9 @@ class BuildCategoryTreeAction
      * from a Collection of categories.
      *
      * @param Collection $categories
-     * @param Collection $product_counts — {[category_id, product_count]}
      * @return array
      */
-    public static function run(Collection $categories, Collection $product_counts): array
+    public static function run(Collection $categories): array
     {
         $out_arr = [];
         static $level = 0;
@@ -30,18 +29,18 @@ class BuildCategoryTreeAction
                         'slug' => $cat->slug,
                         'level' => $cat->level,
                         'sort' => $cat->sort,
-                        'product_count' => $product_counts->firstWhere('category_id', $cat->id)?->product_count,
+                        'product_count' => $cat->sku_num_children,
                     ];
 
                     $parent_id = $cat->id;
-                    $children_arr = self::run($categories, $product_counts);
+                    $children_arr = self::run($categories);
                     $parent_id = $cat->parent_id;
 
                     if (count($children_arr)) {
                         $cat_data['subcategories'] = $children_arr;
                     }
 
-                    array_push($out_arr, $cat_data);
+                    $out_arr[] = $cat_data;
                 }
             }
             $level--;
