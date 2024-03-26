@@ -19,8 +19,9 @@
 
     <x-rating size="small"
               mb="1"
-              :url="$product->reviews_url"
+              :url="$product->url . '/reviews'"
               :rating="$product->rating"
+              :ratingformatted="$product->rating_formatted"
               :num="$product->vote_num"/>
 
     <div class="mb-2">

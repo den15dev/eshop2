@@ -1,6 +1,16 @@
-<form class="reviews-form mb-6" method="POST" action="{{ route('reviews.add', [$product->category_slug, $product->slug . '-' . $product->id]) }}">
+<form class="reviews-form mb-6" method="POST" action="{{ route('reviews.add', [$sku->category_slug, $sku->slug . '-' . $sku->id]) }}">
     @csrf
     <h4 class="mb-3">{{ __('reviews.form.title') }}</h4>
+
+    @if($errors->any())
+        <div class="alert alert-warning p-25 my-4" role="alert">
+            <ul class="text-list">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+            </ul>
+        </div>
+    @endif
 
     <div class="mb-3">
         <ul class="rating-stars rate">
@@ -17,11 +27,11 @@
     </div>
 
     <input type="hidden" name="mark" value="{{ old('mark') }}" id="rateInput"/>
-    <input type="hidden" name="product_id" value="{{ $product->id }}" />
+    <input type="hidden" name="sku_id" value="{{ $sku->id }}" />
 
     <div class="mb-3">
         <label for="termOfUseSelect" class="form-label">{{ __('reviews.form.term') }}:</label>
-        <select class="form-select" aria-label="{{ __('reviews.form.title') }}" id="termOfUseSelect">
+        <select class="form-select" name="term" aria-label="{{ __('reviews.form.title') }}" id="termOfUseSelect">
             <option value="days" selected>{{ __('reviews.term.days') }}</option>
             <option value="weeks">{{ __('reviews.term.weeks') }}</option>
             <option value="months">{{ __('reviews.term.months') }}</option>
@@ -41,7 +51,7 @@
 
     <div class="mb-3">
         <label for="commentTextArea" class="form-label">{{ __('reviews.comment') }}:</label>
-        <textarea class="form-control" name="comment" id="commentTextArea" placeholder="{{ __('reviews.form.optional') }}">{{ old('comment') }}</textarea>
+        <textarea class="form-control" name="comnt" id="commentTextArea" placeholder="{{ __('reviews.form.optional') }}">{{ old('comment') }}</textarea>
     </div>
 
     <button type="submit">{{ __('reviews.form.send') }}</button>

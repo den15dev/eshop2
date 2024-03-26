@@ -1,6 +1,6 @@
 <form class="tab-pane active" action="{{ route('login.store') }}" method="POST" id="signInTabPane" novalidate>
     @csrf
-    <div class="alert" role="alert"></div>
+    <div class="alert hidden" role="alert"></div>
     <div class="mb-3">
         <label for="signInEmailInput" class="form-label">{{ __('auth.modal.email') }}:</label>
         <input type="email" name="email" class="form-control" id="signInEmailInput" placeholder="name@example.com" autocomplete="email">

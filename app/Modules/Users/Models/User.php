@@ -84,14 +84,14 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
 
-    public function getThumbnailAttribute(): ?string
+    public function getImageUrlAttribute(): ?string
     {
-        if ($this->image) {
-            $thumbnail_arr = explode('.', $this->image);
-            $thumbnail_arr[count($thumbnail_arr) - 2] .= '_thumbnail';
-            return $this->id . '/' . implode('.', $thumbnail_arr);
-        }
-        return null;
+        return $this->image ? asset('storage/images/users/' . $this->id . '/' . $this->image . '.jpg') : null;
+    }
+
+    public function getThumbnailUrlAttribute(): ?string
+    {
+        return $this->image ? asset('storage/images/users/' . $this->id . '/' . $this->image . '_thumbnail.jpg') : null;
     }
 
 

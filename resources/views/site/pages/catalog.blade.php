@@ -35,7 +35,7 @@
                         @endforeach
                     @endif
 
-                    {{ $products->links('common.pagination.results-shown') }}
+                    {{ $products->hasPages() ? $products->links('common.pagination.results-shown') : '' }}
                     {{ $products->onEachSide(1)->withQueryString()->links('common.pagination.page-links') }}
                 </div>
             </div>

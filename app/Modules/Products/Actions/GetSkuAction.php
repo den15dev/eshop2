@@ -3,7 +3,6 @@
 namespace App\Modules\Products\Actions;
 
 use App\Modules\Products\Models\Sku;
-use Illuminate\Database\Query\JoinClause;
 
 class GetSkuAction
 {
@@ -23,6 +22,11 @@ class GetSkuAction
             )
             ->where('skus.id', $id)
             ->with('specifications')
+            ->withCount(['reviews as reviews_count' => function ($query) {
+                $query->whereNotNull('reviews.pros')
+                    ->orWhereNotNull('reviews.cons')
+                    ->orWhereNotNull('reviews.comnt');
+            }])
             ->get()
             ->first();
 

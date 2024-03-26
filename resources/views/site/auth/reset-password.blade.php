@@ -5,7 +5,7 @@
 
         <input type="hidden" name="token" value="{{ $new_password['change_pass_token'] }}">
 
-        <div class="alert" role="alert"></div>
+        <div class="alert hidden" role="alert"></div>
         <div class="mb-4">
             <label for="resetPassEmailInput" class="form-label">{{ __('auth.modal.email') }}:</label>
             <input type="email" name="email" class="form-control" id="resetPassEmailInput" value="{{ $new_password['email'] }}" autocomplete="email">

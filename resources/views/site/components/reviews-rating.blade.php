@@ -4,8 +4,14 @@
 
 <div class="{{ $class }}">
     <div class="reviews-rating-total">
-        <div class="total-mark">{{ number_format($rating, 1, ',') }}</div>
-        <x-rating :rating="$rating" :num="$num"/>
+        @if($rating)
+            <div class="total-mark">{{ $ratingformatted }}</div>
+            <x-rating :rating="$rating"
+                      :ratingformatted="$ratingformatted"
+                      :num="$num"/>
+        @else
+            <div class="no-marks">{{ __('reviews.no_marks') }}</div>
+        @endif
     </div>
 
     <table>

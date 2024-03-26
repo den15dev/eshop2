@@ -6,7 +6,7 @@
 
 @if($num > 0)
     @if(isset($url))
-        <a href="{{ $url }}" class="{{ $class_list }}" title="{{ $rating }}">
+        <a href="{{ $url }}" class="{{ $class_list }}" title="{{ $ratingformatted }}">
             <x-stars :rating="$rating" />
             <div class="vote-num">({{ $num }})</div>
         </a>

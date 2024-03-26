@@ -21,6 +21,7 @@
             <x-rating size="small"
                       :url="route('reviews', [$sku->category_slug, $sku->url_slug])"
                       :rating="$sku->rating"
+                      :ratingformatted="$sku->rating_formatted"
                       :num="$sku->vote_num"/>
         </div>
 
@@ -147,7 +148,7 @@
                     {{ __('product.specs') }}
                 </div>
                 <a href="{{ route('reviews', [$sku->category_slug, $sku->slug . '-' . $sku->id]) }}" class="tab-btn link">
-                    {{ __('product.reviews') }}
+                    {{ __('product.reviews') }} ({{ $sku->reviews_count }})
                 </a>
             </nav>
 

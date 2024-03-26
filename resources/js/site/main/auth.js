@@ -132,7 +132,7 @@ function showSuccessPage(message, onCloseAction = '') {
 
 function runOnClose(onCloseAction) {
     if (onCloseAction === 'reload') {
-        location.replace(location.href);
+        window.location.reload();
     } else if (onCloseAction === 'home') {
         location.replace(new URL(location.href).origin);
     }
@@ -191,7 +191,7 @@ function handleResponse(jsonResult, formElem, formData) {
 
     } else if (jsonResult.status === 'logged') {
         closeModal(authModal);
-        location.replace(location.href);
+        window.location.reload();
 
     } else if (jsonResult.status === 'registered') {
         const successMessage = `${jsonResult.message.welcome}<br>${jsonResult.message.link_sent}`;
@@ -277,7 +277,7 @@ function showAlert(formElem, type, message, errorPrefix = true) {
             content = `${translations.general.messages.error} ${message}`;
         }
         alertCont.innerText = content;
-        alertCont.style.display = 'block';
+        alertCont.classList.remove('hidden');
     }
 }
 
@@ -287,7 +287,7 @@ function clearAlert(formElem) {
         alertCont.classList.remove(...alertCont.classList);
         alertCont.classList.add('alert');
         alertCont.innerText = '';
-        alertCont.style.display = 'none';
+        alertCont.classList.add('hidden');
     }
 }
 
@@ -307,7 +307,7 @@ function logOut(logoutBtn) {
     })
     .then(result => {
         if (result.status === 'logout') {
-            location.replace(location.href);
+            window.location.reload();
         }
     })
     .catch(err => {

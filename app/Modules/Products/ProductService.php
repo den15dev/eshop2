@@ -221,6 +221,14 @@ class ProductService
     }
 
 
+    public function getForReviews(int $id): Sku
+    {
+        return Sku::getCards()
+            ->withCount('reviews')
+            ->firstWhere('skus.id', $id);
+    }
+
+
     /**
      * Explode "slug-id"-type slug to array [slug, id].
      */

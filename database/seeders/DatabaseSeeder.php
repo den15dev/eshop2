@@ -21,11 +21,12 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        /*
+
         $this->call([
-            JsonbProductSeeder::class,
-            FlatProductSeeder::class,
+            // JsonbProductSeeder::class,
+            // FlatProductSeeder::class,
+            // ReviewSeeder::class,
         ]);
-        */
+
     }
 }

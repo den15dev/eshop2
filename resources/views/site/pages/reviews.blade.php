@@ -12,60 +12,76 @@
             </symbol>
         </svg>
 
-        <div class="reviews-page-cont mb-5">
+        <div class="reviews-page-cont">
             <div class="reviews-main-cont">
                 @php
-                    $product_url = route('product', [$product->category_slug, $product->slug . '-' . $product->id]);
                     $marks_max = $marks ? max($marks) : 0;
                 @endphp
 
-                <a href="{{ $product_url }}" class="btn-link link mb-25">
+                <a href="{{ $sku->url }}" class="btn-link link mb-25">
                     <span class="icon-chevron-left small va1"></span>
                     {{ __('reviews.back_to_product') }}
                 </a>
 
                 <div class="reviews-head-cont">
-                    <a href="{{ $product_url }}">
-                        <img src="{{ asset('storage/images/products/4/01_230.jpg') }}" alt="{{ $product->name }}">
+                    <a href="{{ $sku->url }}">
+                        <img src="{{ $sku->image_md }}" alt="{{ $sku->name }}">
                     </a>
                     <div class="reviews-head-name-cont">
                         <h5>
-                            <a class="reviews-head-name mb-1" href="{{ $product_url }}">
-                            {{ $product->name }}
+                            <a class="reviews-head-name mb-1" href="{{ $sku->url }}">
+                            {{ $sku->name }}
                             </a>
-                            @if($product->promo_id)
-                            &nbsp;<a href="{{ route('promo', $product->promo_url_slug) }}" class="product-name_badge-small" title="{{ $product->promo_name }}">-{{ $product->discount_prc }}%</a>
+                            @if($sku->promo_id)
+                            &nbsp;<a href="{{ route('promo', $sku->promo_url_slug) }}" class="product-name_badge-small" title="{{ $sku->promo_name }}">-{{ $sku->discount_prc }}%</a>
                             @endif
                         </h5>
-                        {{ trans_choice('reviews.reviews_num', $reviews->count()) }}
+                        @if($reviews_num)
+                            {{ trans_choice('reviews.reviews_num', $reviews_num) }}
+                        @else
+                            <span class="lightgrey-text">{{ __('reviews.no_reviews') }}</span>
+                        @endif
                     </div>
                 </div>
 
                 <x-reviews-rating type="mobile"
-                                  :rating="$product->rating"
-                                  :num="$product->vote_num"
+                                  :rating="$sku->rating"
+                                  :ratingformatted="$sku->rating_formatted"
+                                  :num="$sku->vote_num"
                                   :marks="$marks"
                                   :max="$marks_max" />
 
                 @foreach($reviews as $review)
-                    <x-review />
+                    <x-review :review="$review" />
                 @endforeach
-
-                @include('site.includes.pagination')
             </div>
 
 
             <div class="reviews-side-cont">
-                <x-reviews-rating :rating="$product->rating"
-                                  :num="$product->vote_num"
+                <x-reviews-rating :rating="$sku->rating"
+                                  :ratingformatted="$sku->rating_formatted"
+                                  :num="$sku->vote_num"
                                   :marks="$marks"
                                   :max="$marks_max" />
             </div>
         </div>
 
+        @if($reviews->hasPages())
+            <div class="mb-6">
+                {{ $reviews->links('common.pagination.results-shown') }}
+                {{ $reviews->onEachSide(1)->withQueryString()->links('common.pagination.page-links') }}
+            </div>
+        @endif
 
-        @include('site.pages.review-form')
-{{--        <div class="lightgrey-text large mb-6">{{ __('reviews.sign_in_to_review') }}</div>--}}
+        @auth()
+            @if($is_reviewed)
+                <div class="lightgrey-text py-3 mb-6">{{ __('reviews.already_reviewed') }}</div>
+            @else
+                @include('site.pages.review-form')
+            @endif
+        @else
+            <div class="lightgrey-text py-3 mb-6">{{ __('reviews.sign_in_to_review') }}</div>
+        @endauth
 
         @if($recently_viewed->count())
             @include('site.includes.recently-viewed')

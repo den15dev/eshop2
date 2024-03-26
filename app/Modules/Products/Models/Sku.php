@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Query\JoinClause;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -216,5 +217,13 @@ class Sku extends Model
     public function getPromoUrlSlugAttribute(): ?string
     {
         return $this->promo_id ? $this->promo_slug . '-' . $this->promo_id : null;
+    }
+
+    public function getRatingFormattedAttribute(): ?string
+    {
+        $decimal_sep = CurrencyService::$cur_currency->decimal_sep;
+        $thousands_sep = CurrencyService::$cur_currency->thousands_sep;
+
+        return $this->rating ? number_format($this->rating, 1, $decimal_sep, $thousands_sep) : null;
     }
 }
