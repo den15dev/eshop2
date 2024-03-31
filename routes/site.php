@@ -39,6 +39,8 @@ Route::get('/promo/{promo}', [PromoController::class, 'show'])->name('promo');
 Route::get('/brands/{brand}', [BrandController::class, 'show'])->name('brand');
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
+Route::post('/update-cart', [CartController::class, 'update'])->name('cart.update');
+Route::post('/clear-cart', [CartController::class, 'destroy'])->name('cart.clear');
 
 Route::get('/orders', [OrderController::class, 'index'])->name('orders');
 Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');

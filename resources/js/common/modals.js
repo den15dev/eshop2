@@ -4,6 +4,11 @@ import { fadeIn, fadeOut } from "./effects/fade.js";
 const tint = document.querySelector('.modal-tint');
 const flashModal = document.querySelector('#flashModal');
 
+const clientModal = document.querySelector('#clientModal');
+const okBtn = clientModal.querySelector('#clientOkBtn');
+const cancelBtn = clientModal.querySelector('#clientCancelBtn');
+
+
 export default function init() {
     const closeBtns = document.querySelectorAll('.modal-close-btn');
 
@@ -13,6 +18,18 @@ export default function init() {
             closeModal(modal);
         });
     });
+
+    if (okBtn) {
+        okBtn.addEventListener('click', () => {
+            closeModal(clientModal);
+        });
+    }
+
+    if (cancelBtn) {
+        cancelBtn.addEventListener('click', () => {
+            closeModal(clientModal);
+        });
+    }
 
     if (flashModal) {
         showFlashModal();
@@ -72,10 +89,6 @@ function hideModalContainer(modalElem) {
  * }
  */
 export function showClientModal(data = {}) {
-    const clientModal = document.querySelector('#clientModal');
-    const okBtn = clientModal.querySelector('#clientOkBtn');
-    const cancelBtn = clientModal.querySelector('#clientCancelBtn');
-
     const infoIcon = clientModal.querySelector('.modal-icon.info');
     const successIcon = clientModal.querySelector('.modal-icon.success');
     const warningIcon = clientModal.querySelector('.modal-icon.warning');
@@ -88,24 +101,23 @@ export function showClientModal(data = {}) {
 
     if (data.type === 'confirm') {
         cancelBtn.style.display = 'block';
-        cancelBtn.addEventListener('click', () => {
-            closeModal(clientModal);
-        });
 
         if (data.okAction) {
-            okBtn.addEventListener('click', () => {
-                closeModal(clientModal);
-                data.okAction();
+            okBtn.addEventListener('click', data.okAction);
+
+            cancelBtn.addEventListener('click', () => {
+                okBtn.removeEventListener('click', data.okAction);
+            });
+
+            const closeBtn = okBtn.closest('.modal-win').querySelector('.modal-close-btn');
+            closeBtn.addEventListener('click', () => {
+                okBtn.removeEventListener('click', data.okAction);
             });
         }
 
         if (data.cancelText) {
             cancelBtn.innerText = data.cancelText;
         }
-    } else {
-        okBtn.addEventListener('click', () => {
-            closeModal(clientModal);
-        });
     }
 
     if (data.okText) {

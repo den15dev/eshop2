@@ -29,6 +29,7 @@ class LanguageController extends Controller
     {
         $trans_arr = [];
         $trans_arr['general'] = Lang::get(key: 'general', locale: app()->getLocale());
+        $trans_arr['cart'] = Lang::get(key: 'cart', locale: app()->getLocale());
         $trans_arr['comparison'] = Lang::get(key: 'comparison', locale: app()->getLocale());
         $trans_arr['favorites'] = Lang::get(key: 'favorites', locale: app()->getLocale());
 

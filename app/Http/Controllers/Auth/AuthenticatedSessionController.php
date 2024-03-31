@@ -13,8 +13,6 @@ class AuthenticatedSessionController extends Controller
 {
     public function create(): RedirectResponse
     {
-//        $guest_settings = $userService->getGuestActivitySettings($request);
-
         session()->flash('login_page', 1);
 
         return redirect()->route('home');
@@ -28,8 +26,6 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-
-//        $userService->moveGuestActivitySettings($request);
 
         return response()->json(['status' => 'logged']);
     }

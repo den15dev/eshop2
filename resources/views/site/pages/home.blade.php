@@ -30,7 +30,7 @@
             <div class="swiper-wrapper">
                 @foreach($skus_discounted as $sku)
                     <div class="swiper-slide">
-                        <x-product-card :product="$sku" />
+                        <x-product-card :sku="$sku" />
                     </div>
                 @endforeach
             </div>
@@ -49,7 +49,7 @@
             <div class="swiper-wrapper">
                 @foreach($skus_latest as $sku)
                     <div class="swiper-slide">
-                        <x-product-card :product="$sku" />
+                        <x-product-card :sku="$sku" />
                     </div>
                 @endforeach
             </div>
@@ -68,7 +68,7 @@
             <div class="swiper-wrapper">
                 @foreach($skus_popular as $sku)
                     <div class="swiper-slide">
-                        <x-product-card :product="$sku" />
+                        <x-product-card :sku="$sku" />
                     </div>
                 @endforeach
             </div>

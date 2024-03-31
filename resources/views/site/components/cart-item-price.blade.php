@@ -6,14 +6,14 @@
 
 <div class="{{ $classname }}">
     <div class="cart-item_product-id">
-        {{ __('product.product_id') }}: {{ $product->id }}
+        {{ __('product.product_id') }}: {{ $sku->id }}
     </div>
     <div>
-        @if($product->discount_prc)
+        @if($sku->discount_prc)
             <div class="product-card_old-price">
-                <del>{{ number_format($product->price, 0, ',', ' ') }} ₽</del>
+                <del>{!! $sku->price_formatted !!}</del>
             </div>
         @endif
-        <div class="product-card_price">{{ number_format($product->final_price, 0, ',', ' ') }} ₽</div>
+        <div class="product-card_price">{!! $sku->final_price_formatted !!}</div>
     </div>
 </div>

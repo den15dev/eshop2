@@ -1,56 +1,59 @@
-$qty-btns-height: 40px;
-
-.quantity-btns {
+.quantity-btns_cont {
   display: flex;
+  --quantity-btns-size: 40px;
 
-  button {
-    background-color: $grey-245;
-    width: 40px;
-    height: $qty-btns-height;
-    padding: 0;
+  &.twosizes {
+    --quantity-btns-size: 35px;
+    font-size: $font-size-sm;
 
-    svg {
-      display: block;
-      margin: 0 auto;
-      stroke: $grey-120;
-      stroke-width: 1.4px;
-      fill: none;
-    }
-
-    &:hover {
-      background-color: $grey-240;
-    }
-
-    &:active {
-      background-color: $grey-230;
+    @include sm {
+      --quantity-btns-size: 40px;
+      font-size: $font-size-base;
     }
   }
 
-  .btn-qty-minus {
-    svg {
-      width: 10px;
-    }
+  &.hidden {
+    display: none;
+  }
+}
+
+.quantity-btns_minus,
+.quantity-btns_plus {
+  background-color: $grey-245;
+  width: var(--quantity-btns-size);
+  height: var(--quantity-btns-size);
+  padding: 0;
+
+  svg {
+    display: block;
+    width: 11px;
+    margin: 0 auto;
+    stroke: $grey-120;
+    stroke-width: 1.4px;
+    fill: none;
   }
 
-  .btn-qty-plus {
-    svg {
-      width: 11px;
-    }
+  &:hover {
+    background-color: $grey-240;
   }
 
-  input {
-    width: 42px;
-    height: $qty-btns-height;
-    text-align: center;
-    border: none;
-    @if $border-radius-base > 0 {
-      border-radius: $border-radius-base;
-    }
-    z-index: 50;
+  &:active {
+    background-color: $grey-230;
+  }
+}
 
-    &:focus {
-      outline: none;
-      box-shadow: 0 0 8px color($color1, light, 8);
-    }
+.quantity-btns_input {
+  width: calc(var(--quantity-btns-size) + 2px);
+  height: var(--quantity-btns-size);
+  text-align: center;
+  border: none;
+  @if $border-radius-base > 0 {
+    border-radius: $border-radius-base;
+  }
+  z-index: 50;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 8px color($color1, light, 8);
   }
 }

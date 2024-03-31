@@ -7,6 +7,7 @@ return [
         'apply' => 'Применить',
         'reset' => 'Сброс',
     ],
+
     'layout_settings' => [
         'sort' => [
             'new' => 'Сначала новинки',
@@ -17,10 +18,7 @@ return [
         ],
         'on_page' => 'На странице:',
     ],
-    'product_card' => [
-        'add_to_cart' => 'В корзину',
-        'in_cart' => 'В корзине',
-    ],
+
     'recent' => 'Недавно просмотренные',
     'product_num' => ':count товар|:count товара|:count товаров',
     'no_products' => 'Нет товаров',

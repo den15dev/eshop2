@@ -46,7 +46,7 @@ class CatalogController extends Controller
         $filter_specs = $filterService->getSpecs($category->id, $request->query('specs'));
         $filter_reset_url = route('catalog', $category->slug);
 
-        $products = $db_query->paginate($prefs->per_page_num);
+        $skus = $db_query->paginate($prefs->per_page_num);
 
         $rv_cookie = $request->cookie(RecentlyViewedService::COOKIE);
         $recently_viewed = $recentlyViewedService->get($rv_cookie);
@@ -61,7 +61,7 @@ class CatalogController extends Controller
             'filter_brands',
             'filter_specs',
             'filter_reset_url',
-            'products',
+            'skus',
             'recently_viewed',
         ));
     }

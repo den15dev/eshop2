@@ -138,16 +138,21 @@
   }
 }
 
-
 .product-main_add-btn-cont {
   display: flex;
   gap: 2rem;
+
   @include sm {
     display: block;
-    .quantity-btns {
+
+    .quantity-btns_cont {
       margin-bottom: 24px;
     }
   }
+}
+
+#productAddToCartBtn {
+  width: 148px;
 }
 
 // ------- Specs section --------

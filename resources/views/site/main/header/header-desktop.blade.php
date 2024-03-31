@@ -120,7 +120,7 @@
                         <use href="#cartIcon"/>
                     </svg>
                     {{ __('header.user_menu.cart') }}
-                    <div class="badge-round-red">3</div>
+                    <div class="badge-round-red {{ $cart_items_num ? 'active' : '' }}" id="cartBadgeDesktop">{{ $cart_items_num }}</div>
                 </a>
             </li>
             <li>

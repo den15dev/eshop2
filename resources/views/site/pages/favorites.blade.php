@@ -10,7 +10,7 @@
             @if($products->count())
                 <div class="catalog-cards-cont mb-5">
                     @foreach($products as $product)
-                        <x-product-card :product="$product"/>
+                        <x-product-card :sku="$product"/>
                     @endforeach
                 </div>
 

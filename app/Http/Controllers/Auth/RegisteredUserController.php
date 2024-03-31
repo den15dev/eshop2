@@ -32,8 +32,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-//        $userService->moveGuestActivitySettings($request);
-
         Log::channel('events')->info('__new_user_registered__: ' . $user->name);
 
         return response()->json([

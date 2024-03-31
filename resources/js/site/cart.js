@@ -1,3 +1,10 @@
+import { cookieName, updateCart } from "./cart-handler.js";
+import { showClientModal, showErrorMessage } from "../common/modals.js";
+import { csrf, lang, translations } from "../common/global.js";
+
+const removeItemBtns = document.querySelectorAll('.cart-item_btns .btn-icon');
+const clearBtn = document.querySelector('#clearCartBtn');
+
 const cartOrderForm = document.querySelector('#cartOrderForm');
 
 let payMethodOnlineInput;
@@ -19,7 +26,60 @@ export default function init() {
         handleTabSwitch();
         handlePaymentMethodSwitch();
     }
+
+    if (removeItemBtns.length) {
+        removeItemBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const sku_id = parseInt(btn.dataset.id, 10);
+                updateCart(sku_id, 0, () => {
+                    window.location.reload();
+                });
+            });
+        });
+    }
+
+    if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+            showClientModal({
+                type: 'confirm',
+                icon: 'confirm',
+                message: translations.cart.messages.confirm_clear,
+                okAction: clearCart,
+                okText: translations.cart.clear_cart,
+            });
+        });
+    }
 }
+
+
+function clearCart() {
+    fetch(`/${lang}/clear-cart`, {
+        method: 'post',
+        headers: {
+            "Content-Type": "application/json",
+            'Accept': 'application/json',
+            'X-CSRF-TOKEN': csrf,
+        },
+        body: JSON.stringify({
+            action: 'clear',
+        }),
+    })
+    .then(response => {
+        if (!response.ok) throw new Error(`${response.status} (${response.statusText})`);
+        return response.json();
+    })
+    .then(result => {
+        if (result.error_message) {
+            throw new Error(result.error_message);
+        } else if (!result.auth) {
+            document.cookie = cookieName + '=; path=/; max-age=-1';
+        }
+
+        window.location.reload();
+    })
+    .catch(err => showErrorMessage(err.message));
+}
+
 
 function handleTabSwitch() {
     const deliveryTab = cartOrderForm.querySelector('#deliveryTab');

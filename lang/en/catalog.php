@@ -7,6 +7,7 @@ return [
         'apply' => 'Apply',
         'reset' => 'Reset',
     ],
+
     'layout_settings' => [
         'sort' => [
             'new' => 'New first',
@@ -17,10 +18,7 @@ return [
         ],
         'on_page' => 'On page:',
     ],
-    'product_card' => [
-        'add_to_cart' => 'Add To Cart',
-        'in_cart' => 'In Cart',
-    ],
+
     'recent' => 'Recently Viewed',
     'product_num' => ':count product|:count products',
     'no_products' => 'No products',

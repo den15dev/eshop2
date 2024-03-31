@@ -2,9 +2,9 @@
 
 <div class="swiper product-carousel mb-2">
     <div class="swiper-wrapper">
-        @foreach($recently_viewed as $product)
+        @foreach($recently_viewed as $sku)
             <div class="swiper-slide">
-                <x-product-card :product="$product" />
+                <x-product-card :sku="$sku" />
             </div>
         @endforeach
     </div>

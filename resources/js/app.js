@@ -12,14 +12,13 @@ import { catalogDesktopRoot, catalogDesktopDropdowns } from "./site/main/catalog
 import search from './site/main/search.js';
 import auth, { handlePasswordEyeBtns } from "./site/main/auth";
 
-import initQuantityButtons from "./site/components/quantity-buttons.js";
-
 import { initProductCarousels } from "./site/home.js";
 import initCatalogFilters from "./site/catalog-filters.js";
 import initCatalogPreferences from "./site/catalog-prefs.js";
 import initProductPage from "./site/product.js";
 import initReviews from "./site/reviews.js";
-import initCart from "./site/cart.js";
+import initCartHandler from "./site/cart-handler.js";
+import initCartPage from "./site/cart.js";
 import initComparison from "./site/comparison.js";
 import initFavorites from "./site/favorites.js";
 import initNotifications from "./site/user-notifications.js"
@@ -44,10 +43,6 @@ search();
 auth();
 handlePasswordEyeBtns();
 
-// --------------- Components ------------------
-
-initQuantityButtons();
-
 // --------------- Home ------------------
 
 initProductCarousels();
@@ -67,7 +62,8 @@ initReviews();
 
 // --------------- Cart ------------------
 
-initCart();
+initCartHandler();
+initCartPage();
 
 // --------------- Comparison ------------------
 

@@ -16,11 +16,13 @@ class Price
     private readonly Currency $cur_currency;
 
 
-    public function __construct(?string $value, string $currency_id)
+    public function __construct(?string $value, ?string $currency_id = null)
     {
         $this->value = $value;
-        $this->currency_id = $currency_id;
-        $this->cur_currency = CurrencyService::$cur_currency;
+
+        $cur_currency = CurrencyService::$cur_currency;
+        $this->currency_id = $currency_id ?? $cur_currency->id;
+        $this->cur_currency = $cur_currency;
 
         $this->converted = $this->getConverted();
         $this->formatted = $this->getFormatted();
@@ -28,7 +30,7 @@ class Price
     }
 
 
-    public static function from(?string $value, string $currency_id): self
+    public static function from(?string $value, ?string $currency_id = null): self
     {
         return new self($value, $currency_id);
     }
@@ -36,6 +38,10 @@ class Price
 
     private function getConverted(): string
     {
+        if ($this->currency_id === $this->cur_currency->id) {
+            return $this->value;
+        }
+
         $currencies = CurrencyService::getAll();
         $cur_currency = $this->cur_currency;
 

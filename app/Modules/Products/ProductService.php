@@ -172,15 +172,6 @@ class ProductService
         return $products;
     }
 
-    public function getOneProduct(int $id): \stdClass
-    {
-        $tempProducts = self::getTempProducts();
-        $tempNum = $tempProducts->count();
-        $inner_id = ($id - 1) % $tempNum + 1;
-
-        return $tempProducts->firstWhere('id', $inner_id);
-    }
-
 
     public function getSku(int $id): Sku
     {

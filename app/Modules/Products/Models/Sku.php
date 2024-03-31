@@ -2,6 +2,7 @@
 
 namespace App\Modules\Products\Models;
 
+use App\Modules\Cart\CartService;
 use App\Modules\Cart\Models\CartItem;
 use App\Modules\Categories\CategoryService;
 use App\Modules\Categories\Models\Specification;
@@ -225,5 +226,21 @@ class Sku extends Model
         $thousands_sep = CurrencyService::$cur_currency->thousands_sep;
 
         return $this->rating ? number_format($this->rating, 1, $decimal_sep, $thousands_sep) : null;
+    }
+
+    public function getInCartAttribute(): int
+    {
+        $cart = CartService::getCart();
+        if (!count($cart)) return 0;
+
+        $in_cart = 0;
+        foreach ($cart as $cart_item) {
+            if ($this->id === $cart_item[0]) {
+                $in_cart = $cart_item[1];
+                break;
+            }
+        }
+
+        return $in_cart;
     }
 }

@@ -3,51 +3,72 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
-use App\Modules\Products\ProductService;
+use App\Modules\Cart\CartService;
+use App\Modules\Products\RecentlyViewedService;
 use App\Modules\Shops\ShopService;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class CartController extends Controller
 {
     public function __construct(
-        private readonly ProductService $productService,
+        private readonly CartService $cartService,
         private readonly ShopService $shopService,
     ) {}
 
-    public function index(): View
+    public function index(
+        Request $request,
+        RecentlyViewedService $recentlyViewedService
+    ): View
     {
-        $products = $this->productService->getSomeProducts(3);
-
-
-        $total = new \stdClass();
-        $sum = 0;
-        $final_sum = 0;
-        $is_discounted = false;
-        foreach ($products as $product) {
-            $sum += $product->price;
-            if ($product->discount_prc) {
-                $is_discounted = true;
-                $final_sum += $product->price * (100 - $product->discount_prc)/100;
-            } else {
-                $final_sum += $product->price;
-            }
-        }
-
-        $total->final_sum = number_format($final_sum, 0, ',', ' ');
-        $total->sum = $is_discounted ? number_format($sum, 0, ',', ' ') : null;
-
+        $skus = $this->cartService->getCartSkus();
+        $total = $this->cartService->getTotalCost($skus);
 
         $user = Auth::user();
 
         $shops = $this->shopService->getShopsForCart();
 
+        if (count($skus)) {
+            $recently_viewed = new Collection();
+        } else {
+            $rv_cookie = $request->cookie(RecentlyViewedService::COOKIE);
+            $recently_viewed = $recentlyViewedService->get($rv_cookie);
+        }
 
         return view('site.pages.cart', compact(
-            'products',
+            'skus',
             'total',
             'user',
             'shops',
+            'recently_viewed',
         ));
+    }
+
+
+    public function update(Request $request): JsonResponse
+    {
+        $sku_id = intval($request->sku_id);
+        $sku_qty = intval($request->sku_qty);
+        $get_cost = intval($request->get_cost);
+
+        $response = $this->cartService->updateCart($sku_id, $sku_qty, $get_cost);
+
+        return response()->json($response);
+    }
+
+
+    public function destroy(Request $request): JsonResponse
+    {
+        if ($request->action === 'clear') {
+            $response = $this->cartService->clearCart();
+            return response()->json($response);
+        }
+
+        $response = new \stdClass();
+        $response->error_message = 'Wrong request';
+        return response()->json($response);
     }
 }

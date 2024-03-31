@@ -1,9 +1,16 @@
-.catalog-add-to-cart-btn {
-  white-space: nowrap;
+.product-card_cart-btns-cont {
   margin-bottom: 0.8rem;
 
   @include md {
     margin-bottom: 0.875rem;
+  }
+}
+
+.catalog-add-to-cart-btn {
+  white-space: nowrap;
+
+  &.hidden {
+    display: none;
   }
 }
 

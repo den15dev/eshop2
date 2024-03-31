@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Modules\Cart\CartService;
 use App\Modules\Catalog\CatalogService;
 use App\Modules\Catalog\ComparisonService;
 use App\Modules\Favorites\FavoriteService;
@@ -17,6 +18,7 @@ class EncryptCookies extends Middleware
      */
     protected $except = [
         CatalogService::PREF_COOKIE,
+        CartService::COOKIE,
         ComparisonService::COOKIE,
         FavoriteService::COOKIE,
         RecentlyViewedService::COOKIE,

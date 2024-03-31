@@ -2,6 +2,7 @@
 
 namespace App\View\Composers;
 
+use App\Modules\Cart\CartService;
 use App\Modules\Catalog\ComparisonService;
 use App\Modules\Categories\CategoryService;
 use App\Modules\Currencies\CurrencyService;
@@ -23,6 +24,8 @@ class LayoutComposer
         $languages = LanguageService::getActive();
         $categories = $this->categoryService->buildCategoryTree();
 
+        $cart_items_num = count(CartService::getCart());
+
         $comparisonData = ComparisonService::get();
         $comparison_products = $this->comparisonService->getPopupProducts();
         $is_popup_collapsed = $comparisonData?->is_popup_collapsed;
@@ -39,6 +42,7 @@ class LayoutComposer
             'phone',
             'phone_tel',
             'categories',
+            'cart_items_num',
             'is_popup_collapsed',
             'comparison_products',
             'favorites_num',

@@ -5,7 +5,14 @@ declare(strict_types=1);
 return [
     'cart' => 'Корзина',
     'clear_cart' => 'Очистить',
+    'remove_item' => 'Удалить из корзины',
     'total' => 'Общая стоимость',
+    'empty' => 'Корзина пуста',
+
+    'buttons' => [
+        'add_to_cart' => 'В корзину',
+        'in_cart' => 'В корзине',
+    ],
 
     'form' => [
         'name' => 'Имя',
@@ -22,5 +29,9 @@ return [
         'pay_in_shop' => 'Картой или наличными в магазине',
         'checkout' => 'Перейти к оплате',
         'submit_order' => 'Оформить заказ',
+    ],
+
+    'messages' => [
+        'confirm_clear' => 'Очистить корзину?',
     ],
 ];

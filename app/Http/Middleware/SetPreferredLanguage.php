@@ -13,8 +13,6 @@ class SetPreferredLanguage
      * Check and set user preferred language according to:
      * 1. "Lang" cookie;
      * 2. Accept-Language request header.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
     {

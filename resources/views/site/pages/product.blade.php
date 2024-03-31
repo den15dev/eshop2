@@ -118,17 +118,13 @@
                 </div>
 
                 <div class="product-main_add-btn-cont mb-4">
-                    <div class="quantity-btns">
-                        <button class="btn-qty-minus">
-                            <svg viewBox="0 0 10 2"><use href="#minusIcon"/></svg>
-                        </button>
-                        <input name="qty" type="text" value="1">
-                        <button class="btn-qty-plus">
-                            <svg viewBox="0 0 12 12"><use href="#plusIcon"/></svg>
-                        </button>
-                    </div>
+                    <x-quantity-btns :skuid="$sku->id" :incart="$sku->in_cart ?: 1" />
 
-                    <button>{{ __('catalog.product_card.add_to_cart') }}</button>
+                    @if($sku->in_cart)
+                        <button class="btn-bg-grey" id="productAddToCartBtn" data-id="{{ $sku->id }}" data-incart="{{ $sku->in_cart }}">{{ __('cart.buttons.in_cart') }}</button>
+                    @else
+                        <button id="productAddToCartBtn" data-id="{{ $sku->id }}" data-incart="{{ $sku->in_cart }}">{{ __('cart.buttons.add_to_cart') }}</button>
+                    @endif
                 </div>
 
                 <div class="product-btn-cont mb-3">
