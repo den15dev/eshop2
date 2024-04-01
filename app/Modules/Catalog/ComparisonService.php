@@ -3,7 +3,7 @@
 namespace App\Modules\Catalog;
 
 use App\Modules\Products\ProductService;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 
 class ComparisonService
 {

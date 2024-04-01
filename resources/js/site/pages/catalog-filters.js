@@ -1,4 +1,4 @@
-import '../common/effects/slide.js';
+import '../../common/effects/slide.js';
 
 const slideSpeed = 50;
 

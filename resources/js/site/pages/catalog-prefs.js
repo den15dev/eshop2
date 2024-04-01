@@ -1,5 +1,5 @@
-import { closeDropdown } from "../common/dropdowns.js";
-import { getCookieValue } from "../common/global.js";
+import { closeDropdown } from "../../common/dropdowns.js";
+import { getCookieValue } from "../../common/global.js";
 
 const catalogPrefsCont = document.querySelector('.catalog-settings-cont');
 

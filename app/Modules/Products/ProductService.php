@@ -62,7 +62,7 @@ class ProductService
         $vote_nums = [208, 4, 26, 12, 57, 184, 12, 79];
 
         $comparisonIds = ComparisonService::get()?->product_ids ?? [];
-        $favoriteIds = FavoriteService::get() ?? [];
+        $favoriteIds = FavoriteService::getFavorites() ?? [];
 
         for ($i = 0; $i < $number; $i++) {
             $product = new \stdClass();

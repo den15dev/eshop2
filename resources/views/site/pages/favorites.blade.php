@@ -6,15 +6,16 @@
     <div class="container">
         <h3 class="mb-4">{{ __('favorites.favorites') }}</h3>
 
-        <div class="catalog-cont mb-6">
-            @if($products->count())
+        <div class="mb-65">
+            @if($skus->count())
                 <div class="catalog-cards-cont mb-5">
-                    @foreach($products as $product)
-                        <x-product-card :sku="$product"/>
+                    @foreach($skus as $sku)
+                        <x-product-card :sku="$sku"/>
                     @endforeach
                 </div>
 
-                @include('site.includes.pagination')
+                {{ $skus->hasPages() ? $skus->links('common.pagination.results-shown') : '' }}
+                {{ $skus->onEachSide(1)->withQueryString()->links('common.pagination.page-links') }}
             @else
                 <div class="items-not-found">
                     {{ __('catalog.no_products') }}

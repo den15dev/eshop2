@@ -39,7 +39,7 @@ const promoSwiper = promoBannerElem ? new Swiper('.promo-banner .swiper', {
 const productCarousels = document.querySelectorAll('.product-carousel');
 let swiperCarousels = [];
 
-export function initProductCarousels() {
+export default function initCarousels() {
     const spaceBetween = 20;
     const breakpoints = calculateBreakpoints(spaceBetween);
 

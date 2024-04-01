@@ -4,7 +4,7 @@
             <span class="icon-x-lg"></span>
         </button>
 
-        <div id="authMainPage">
+        <div id="authMainCont">
             <nav class="tab-cont mb-4">
                 <div class="tab-btn active" role="button" id="signInTab">
                     {{ __('auth.modal.sign_in') }}
@@ -25,7 +25,7 @@
             @include('site.auth.reset-password')
         @endif
 
-        <div id="successPage" style="display: none">
+        <div id="successCont" style="display: none">
             <p class="mt-3 mb-45 text-center"></p>
             <button class="mx-auto">Ok</button>
         </div>

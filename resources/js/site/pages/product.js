@@ -1,7 +1,7 @@
 import { Fancybox, Carousel } from "@fancyapps/ui";
 import { Thumbs } from "@fancyapps/ui/dist/carousel/carousel.thumbs.esm";
-import { switchTabTo } from "../common/tabs.js";
-import { closeDropdown } from "../common/dropdowns.js";
+import { switchTabTo } from "../../common/tabs.js";
+import { closeDropdown } from "../../common/dropdowns.js";
 
 const productMainCont = document.querySelector('.product-main-cont');
 

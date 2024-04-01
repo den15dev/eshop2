@@ -1,4 +1,4 @@
-<div id="forgotPasswordPage" style="display: none">
+<div id="forgotPasswordCont" style="display: none">
     <div class="link mb-25" style="margin-left: -4px" id="authMainBtn">
         <span class="icon-chevron-left small va1"></span>
         {{ __('auth.modal.back') }}

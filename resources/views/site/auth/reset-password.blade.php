@@ -1,4 +1,4 @@
-<div id="resetPasswordPage">
+<div id="resetPasswordCont">
     <h5 class="mb-4">{{ __('auth.modal.password_reset.title') }}</h5>
     <form method="POST" action="{{ route('password.store') }}" id="resetPasswordForm" novalidate>
         @csrf

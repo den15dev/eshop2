@@ -4,25 +4,30 @@ namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
 use App\Modules\Favorites\FavoriteService;
-use App\Modules\Products\ProductService;
+use App\Modules\Products\RecentlyViewedService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class FavoriteController extends Controller
 {
-    public function index(
-        FavoriteService $favoriteService,
-        ProductService $productService,
-    ): View {
-        $products = $favoriteService->getFavoriteProducts();
+    public function __construct(
+        private readonly FavoriteService $favoriteService
+    ){}
 
-        $recently_viewed_ids = [3, 9, 17, 18, 21, 25, 27, 28];
-        $recently_viewed = $productService->getRecentlyViewed($recently_viewed_ids);
+
+    public function index(
+        Request $request,
+        RecentlyViewedService $recentlyViewedService,
+    ): View {
+        $fav_query = $this->favoriteService->getFavoriteSkus();
+        $skus = $fav_query->paginate(15);
+
+        $rv_cookie = $request->cookie(RecentlyViewedService::COOKIE);
+        $recently_viewed = $recentlyViewedService->get($rv_cookie);
 
         return view('site.pages.favorites', compact(
-            'products',
+            'skus',
             'recently_viewed'
         ));
     }
@@ -30,12 +35,8 @@ class FavoriteController extends Controller
 
     public function store(Request $request): JsonResponse
     {
-        $user_id = Auth::id();
-        $product_id = intval($request->id);
+        $response = $this->favoriteService->updateFavorites(intval($request->id));
 
-        return response()->json([
-            'auth' => (bool) $user_id,
-            'num' => FavoriteService::count(),
-        ]);
+        return response()->json($response);
     }
 }

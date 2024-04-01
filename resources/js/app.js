@@ -10,19 +10,21 @@ import initPagination from "./common/pagination.js";
 import catalogMobile  from './site/main/catalog-mobile.js';
 import { catalogDesktopRoot, catalogDesktopDropdowns } from "./site/main/catalog-desktop.js";
 import search from './site/main/search.js';
-import auth, { handlePasswordEyeBtns } from "./site/main/auth";
 
-import { initProductCarousels } from "./site/home.js";
-import initCatalogFilters from "./site/catalog-filters.js";
-import initCatalogPreferences from "./site/catalog-prefs.js";
-import initProductPage from "./site/product.js";
-import initReviews from "./site/reviews.js";
-import initCartHandler from "./site/cart-handler.js";
-import initCartPage from "./site/cart.js";
-import initComparison from "./site/comparison.js";
-import initFavorites from "./site/favorites.js";
-import initNotifications from "./site/user-notifications.js"
-import initShops from "./site/shops.js"
+import initAuth from "./site/components/auth/_init.js"
+import initCartComponent from "./site/components/cart/_init.js"
+import initComparisonComponent from "./site/components/comparison/_init.js"
+import initCarousels from "./site/components/swiper-carousels.js";
+
+import initCatalogFilters from "./site/pages/catalog-filters.js";
+import initCatalogPreferences from "./site/pages/catalog-prefs.js";
+import initProductPage from "./site/pages/product.js";
+import initReviews from "./site/pages/reviews.js";
+import initCart from "./site/pages/cart.js";
+import initComparison from "./site/pages/comparison.js";
+import initFavorites from "./site/components/favorites.js";
+import initNotifications from "./site/pages/user-notifications.js"
+import initShops from "./site/pages/shops.js"
 
 
 // --------------- Common ------------------
@@ -40,48 +42,26 @@ catalogMobile();
 catalogDesktopRoot();
 catalogDesktopDropdowns();
 search();
-auth();
-handlePasswordEyeBtns();
 
-// --------------- Home ------------------
+// --------------- Components ------------------
 
-initProductCarousels();
+initAuth();
+initCartComponent();
+initComparisonComponent();
+initCarousels();
 
-// --------------- Catalog ------------------
+// --------------- Pages ------------------
 
 initCatalogFilters();
 initCatalogPreferences();
-
-// --------------- Product ------------------
-
 initProductPage();
-
-// --------------- Reviews ------------------
-
 initReviews();
-
-// --------------- Cart ------------------
-
-initCartHandler();
-initCartPage();
-
-// --------------- Comparison ------------------
-
+initCart();
 initComparison();
-
-// --------------- Favorites ------------------
-
 initFavorites();
-
-// --------------- User notifications ------------------
-
 initNotifications();
-
-// --------------- User notifications ------------------
-
 initShops();
 
 // --------------- Get all client translations ------------------
 
 getTranslations();
-

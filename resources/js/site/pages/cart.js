@@ -1,6 +1,8 @@
-import { cookieName, updateCart } from "./cart-handler.js";
-import { showClientModal, showErrorMessage } from "../common/modals.js";
-import { csrf, lang, translations } from "../common/global.js";
+import { showClientModal } from "../../common/modals.js";
+import { translations } from "../../common/global.js";
+import { updateCart } from "../components/cart/update-cart.js";
+import { clearCart } from "../components/cart/clear-cart.js";
+
 
 const removeItemBtns = document.querySelectorAll('.cart-item_btns .btn-icon');
 const clearBtn = document.querySelector('#clearCartBtn');
@@ -49,35 +51,6 @@ export default function init() {
             });
         });
     }
-}
-
-
-function clearCart() {
-    fetch(`/${lang}/clear-cart`, {
-        method: 'post',
-        headers: {
-            "Content-Type": "application/json",
-            'Accept': 'application/json',
-            'X-CSRF-TOKEN': csrf,
-        },
-        body: JSON.stringify({
-            action: 'clear',
-        }),
-    })
-    .then(response => {
-        if (!response.ok) throw new Error(`${response.status} (${response.statusText})`);
-        return response.json();
-    })
-    .then(result => {
-        if (result.error_message) {
-            throw new Error(result.error_message);
-        } else if (!result.auth) {
-            document.cookie = cookieName + '=; path=/; max-age=-1';
-        }
-
-        window.location.reload();
-    })
-    .catch(err => showErrorMessage(err.message));
 }
 
 

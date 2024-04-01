@@ -44,7 +44,7 @@ Languages:
 - HTML
 - CSS, SCSS
 - Blade
-- Javascript (ECMAScript 2016)
+- Javascript (ECMAScript 2016 and newer)
 - PHP 8.2
 - SQL, Eloquent ORM
 

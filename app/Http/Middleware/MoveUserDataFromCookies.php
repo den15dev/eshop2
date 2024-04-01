@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Modules\Cart\CartService;
+use App\Modules\Favorites\FavoriteService;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,7 +13,8 @@ use Symfony\Component\HttpFoundation\Response;
 class MoveUserDataFromCookies
 {
     public function __construct(
-        private readonly CartService $cartService
+        private readonly CartService $cartService,
+        private readonly FavoriteService $favoriteService,
     ){}
 
     /**
@@ -30,6 +32,12 @@ class MoveUserDataFromCookies
             if ($cartCookie) {
                 $this->cartService->moveCartFromCookie(json_decode($cartCookie));
                 Cookie::expire(CartService::COOKIE);
+            }
+
+            $favoritesCookie = $request->cookie(FavoriteService::COOKIE);
+            if ($favoritesCookie) {
+                $this->favoriteService->moveFavoritesFromCookie(json_decode($favoritesCookie));
+                Cookie::expire(FavoriteService::COOKIE);
             }
         }
 

@@ -8,6 +8,7 @@ use App\Modules\Categories\CategoryService;
 use App\Modules\Categories\Models\Specification;
 use App\Modules\Currencies\CurrencyService;
 use App\Modules\Currencies\Models\Currency;
+use App\Modules\Favorites\FavoriteService;
 use App\Modules\Favorites\Models\Favorite;
 use App\Modules\Orders\Models\OrderItem;
 use App\Modules\Products\ValueObjects\Price;
@@ -18,7 +19,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Query\JoinClause;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -242,5 +242,12 @@ class Sku extends Model
         }
 
         return $in_cart;
+    }
+
+    public function getIsFavoriteAttribute(): bool
+    {
+        $favs = FavoriteService::getFavorites();
+
+        return in_array($this->id, $favs);
     }
 }

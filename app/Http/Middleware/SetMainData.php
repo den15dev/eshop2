@@ -17,10 +17,7 @@ class SetMainData
         CartService::setCart($request->cookie(CartService::COOKIE));
 
         // Favorites
-        $favoriteCookie = $request->cookie(FavoriteService::COOKIE);
-        if ($favoriteCookie) {
-            FavoriteService::set(json_decode($favoriteCookie));
-        }
+        FavoriteService::setFavorites($request->cookie(FavoriteService::COOKIE));
 
         // Comparison
         $comparisonCookie = $request->cookie(ComparisonService::COOKIE);

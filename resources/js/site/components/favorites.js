@@ -1,26 +1,22 @@
-import { showErrorMessage } from "../common/modals.js";
-import {csrf, getCookieValue, lang, translations} from "../common/global.js";
+import { showErrorMessage } from "../../common/modals.js";
+import { csrf, getCookieValue, lang, translations } from "../../common/global.js";
 
 const favBtns = document.querySelectorAll('.product-favorite-btn');
 const favMenuBtns = document.querySelectorAll('#favoritesBtnDesktop, #favoritesBtnMobile');
 const cookieName = 'fav';
 
-let favoritesArr;
 
 export default function init() {
-    const favoritesCookie = getCookieValue(cookieName);
-    favoritesArr = favoritesCookie ? JSON.parse(decodeURIComponent(favoritesCookie)) : null;
-    
     favBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            const product_id = btn.dataset.id;
-            sendData(product_id);
+            const sku_id = btn.dataset.id;
+            sendData(sku_id);
         });
     });
 }
 
 
-function sendData(product_id) {
+function sendData(sku_id) {
     fetch(`/${lang}/favorites`, {
         method: 'post',
         headers: {
@@ -29,7 +25,7 @@ function sendData(product_id) {
             'X-CSRF-TOKEN': csrf,
         },
         body: JSON.stringify({
-            id: product_id,
+            id: sku_id,
         }),
     })
     .then(response => {
@@ -37,60 +33,64 @@ function sendData(product_id) {
         return response.json();
     })
     .then(result => {
-        if (result.auth) {
-            inverseButtons(product_id);
-            updateBadges(result.num);
-        } else {
-            updateList(product_id);
+        const favNum = result.auth ? result.num : updateList(sku_id);
+
+        toggleButtons(sku_id);
+        updateBadges(favNum);
+
+        // Reload the page if we are on the Favorites page
+        if (window.location.pathname.match(/favorites\/?$/)) {
+            window.location.reload();
         }
     })
     .catch(err => showErrorMessage(err.message));
 }
 
 
-function updateList(product_id) {
-    product_id = parseInt(product_id, 10);
+function updateList(sku_id) {
+    sku_id = parseInt(sku_id, 10);
+    let favoritesArr = getFavoritesArray();
 
     if (favoritesArr) {
-        if (favoritesArr.includes(product_id)) {
+        if (favoritesArr.includes(sku_id)) {
             favoritesArr = favoritesArr.filter(id => {
-                return id !== product_id;
+                return id !== sku_id;
             });
 
-            if (!favoritesArr.length) {
-                favoritesArr = null;
-            }
-
         } else {
-            favoritesArr.push(product_id);
+            favoritesArr.push(sku_id);
         }
 
     } else {
-        favoritesArr = [product_id];
+        favoritesArr = [sku_id];
     }
 
-    updateCookie(favoritesArr);
-
-    if (favoritesArr) {
-        inverseButtons(product_id);
-        updateBadges(favoritesArr.length);
+    if (favoritesArr.length) {
+        setCookie(favoritesArr);
     } else {
-        window.location.reload();
+        removeCookie();
     }
+
+    return favoritesArr.length;
 }
 
 
-function updateCookie(newFavoritesArr) {
-    if (newFavoritesArr) {
-        document.cookie = cookieName + '=' + encodeURIComponent(JSON.stringify(newFavoritesArr)) + '; path=/;  max-age=157680000';
-    } else {
-        document.cookie = cookieName + '=; path=/;  max-age=-1';
-    }
+function getFavoritesArray() {
+    const favoritesCookie = getCookieValue(cookieName);
+    return favoritesCookie ? JSON.parse(decodeURIComponent(favoritesCookie)) : null;
+}
+
+export function setCookie(favoritesArr) {
+    document.cookie = cookieName + '=' + encodeURIComponent(JSON.stringify(favoritesArr)) + '; path=/; max-age=2592000';
+}
+
+export function removeCookie() {
+    document.cookie = cookieName + '=; path=/; max-age=-1';
 }
 
 
-function inverseButtons(product_id) {
-    const btns = document.querySelectorAll(`.product-favorite-btn[data-id="${product_id}"]`);
+function toggleButtons(sku_id) {
+    const btns = document.querySelectorAll(`.product-favorite-btn[data-id="${sku_id}"]`);
 
     btns.forEach(btn => {
         const iconSpan = btn.querySelector('.favorite-btn-icon');
