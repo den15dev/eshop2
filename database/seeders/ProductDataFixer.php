@@ -95,4 +95,54 @@ class ProductDataFixer
             }
         }
     }
+
+
+    public static function fixManufacturerCodeSquareBrackets(string $dir, string $filename): void
+    {
+        $file_ru = $dir . '/ru/' . $filename;
+        $obj_ru = json_decode(file_get_contents($file_ru));
+
+        $obj_en = null;
+        $file_en = $dir . '/en/' . $filename;
+        if (file_exists($file_en)) {
+            $obj_en = json_decode(file_get_contents($file_en));
+        }
+
+        $obj_de = null;
+        $file_de = $dir . '/de/' . $filename;
+        if (file_exists($file_de)) {
+            $obj_de = json_decode(file_get_contents($file_de));
+        }
+
+        $is_changed = false;
+        foreach ($obj_ru->specs as $key => $spec) {
+            if ($spec->name === 'Код производителя') {
+                $spec->value = trim($spec->value, '[]');
+
+                if ($obj_en) {
+                    $code_en = $obj_en->specs[$key]->value;
+                    $obj_en->specs[$key]->value = trim($code_en, '[]');
+                }
+
+                if ($obj_de) {
+                    $code_de = $obj_de->specs[$key]->value;
+                    $obj_de->specs[$key]->value = trim($code_de, '[]');
+                }
+
+                $is_changed = true;
+            }
+        }
+
+        if ($is_changed) {
+            file_put_contents($file_ru, json_encode($obj_ru, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
+
+            if ($obj_en) {
+                file_put_contents($file_en, json_encode($obj_en, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
+            }
+
+            if ($obj_de) {
+                file_put_contents($file_de, json_encode($obj_de, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
+            }
+        }
+    }
 }

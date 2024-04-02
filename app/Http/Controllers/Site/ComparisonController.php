@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
 use App\Modules\Catalog\ComparisonService;
-use App\Modules\Categories\CategoryService;
-use App\Modules\Products\ProductService;
+use App\Modules\Products\RecentlyViewedService;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class ComparisonController extends Controller
@@ -15,19 +15,17 @@ class ComparisonController extends Controller
     ) {}
 
     public function index(
-        CategoryService $categoryService,
-        ProductService $productService,
+        Request $request,
+        RecentlyViewedService $recentlyViewedService,
     ): View {
-        $comparisonData = ComparisonService::get();
-        $comparison_products = $this->comparisonService->getPageProducts();
+        $comparison_skus = $this->comparisonService->getPageSkus();
+        $specs = $this->comparisonService->getPageSpecs();
 
-        $specs = $categoryService->getSpecs($comparisonData?->category_id);
-
-        $recently_viewed_ids = [3, 9, 17, 18, 21, 25, 27, 28];
-        $recently_viewed = $productService->getRecentlyViewed($recently_viewed_ids);
+        $rv_cookie = $request->cookie(RecentlyViewedService::COOKIE);
+        $recently_viewed = $recentlyViewedService->get($rv_cookie);
 
         return view('site.pages.comparison', compact(
-            'comparison_products',
+            'comparison_skus',
             'specs',
             'recently_viewed',
         ));
@@ -37,12 +35,12 @@ class ComparisonController extends Controller
     public function popup(): View
     {
         $comparisonData = ComparisonService::get();
-        $comparison_products = $this->comparisonService->getPopupProducts();
+        $comparison_skus = $this->comparisonService->getPopupSkus();
         $is_popup_collapsed = $comparisonData?->is_popup_collapsed;
 
         return view('site.includes.comparison-popup', compact(
             'is_popup_collapsed',
-            'comparison_products',
+            'comparison_skus',
         ));
     }
 }

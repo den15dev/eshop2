@@ -3,7 +3,6 @@
 namespace App\Modules\Products;
 
 use App\Modules\Catalog\ComparisonService;
-use App\Modules\Categories\CategoryService;
 use App\Modules\Favorites\FavoriteService;
 use App\Modules\Products\Actions\GetAttributesAction;
 use App\Modules\Products\Actions\GetSkuAction;
@@ -109,46 +108,6 @@ class ProductService
         }
 
         return $products;
-    }
-
-
-    public function getTempSpecs(): Collection
-    {
-        $spec_values = [
-            'AMD Ryzen 5',
-            '5600X',
-            'AM4',
-            '2020',
-            'AMD Vermeer',
-            'TSMC 7FF',
-            '6',
-            '12',
-            '6',
-            'нет',
-            '3',
-            '32',
-            '3.7',
-            '4.6',
-            'есть',
-            'DDR4',
-            '128',
-            '2',
-            '3200',
-            'нет',
-            '65',
-            '95',
-            'есть',
-            'нет',
-            'PCI-E',
-            '20',
-        ];
-
-        return CategoryService::getSpecs(2)->each(function ($spec, $index) use ($spec_values) {
-            $pivot = new \stdClass();
-            $pivot->specification_id = $index;
-            $pivot->spec_value = $spec_values[$index];
-            $spec->pivot = $pivot;
-        });
     }
 
 

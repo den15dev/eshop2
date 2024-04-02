@@ -2,7 +2,9 @@
 
 namespace App\Modules\Catalog;
 
-use App\Modules\Products\ProductService;
+use App\Modules\Categories\Models\Specification;
+use App\Modules\Products\Models\Sku;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 
 class ComparisonService
@@ -12,11 +14,6 @@ class ComparisonService
     private static ?\stdClass $data = null;
 
 
-    public function __construct(
-        private readonly ProductService $productService
-    ) {}
-
-
     public static function get(): ?\stdClass
     {
         return self::$data;
@@ -24,33 +21,75 @@ class ComparisonService
 
     public static function set(?array $cookie_data): void
     {
-        $comparisonData = null;
-
         if ($cookie_data) {
             $comparisonData = new \stdClass();
             $comparisonData->category_id = $cookie_data[0];
-            $comparisonData->product_ids = $cookie_data[1];
+            $comparisonData->sku_ids = $cookie_data[1];
             $comparisonData->is_popup_collapsed = $cookie_data[2];
+
+            self::$data = $comparisonData;
         }
-
-        self::$data = $comparisonData;
     }
 
 
-    public function getPopupProducts(): Collection
+    public function getPopupSkus(): Collection
     {
-        $ids = self::$data?->product_ids;
+        if (!self::$data) return new Collection();
+        $ids = self::$data->sku_ids;
 
-        return $ids ? $this->productService->getSomeProducts($ids) : new Collection();
+        return Sku::join('products', 'skus.product_id', 'products.id')
+            ->select(
+                'skus.id',
+                'skus.name',
+                'skus.slug',
+                'products.category_id',
+            )
+            ->whereIn('skus.id', $ids)
+            ->orderByRaw(order_by_array($ids))
+            ->get();
     }
 
 
-    public function getPageProducts(): Collection
+    public function getPageSkus(): Collection
     {
-        $ids = self::$data?->product_ids;
+        if (!self::$data) return new Collection();
+        $ids = self::$data->sku_ids;
 
-        return $ids ? $this->productService->getSomeProducts($ids)->each(function ($product) {
-            $product->specifications = $this->productService->getTempSpecs();
-        }) : new Collection();
+        return Sku::join('products', 'skus.product_id', 'products.id')
+            ->select(
+                'skus.id',
+                'skus.name',
+                'skus.slug',
+                'products.category_id',
+                'skus.currency_id',
+                'skus.final_price',
+            )
+            ->whereIn('skus.id', $ids)
+            ->orderByRaw(order_by_array($ids))
+            ->get();
+    }
+
+
+    public function getPageSpecs(): Collection
+    {
+        if (!self::$data) return new Collection();
+        $category_id = self::$data->category_id;
+        $ids = self::$data->sku_ids;
+
+        return Specification::select(
+            'id',
+            'name',
+            'units',
+            'sort',
+        )
+        ->where('category_id', $category_id)
+        ->whereHas('skus', function (Builder $query) use ($ids) {
+            $query->whereIn('skus.id', $ids);
+        })
+        ->with(['skus' => function ($query) use ($ids) {
+            $query->select('skus.id')->whereIn('skus.id', $ids);
+        }])
+        ->orderBy('specifications.sort')
+        ->get();
     }
 }

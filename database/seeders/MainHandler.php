@@ -77,6 +77,9 @@ class MainHandler
                             // Fix Version attribute (BOX, OEM) in CPUs
                             // ProductDataFixer::fixCPUVersionAttribute($dir, $filename);
 
+                            // Fix square bracket in Manufacturer code
+                            // ProductDataFixer::fixManufacturerCodeSquareBrackets($dir, $filename);
+
                             if ($is_counted) {
                                 $translation_count++;
                                 echo 'Total handled: ' . $translation_count . "\n";

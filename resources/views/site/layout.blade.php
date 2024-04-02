@@ -47,7 +47,7 @@
 
 {{-- ----- Comparison popup ----- --}}
 @unless(request()->routeIs('comparison'))
-    @if($comparison_products->count())
+    @if($comparison_skus->count())
         <div class="comparison-popup {{ $is_popup_collapsed ? 'collapsed' : '' }}">
             @include('site.includes.comparison-popup')
         </div>

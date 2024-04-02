@@ -27,7 +27,7 @@ class LayoutComposer
         $cart_items_num = count(CartService::getCart());
 
         $comparisonData = ComparisonService::get();
-        $comparison_products = $this->comparisonService->getPopupProducts();
+        $comparison_skus = $this->comparisonService->getPopupSkus();
         $is_popup_collapsed = $comparisonData?->is_popup_collapsed;
 
         $favorites_num = FavoriteService::count();
@@ -44,7 +44,7 @@ class LayoutComposer
             'categories',
             'cart_items_num',
             'is_popup_collapsed',
-            'comparison_products',
+            'comparison_skus',
             'favorites_num',
         ));
     }

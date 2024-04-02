@@ -1,11 +1,11 @@
-<meta name="description" content="Электроника для дома и работы: компьютерные комплектующие, бытовая техника и многое другое.">
+<meta name="description" content="{{ __('general.description') }}">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Магазин электроники">
-<meta name="twitter:description" content="Электроника для дома и работы: компьютерные комплектующие, бытовая техника и многое другое.">
+<meta name="twitter:title" content="{{ __('general.app_name') }}">
+<meta name="twitter:description" content="{{ __('general.description') }}">
 <meta name="twitter:image" content="{{ asset('img/electro_richpreview.png') }}">
-<meta property="og:title" content="Магазин электроники">
+<meta property="og:title" content="{{ __('general.app_name') }}">
 <meta property="og:type" content="website">
-<meta property="og:description" content="Электроника для дома и работы: компьютерные комплектующие, бытовая техника и многое другое.">
+<meta property="og:description" content="{{ __('general.description') }}">
 <meta property="og:image" content="{{ asset('img/electro_richpreview.png') }}">
 <meta property="og:url" content="{{ route('home') }}">
 <link rel="icon" type="image/png" href="{{ asset('img/electro_logo_16.png') }}" sizes="16x16">

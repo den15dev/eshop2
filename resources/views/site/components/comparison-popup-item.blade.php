@@ -1,9 +1,9 @@
-<div class="comparison-popup_item" data-id="{{ $product->id }}">
-    <a href="{{ $product->url }}" class="comparison-popup_item-img-link">
-        <img src="{{ asset('storage/images/products/' . (($product->id - 1) % 4 + 1) . '/01_80.jpg') }}" alt="{{ $product->name }}">
+<div class="comparison-popup_item" data-id="{{ $sku->id }}">
+    <a href="{{ $sku->url }}" class="comparison-popup_item-img-link">
+        <img src="{{ $sku->image_sm }}" alt="{{ $sku->name }}">
     </a>
-    <a href="{{ $product->url }}" class="comparison-popup_item-name-link dark-link">
-        {{ $product->name }}
+    <a href="{{ $sku->url }}" class="comparison-popup_item-name-link dark-link">
+        {{ $sku->name }}
     </a>
     <div class="btn-link" title="{{ __('comparison.remove_title') }}">
         <span class="icon-x-lg"></span>

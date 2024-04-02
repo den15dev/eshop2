@@ -15,11 +15,6 @@ class GetCartSkusAction
             $ids[] = $cart_item[0];
         }
 
-        $order_stmt = match (env('DB_CONNECTION')) {
-            'pgsql' => 'ARRAY_POSITION(ARRAY[' . implode(', ', $ids) . '], skus.id)',
-            'mysql' => 'FIELD(skus.id, ' . implode(', ', $ids) . ')',
-        };
-
         $skus = Sku::join('products', 'skus.product_id', 'products.id')
             ->select(
                 'skus.id',
@@ -33,8 +28,8 @@ class GetCartSkusAction
                 'skus.final_price',
             )
             ->whereIn('skus.id', $ids)
-            ->when(count($ids), function (EBuilder $query) use ($order_stmt) {
-                $query->orderByRaw($order_stmt);
+            ->when(count($ids), function (EBuilder $query) use ($ids) {
+                $query->orderByRaw(order_by_array($ids));
             })
             ->active()
             ->get();

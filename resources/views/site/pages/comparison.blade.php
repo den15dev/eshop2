@@ -6,7 +6,7 @@
     <div class="container">
         <h3 class="mb-3">{{ __('comparison.product_comparison') }}</h3>
 
-        @if($comparison_products->count())
+        @if($comparison_skus->count())
             <div class="comparison-table_cont mb-6">
                 <table class="table comparison-table">
                     <thead>
@@ -16,19 +16,19 @@
                                 <span class="icon-x me-1"></span>{{ __('comparison.clear') }}
                             </div>
                         </td>
-                        @foreach($comparison_products as $product)
+                        @foreach($comparison_skus as $sku)
                             <td class="comparison-table_col">
-                                <div class="comparison-table_remove-btn link mb-2" data-id="{{ $product->id }}">
+                                <div class="comparison-table_remove-btn link mb-2" data-id="{{ $sku->id }}">
                                     <span class="icon-x me-1"></span>{{ __('comparison.remove') }}
                                 </div>
-                                <a href="{{ $product->url }}" class="comparison-table_img-link mb-2">
-                                    <img src="{{ asset('storage/images/products/' . (($product->id - 1) % 4 + 1) . '/01_80.jpg') }}" alt="">
+                                <a href="{{ $sku->url }}" class="comparison-table_img-link mb-2">
+                                    <img src="{{ $sku->image_sm }}" alt="">
                                 </a>
-                                <a href="{{ $product->url }}" class="comparison-table_name dark-link mb-2">
-                                    {{ $product->name }}
+                                <a href="{{ $sku->url }}" class="comparison-table_name dark-link mb-2">
+                                    {{ $sku->name }}
                                 </a>
                                 <div class="grey-text mb-1">
-                                    {{ number_format($product->final_price, 0, ',', ' ') }} ₽
+                                    {{ $sku->final_price_formatted }}
                                 </div>
                             </td>
                         @endforeach
@@ -39,8 +39,13 @@
                         <tr>
                             <td>{{ $spec->name }}</td>
 
-                            @foreach($comparison_products as $product)
-                                <td>{{ $product->specifications->firstWhere('id', $spec->id)?->pivot->spec_value }}</td>
+                            @foreach($comparison_skus as $sku)
+                                @php
+                                    $value = $spec->skus->firstWhere('id', $sku->id)?->pivot->spec_value;
+                                    if (!$value) { $value = '-'; }
+                                    elseif ($spec->units) { $value .= ' ' . $spec->units; }
+                                @endphp
+                                <td>{{ $value }}</td>
                             @endforeach
                         </tr>
                     @endforeach

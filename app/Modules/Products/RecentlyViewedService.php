@@ -25,16 +25,11 @@ class RecentlyViewedService
 
         if (!count($ids)) return new ECollection();
 
-        $order_stmt = match (env('DB_CONNECTION')) {
-            'pgsql' => 'ARRAY_POSITION(ARRAY[' . implode(', ', $ids) . '], skus.id)',
-            'mysql' => 'FIELD(skus.id, ' . implode(', ', $ids) . ')',
-        };
-
         return Sku::join('products', 'skus.product_id', 'products.id')
             ->joinPromos()
             ->selectForCards()
             ->whereIn('skus.id', $ids)
-            ->orderByRaw($order_stmt)
+            ->orderByRaw(order_by_array($ids))
             ->get();
     }
 

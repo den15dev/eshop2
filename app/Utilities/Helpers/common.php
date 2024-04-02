@@ -18,6 +18,19 @@ if (!function_exists('active_link')) {
 }
 
 
+if (!function_exists('order_by_array')) {
+    function order_by_array(?array $arr): string
+    {
+        if (!$arr || !count($arr)) return '';
+
+        return match (env('DB_CONNECTION')) {
+            'pgsql' => 'ARRAY_POSITION(ARRAY[' . implode(', ', $arr) . '], skus.id)',
+            'mysql' => 'FIELD(skus.id, ' . implode(', ', $arr) . ')',
+            default => '',
+        };
+    }
+}
+
 
 if (!function_exists('parse_slug')) {
     /**

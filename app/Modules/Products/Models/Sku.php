@@ -4,6 +4,7 @@ namespace App\Modules\Products\Models;
 
 use App\Modules\Cart\CartService;
 use App\Modules\Cart\Models\CartItem;
+use App\Modules\Catalog\ComparisonService;
 use App\Modules\Categories\CategoryService;
 use App\Modules\Categories\Models\Specification;
 use App\Modules\Currencies\CurrencyService;
@@ -249,5 +250,12 @@ class Sku extends Model
         $favs = FavoriteService::getFavorites();
 
         return in_array($this->id, $favs);
+    }
+
+    public function getIsComparingAttribute(): bool
+    {
+        $comparison_arr = ComparisonService::get()?->sku_ids;
+
+        return $comparison_arr && in_array($this->id, $comparison_arr);
     }
 }
