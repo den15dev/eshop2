@@ -33,7 +33,9 @@
                             {{ $sku->name }}
                             </a>
                             @if($sku->promo_id)
-                            &nbsp;<a href="{{ route('promo', $sku->promo_url_slug) }}" class="product-name_badge-small" title="{{ $sku->promo_name }}">-{{ $sku->discount_prc }}%</a>
+                            &nbsp;<a href="{{ route('promo', $sku->promo_url_slug) }}" class="product-name_badge-link-small" title="{{ $sku->promo_name }}">-{{ $sku->discount_prc }}%</a>
+                            @elseif($sku->discount_prc)
+                            &nbsp;<div class="product-name_badge-small">-{{ $sku->discount_prc }}%</div>
                             @endif
                         </h5>
                         @if($reviews_num)
@@ -52,7 +54,7 @@
                                   :max="$marks_max" />
 
                 @foreach($reviews as $review)
-                    <x-review :review="$review" />
+                    <x-review :review="$review" :reactionsoff="$is_guest || $review->is_author" />
                 @endforeach
             </div>
 

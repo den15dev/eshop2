@@ -17,8 +17,7 @@ class ReviewController extends Controller
 {
     public function __construct(
         private readonly ReviewService $reviewService
-    )
-    {}
+    ){}
 
 
     public function index(
@@ -35,7 +34,7 @@ class ReviewController extends Controller
         $slug_id = $productService::parseSlug($product_slug_id);
         $sku_id = $slug_id[1];
 
-        $sku = $productService->getForReviews($sku_id);
+        $sku = $this->reviewService->getSku($sku_id);
         abort_if($sku->slug !== $slug_id[0], 404);
 
         $marks = $this->reviewService->countMarks($sku_id);
@@ -45,6 +44,7 @@ class ReviewController extends Controller
         $reviews_num = $reviews->total();
 
         $is_reviewed = $this->reviewService->isReviewed($sku_id, Auth::id());
+        $is_guest = !Auth::check();
 
         $rv_cookie = $request->cookie(RecentlyViewedService::COOKIE);
         $recently_viewed = $recentlyViewedService->get($rv_cookie);
@@ -55,6 +55,7 @@ class ReviewController extends Controller
             'reviews_num',
             'marks',
             'is_reviewed',
+            'is_guest',
             'recently_viewed',
         ));
     }

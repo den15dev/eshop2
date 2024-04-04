@@ -2,7 +2,9 @@
 
 namespace App\Modules\Reviews\Services\Site;
 
+use App\Modules\Products\Models\Sku;
 use App\Modules\Reviews\Models\Review;
+use App\Modules\Reviews\Services\Site\Actions\UpdateReactionAction;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -29,6 +31,26 @@ class ReviewService
                     ->orWhereNotNull('comnt');
             })
             ->orderByDesc('created_at');
+    }
+
+
+    public function getSku(int $sku_id): Sku
+    {
+        return Sku::join('products', 'skus.product_id', 'products.id')
+            ->joinPromos()
+            ->select(
+                'skus.id',
+                'skus.name',
+                'skus.slug',
+                'products.category_id',
+                'skus.discount_prc',
+                'skus.rating',
+                'skus.vote_num',
+                'promos.id as promo_id',
+                'promos.name as promo_name',
+                'promos.slug as promo_slug',
+            )
+            ->firstWhere('skus.id', $sku_id);
     }
 
 
@@ -90,5 +112,11 @@ class ReviewService
         DB::table('skus')
             ->where('id', $sku_id)
             ->update(['rating' => $rating->rating, 'vote_num' => $rating->vote_num]);
+    }
+
+
+    public function updateReaction(int $review_id, bool $up_down): \stdClass
+    {
+        return UpdateReactionAction::run($review_id, $up_down);
     }
 }

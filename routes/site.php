@@ -11,6 +11,7 @@ use App\Http\Controllers\Site\HomeController;
 use App\Http\Controllers\Site\OrderController;
 use App\Http\Controllers\Site\ProductController;
 use App\Http\Controllers\Site\PromoController;
+use App\Http\Controllers\Site\ReactionController;
 use App\Http\Controllers\Site\ReviewController;
 use App\Http\Controllers\Site\SearchController;
 use App\Http\Controllers\Site\ShopController;
@@ -34,13 +35,15 @@ Route::get('/catalog/{category}/{product}', [ProductController::class, 'show'])-
 Route::get('/catalog/{category}/{product}/reviews', [ReviewController::class, 'index'])->name('reviews');
 Route::post('/catalog/{category}/{product}/reviews', [ReviewController::class, 'store'])->name('reviews.add');
 
+Route::post('/reaction/store', [ReactionController::class, 'store'])->middleware('auth')->name('reaction.store');
+
 Route::get('/promo/{promo}', [PromoController::class, 'show'])->name('promo');
 
 Route::get('/brands/{brand}', [BrandController::class, 'show'])->name('brand');
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
-Route::post('/update-cart', [CartController::class, 'update'])->name('cart.update');
-Route::post('/clear-cart', [CartController::class, 'destroy'])->name('cart.clear');
+Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
+Route::post('/cart/clear', [CartController::class, 'destroy'])->name('cart.clear');
 
 Route::get('/orders', [OrderController::class, 'index'])->name('orders');
 Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');

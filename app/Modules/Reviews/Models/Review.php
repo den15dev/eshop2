@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class Review extends Model
 {
@@ -44,14 +45,6 @@ class Review extends Model
     }
 
 
-/*    protected function pros(): Attribute
-    {
-        return Attribute::make(
-            get: fn (string $value) => str_replace("\n", '<br>', $value),
-        );
-    }*/
-
-
     public function getDateAttribute(): string
     {
         return Carbon::parse($this->created_at)->isoFormat('D MMMM YYYY, H:mm');
@@ -60,5 +53,10 @@ class Review extends Model
     public function getHumanDateAttribute(): string
     {
         return Carbon::parse($this->created_at)->diffForHumans();
+    }
+
+    public function getIsAuthorAttribute(): bool
+    {
+        return $this->user_id === Auth::id();
     }
 }

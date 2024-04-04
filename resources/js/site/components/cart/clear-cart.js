@@ -3,7 +3,7 @@ import { showErrorMessage } from "../../../common/modals.js";
 import { removeCookie } from "./update-cookie.js";
 
 export function clearCart() {
-    fetch(`/${lang}/clear-cart`, {
+    fetch(`/${lang}/cart/clear`, {
         method: 'post',
         headers: {
             "Content-Type": "application/json",

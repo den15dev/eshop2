@@ -15,6 +15,7 @@ import initAuth from "./site/components/auth/_init.js"
 import initCartComponent from "./site/components/cart/_init.js"
 import initComparisonComponent from "./site/components/comparison/_init.js"
 import initCarousels from "./site/components/swiper-carousels.js";
+import initReviewReactions from "./site/components/review-reactions.js"
 
 import initCatalogFilters from "./site/pages/catalog-filters.js";
 import initCatalogPreferences from "./site/pages/catalog-prefs.js";
@@ -49,6 +50,7 @@ initAuth();
 initCartComponent();
 initComparisonComponent();
 initCarousels();
+initReviewReactions();
 
 // --------------- Pages ------------------
 

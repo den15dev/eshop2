@@ -13,16 +13,21 @@ class SetMainData
 {
     public function handle(Request $request, Closure $next): Response
     {
-        // Cart
-        CartService::setCart($request->cookie(CartService::COOKIE));
+        $excluded = ['translations'];
+        $route = $request->route()->getName();
 
-        // Favorites
-        FavoriteService::setFavorites($request->cookie(FavoriteService::COOKIE));
+        if (!in_array($route, $excluded)) {
+            // Cart
+            CartService::setCart($request->cookie(CartService::COOKIE));
 
-        // Comparison
-        $comparisonCookie = $request->cookie(ComparisonService::COOKIE);
-        if ($comparisonCookie) {
-            ComparisonService::set(json_decode($comparisonCookie));
+            // Favorites
+            FavoriteService::setFavorites($request->cookie(FavoriteService::COOKIE));
+
+            // Comparison
+            $comparisonCookie = $request->cookie(ComparisonService::COOKIE);
+            if ($comparisonCookie) {
+                ComparisonService::set(json_decode($comparisonCookie));
+            }
         }
 
         return $next($request);

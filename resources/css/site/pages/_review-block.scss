@@ -54,6 +54,10 @@
   gap: 6px;
   cursor: pointer;
   color: $grey-150;
+
+  &.disabled {
+    pointer-events: none;
+  }
 }
 
 .review-reactions_icon {

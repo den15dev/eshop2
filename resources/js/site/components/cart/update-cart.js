@@ -5,7 +5,7 @@ import { updateBadges } from "./update-dom.js";
 
 
 export function updateCart(sku_id, sku_qty, updateDOM, get_cost = false) {
-    fetch(`/${lang}/update-cart`, {
+    fetch(`/${lang}/cart/update`, {
         method: 'post',
         headers: {
             "Content-Type": "application/json",

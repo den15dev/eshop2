@@ -40,14 +40,14 @@
         </div>
     @endif
 
-    <div class="review-reactions">
-        <div class="review-reactions_up {{ $review->user_likes ? 'active' : '' }}">
+    <div class="review-reactions" data-id="{{ $review->id }}">
+        <div class="review-reactions_up @if($reactionsoff) disabled @endif {{ $review->user_likes ? 'active' : '' }}">
             <div class="review-reactions_icon"></div>
-            <div>{{ $review->likes }}</div>
+            <div class="review-reactions_number">{{ $review->likes }}</div>
         </div>
-        <div class="review-reactions_down {{ $review->user_dislikes ? 'active' : '' }}">
+        <div class="review-reactions_down @if($reactionsoff) disabled @endif {{ $review->user_dislikes ? 'active' : '' }}">
             <div class="review-reactions_icon"></div>
-            <div>{{ $review->dislikes }}</div>
+            <div class="review-reactions_number">{{ $review->dislikes }}</div>
         </div>
     </div>
 </div>
