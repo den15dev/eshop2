@@ -31,6 +31,7 @@
             </div>
 
             @include('site.pages.cart-form')
+
         @else
             <div class="items-not-found">
                 {{ __('cart.empty') }}

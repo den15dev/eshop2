@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
 use App\Modules\Cart\CartService;
+use App\Modules\Orders\Enums\DeliveryMethod;
+use App\Modules\Orders\Enums\PaymentMethod;
 use App\Modules\Products\RecentlyViewedService;
 use App\Modules\Shops\ShopService;
 use Illuminate\Http\JsonResponse;
@@ -30,6 +32,8 @@ class CartController extends Controller
         $user = Auth::user();
 
         $shops = $this->shopService->getShopsForCart();
+        $payment_methods = PaymentMethod::class;
+        $default_delivery_method = DeliveryMethod::Delivery->value;
 
         if (count($skus)) {
             $recently_viewed = new Collection();
@@ -43,6 +47,8 @@ class CartController extends Controller
             'total',
             'user',
             'shops',
+            'payment_methods',
+            'default_delivery_method',
             'recently_viewed',
         ));
     }

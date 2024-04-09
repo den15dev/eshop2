@@ -1,5 +1,5 @@
-import { productBtn } from "./_constants.js"
-import { translations } from "../../../common/global.js";
+import { productAddToCardBtn, productGoToCardBtn } from "./_constants.js";
+
 
 const badgeDesktop = document.querySelector('#cartBadgeDesktop');
 const badgeMobile = document.querySelector('#cartBadgeMobile');
@@ -35,14 +35,15 @@ export function updateCartCosts(sku_id, cartItemElem, result) {
 
 
 export function updateProductButton(sku_qty) {
-    productBtn.dataset.incart = sku_qty;
+    productAddToCardBtn.dataset.incart = sku_qty;
 
     if (sku_qty) {
-        productBtn.classList.add('btn-bg-grey');
-        productBtn.innerText = translations.cart.buttons.in_cart;
+        productAddToCardBtn.classList.add('hidden');
+        productGoToCardBtn.classList.remove('hidden');
+
     } else {
-        productBtn.classList.remove('btn-bg-grey');
-        productBtn.innerText = translations.cart.buttons.add_to_cart;
+        productAddToCardBtn.classList.remove('hidden');
+        productGoToCardBtn.classList.add('hidden');
     }
 }
 

@@ -6,6 +6,6 @@
         {{ $paginator->lastItem() }}
         {!! __('of') !!}
         {{ $paginator->total() }}
-        {!! __('results') !!}
+{{--        {!! __('results') !!}--}}
     </p>
 @endif

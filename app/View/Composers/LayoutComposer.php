@@ -8,6 +8,7 @@ use App\Modules\Categories\CategoryService;
 use App\Modules\Currencies\CurrencyService;
 use App\Modules\Favorites\FavoriteService;
 use App\Modules\Languages\LanguageService;
+use App\Modules\Orders\OrderService;
 use App\Modules\StaticPages\Models\StaticPageParam;
 use Illuminate\View\View;
 
@@ -24,13 +25,13 @@ class LayoutComposer
         $languages = LanguageService::getActive();
         $categories = $this->categoryService->buildCategoryTree();
 
+        $favorites_num = FavoriteService::count();
         $cart_items_num = count(CartService::getCart());
+        $ready_orders_num = OrderService::countReadyOrders();
 
         $comparisonData = ComparisonService::get();
         $comparison_skus = $this->comparisonService->getPopupSkus();
         $is_popup_collapsed = $comparisonData?->is_popup_collapsed;
-
-        $favorites_num = FavoriteService::count();
 
         $settings = StaticPageParam::getGeneral();
         $phone = $settings->firstWhere('name', 'phone')->val;
@@ -43,6 +44,7 @@ class LayoutComposer
             'phone_tel',
             'categories',
             'cart_items_num',
+            'ready_orders_num',
             'is_popup_collapsed',
             'comparison_skus',
             'favorites_num',

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Modules\Reviews\Services\Site;
+namespace App\Modules\Reviews;
 
 use App\Modules\Products\Models\Sku;
+use App\Modules\Reviews\Actions\UpdateReactionAction;
 use App\Modules\Reviews\Models\Review;
-use App\Modules\Reviews\Services\Site\Actions\UpdateReactionAction;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -95,7 +95,7 @@ class ReviewService
 
             return $review;
 
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             DB::rollBack();
             Log::channel('events')->info('An exception caught while trying to add new review (SKU ID: ' . $review_data['sku_id'] . '): ' . $e->getMessage());
             abort(500);

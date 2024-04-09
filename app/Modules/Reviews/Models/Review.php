@@ -6,7 +6,6 @@ use App\Modules\Products\Models\Sku;
 use App\Modules\Reviews\Enums\TermOfUse;
 use App\Modules\Reviews\Factories\ReviewFactory;
 use App\Modules\Users\Models\User;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;

@@ -151,8 +151,13 @@
   }
 }
 
-#productAddToCartBtn {
+#productAddToCartBtn,
+#productGoToCartBtn {
   width: 148px;
+
+  &.hidden {
+    display: none;
+  }
 }
 
 // ------- Specs section --------

@@ -1,6 +1,6 @@
 @extends('site.layout')
 
-@section('page_title', 'Процессор AMD Ryzen 5 5600X BOX' . ' - ' . __('general.app_name'))
+@section('page_title', $sku->name . ' - ' . __('general.app_name'))
 
 @section('main_content')
     <div class="container">
@@ -120,11 +120,14 @@
                 <div class="product-main_add-btn-cont mb-4">
                     <x-quantity-btns :skuid="$sku->id" :incart="$sku->in_cart ?: 1" />
 
-                    @if($sku->in_cart)
-                        <button class="btn-bg-grey" id="productAddToCartBtn" data-id="{{ $sku->id }}" data-incart="{{ $sku->in_cart }}">{{ __('cart.buttons.in_cart') }}</button>
-                    @else
-                        <button id="productAddToCartBtn" data-id="{{ $sku->id }}" data-incart="{{ $sku->in_cart }}">{{ __('cart.buttons.add_to_cart') }}</button>
-                    @endif
+                    <a href="{{ route('cart') }}"
+                       class="btn btn-bg-grey {{ $sku->in_cart ? '' : 'hidden' }}"
+                       id="productGoToCartBtn"
+                       title="{{ __('cart.buttons.go_to_cart') }}">{{ __('cart.buttons.in_cart') }}</a>
+
+                    <button {!! $sku->in_cart ? 'class="hidden"' : '' !!} id="productAddToCartBtn"
+                            data-id="{{ $sku->id }}"
+                            data-incart="{{ $sku->in_cart }}">{{ __('cart.buttons.add_to_cart') }}</button>
                 </div>
 
                 <div class="product-btn-cont mb-3">

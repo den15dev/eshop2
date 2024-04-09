@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 return [
-    'shops' => 'Магазины',
+    'stores' => 'Магазины',
     'list' => 'Список',
     'map' => 'Карта',
     'weekdays' => [

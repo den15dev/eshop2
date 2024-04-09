@@ -20,8 +20,6 @@ return new class extends Migration
             $table->unsignedBigInteger('sku_id')->nullable();
             $table->foreign('sku_id')->references('id')->on('skus')->onUpdate('cascade')->onDelete('set null');
             $table->unsignedInteger('quantity')->default(1);
-            $table->string('currency_id');
-            $table->foreign('currency_id')->references('id')->on('currencies')->onUpdate('cascade')->onDelete('no action');
             $table->decimal('price', 12, 2);
         });
 

@@ -2,7 +2,12 @@ import { showClientModal } from "../../common/modals.js";
 import { translations } from "../../common/global.js";
 import { updateCart } from "../components/cart/update-cart.js";
 import { clearCart } from "../components/cart/clear-cart.js";
+import { switchTabTo } from "../../common/tabs.js";
 
+const deliveryMethod = {
+    delivery: 'delivery',
+    self_delivery: 'self-delivery',
+};
 
 const removeItemBtns = document.querySelectorAll('.cart-item_btns .btn-icon');
 const clearBtn = document.querySelector('#clearCartBtn');
@@ -20,7 +25,7 @@ if (cartOrderForm) {
     submitBtn = cartOrderForm.querySelector('button[type="submit"]');
     submitBtnCheckoutText = submitBtn.dataset.checkout;
     submitBtnSubmitText = submitBtn.dataset.submit;
-    deliveryTypeInput = cartOrderForm.delivery_type;
+    deliveryTypeInput = cartOrderForm.delivery_method;
 }
 
 export default function init() {
@@ -55,30 +60,30 @@ export default function init() {
 
 
 function handleTabSwitch() {
+    const tabCont = cartOrderForm.querySelector('.tab-cont');
     const deliveryTab = cartOrderForm.querySelector('#deliveryTab');
     const selfDeliveryTab = cartOrderForm.querySelector('#selfDeliveryTab');
 
-    const PayMethodCardCont = cartOrderForm.querySelector('#payMethodCardCont');
-    const PayMethodCashCont = cartOrderForm.querySelector('#payMethodCashCont');
-    const PayMethodShopCont = cartOrderForm.querySelector('#payMethodShopCont');
-
     deliveryTab.addEventListener('click', () => {
-        PayMethodShopCont.style.display = 'none';
-        PayMethodCardCont.style.display = 'block';
-        PayMethodCashCont.style.display = 'block';
+        switchPaymentMethods(deliveryMethod.delivery);
         payMethodOnlineInput.checked = true;
         switchSubmitBtn();
-        deliveryTypeInput.value = 'delivery';
+        deliveryTypeInput.value = deliveryMethod.delivery;
     });
 
     selfDeliveryTab.addEventListener('click', () => {
-        PayMethodShopCont.style.display = 'block';
-        PayMethodCardCont.style.display = 'none';
-        PayMethodCashCont.style.display = 'none';
+        switchPaymentMethods(deliveryMethod.self_delivery);
         payMethodOnlineInput.checked = true;
         switchSubmitBtn();
-        deliveryTypeInput.value = 'self-delivery';
+        deliveryTypeInput.value = deliveryMethod.self_delivery;
     });
+
+    // If validation failed and self-delivery was selected, switch to self-delivery
+    if (deliveryTypeInput.value === deliveryMethod.self_delivery) {
+        switchTabTo(tabCont, selfDeliveryTab);
+        switchPaymentMethods(deliveryMethod.self_delivery);
+        switchSubmitBtn();
+    }
 }
 
 
@@ -89,6 +94,27 @@ function handlePaymentMethodSwitch() {
     payMethodInputs.forEach(payMethodInput => {
         payMethodInput.addEventListener('change', switchSubmitBtn);
     });
+}
+
+
+function switchPaymentMethods(deliveryMethodValue) {
+    const PayMethodCardCont = cartOrderForm.querySelector('#payMethodCardCont');
+    const PayMethodCashCont = cartOrderForm.querySelector('#payMethodCashCont');
+    const PayMethodShopCont = cartOrderForm.querySelector('#payMethodShopCont');
+
+    switch (deliveryMethodValue) {
+        case deliveryMethod.delivery:
+            PayMethodShopCont.style.display = 'none';
+            PayMethodCardCont.style.display = 'block';
+            PayMethodCashCont.style.display = 'block';
+            break;
+
+        case deliveryMethod.self_delivery:
+            PayMethodShopCont.style.display = 'block';
+            PayMethodCardCont.style.display = 'none';
+            PayMethodCashCont.style.display = 'none';
+            break;
+    }
 }
 
 

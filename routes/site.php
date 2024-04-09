@@ -20,6 +20,7 @@ use App\Http\Controllers\Site\StaticPages\WarrantyController;
 use App\Http\Controllers\Site\Temp\TempController;
 use App\Http\Controllers\Site\UserNotificationController;
 use App\Http\Controllers\Site\UserProfileController;
+use App\Http\Middleware\CheckOrderOwner;
 use Illuminate\Support\Facades\Route;
 
 
@@ -47,7 +48,11 @@ Route::post('/cart/clear', [CartController::class, 'destroy'])->name('cart.clear
 
 Route::get('/orders', [OrderController::class, 'index'])->name('orders');
 Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
-Route::get('/new-order/{order_id}', [OrderController::class, 'new'])->whereNumber('order_id')->name('orders.new');
+
+Route::get('/new-order/{order_id}', [OrderController::class, 'new'])
+    ->whereNumber('order_id')
+    ->middleware([CheckOrderOwner::class])
+    ->name('orders.new');
 
 Route::get('/search', [SearchController::class, 'index'])->name('search');
 Route::get('/search/dropdown', [SearchController::class, 'dropdown'])->name('search.dropdown');
@@ -64,7 +69,7 @@ Route::middleware('auth')->prefix('user')->group(function () {
     Route::get('/notifications', [UserNotificationController::class, 'index'])->name('notifications');
 });
 
-Route::get('/shops', ShopController::class)->name('shops');
+Route::get('/stores', ShopController::class)->name('stores');
 
 // ---------- Static pages ----------
 

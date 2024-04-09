@@ -10,11 +10,17 @@
         </div>
 
         <ul class="bottom-menu_list">
+            @isset($filters)
+            <li>
+                <a href="{{ route('orders') }}">{{ __('orders.orders') }}</a>
+                <div class="badge-round_inline-big-green {{ $ready_orders_num ? 'active' : '' }}"> {{ $ready_orders_num }}</div>
+            </li>
+            @endisset
             <li>
                 <a href="{{ route('delivery') }}">{{ __('delivery.delivery') }}</a>
             </li>
             <li>
-                <a href="{{ route('shops') }}">{{ __('shops.shops') }}</a>
+                <a href="{{ route('stores') }}">{{ __('stores.stores') }}</a>
             </li>
             <li>
                 <a href="{{ route('warranty') }}">{{ __('warranty.warranty') }}</a>

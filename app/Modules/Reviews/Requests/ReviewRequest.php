@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Reviews\Services\Site\Requests;
+namespace App\Modules\Reviews\Requests;
 
 use App\Http\Requests\BaseRequest;
 use App\Modules\Reviews\Enums\TermOfUse;

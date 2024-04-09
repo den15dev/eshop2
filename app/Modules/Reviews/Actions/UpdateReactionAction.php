@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Reviews\Services\Site\Actions;
+namespace App\Modules\Reviews\Actions;
 
 use App\Modules\Reviews\Models\Reaction;
 use Illuminate\Support\Facades\Auth;

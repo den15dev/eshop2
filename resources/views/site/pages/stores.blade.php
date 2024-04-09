@@ -1,17 +1,17 @@
 @extends('site.layout')
 
-@section('page_title', __('shops.shops') . ' - ' . __('general.app_name'))
+@section('page_title', __('stores.stores') . ' - ' . __('general.app_name'))
 
 @section('main_content')
     <div class="container">
-        <h3 class="mb-4">{{ __('shops.shops') }}</h3>
+        <h3 class="mb-4">{{ __('stores.stores') }}</h3>
 
         <nav class="shops_tabs tab-cont mb-4">
             <div class="tab-btn active" role="button" id="shopListTab">
-                {{ __('shops.list') }}
+                {{ __('stores.list') }}
             </div>
             <div class="tab-btn link" role="button" id="shopMapTab">
-                {{ __('shops.map') }}
+                {{ __('stores.map') }}
             </div>
         </nav>
 

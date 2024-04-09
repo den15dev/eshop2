@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
-use App\Modules\Reviews\Services\Site\ReviewService;
+use App\Modules\Reviews\ReviewService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 

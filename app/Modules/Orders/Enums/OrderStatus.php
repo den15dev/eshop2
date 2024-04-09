@@ -12,15 +12,17 @@ enum OrderStatus: string
     case Cancelled = 'cancelled';
 
 
-    public static function getStatus(self $status_case): string
+    public function description(): string
     {
-        return match ($status_case) {
-            self::New => __('orders.statuses.' . self::New->value),
-            self::Accepted => __('orders.statuses.' . self::Accepted->value),
-            self::Ready => __('orders.statuses.' . self::Ready->value),
-            self::Sent => __('orders.statuses.' . self::Sent->value),
-            self::Completed => __('orders.statuses.' . self::Completed->value),
-            self::Cancelled => __('orders.statuses.' . self::Cancelled->value),
+        $base_path = 'orders.statuses.';
+
+        return match ($this) {
+            self::New => __($base_path . self::New->value),
+            self::Accepted => __($base_path . self::Accepted->value),
+            self::Ready => __($base_path . self::Ready->value),
+            self::Sent => __($base_path . self::Sent->value),
+            self::Completed => __($base_path . self::Completed->value),
+            self::Cancelled => __($base_path . self::Cancelled->value),
         };
     }
 }

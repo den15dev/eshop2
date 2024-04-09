@@ -1,4 +1,4 @@
-import { catalogBtns, productBtn, qtyBtnConts } from "./_constants.js"
+import { catalogBtns, productAddToCardBtn, qtyBtnConts } from "./_constants.js";
 import { updateCart } from "./update-cart.js";
 import { updateQuantity } from "./update-quantity.js";
 import { updateCatalogCards, updateProductButton } from "./update-dom.js";
@@ -17,17 +17,18 @@ export default function init() {
         });
     }
 
-    if (productBtn) {
-        productBtn.addEventListener('click', () => {
-            const sku_id = productBtn.dataset.id;
-            const current_qty = parseInt(productBtn.dataset.incart, 10);
-            const qtyInput = productBtn.parentNode.querySelector('.quantity-btns_input');
-            const input_qty = parseInt(qtyInput.value, 10);
-            const sku_qty = current_qty ? 0 : input_qty;
+    if (productAddToCardBtn) {
+        productAddToCardBtn.addEventListener('click', () => {
+            const current_qty = parseInt(productAddToCardBtn.dataset.incart, 10);
+            if (!current_qty) {
+                const sku_id = productAddToCardBtn.dataset.id;
+                const qtyInput = productAddToCardBtn.parentNode.querySelector('.quantity-btns_input');
+                const sku_qty = parseInt(qtyInput.value, 10);
 
-            updateCart(sku_id, sku_qty, () => {
-                updateProductButton(sku_qty);
-            });
+                updateCart(sku_id, sku_qty, () => {
+                    updateProductButton(sku_qty);
+                });
+            }
         });
     }
 

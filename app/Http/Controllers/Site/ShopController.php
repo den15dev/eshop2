@@ -14,7 +14,7 @@ class ShopController extends Controller
 
         $shops_json = $shopService->getJSON($shops);
 
-        return view('site.pages.shops', compact(
+        return view('site.pages.stores', compact(
             'shops',
             'shops_json',
         ));

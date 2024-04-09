@@ -1,4 +1,4 @@
-import { productBtn } from "./_constants.js";
+import { productAddToCardBtn } from "./_constants.js";
 import { updateCart } from "./update-cart.js";
 import { updateCartCosts, updateCatalogCards, updateProductButton } from "./update-dom.js";
 
@@ -22,7 +22,7 @@ export function updateQuantity(qtyBtnsCont, sku_qty) {
 
         } else if (parentCont.classList.contains('product-main_add-btn-cont')) {
             // Product page
-            const current_qty = parseInt(productBtn.dataset.incart, 10);
+            const current_qty = parseInt(productAddToCardBtn.dataset.incart, 10);
 
             if (current_qty) {
                 updateCart(sku_id, sku_qty, () => {

@@ -10,7 +10,7 @@ class Price
     public readonly ?string $value;
     public readonly string $currency_id;
     public readonly string $converted; // Clean numeric
-    public readonly string $formatted; // With thousands separators
+    public readonly string $formatted; // With thousands and decimal separators
     public readonly string $formatted_full; // With currency sign
 
     private readonly Currency $cur_currency;
@@ -58,10 +58,11 @@ class Price
     {
         $cur_currency = $this->cur_currency;
 
-        $formatted = number_format($this->converted, 2, $cur_currency->decimal_sep, $cur_currency->thousands_sep);
-        $formatted = preg_replace('/(.+)[,.]00$/', '$1', $formatted);
-
-        return $formatted;
+        return self::format(
+            $this->converted,
+            $cur_currency->decimal_sep,
+            $cur_currency->thousands_sep
+        );
     }
 
 
@@ -80,6 +81,14 @@ class Price
     }
 
 
+    private static function format(string $value, string $decimal_sep, string $thousands_sep): string
+    {
+        $formatted = number_format($value, 2, $decimal_sep, $thousands_sep);
+
+        return preg_replace('/(.+)[,.]00$/', '$1', $formatted);
+    }
+
+
     public static function parse(string $input): string
     {
         $num = preg_replace('/[^\d.,]/', '', $input);
@@ -91,5 +100,16 @@ class Price
         }
 
         return $num;
+    }
+
+
+    public static function formatToCurrency(string $price, string $currency_id): string
+    {
+        $currency = CurrencyService::getAll()->firstWhere('id', $currency_id);
+        $formatted = self::format($price, $currency->decimal_sep, $currency->thousands_sep);
+
+        return $currency->symbol_precedes
+            ? $currency->symbol . $formatted
+            : $formatted . ' ' . $currency->symbol;
     }
 }

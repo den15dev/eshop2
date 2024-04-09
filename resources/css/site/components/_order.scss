@@ -4,8 +4,8 @@ $order-ready-color: #6ece14;
 $order-completed-color: $grey-150;
 $order-cancelled-color: #f6b56e;
 
-$order-not-payed-color: $color-red;
-$order-payed-color: $order-ready-color;
+$order-not-paid-color: $color-red;
+$order-paid-color: $order-ready-color;
 
 
 .order-title {
@@ -192,6 +192,14 @@ tfoot {
 
 // ----- Payment Statuses -----
 
-.payment-status_not-payed {
-  color: $order-not-payed-color;
+.payment-status_not_paid {
+  color: $order-not-paid-color;
+}
+
+.payment-status_paid {
+  color: $text-color;
+}
+
+.payment-status_pending {
+  color: $order-completed-color;
 }

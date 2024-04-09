@@ -27,5 +27,5 @@ return [
         'bonus_program' => 'Bonus Program',
         'help' => 'Help',
     ],
-    'copyright' => 'Demo web-app based on Laravel and vanilla JS by',
+    'copyright' => 'Demo e-commerce web-app based on Laravel and vanilla JS by',
 ];

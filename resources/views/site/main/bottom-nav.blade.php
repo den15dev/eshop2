@@ -33,6 +33,7 @@
                     <use href="#ordersIcon"/>
                 </svg>
                 {{ __('header.user_menu.orders') }}
+                <div class="badge-round-green {{ $ready_orders_num ? 'active' : '' }}">{{ $ready_orders_num }}</div>
             </a>
         @endisset
 

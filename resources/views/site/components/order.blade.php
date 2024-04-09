@@ -1,32 +1,37 @@
 <div class="mb-5">
     @if(!isset($new))
-        <div class="order-title fw-bold mb-1">{{ __('orders.order_num', ['num' => 345]) }}</div>
+        <div class="order-title fw-bold mb-1">{{ __('orders.num', ['num' => $order->id]) }}</div>
     @endif
 
     <ul class="order_details-cont mb-25">
         <li>
             <span class="lightgrey-text">{{ __('orders.created_at') }}:</span>
-            18.01.2024, 0:58
+            {{ $order->date }}
         </li>
         <li>
             <span class="lightgrey-text">{{ __('orders.status') }}:</span>
-            <span class="order-status_new">новый</span>
+            <span class="order-status_{{ $order->status->value }}">{{ $order->status->description() }}</span>
         </li>
         <li>
             <span class="lightgrey-text">{{ __('orders.payment_status') }}:</span>
-            <span class="payment-status_not-payed">не оплачен</span>
+            <span class="payment-status_{{ $order->payment_status->value }}">{{ $order->payment_status->description() }}</span>
         </li>
         <li>
             <span class="lightgrey-text">{{ __('orders.payment_method') }}:</span>
-            онлайн
+            {{ $order->payment_method->description() }}
         </li>
         <li>
             <span class="lightgrey-text">{{ __('orders.delivery_method') }}:</span>
-            доставка
+            {{ $order->delivery_method->description() }}
         </li>
         <li>
-            <span class="lightgrey-text">{{ __('orders.address') }}:</span>
-            Московская область, г. Зеленоград, ул. Красная слобода 25, кв. 16
+            @if($order->delivery_method->name === 'Delivery')
+                <span class="lightgrey-text">{{ __('orders.delivery_address') }}:</span>
+                {{ $order->delivery_address }}
+            @elseif($order->delivery_method->name === 'SelfDelivery')
+                <span class="lightgrey-text">{{ __('orders.store_address') }}:</span>
+                {{ $order->shop->address }}
+            @endif
         </li>
     </ul>
 
@@ -46,11 +51,9 @@
             </tr>
         </thead>
         <tbody class="order-table_body">
-            <x-order-item />
-            <x-order-item />
-            <x-order-item />
-            <x-order-item />
-            <x-order-item />
+            @foreach($order->orderItems as $order_item)
+                <x-order-item :index="$loop->index + 1" :item="$order_item" />
+            @endforeach
         </tbody>
         <tfoot>
             <tr>
@@ -63,7 +66,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td class="total">283 541 ₽</td>
+                <td class="total">{!! $order->items_cost_formatted !!}</td>
             </tr>
         </tfoot>
     </table>

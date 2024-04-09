@@ -13,19 +13,19 @@ class GetOpeningHoursForHumanAction
     public static function run(array $opening_hours): array
     {
         $days = [
-            __('shops.weekdays.mo'),
-            __('shops.weekdays.tu'),
-            __('shops.weekdays.we'),
-            __('shops.weekdays.th'),
-            __('shops.weekdays.fr'),
-            __('shops.weekdays.sa'),
-            __('shops.weekdays.su'),
+            __('stores.weekdays.mo'),
+            __('stores.weekdays.tu'),
+            __('stores.weekdays.we'),
+            __('stores.weekdays.th'),
+            __('stores.weekdays.fr'),
+            __('stores.weekdays.sa'),
+            __('stores.weekdays.su'),
         ];
 
         $weekdays = [];
 
         foreach ($opening_hours as $num => $day_hours) {
-            $weekdays[$days[$num]] = count($day_hours) ? $day_hours[0] . ':00' . ' - ' . $day_hours[1] . ':00' : __('shops.closed');
+            $weekdays[$days[$num]] = count($day_hours) ? $day_hours[0] . ':00' . ' - ' . $day_hours[1] . ':00' : __('stores.closed');
         }
 
         $hours_blocks = [];

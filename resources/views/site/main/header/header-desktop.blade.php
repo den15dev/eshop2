@@ -23,8 +23,8 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('shops') }}">
-                    {{ __('shops.shops') }}
+                <a href="{{ route('stores') }}">
+                    {{ __('stores.stores') }}
                 </a>
             </li>
             <li>
@@ -129,6 +129,7 @@
                         <use href="#ordersIcon"/>
                     </svg>
                     {{ __('header.user_menu.orders') }}
+                    <div class="badge-round-green {{ $ready_orders_num ? 'active' : '' }}">{{ $ready_orders_num }}</div>
                 </a>
             </li>
             @guest

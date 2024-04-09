@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Modules\Cart\CartService;
 use App\Modules\Favorites\FavoriteService;
+use App\Modules\Orders\OrderService;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,6 +16,7 @@ class MoveUserDataFromCookies
     public function __construct(
         private readonly CartService $cartService,
         private readonly FavoriteService $favoriteService,
+        private readonly OrderService $orderService,
     ){}
 
     /**
@@ -38,6 +40,12 @@ class MoveUserDataFromCookies
             if ($favoritesCookie) {
                 $this->favoriteService->moveFavoritesFromCookie(json_decode($favoritesCookie));
                 Cookie::expire(FavoriteService::COOKIE);
+            }
+
+            $ordersCookie = $request->cookie(OrderService::COOKIE);
+            if ($ordersCookie) {
+                $this->orderService->moveOrdersFromCookie(json_decode($ordersCookie));
+                Cookie::expire(OrderService::COOKIE);
             }
         }
 

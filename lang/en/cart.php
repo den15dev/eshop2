@@ -12,21 +12,15 @@ return [
     'buttons' => [
         'add_to_cart' => 'Add To Cart',
         'in_cart' => 'In Cart',
+        'go_to_cart' => 'Перейти в корзину',
     ],
 
     'form' => [
         'name' => 'Name',
         'phone' => 'Phone number',
         'email' => 'Email',
-        'delivery' => 'Delivery',
-        'self_delivery' => 'Self-Delivery',
         'delivery_address' => 'Delivery Address',
-        'shop' => 'Select shop',
-        'payment_method' => 'Payment method',
-        'online' => 'Bank Card Online',
-        'courier' => 'Bank Card To Courier',
-        'courier_cash' => 'Cash To Courier',
-        'pay_in_shop' => 'Pay In Shop',
+        'shop' => 'Select store',
         'checkout' => 'Checkout',
         'submit_order' => 'Submit Order',
     ],

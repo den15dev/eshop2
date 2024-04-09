@@ -3,6 +3,8 @@
 $badge-round-size-px: 18px;
 $badge-dot-size-px: 8px;
 
+$color-badge-green: #86da35;
+
 .badge-round {
   display: none;
   position: absolute;
@@ -25,6 +27,11 @@ $badge-dot-size-px: 8px;
   &-red {
     @extend .badge-round;
     background-color: $color-red;
+  }
+
+  &-green {
+    @extend .badge-round;
+    background-color: $color-badge-green;
   }
 
   &.active {
@@ -62,6 +69,16 @@ $badge-dot-size-px: 8px;
   vertical-align: 3px;
   font-size: 12px;
   border-radius: 10px;
+}
+
+.badge-round_inline-green {
+  @extend .badge-round_inline;
+  background-color: $color-badge-green;
+}
+
+.badge-round_inline-big-green {
+  @extend .badge-round_inline-big;
+  background-color: $color-badge-green;
 }
 
 .badge-dot {
