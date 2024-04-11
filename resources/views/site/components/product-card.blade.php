@@ -1,10 +1,15 @@
+@props([
+    'sku',
+    'page' => 'catalog',
+])
+
 <div class="product-card">
     <div class="product-card_image-cont">
         <a href="{{ $sku->url }}" class="product-card_image-link">
             <img src="{{ $sku->image_md }}" class="product-card_image" alt="{{ $sku->name }}">
             <div class="image-link-tint"></div>
         </a>
-        @if($sku->promo_id)
+        @if($sku->promo_id && $page !== 'promo')
             <a href="{{ route('promo', $sku->promo_url_slug) }}" class="product-card_badge-link" title="{{ $sku->promo_name }}">-{{ $sku->discount_prc }}%</a>
         @elseif($sku->discount_prc)
             <div class="product-card_badge">-{{ $sku->discount_prc }}%</div>

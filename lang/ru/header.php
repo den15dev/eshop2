@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 return [
     'catalog' => 'Каталог',
+
     'top_menu' => [
         'delivery' => 'Доставка',
         'shops' => 'Магазины',
@@ -13,12 +14,16 @@ return [
         'return' => 'Обмен, возврат',
         'service' => 'Сервисные центры',
     ],
+
     'search' => [
         'search' => 'Поиск',
     ],
+
     'user_menu' => [
         'favorites' => 'Избранное',
+        'favorites_empty' => 'Список избранного пуст',
         'cart' => 'Корзина',
+        'cart_empty' => 'Корзина',
         'orders' => 'Заказы',
         'sign_in' => 'Вход',
         'filters' => 'Фильтры',

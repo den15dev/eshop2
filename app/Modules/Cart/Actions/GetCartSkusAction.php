@@ -8,7 +8,7 @@ use Illuminate\Support\Collection;
 
 class GetCartSkusAction
 {
-    public static function run(array $cart): Collection
+    public function run(array $cart): Collection
     {
         $ids = [];
         foreach ($cart as $cart_item) {

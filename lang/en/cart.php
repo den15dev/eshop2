@@ -12,7 +12,8 @@ return [
     'buttons' => [
         'add_to_cart' => 'Add To Cart',
         'in_cart' => 'In Cart',
-        'go_to_cart' => 'Перейти в корзину',
+        'out_of_stock' => 'Out Of Stock',
+        'go_to_cart' => 'Go to cart',
     ],
 
     'form' => [
@@ -28,4 +29,10 @@ return [
     'messages' => [
         'confirm_clear' => 'Clear the cart?',
     ],
+
+    'header_bubble' => [
+        'added' => 'Added',
+        'qty' => ':count pc|:count pcs',
+        'go_to_cart' => 'Go to cart',
+    ]
 ];

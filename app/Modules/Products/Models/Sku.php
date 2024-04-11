@@ -38,6 +38,8 @@ class Sku extends Model
 
     protected $casts = [
         'images' => 'array',
+        'available_from' => 'date',
+        'available_until' => 'date',
     ];
 
     protected $guarded = [];
@@ -227,6 +229,12 @@ class Sku extends Model
         $thousands_sep = CurrencyService::$cur_currency->thousands_sep;
 
         return $this->rating ? number_format($this->rating, 1, $decimal_sep, $thousands_sep) : null;
+    }
+
+    public function getIsActiveAttribute(): bool
+    {
+        return (!$this->available_from || $this->available_from->isPast())
+            && (!$this->available_until || $this->available_until->isFuture());
     }
 
     public function getInCartAttribute(): int

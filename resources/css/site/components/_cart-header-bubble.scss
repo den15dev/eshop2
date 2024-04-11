@@ -1,0 +1,39 @@
+#cartHeaderBubble {
+  width: 380px;
+}
+
+.cart-header-bubble_item {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.cart-header-bubble_img-link {
+  display: block;
+  width: 60px;
+  height: 60px;
+  flex: 0 0 60px;
+
+  img {
+    width: 100%;
+  }
+}
+
+.cart-header-bubble_label {
+  color: $grey-150;
+}
+
+.cart-header-bubble_title {
+  flex: 1;
+}
+
+.cart-header-bubble_qty {
+  color: $grey-150;
+  white-space: nowrap;
+}
+
+.cart-header-bubble_btn {
+  width: 100%;
+  height: 40px;
+  padding-top: 10px;
+}

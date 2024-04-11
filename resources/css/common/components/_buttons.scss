@@ -1,6 +1,8 @@
 $button-bg-color: $color1;
 $button-bg-grey: $grey-235;
 $button-bg-grey-hover: $grey-230;
+$button-bg-red: $color-red;
+$button-bg-red-hover: color($color-red, light, 1);
 
 @mixin btn-base {
   display: block;
@@ -67,6 +69,33 @@ button,
   &:hover {
     background-color: $button-bg-grey-hover;
   }
+}
+
+.btn-bg-red {
+  color: white;
+  background-color: $button-bg-red;
+
+  &:hover {
+    background-color: $button-bg-red-hover;
+  }
+}
+
+.btn-outlined {
+  color: $text-color;
+  background-color: unset;
+  border: 1px solid color($color1, light, 6);
+
+  &:hover {
+    background-color: unset;
+    border: 1px solid color($color-red, light, 6);
+  }
+}
+
+.btn-outlined-inactive {
+  color: $grey-150;
+  background-color: unset;
+  border: 1px solid $grey-220;
+  pointer-events: none;
 }
 
 // Container for button with loader on the left.

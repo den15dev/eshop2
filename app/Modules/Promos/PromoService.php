@@ -2,7 +2,7 @@
 
 namespace App\Modules\Promos;
 
-use App\Modules\Languages\LanguageService;
+use App\Modules\Products\Models\Sku;
 use App\Modules\Promos\Actions\GetBannerImagesAction;
 use App\Modules\Promos\Models\Promo;
 use Illuminate\Database\Eloquent\Collection;
@@ -33,6 +33,22 @@ class PromoService
         }
 
         return self::$active_promos;
+    }
+
+
+    public function getPromo(int $id, string $slug): ?Promo
+    {
+        return Promo::where('id', $id)
+            ->where('slug', $slug)
+            ->first();
+    }
+
+
+    public function getPromoSkus(int $promo_id)
+    {
+        return Sku::getCards()
+            ->where('promo_id', $promo_id)
+            ->get();
     }
 
 

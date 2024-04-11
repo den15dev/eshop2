@@ -18,7 +18,9 @@ return [
     ],
     'user_menu' => [
         'favorites' => 'Favorites',
+        'favorites_empty' => 'Favorites list is empty',
         'cart' => 'Cart',
+        'cart_empty' => 'Cart is empty',
         'orders' => 'Orders',
         'sign_in' => 'Sign In',
         'filters' => 'Filters',

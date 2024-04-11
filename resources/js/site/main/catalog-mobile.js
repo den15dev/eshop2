@@ -56,11 +56,13 @@ export default function init() {
 
     document.querySelectorAll('#catalogNavMobile div.cat-btn1, #catalogNavMobile div.cat-btn2').forEach(catBtn => {
         catBtn.addEventListener('click', () => {
-            catBtn.parentNode.querySelector('ul.catalog-mobile-sublist')?.slideToggle(slideSpeed);
-            catBtn.classList.toggle('active');
-            let chevronIcon = catBtn.querySelector('.icon-chevron-right, .icon-chevron-down');
-            chevronIcon?.classList.toggle('icon-chevron-right');
-            chevronIcon?.classList.toggle('icon-chevron-down');
+            if (!catBtn.classList.contains('empty') || catBtn.parentNode.querySelector('.catalog-mobile-sublist')) {
+                catBtn.parentNode.querySelector('ul.catalog-mobile-sublist')?.slideToggle(slideSpeed);
+                catBtn.classList.toggle('active');
+                let chevronIcon = catBtn.querySelector('.icon-chevron-right, .icon-chevron-down');
+                chevronIcon?.classList.toggle('icon-chevron-right');
+                chevronIcon?.classList.toggle('icon-chevron-down');
+            }
         });
     });
 }

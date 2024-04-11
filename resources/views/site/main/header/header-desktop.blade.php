@@ -113,6 +113,7 @@
                     {{ __('header.user_menu.favorites') }}
                     <div class="badge-round {{ $favorites_num ? 'active' : '' }}">{{ $favorites_num }}</div>
                 </a>
+                <div class="header-bubble empty">{{ __('header.user_menu.favorites_empty') }}</div>
             </li>
             <li>
                 <a href="{{ route('cart') }}" class="outline-btn">
@@ -122,6 +123,8 @@
                     {{ __('header.user_menu.cart') }}
                     <div class="badge-round-red {{ $cart_items_num ? 'active' : '' }}" id="cartBadgeDesktop">{{ $cart_items_num }}</div>
                 </a>
+                <x-header-bubble-cart />
+                <div class="header-bubble empty">{{ __('header.user_menu.cart_empty') }}</div>
             </li>
             <li>
                 <a href="{{ route('orders') }}" class="outline-btn">
@@ -144,8 +147,8 @@
             @elseauth
             <li class="dropdown">
                 <div class="dropdown-btn user-btn">
-                    @if(Auth::user()->thumbnail)
-                        <img src="{{ asset('storage/images/users/' . Auth::user()->thumbnail) }}" alt="">
+                    @if(Auth::user()->image)
+                        <img src="{{ Auth::user()->thumbnail_url }}" alt="">
                     @else
                         <svg viewBox="0 0 38 38">
                             <path d="M38 0H0V38H38V0Z" id="userIconBG"/>

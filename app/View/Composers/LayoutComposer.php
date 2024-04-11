@@ -17,7 +17,7 @@ class LayoutComposer
     public function __construct(
         private readonly CategoryService $categoryService,
         private readonly ComparisonService $comparisonService,
-    ) {}
+    ){}
 
     public function compose(View $view): void
     {

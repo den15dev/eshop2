@@ -1,8 +1,12 @@
-import { productAddToCardBtn, productGoToCardBtn } from "./_constants.js";
+import { cartHeaderBubble, productAddToCardBtn, productGoToCardBtn } from "./_constants.js";
+import { fadeIn, fadeOut } from "../../../common/effects/fade.js";
+import { lgMedia } from "../../../common/global.js";
 
 
 const badgeDesktop = document.querySelector('#cartBadgeDesktop');
 const badgeMobile = document.querySelector('#cartBadgeMobile');
+export let headerBubbleTimeout;
+const bubbleFadeSpeed = 300;
 
 export function updateCartCosts(sku_id, cartItemElem, result) {
     // Update price
@@ -89,4 +93,33 @@ export function updateBadges(items_num) {
         badgeDesktop.classList.remove('active');
         badgeMobile.classList.remove('active');
     }
+}
+
+
+export function showHeaderBubble(result) {
+    if (lgMedia.matches) {
+        const imgLink = cartHeaderBubble.querySelector('.cart-header-bubble_img-link');
+        const img = imgLink.querySelector('img');
+        const titleLink = cartHeaderBubble.querySelector('.cart-header-bubble_title a');
+        const qty = cartHeaderBubble.querySelector('.cart-header-bubble_qty');
+        const data = result.header_bubble;
+
+        imgLink.href = data.url;
+        img.src = data.image_sm;
+        img.alt = data.name;
+        titleLink.href = data.url;
+        titleLink.innerText = data.name;
+        qty.innerText = data.qty;
+
+        fadeIn(cartHeaderBubble, bubbleFadeSpeed);
+
+        clearTimeout(headerBubbleTimeout);
+        setBubbleHidingTimeout();
+    }
+}
+
+export function setBubbleHidingTimeout() {
+    headerBubbleTimeout = setTimeout(() => {
+        fadeOut(cartHeaderBubble, bubbleFadeSpeed * 2);
+    }, 4000);
 }

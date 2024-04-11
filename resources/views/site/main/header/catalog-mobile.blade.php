@@ -22,15 +22,27 @@
                                     @if(isset($subcat3['subcategories']))
 
                                         <li>
-                                            <div class="cat-btn2">
-                                                {{ $subcat3['name'] }}&nbsp;@if($subcat3['product_count'])<span class="cat-count">{{ $subcat3['product_count'] }}</span>@endif<span class="icon-chevron icon-chevron-right"></span>
-                                            </div>
+                                            @if($subcat3['product_count'])
+                                                <div class="cat-btn2">
+                                                    {{ $subcat3['name'] }}&nbsp;<span class="cat-count">{{ $subcat3['product_count'] }}</span><span class="icon-chevron icon-chevron-right"></span>
+                                                </div>
+                                            @else
+                                                <div class="cat-btn2 empty">
+                                                    {{ $subcat3['name'] }}&nbsp;<span class="icon-chevron icon-chevron-right"></span>
+                                                </div>
+                                            @endif
                                             <ul class="catalog-mobile-sublist">
                                                 @foreach($subcat3['subcategories'] as $subcat4)
                                                     <li>
-                                                        <a href="{{ route('catalog', $subcat4['slug']) }}" class="cat-btn2">
-                                                            {{ $subcat4['name'] }}&nbsp;@if($subcat4['product_count'])<span class="cat-count">{{ $subcat4['product_count'] }}</span>@endif
-                                                        </a>
+                                                        @if($subcat4['product_count'])
+                                                            <a href="{{ route('catalog', $subcat4['slug']) }}" class="cat-btn2">
+                                                                {{ $subcat4['name'] }}&nbsp;<span class="cat-count">{{ $subcat4['product_count'] }}</span>
+                                                            </a>
+                                                        @else
+                                                            <div class="cat-btn2 empty">
+                                                                {{ $subcat4['name'] }}&nbsp;
+                                                            </div>
+                                                        @endif
                                                     </li>
                                                 @endforeach
                                             </ul>
@@ -38,9 +50,15 @@
 
                                     @else
                                         <li>
-                                            <a href="{{ route('catalog', $subcat3['slug']) }}" class="cat-btn2">
-                                                {{ $subcat3['name'] }}&nbsp;@if($subcat3['product_count'])<span class="cat-count">{{ $subcat3['product_count'] }}</span>@endif
-                                            </a>
+                                            @if($subcat3['product_count'])
+                                                <a href="{{ route('catalog', $subcat3['slug']) }}" class="cat-btn2">
+                                                    {{ $subcat3['name'] }}&nbsp;<span class="cat-count">{{ $subcat3['product_count'] }}</span>
+                                                </a>
+                                            @else
+                                                <div class="cat-btn2 empty">
+                                                    {{ $subcat3['name'] }}&nbsp;
+                                                </div>
+                                            @endif
                                         </li>
                                     @endif
                                 @endforeach

@@ -44,8 +44,8 @@
         </div>
         @elseauth
         <div class="bottom-nav-user-btn" id="bottomNavProfileBtn">
-            @if(Auth::user()->thumbnail)
-                <img src="{{ asset('storage/images/users/' . Auth::user()->thumbnail) }}" alt="">
+            @if(Auth::user()->image)
+                <img src="{{ Auth::user()->thumbnail_url }}" alt="">
             @else
                 <svg viewBox="0 0 38 38">
                     <path d="M38 0H0V38H38V0Z" id="bNavUserIconBG"/>

@@ -12,8 +12,13 @@ use Illuminate\Support\Facades\Auth;
 class CartService
 {
     public const COOKIE = 'cart';
-
     private static ?array $cart = null;
+
+
+    public function __construct(
+        private readonly UpdateCartAction $updateCartAction,
+        private readonly GetCartSkusAction $getCartSkusAction
+    ){}
 
 
     public static function setCart(?string $cookie): void
@@ -52,7 +57,7 @@ class CartService
 
     public function updateCart(int $sku_id, int $sku_qty, bool $get_cost): \stdClass
     {
-        return UpdateCartAction::run($sku_id, $sku_qty, self::getCart(), $get_cost);
+        return $this->updateCartAction->run($sku_id, $sku_qty, self::getCart(), $get_cost);
     }
 
 
@@ -75,7 +80,7 @@ class CartService
 
     public function getCartSkus(): Collection
     {
-        return GetCartSkusAction::run(self::getCart());
+        return $this->getCartSkusAction->run(self::getCart());
     }
 
 

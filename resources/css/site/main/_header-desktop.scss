@@ -104,6 +104,8 @@
   & > li {
     display: block;
     width: 68px;
+    position: relative;
+
     @include xxl {
       width: 78px;
     }

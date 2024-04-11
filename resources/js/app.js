@@ -1,5 +1,3 @@
-// import './bootstrap';
-
 import { getTranslations } from "./common/global.js";
 import menuOpeners from './site/main/menu-opener-handler.js';
 import dropdowns, { localizationDropdowns } from "./common/dropdowns";
@@ -7,9 +5,10 @@ import tabs from "./common/tabs";
 import modals from "./common/modals.js";
 import initPagination from "./common/pagination.js";
 
-import catalogMobile  from './site/main/catalog-mobile.js';
+import catalogMobile from './site/main/catalog-mobile.js';
 import { catalogDesktopRoot, catalogDesktopDropdowns } from "./site/main/catalog-desktop.js";
 import search from './site/main/search.js';
+import headerEmptyBubbles from './site/main/header-empty-bubbles.js'
 
 import initAuth from "./site/components/auth/_init.js"
 import initCartComponent from "./site/components/cart/_init.js"
@@ -43,6 +42,7 @@ catalogMobile();
 catalogDesktopRoot();
 catalogDesktopDropdowns();
 search();
+headerEmptyBubbles();
 
 // --------------- Components ------------------
 

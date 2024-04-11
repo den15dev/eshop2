@@ -12,6 +12,7 @@ return [
     'buttons' => [
         'add_to_cart' => 'В корзину',
         'in_cart' => 'В корзине',
+        'out_of_stock' => 'Нет в продаже',
         'go_to_cart' => 'Перейти в корзину',
     ],
 
@@ -28,4 +29,10 @@ return [
     'messages' => [
         'confirm_clear' => 'Очистить корзину?',
     ],
+
+    'header_bubble' => [
+        'added' => 'Добавлено',
+        'qty' => ':count шт',
+        'go_to_cart' => 'Перейти в корзину',
+    ]
 ];

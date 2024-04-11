@@ -91,6 +91,10 @@
       background-color: rgb(245, 245, 245);
     }
 
+    &.empty {
+      color: $grey-200;
+    }
+
     .icon-chevron {
       font-size: $font-size-xsm;
       margin-left: 4px;

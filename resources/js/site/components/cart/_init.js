@@ -1,7 +1,14 @@
-import { catalogBtns, productAddToCardBtn, qtyBtnConts } from "./_constants.js";
+import { fadeOut } from "../../../common/effects/fade.js";
+import { cartHeaderBubble, catalogBtns, productAddToCardBtn, qtyBtnConts } from "./_constants.js";
 import { updateCart } from "./update-cart.js";
 import { updateQuantity } from "./update-quantity.js";
-import { updateCatalogCards, updateProductButton } from "./update-dom.js";
+import {
+    headerBubbleTimeout,
+    setBubbleHidingTimeout,
+    showHeaderBubble,
+    updateCatalogCards,
+    updateProductButton
+} from "./update-dom.js";
 
 
 export default function init() {
@@ -10,8 +17,9 @@ export default function init() {
             btn.addEventListener('click', () => {
                 const sku_id = btn.dataset.id;
                 const sku_qty = 1;
-                updateCart(sku_id, sku_qty, () => {
+                updateCart(sku_id, sku_qty, (result) => {
                     updateCatalogCards(sku_id, sku_qty);
+                    showHeaderBubble(result);
                 });
             });
         });
@@ -25,8 +33,9 @@ export default function init() {
                 const qtyInput = productAddToCardBtn.parentNode.querySelector('.quantity-btns_input');
                 const sku_qty = parseInt(qtyInput.value, 10);
 
-                updateCart(sku_id, sku_qty, () => {
+                updateCart(sku_id, sku_qty, (result) => {
                     updateProductButton(sku_qty);
+                    showHeaderBubble(result);
                 });
             }
         });
@@ -56,4 +65,23 @@ export default function init() {
             });
         });
     }
+
+    initHeaderBubble();
+}
+
+
+function initHeaderBubble() {
+    const bubbleCloseBtn = cartHeaderBubble.querySelector('.header-bubble_close-btn');
+
+    bubbleCloseBtn.addEventListener('click', () => {
+        fadeOut(cartHeaderBubble, 300);
+    });
+
+    cartHeaderBubble.addEventListener('mouseenter', () => {
+        clearTimeout(headerBubbleTimeout);
+    });
+
+    cartHeaderBubble.addEventListener('mouseleave', () => {
+        setBubbleHidingTimeout();
+    });
 }

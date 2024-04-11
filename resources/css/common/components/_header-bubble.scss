@@ -1,0 +1,61 @@
+$bubble-border-color: color($color-red, light, 2);
+$bubble-border-width: 0px;
+
+.header-bubble {
+  --pointer-size: 16px;
+  --shadow-color: rgba(0, 0, 0, 0.16);
+
+  position: absolute;
+  top: calc(100% + var(--pointer-size));
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1rem;
+  font-size: $font-size-base;
+  line-height: 1.25;
+  background-color: white;
+  box-shadow: 0 0 10px 0 var(--shadow-color);
+  //border-top: solid $bubble-border-width $bubble-border-color;
+  @if $border-radius-base > 0 {
+    border-radius: $border-radius-base;
+  }
+  text-wrap: normal;
+  white-space: normal;
+  display: none;
+
+  &.empty {
+    white-space: nowrap;
+    color: $grey-180;
+  }
+}
+
+.header-bubble:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: rotate(45deg) translate(calc(-70% - $bubble-border-width));
+  width: var(--pointer-size);
+  height: var(--pointer-size);
+  background-color: inherit;
+  //border-top: solid $bubble-border-width $bubble-border-color;
+  //border-left: solid $bubble-border-width $bubble-border-color;
+  box-shadow: -5px -5px 10px -3px var(--shadow-color);
+}
+
+.header-bubble_close-btn {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  right: 10px;
+  top: 10px;
+  padding: 4px;
+  text-align: center;
+  font-size: 24px;
+  line-height: 18px;
+  color: $grey-200;
+  cursor: pointer;
+
+  &:hover {
+    color: color($color1, light, 5);
+  }
+}
