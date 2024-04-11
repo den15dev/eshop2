@@ -94,6 +94,21 @@
         <path d="M13.0598 10.6208L9.94063 11.2252C7.83371 10.1677 6.53223 8.95293 5.77481 7.05937L6.35798 3.93115L5.25561 1H2.41458C1.56055 1 0.88803 1.70575 1.01558 2.5502C1.33401 4.65835 2.27289 8.48068 5.01739 11.2252C7.89953 14.1073 12.0506 15.358 14.3352 15.8551C15.2174 16.0471 16 15.3588 16 14.456V11.7411L13.0598 10.6208Z" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
 
+    <symbol viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" id="productBtnCompareIcon">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <path d="M11 16h10" />
+        <path d="M11 16l4 4" />
+        <path d="M11 16l4 -4" />
+        <path d="M13 8h-10" />
+        <path d="M13 8l-4 4" />
+        <path d="M13 8l-4 -4" />
+    </symbol>
+
+    <symbol viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" id="productBtnFavoriteIcon">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
+    </symbol>
+
     {{-- ---------- User profile menu icons ----------- --}}
 
     @if(Auth::user()?->isAdmin())

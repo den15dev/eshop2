@@ -6,49 +6,68 @@
   &.btns-row {
     display: flex;
     gap: 1.25rem;
+
+    & > div {
+      margin-bottom: 0;
+    }
+  }
+
+  &.small svg {
+    width: 18px;
+    height: 18px;
   }
 }
 
 .product-compare-btn,
 .product-favorite-btn {
-  cursor: pointer;
+  display: flex;
+  gap: 0.375em;
+  align-items: center;
   width: fit-content;
+  cursor: pointer;
   color: $grey-150;
 
-  & > span {
-    margin-right: 0.125rem;
+  svg {
+    display: block;
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke-width: 1.6;
+    stroke: $grey-150;
+  }
+
+  @mixin colored {
+    color: $color1;
+    svg {
+      stroke: $color1;
+    }
+  }
+
+  @mixin light-colored {
+    color: color($color1, light, 4);
+    svg {
+      stroke: color($color1, light, 3);
+    }
   }
 
   &:hover {
-    color: $color1;
+    @include colored;
   }
 
   &:active {
-    color: color($link-color, light, 4);
+    @include light-colored;
   }
 
   &.active {
-    color: $color1;
+    @include colored;
 
     &:hover {
-      color: color($color1, light, 3);
+      @include light-colored;
     }
   }
 }
 
-
-//.product-compare-btn.active {
-//  color: $color1;
-//
-//  &:hover {
-//    color: color($color1, light, 3);
-//  }
-//}
-//
-//.product-favorite-btn.active {
-//  color: $color-red;
-//
-//  &:hover {
-//    color: color($color-red, light, 3);
-//  }
-//}
+.compare-btn-text,
+.favorite-btn-text {
+  padding-top: 0.125rem;
+}

@@ -12,12 +12,14 @@
             {!! to_paragraphs($brand->description) !!}
         </div>
 
-        <h4 class="mb-3">{{ __('brand.products_in_categories', ['brand' => $brand->name]) }}</h4>
+        @if($brand_categories->count())
+            <h4 class="mb-4">{{ __('brand.products_in_categories', ['brand' => $brand->name]) }}</h4>
 
-        <div class="catalog-cards-cont mb-5">
-            @foreach($brand_categories as $category)
-                <x-category-card :category="$category" />
-            @endforeach
-        </div>
+            <div class="catalog-cards-cont mb-5">
+                @foreach($brand_categories as $category)
+                    <x-category-card :category="$category" :skunum="$category->sku_num" />
+                @endforeach
+            </div>
+        @endif
     </div>
 @endsection
