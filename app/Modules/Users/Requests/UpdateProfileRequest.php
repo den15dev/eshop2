@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Requests\Site;
+namespace App\Modules\Users\Requests;
 
+use App\Http\Requests\RequestHelper;
 use App\Modules\Users\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -9,6 +10,8 @@ use Illuminate\Validation\Rules\Password;
 
 class UpdateProfileRequest extends FormRequest
 {
+    use RequestHelper;
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -18,11 +21,12 @@ class UpdateProfileRequest extends FormRequest
     {
         $rules = [];
 
-        if ($this->hasFile('user_image')) {
+        if ($this->hasFile('image')) {
             $rules = [
-                'user_image' => ['max:5120', 'dimensions:max_width=5000,max_height=5000'],
+                'image' => ['max:5120', 'dimensions:max_width=5000,max_height=5000'],
             ];
-        } else if ($this->has('email')) {
+
+        } elseif ($this->has('email')) {
             $rules = [
                 'name' => ['required', 'string', 'min:2', 'max:100'],
                 'email' => ['required', 'email:rfc,dns', 'max:100', Rule::unique(User::class)->ignore($this->user()->id)],

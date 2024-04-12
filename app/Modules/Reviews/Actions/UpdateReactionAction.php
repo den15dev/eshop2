@@ -24,7 +24,7 @@ class UpdateReactionAction
         if ($reactions->count() === 0) {
             Reaction::create(['review_id' => $review_id, 'user_id' => $user_id, 'up_down' => $up_down]);
 
-        } else if ($reactions->count() === 1) {
+        } elseif ($reactions->count() === 1) {
             $reaction = $reactions->first();
             if ($reaction->up_down === $up_down) {
                 Reaction::where('review_id', $review_id)

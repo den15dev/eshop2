@@ -2,11 +2,11 @@
 
 namespace App\Modules\Orders\Requests;
 
-use App\Http\Requests\BaseRequest;
 use App\Modules\Orders\Enums\PaymentMethod;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class OrderRequest extends BaseRequest
+class OrderRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

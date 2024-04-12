@@ -17,7 +17,7 @@ class IsOrderOwnerAction
         if ($user_id) {
             $is_owner = $this->isNewOrderExists($order_id, $user_id);
 
-        } else if ($cookie && in_array($order_id, json_decode($cookie))) {
+        } elseif ($cookie && in_array($order_id, json_decode($cookie))) {
             $is_owner = $this->isNewOrderExists($order_id);
         }
 

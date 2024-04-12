@@ -63,7 +63,7 @@ class GetOpeningHoursForHumanAction
                                 $human_block .= ', ' . $end_day . ', ' . $block_day;
                             }
                             $num_days = 0;
-                        } else if ($human_block) {
+                        } elseif ($human_block) {
                             $human_block .= ', ' . $block_day;
                         } else {
                             $human_block = $block_day;
@@ -85,7 +85,7 @@ class GetOpeningHoursForHumanAction
 
                 $human_blocks[] = $human_block;
 
-            } else if (count($block_days) > 1) {
+            } elseif (count($block_days) > 1) {
                 $human_blocks[] = implode(', ', $block_days) . ': ' . $hours;
             } else {
                 $human_blocks[] = reset($block_days) . ': ' . $hours;

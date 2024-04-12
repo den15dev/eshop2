@@ -15,13 +15,13 @@
                     {{ __('user-profile.photo_res_note', ['num' => 5000]) }}
                 </div>
                 @if($user->image)
-                    <img src="{{ asset('storage/images/users/' . $user->id . '/' . $user->image) }}" class="mb-3" style="max-width: 300px">
+                    <img src="{{ $user->image_url }}" class="mb-3" style="max-width: 200px">
                 @endif
                 <div class="mb-3">
-                    <input type="file" class="form-control @if ($errors->get('user_image')) is-invalid @endif" name="user_image" accept=".jpg,.png" aria-label="user image">
-                    @if ($errors->get('user_image'))
+                    <input type="file" class="form-control @if ($errors->get('image')) is-invalid @endif" name="image" accept=".jpg,.png" aria-label="user image">
+                    @if ($errors->get('image'))
                         <div class="invalid-feedback">
-                            {{ $errors->get('user_image')[0] }}
+                            {{ $errors->get('image')[0] }}
                         </div>
                     @endif
                 </div>

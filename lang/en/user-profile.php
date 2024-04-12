@@ -25,4 +25,6 @@ return [
         'send_link' => 'Send the link again',
         'link_sent' => 'The link has been sent.',
     ],
+
+    'updated' => 'The profile has been updated.',
 ];

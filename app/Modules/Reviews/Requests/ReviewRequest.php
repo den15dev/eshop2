@@ -2,11 +2,15 @@
 
 namespace App\Modules\Reviews\Requests;
 
-use App\Http\Requests\BaseRequest;
+use App\Http\Requests\RequestHelper;
 use App\Modules\Reviews\Enums\TermOfUse;
+use Illuminate\Foundation\Http\FormRequest;
 
-class ReviewRequest extends BaseRequest
+class ReviewRequest extends FormRequest
 {
+    use RequestHelper;
+
+
     /**
      * Determine if the user is authorized to make this request.
      */

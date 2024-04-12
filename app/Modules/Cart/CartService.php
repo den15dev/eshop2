@@ -40,7 +40,7 @@ class CartService
 
             self::$cart = $cart;
 
-        } else if ($cookie) {
+        } elseif ($cookie) {
             self::$cart = json_decode($cookie);
 
         } else {

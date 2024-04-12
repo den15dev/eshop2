@@ -29,7 +29,7 @@ class FavoriteService
 
             self::$favorites = array_values($favs);
 
-        } else if ($cookie) {
+        } elseif ($cookie) {
             self::$favorites = json_decode($cookie);
 
         } else {

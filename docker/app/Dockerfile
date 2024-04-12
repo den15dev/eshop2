@@ -7,6 +7,9 @@ ARG uid
 RUN apt-get update && apt-get install -y \
       apt-utils \
       libpq-dev \
+      libjpeg62-turbo-dev \
+      libwebp-dev \
+      libfreetype6-dev \
       libpng-dev \
       libzip-dev \
       zip unzip \
@@ -15,7 +18,9 @@ RUN apt-get update && apt-get install -y \
       docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql && \
       docker-php-ext-install pdo pdo_pgsql pgsql && \
       docker-php-ext-install bcmath && \
+      docker-php-ext-configure gd --enable-gd --with-freetype --with-jpeg --with-webp && \
       docker-php-ext-install gd && \
+      docker-php-ext-install exif && \
       docker-php-ext-install zip && \
       apt-get clean && \
       rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

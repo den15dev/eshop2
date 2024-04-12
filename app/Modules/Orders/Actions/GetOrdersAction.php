@@ -37,10 +37,10 @@ class GetOrdersAction
         if ($order_id) {
             $orders = $query->where('id', $order_id)->get();
 
-        } else if ($user_id) {
+        } elseif ($user_id) {
             $query = $query->where('user_id', $user_id);
 
-        } else if ($cookie_ids) {
+        } elseif ($cookie_ids) {
             $query = $query->whereIn('id', $cookie_ids);
         }
 
