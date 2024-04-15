@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('phone', 25);
             $table->string('email')->nullable();
+            $table->string('language_id', 10)->default('en');
             $table->string('delivery_method', 50)->default('delivery');
             $table->string('payment_method', 50)->default('online');
             $table->string('payment_status', 50)->default('not_paid');

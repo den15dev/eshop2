@@ -1,19 +1,19 @@
 ## About This App
 
-This is a second version of a multi-page E-commerce web application (work in progress). The following features will be (or already have been) implemented:
+This is a second version of a multipage E-commerce web application (work in progress). The following features will be (or already have been) implemented:
 
 - 4 levels of categories.
 - Every category with products has an individual set of product specifications.
 - A product catalog with a set of filters by price, brand, and selected product specifications.
 - Products can have any number of variants grouped by attributes.
 - A product page where users can see all product's specifications, images, rate the product, leave reviews, and rate others' reviews.
-- Promo and discount system.
+- Promo and discount mechanism.
 - Live search by products and brands.
-- User registration and authentication system with email confirmation and password reset.
+- User registration and authentication mechanism with email confirmation and password reset.
 - User profile page with ability to edit all personal data.
 - A product cart.
-- An order system.
-- User notifications about changes of order statuses.
+- An ordering mechanism.
+- User notifications about order status changing — by email, and on a web page.
 - Adding products to Favorites.
 - Comparing products by their specifications.
 - Any user regardless of authentication status can use a product cart, make an order, see his order history, manage Favorites section, and compare products.

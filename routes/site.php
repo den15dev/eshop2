@@ -24,12 +24,22 @@ use App\Http\Middleware\CheckOrderOwner;
 use Illuminate\Support\Facades\Route;
 
 
+// ---------- TEMP FOR DELETE ----------
+
+Route::get('/temp', [TempController::class, 'temp'])->name('temp');
+Route::get('/notification', function () {
+    $order = \App\Modules\Orders\Models\Order::find(1);
+    $user = $order->user;
+
+    return (new \App\Notifications\OrderSent($order))->toMail($user);
+});
+
+// --------------------
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::post('/language', [LanguageController::class, 'set'])->name('language.set');
 Route::get('/translations', [LanguageController::class, 'translations'])->name('translations');
 Route::post('/currency', CurrencyController::class)->name('currency');
-
-Route::get('/temp', [TempController::class, 'temp'])->name('temp');
 
 Route::get('/catalog/{category}', [CatalogController::class, 'index'])->name('catalog');
 Route::get('/catalog/{category}/{product}', [ProductController::class, 'show'])->name('product');
@@ -67,6 +77,7 @@ Route::middleware('auth')->prefix('user')->group(function () {
     Route::get('/profile', [UserProfileController::class, 'show'])->name('profile');
     Route::post('/profile', [UserProfileController::class, 'store'])->name('profile.store');
     Route::get('/notifications', [UserNotificationController::class, 'index'])->name('notifications');
+    Route::post('/notification/read', [UserNotificationController::class, 'update'])->name('notification.read');
 });
 
 Route::get('/stores', ShopController::class)->name('stores');

@@ -10,6 +10,7 @@ use App\Modules\Favorites\FavoriteService;
 use App\Modules\Languages\LanguageService;
 use App\Modules\Orders\OrderService;
 use App\Modules\StaticPages\Models\StaticPageParam;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class LayoutComposer
@@ -28,6 +29,7 @@ class LayoutComposer
         $favorites_num = FavoriteService::count();
         $cart_items_num = count(CartService::getCart());
         $ready_orders_num = OrderService::countReadyOrders();
+        $unread_notifications_num = Auth::user()?->unreadNotifications->count();
 
         $comparisonData = ComparisonService::get();
         $comparison_skus = $this->comparisonService->getPopupSkus();
@@ -45,6 +47,7 @@ class LayoutComposer
             'categories',
             'cart_items_num',
             'ready_orders_num',
+            'unread_notifications_num',
             'is_popup_collapsed',
             'comparison_skus',
             'favorites_num',

@@ -4,6 +4,7 @@ $badge-round-size-px: 18px;
 $badge-dot-size-px: 8px;
 
 $color-badge-green: #86da35;
+$color-badge-red: $color-red;
 
 .badge-round {
   display: none;
@@ -26,7 +27,7 @@ $color-badge-green: #86da35;
 
   &-red {
     @extend .badge-round;
-    background-color: $color-red;
+    background-color: $color-badge-red;
   }
 
   &-green {
@@ -81,6 +82,16 @@ $color-badge-green: #86da35;
   background-color: $color-badge-green;
 }
 
+.badge-round_inline-red {
+  @extend .badge-round_inline;
+  background-color: $color-badge-red;
+}
+
+.badge-round_inline-big-red {
+  @extend .badge-round_inline-big;
+  background-color: $color-badge-red;
+}
+
 .badge-dot {
   display: none;
   position: absolute;
@@ -95,4 +106,9 @@ $color-badge-green: #86da35;
   &.active {
     display: block;
   }
+}
+
+.badge-dot-red {
+  @extend .badge-dot;
+  background-color: $color-badge-red;
 }

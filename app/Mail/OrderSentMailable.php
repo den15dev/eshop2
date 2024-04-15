@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Modules\Orders\Models\Order;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -10,17 +11,13 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class SomeHappen extends Mailable
+class OrderSentMailable extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     */
-    public function __construct()
-    {
-        //
-    }
+    public function __construct(
+        private readonly Order $order
+    ){}
 
     /**
      * Get the message envelope.
@@ -28,8 +25,8 @@ class SomeHappen extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address('test@doctest.local', 'Denis Lesnykh'),
-            subject: 'Some Happen',
+            from: new Address(env('MAIL_FROM_ADDRESS'), __('general.app_name')),
+            subject: __('notifications.order_sent.subject', ['id' => $this->order->id]),
         );
     }
 
@@ -38,8 +35,11 @@ class SomeHappen extends Mailable
      */
     public function content(): Content
     {
+        $order = $this->order;
+
         return new Content(
-            view: 'emails.some-happen',
+            view: 'emails.order-sent',
+            with: compact('order'),
         );
     }
 

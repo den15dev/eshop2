@@ -9,8 +9,12 @@
         @if($notifications->count())
             <div class="user-notifications_wrap">
                 <div class="user-notifications_top-cont mb-4">
-                    <div class="user-notifications_count">{{ trans_choice('user-notifications.unread_count', $unread_count) }}</div>
-                    <div class="link text-end">{{ __('user-notifications.mark_read') }}</div>
+                    @if($unread_count)
+                        <div class="user-notifications_count">{{ trans_choice('user-notifications.unread_count', $unread_count) }}</div>
+                        <div class="link text-end" id="markAllAsReadBtn">{{ __('user-notifications.mark_read') }}</div>
+                    @else
+                        <div class="user-notifications_count no-new">{{ __('user-notifications.no_new') }}</div>
+                    @endif
                 </div>
 
                 <div class="user-notifications_cont">

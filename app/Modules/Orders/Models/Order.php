@@ -2,6 +2,7 @@
 
 namespace App\Modules\Orders\Models;
 
+use App\Modules\Languages\LanguageService;
 use App\Modules\Orders\Enums\DeliveryMethod;
 use App\Modules\Orders\Enums\OrderStatus;
 use App\Modules\Orders\Enums\PaymentMethod;
@@ -50,5 +51,15 @@ class Order extends Model
     public function getItemsCostFormattedAttribute(): string
     {
         return Price::formatToCurrency($this->items_cost, $this->currency_id);
+    }
+
+    public function getTotalCostFormattedAttribute(): string
+    {
+        return Price::formatToCurrency($this->total_cost, $this->currency_id);
+    }
+
+    public function getLocalUrlAttribute(): string
+    {
+        return url(LanguageService::modifyURL(route('orders', absolute: false), $this->language_id));
     }
 }

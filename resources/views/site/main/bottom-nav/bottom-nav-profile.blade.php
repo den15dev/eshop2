@@ -28,7 +28,7 @@
                 <a href="{{ route('notifications') }}">
                     <svg><use href="#profileNotificationsIcon"/></svg>
                     {{ __('header.user_menu.profile_menu.notifications') }}
-                    <div class="badge-round_inline-big">2</div>
+                    <div class="badge-round_inline-big-red {{ $unread_notifications_num ? 'active' : '' }}" id="unreadNotificationsBadgeMobile">{{ $unread_notifications_num }}</div>
                 </a>
             </li>
             <li>

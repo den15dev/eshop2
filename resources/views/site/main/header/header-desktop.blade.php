@@ -146,7 +146,7 @@
             </li>
             @elseauth
             <li class="dropdown">
-                <div class="dropdown-btn user-btn">
+                <div class="dropdown-btn user-btn" id="desktopProfileBtn">
                     @if(Auth::user()->image)
                         <img src="{{ Auth::user()->thumbnail_url }}" alt="">
                     @else
@@ -156,7 +156,7 @@
                             <path d="M34.8967 38C34.8967 32.1923 33.1233 23.7943 24.9913 21.736C21.5017 24.3833 16.1817 24.225 13.015 21.736C4.87667 23.7943 3.10333 32.1923 3.10333 38C6.65 38 31.35 38 34.8967 38Z" id="userIconBody"/>
                         </svg>
                     @endif
-                    <div class="badge-dot"></div>
+                    <div class="badge-dot-red {{ $unread_notifications_num ? 'active' : '' }}"></div>
                 </div>
                 <ul class="dropdown-list dd-right">
                     <li>
@@ -182,7 +182,7 @@
                         <a href="{{ route('notifications') }}" class="dropdown-item user-dd-btn">
                             <svg><use href="#profileNotificationsIcon"/></svg>
                             {{ __('header.user_menu.profile_menu.notifications') }}
-                            <div class="badge-round_inline">2</div>
+                            <div class="badge-round_inline-red {{ $unread_notifications_num ? 'active' : '' }}" id="unreadNotificationsBadgeDesktop">{{ $unread_notifications_num }}</div>
                         </a>
                     </li>
                     <li>

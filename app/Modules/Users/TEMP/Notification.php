@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Modules\Users\Models;
+namespace App\Modules\Users\TEMP;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Modules\Users\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\Translatable\HasTranslations;
