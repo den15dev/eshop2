@@ -2,7 +2,7 @@
 
 namespace App\Mail;
 
-use App\Modules\Orders\Models\Order;
+use App\Modules\Users\Models\User;
 use Illuminate\Bus\Queueable;
 //use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -11,12 +11,16 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class OrderSentMailable extends Mailable
+class VerifyEmailMailable extends Mailable
 {
     use Queueable, SerializesModels;
 
+    /**
+     * Create a new message instance.
+     */
     public function __construct(
-        private readonly Order $order
+        private readonly object $notifiable,
+        private readonly string $url,
     ){}
 
     /**
@@ -26,7 +30,8 @@ class OrderSentMailable extends Mailable
     {
         return new Envelope(
             from: new Address(env('MAIL_FROM_ADDRESS'), __('general.app_name')),
-            subject: __('notifications.order_sent.subject', ['id' => $this->order->id]),
+            to: $this->notifiable->email,
+            subject: __('notifications.verify_email.subject'),
         );
     }
 
@@ -35,11 +40,12 @@ class OrderSentMailable extends Mailable
      */
     public function content(): Content
     {
-        $order = $this->order;
+        $user = $this->notifiable;
+        $url = $this->url;
 
         return new Content(
-            view: 'emails.order-sent',
-            with: compact('order'),
+            view: 'emails.verify-email',
+            with: compact('user', 'url'),
         );
     }
 

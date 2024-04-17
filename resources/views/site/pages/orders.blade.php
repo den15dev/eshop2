@@ -6,15 +6,22 @@
     <div class="container">
         <h3 class="mb-4">{{ __('orders.orders') }}</h3>
 
-        @foreach($orders as $order)
-            <x-order :order="$order" />
-        @endforeach
+        @if($orders->count())
+            @foreach($orders as $order)
+                <x-order :order="$order" />
+            @endforeach
 
-        @if($orders->hasPages())
-            <div class="mb-5">
-                {{ $orders->links('common.pagination.results-shown') }}
-                {{ $orders->onEachSide(1)->withQueryString()->links('common.pagination.page-links') }}
+            @if($orders->hasPages())
+                <div class="mb-5">
+                    {{ $orders->links('common.pagination.results-shown') }}
+                    {{ $orders->onEachSide(1)->withQueryString()->links('common.pagination.page-links') }}
+                </div>
+            @endif
+        @else
+            <div class="items-not-found">
+                {{ __('orders.no_orders') }}
             </div>
         @endif
+
     </div>
 @endsection

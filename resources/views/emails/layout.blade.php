@@ -1,7 +1,3 @@
-@php
-    $logo = app()->getLocale() === 'ru' ? 'logo_ru_160.png' : 'logo_en_160.png';
-    $home_url = preg_replace('/\/[a-z]{2}\/?$/', '', route('home'));
-@endphp
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
 <head>
@@ -19,7 +15,7 @@
 
     @yield('main_content')
 </div>
-<p style="width: 600px; margin: 0 auto 24px auto; text-align: center; font-size: 12px; color: #b4b4b4;">{!! __('notifications.footer', ['link' => '<a href="' . $home_url . ' "style="color: #716EF6;">' . __('general.app_name') . '</a>']) !!}</p>
+<p style="width: 600px; margin: 0 auto 24px auto; text-align: center; font-size: 12px; color: #b4b4b4;">@yield('footer')</p>
 <p style="width: 600px; margin: 0 auto 24px auto; text-align: center; font-size: 12px; color: #b4b4b4;">&copy; {{ date('Y') }} {{ __('notifications.copyright') }}</p>
 </body>
 </html>

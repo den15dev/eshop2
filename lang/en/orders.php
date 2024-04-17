@@ -17,6 +17,7 @@ return [
     'price' => 'Price',
     'quantity' => 'Quantity',
     'total' => 'Total',
+    'no_orders' => 'You haven\'t place any orders yet',
 
     'statuses' => [
         'new' => 'new',

@@ -5,7 +5,6 @@ namespace App\Modules\Favorites;
 use App\Modules\Favorites\Models\Favorite;
 use App\Modules\Products\Models\Sku;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 
 class FavoriteService
@@ -21,7 +20,7 @@ class FavoriteService
 
         if ($user_id) {
             $favs = Favorite::select('sku_id')
-                ->where('user_id', 1)
+                ->where('user_id', $user_id)
                 ->orderBy('created_at')
                 ->get()
                 ->pluck('sku_id')

@@ -3,24 +3,24 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
+//use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class SomeHappen extends Mailable
+class ResetPasswordMailable extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-    public function __construct()
-    {
-        //
-    }
+    public function __construct(
+        private readonly object $notifiable,
+        private readonly string $token,
+    ){}
 
     /**
      * Get the message envelope.
@@ -28,8 +28,9 @@ class SomeHappen extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address('test@doctest.local', 'Denis Lesnykh'),
-            subject: 'Some Happen',
+            from: new Address(env('MAIL_FROM_ADDRESS'), __('general.app_name')),
+            to: $this->notifiable->email,
+            subject: __('notifications.reset_password.subject'),
         );
     }
 
@@ -38,8 +39,12 @@ class SomeHappen extends Mailable
      */
     public function content(): Content
     {
+        $user = $this->notifiable;
+        $url = route('password.reset', $this->token);
+
         return new Content(
-            view: 'emails.some-happen',
+            view: 'emails.reset-password',
+            with: compact('user', 'url'),
         );
     }
 

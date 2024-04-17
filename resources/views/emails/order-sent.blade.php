@@ -3,7 +3,7 @@
 @section('page_title', __('notifications.order_sent.subject', ['num' => $order->id]))
 
 @section('main_content')
-    <h3 style="margin-top: 0">{{ __('notifications.greeting', ['name' => $order->name]) }}</h3>
+    <h3 style="margin-top: 0; font-size: 18px;">{{ __('notifications.greeting', ['name' => $order->name]) }}</h3>
 
     <p>{!! __('notifications.order_sent.body', [
                 'id' => $order->id,
@@ -13,3 +13,5 @@
 
     <p>{{ __('notifications.signature1') }}<br>{{ __('notifications.signature2') }}</p>
 @endsection
+
+@section('footer'){!! __('notifications.order_sent.footer', ['link' => $footer_home_link]) !!}@endsection

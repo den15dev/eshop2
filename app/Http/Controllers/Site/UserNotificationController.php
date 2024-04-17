@@ -36,6 +36,7 @@ class UserNotificationController extends Controller
                 ->notify((new OrderSent($order))->locale($order->language_id));
         }
 */
+
         return view('site.pages.user-notifications', compact(
             'unread_count',
             'notifications',

@@ -7,9 +7,7 @@ use App\Modules\Orders\Models\Order;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Notifications\AnonymousNotifiable;
-use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use Illuminate\Support\HtmlString;
 
 class OrderSent extends Notification
 {

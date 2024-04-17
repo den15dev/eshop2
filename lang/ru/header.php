@@ -23,7 +23,7 @@ return [
         'favorites' => 'Избранное',
         'favorites_empty' => 'Список избранного пуст',
         'cart' => 'Корзина',
-        'cart_empty' => 'Корзина',
+        'cart_empty' => 'Корзина пуста',
         'orders' => 'Заказы',
         'sign_in' => 'Вход',
         'filters' => 'Фильтры',
