@@ -13,10 +13,7 @@ class RouteServiceProvider extends ServiceProvider
 {
     /**
      * The path to your application's "home" route.
-     *
      * Typically, users are redirected here after authentication.
-     *
-     * @var string
      */
     public const HOME = '/';
 
@@ -34,10 +31,10 @@ class RouteServiceProvider extends ServiceProvider
 
             Route::prefix($languagePrefix)
                 ->group(function () {
-                    Route::middleware('web')
+                    Route::middleware(['web', 'site'])
                         ->group(base_path('routes/site.php'));
 
-                    Route::middleware('web')
+                    Route::middleware(['web', 'admin'])
                         ->prefix('admin')
                         ->name('admin.')
                         ->group(base_path('routes/admin.php'));

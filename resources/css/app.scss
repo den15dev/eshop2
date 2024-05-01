@@ -21,6 +21,8 @@
 @import 'common/components/breadcrumb';
 @import 'common/components/not-found';
 @import 'common/components/header-bubble';
+@import 'common/components/errors';
+@import 'common/components/localization-menu';
 
 @import 'site/main/logo';
 @import 'site/main/header';
@@ -33,7 +35,6 @@
 @import 'site/main/catalog-nav-desktop';
 @import 'site/main/footer';
 @import 'site/main/bottom-nav-mobile';
-@import 'site/main/localization-menu';
 
 @import 'site/pages/home';
 @import 'site/pages/catalog';

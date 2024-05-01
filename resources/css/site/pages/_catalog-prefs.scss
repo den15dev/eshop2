@@ -1,65 +1,73 @@
-.catalog-settings-cont {
+.catalog-prefs {
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
+  column-gap: 0.75rem;
   align-items: center;
+  font-size: $font-size-sm;
 
-  .sort-cont {
-    .dropdown-list {
-      margin-left: -0.5rem;
+  .dropdown-btn,
+  .dropdown-item {
+    cursor: pointer;
+    color: $grey-120;
 
-      @include lg {
-        margin-left: -($dropdown-list-paddings + $dropdown-item-paddings);
-      }
+    &:hover {
+      color: color($color1, light, 3);
+    }
+
+    &.active {
+      color: $grey-220;
     }
   }
-  .layout-cont {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
+}
 
-    .sm {
-      display: none;
+.catalog-prefs_sort {
+  margin-right: auto;
 
-      @include sm {
-        display: inline;
-      }
+  .dropdown-list {
+    margin-left: -0.5rem;
+
+    @include lg {
+      margin-left: -($dropdown-list-paddings + $dropdown-item-paddings);
     }
+  }
+}
 
-    svg {
-      display: block;
-      width: 20px;
-      fill: none;
-      stroke-width: 1.6;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      stroke: $grey-180;
+.catalog-prefs_per-page {
+  .sm {
+    display: none;
+
+    @include sm {
+      display: inline;
     }
+  }
+}
 
-    .btn-icon {
-      &.active {
-        cursor: default;
-        svg {
-          stroke: color($color1, light, 3);
-        }
-      }
-      &:hover svg {
+.catalog-prefs_layout {
+  display: flex;
+  column-gap: 0.75rem;
+  align-items: center;
+
+  svg {
+    display: block;
+    width: 20px;
+    fill: none;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke: $grey-180;
+  }
+
+  .btn-icon {
+    &.active {
+      cursor: default;
+
+      svg {
         stroke: color($color1, light, 3);
       }
     }
-  }
 
-  .sort-cont, .layout-cont {
-    div {
-      cursor: pointer;
-      color: $grey-120;
-
-      &:hover {
-        color: color($color1, light, 3);
-      }
-
-      &.active {
-        color: $grey-220;
-      }
+    &:hover svg {
+      stroke: color($color1, light, 3);
     }
   }
 }

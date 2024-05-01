@@ -1,9 +1,10 @@
 import { fadeSpeed, getMobileWinHeight } from '../../common/global.js';
 import { fadeIn, fadeOut } from "../../common/effects/fade.js";
 import { catalogMobileReset } from './catalog-mobile.js';
+import handleOpeners from '../../common/openers.js';
 
 
-export const menuOpeners = [
+const openers = [
     {
         button: '#catalogBtnDesktop',
         container: '#catalogNavCont',
@@ -85,3 +86,8 @@ export const menuOpeners = [
         }
     }
 ];
+
+
+export default function init() {
+    handleOpeners(openers);
+}

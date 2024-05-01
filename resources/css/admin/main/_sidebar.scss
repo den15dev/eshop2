@@ -1,0 +1,68 @@
+$nav-pointer-margin: $container-x-margins;
+$nav-pointer-border-width: 0.25rem;
+
+.sidebar-logo {
+  margin: 0.5rem 0 1rem 0;
+}
+
+.sidebar-logo_link {
+  display: block;
+  margin-bottom: 5px;
+
+  img {
+    display: block;
+  }
+}
+
+.sidebar-logo_subtitle {
+  font-size: $font-size-sm;
+  color: $grey-150;
+}
+
+.admin-nav_item {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  width: fit-content;
+  padding: 4px 0 4px ($nav-pointer-margin - $nav-pointer-border-width);
+  margin-left: -$nav-pointer-margin;
+  border-left: solid 4px transparent;
+
+  &.active {
+    border-left-color: $color2;
+
+    .admin-nav_icon {
+      stroke: $grey-30;
+    }
+
+    .admin-nav_title {
+      color: $grey-30;
+    }
+  }
+
+  &:hover {
+    .admin-nav_icon {
+      stroke: color($color1, light, 3);
+    }
+
+    .admin-nav_title {
+      color: color($color1, light, 3);
+    }
+  }
+}
+
+.admin-nav_icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: $grey-180;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.admin-nav_title {
+  padding-top: 3px;
+  color: $grey-150;
+}

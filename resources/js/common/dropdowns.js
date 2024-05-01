@@ -40,6 +40,14 @@ export default function init() {
     });
 }
 
+export function reInitDropdowns(dropdownBtns) {
+    dropdownBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            btn.dataset.opened === 'on' ? closeAllDropdowns() : openDropdown(btn);
+        });
+    });
+}
+
 export function localizationDropdowns() {
     document.querySelectorAll('.local-menu').forEach(localDD => {
         const type = localDD.dataset.type;

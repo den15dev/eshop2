@@ -46,7 +46,7 @@
 
             <div class="product-main_specs">
                 <div class="mb-35">
-                    <div class="product-main_spec-title"><b>{{ __('product.product_id') }}:</b></div>
+                    <div class="product-main_spec-title"><b>{{ __('product.sku_code') }}:</b></div>
                     {{ $sku->sku }}
                 </div>
 
@@ -130,7 +130,7 @@
                                 data-id="{{ $sku->id }}"
                                 data-incart="{{ $sku->in_cart }}">{{ __('cart.buttons.add_to_cart') }}</button>
                     @else
-                        <div class="btn btn-outlined-inactive">{{ __('cart.buttons.out_of_stock') }}</div>
+                        <div class="btn btn-outlined-inactive" id="productOutOfStockBtn">{{ __('cart.buttons.out_of_stock') }}</div>
                     @endif
                 </div>
 

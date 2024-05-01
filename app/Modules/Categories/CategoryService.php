@@ -23,6 +23,7 @@ class CategoryService
                 $categories = Category::leftJoin('products', 'products.category_id', 'categories.id')
                     ->leftJoin('skus', 'skus.product_id', 'products.id')
                     ->select('categories.*')
+                    ->selectRaw('count(skus.id) AS sku_num_all')
                     ->selectRaw('count(skus.id) filter (' . $sku_active_filter . ') AS sku_num')
                     ->groupBy('categories.id')
                     ->orderBy('categories.id')
@@ -42,11 +43,14 @@ class CategoryService
             $cur_category = $category;
             $parent_id = $cur_category->parent_id;
 
+            $prod_self_all = $cur_category->sku_num_all;
             $prod_self = $cur_category->sku_num;
+            $cur_category->sku_num_children_all += $prod_self_all;
             $cur_category->sku_num_children += $prod_self;
 
             while ($parent_id) {
                 $parent = $categories->where('id', $cur_category->parent_id)->first();
+                $parent->sku_num_children_all += $prod_self_all;
                 $parent->sku_num_children += $prod_self;
 
                 $cur_category = $parent;

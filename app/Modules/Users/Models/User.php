@@ -69,19 +69,13 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function isAdmin(): bool
     {
-        if ($this->getAttribute('role') === 'admin' || $this->getAttribute('role') === 'boss') {
-            return true;
-        }
-        return false;
+        return $this->getAttribute('role') === 'admin' || $this->isBoss();
     }
 
 
     public function isBoss(): bool
     {
-        if ($this->getAttribute('role') === 'boss') {
-            return true;
-        }
-        return false;
+        return $this->getAttribute('role') === 'boss';
     }
 
 

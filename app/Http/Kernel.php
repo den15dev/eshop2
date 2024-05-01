@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\CheckIsAdmin;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -40,8 +41,16 @@ class Kernel extends HttpKernel
             // Do not change the order!
             \App\Http\Middleware\SetPreferredLanguage::class,
             \App\Http\Middleware\SetRouteLanguage::class,
+        ],
+
+        'site' => [
             \App\Http\Middleware\SetCurrency::class,
-            \App\Http\Middleware\SetMainData::class,
+            \App\Http\Middleware\SetSiteData::class,
+        ],
+
+        'admin' => [
+            \App\Http\Middleware\CheckIsAdmin::class,
+            \App\Http\Middleware\SetAdminData::class,
         ],
 
         'api' => [

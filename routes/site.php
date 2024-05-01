@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::post('/language', [LanguageController::class, 'set'])->name('language.set');
-Route::get('/translations', [LanguageController::class, 'translations'])->name('translations');
+Route::get('/translations', [LanguageController::class, 'siteTranslations'])->name('translations');
 Route::post('/currency', CurrencyController::class)->name('currency');
 
 Route::get('/catalog/{category}', [CatalogController::class, 'index'])->name('catalog');

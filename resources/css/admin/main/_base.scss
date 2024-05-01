@@ -1,0 +1,7 @@
+main {
+  padding-top: 0.5rem;
+
+  @include lg {
+    padding-top: 1rem;
+  }
+}

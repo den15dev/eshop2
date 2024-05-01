@@ -152,9 +152,13 @@
 }
 
 #productAddToCartBtn,
-#productGoToCartBtn {
-  width: 148px;
+#productGoToCartBtn,
+#productOutOfStockBtn {
+  min-width: 148px;
+}
 
+#productAddToCartBtn,
+#productGoToCartBtn {
   &.hidden {
     display: none;
   }

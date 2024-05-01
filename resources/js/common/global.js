@@ -9,6 +9,7 @@ export const lang = document.documentElement.lang;
 
 export let translations;
 
+
 export function getMobileWinHeight() {
     let bottomNavContHeight = document.querySelector('.bottom-nav_cont')?.offsetHeight || 0;
     let mobileHeaderHeight = document.querySelector('#mobileHeader')?.offsetHeight || 0;
@@ -24,8 +25,26 @@ export function getCookieValue(a, b, c) {
 }
 
 
-export function getTranslations() {
+export function getSiteTranslations() {
     fetch('/translations', {
+        method: 'get',
+        headers: { 'Accept': 'application/json' },
+    })
+    .then(response => {
+        if (!response.ok) throw new Error(`${response.status}`);
+        return response.json();
+    })
+    .then(result => {
+        translations = result;
+    })
+    .catch(err => {
+        console.error('An error occurred while getting translations: ' + err.message);
+    });
+}
+
+
+export function getAdminTranslations() {
+    fetch('/admin/translations', {
         method: 'get',
         headers: { 'Accept': 'application/json' },
     })

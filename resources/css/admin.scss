@@ -7,10 +7,6 @@
 @import 'common/base';
 
 @import 'common/vendors/bootstrap';
-@import 'common/vendors/swiper';
-
-@import 'common/utilities';
-@import 'common/icons/bi-light';
 
 @import 'common/components/buttons';
 @import 'common/components/scrollbar-thin';
@@ -18,5 +14,21 @@
 @import 'common/components/dropdowns';
 @import 'common/components/fade';
 @import 'common/components/badges';
+@import 'common/components/modal';
+@import 'common/components/not-found';
+@import 'common/components/errors';
+@import 'common/components/localization-menu';
 
+@import 'admin/main/base';
+@import 'admin/main/layout';
 @import 'admin/main/header';
+@import 'admin/main/sidebar';
+@import 'admin/main/footer';
+
+@import "admin/pages/product-index";
+
+@import "admin/components/index-search";
+@import "admin/components/index-table";
+
+@import 'common/utilities';
+@import 'common/icons/bi-light';

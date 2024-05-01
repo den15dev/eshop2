@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 return [
     'profile' => 'Настройки профиля',
     'photo_size_note' => 'Размер файла изображения не должен превышать :num Мб.',

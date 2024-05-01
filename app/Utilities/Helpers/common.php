@@ -13,7 +13,25 @@ if (!function_exists('active_link')) {
      */
     function active_link(string $name, string $css_class = 'active'): string
     {
-        return (Route::is($name) || Route::is($name . '.create') || Route::is($name . '.edit')) ? $css_class : '';
+        $routes = [$name, $name . '.create', $name . '.edit'];
+
+        $aliases = [
+            'skus' => 'products',
+        ];
+
+        $class = Route::is($routes) ? $css_class : '';
+
+        if (empty($class)) {
+            foreach ($aliases as $alias => $route) {
+                if (str_ends_with($name, $route)) {
+                    $name = str_replace($route, $alias, $name);
+                    $routes = [$name, $name . '.create', $name . '.edit'];
+                    $class = Route::is($routes) ? $css_class : '';
+                }
+            }
+        }
+
+        return $class;
     }
 }
 

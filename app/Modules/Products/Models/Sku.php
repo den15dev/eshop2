@@ -34,6 +34,8 @@ class Sku extends Model
         'short_descr',
         'description',
         'promo_name',
+        'product_name',
+        'category_name',
     ];
 
     protected $casts = [

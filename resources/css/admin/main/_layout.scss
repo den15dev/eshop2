@@ -1,0 +1,68 @@
+$sidebar-width: 180px;
+$sidebar-gap: 2rem;
+
+.admin-page-wrap {
+  display: flex;
+  gap: $sidebar-gap;
+}
+
+.sidebar-cont {
+  display: none;
+  flex: 0 0 $sidebar-width;
+
+  @include lg {
+    display: block;
+
+    .admin-nav-list {
+      position: sticky;
+      top: 4px;
+    }
+  }
+}
+
+.page-cont {
+  // Fixed width is required for <overflow-x: auto> to work for table container
+  width: 100%;
+
+  @include lg {
+    width: calc(100% - $sidebar-width - $sidebar-gap);
+  }
+}
+
+
+// ---------- Page header ----------
+
+.page-header {
+  display: flex;
+  column-gap: 2rem;
+  justify-content: space-between;
+}
+
+.page-header_title {
+  flex: 1;
+  width: 100%;
+  padding: 0.25rem 0;
+
+  h4 {
+    margin-bottom: 0;
+  }
+
+  @include lg {
+    width: auto;
+  }
+}
+
+.page-header_right {
+  display: none;
+
+  @include lg {
+    display: flex;
+    gap: 2rem;
+    align-items: start;
+  }
+}
+
+.page-header_site-link {
+  display: block;
+  width: fit-content;
+}

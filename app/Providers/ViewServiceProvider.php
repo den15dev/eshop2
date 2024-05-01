@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\View\Composers\AdminLayoutComposer;
 use App\View\Composers\EmailLayoutComposer;
 use App\View\Composers\LayoutComposer;
 use Illuminate\Support\Facades\View;
@@ -27,5 +28,8 @@ class ViewServiceProvider extends ServiceProvider
 
         // Passing data for emails layout
         View::composer('emails.*', EmailLayoutComposer::class);
+
+        // Passing data for admin layout
+        View::composer('admin.layout', AdminLayoutComposer::class);
     }
 }

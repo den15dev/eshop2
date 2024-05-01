@@ -1,0 +1,25 @@
+footer {
+  margin-top: 3rem;
+}
+
+.footer-cont {
+  border-top: solid 1px $grey-230;
+  padding: 1.5rem 0;
+}
+
+.footer_logo {
+  display: block;
+  width: 120px;
+  margin: 0 auto;
+
+  img {
+    width: 100%;
+  }
+}
+
+.footer_subtitle {
+  width: fit-content;
+  font-size: $font-size-sm;
+  color: $grey-150;
+  margin: 0 auto;
+}

@@ -75,6 +75,10 @@ input[type="password"] {
   font-family: $system-stack;
 }
 
+input[type="checkbox"] {
+  cursor: pointer;
+}
+
 select {
   cursor: pointer;
 }

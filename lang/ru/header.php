@@ -1,13 +1,9 @@
 <?php
 
-declare(strict_types=1);
-
 return [
     'catalog' => 'Каталог',
 
     'top_menu' => [
-        'delivery' => 'Доставка',
-        'shops' => 'Магазины',
         'warranty' => 'Гарантия',
         'for_customers' => 'Покупателям',
         'bonuses' => 'Бонусная программа',

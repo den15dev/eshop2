@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 return [
     'product_id' => 'Код товара',
     'sku_code' => 'Код производителя',

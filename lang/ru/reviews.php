@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 return [
     'back_to_product' => 'На страницу товара',
     'reviews_num' => ':count отзыв|:count отзыва|:count отзывов',

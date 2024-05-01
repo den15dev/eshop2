@@ -1,7 +1,7 @@
 import { closeDropdown } from "../../common/dropdowns.js";
 import { getCookieValue } from "../../common/global.js";
 
-const catalogPrefsCont = document.querySelector('.catalog-settings-cont');
+const catalogPrefsCont = document.querySelector('.catalog-prefs');
 
 const cookieName = 'catalog_prefs';
 let prefsArr;
@@ -12,15 +12,15 @@ export default function init() {
     prefsArr = prefsCookie ? JSON.parse(decodeURIComponent(prefsCookie)) : ['new', 12, 1];
 
     if (catalogPrefsCont) {
-        handleDropdown('sort-cont', 'sort', 0);
-        handleDropdown('layout-cont', 'per_page', 1);
+        handleDropdown('catalog-prefs_sort', 'sort', 0);
+        handleDropdown('catalog-prefs_per-page', 'per_page', 1);
         handleLayoutButtons();
     }
 }
 
 
 function handleDropdown(contClassName, inputName, index) {
-    const btns = document.querySelectorAll(`.catalog-settings-cont .${contClassName} .dropdown-item`);
+    const btns = document.querySelectorAll(`.${contClassName} .dropdown-item`);
 
     btns.forEach(btnElem => {
         btnElem.addEventListener('click', () => {
@@ -38,7 +38,7 @@ function handleDropdown(contClassName, inputName, index) {
 
 
 function handleLayoutButtons() {
-    const layoutBtns = document.querySelectorAll('.catalog-settings-cont .layout-cont > .btn-icon');
+    const layoutBtns = document.querySelectorAll('.catalog-prefs_layout > .btn-icon');
 
     layoutBtns.forEach((btnElem, index) => {
         if (!btnElem.classList.contains('active')) {
@@ -53,5 +53,5 @@ function handleLayoutButtons() {
 
 
 function setCookie(prefsArr) {
-    document.cookie = cookieName + '=' + encodeURIComponent(JSON.stringify(prefsArr)) + '; path=/;  max-age=157680000';
+    document.cookie = cookieName + '=' + encodeURIComponent(JSON.stringify(prefsArr)) + '; path=/; max-age=157680000';
 }

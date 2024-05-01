@@ -7,6 +7,7 @@ This is a second version of a multipage E-commerce web application (work in prog
 - A product catalog with a set of filters by price, brand, and selected product specifications.
 - Products can have any number of variants grouped by attributes.
 - A product page where users can see all product's specifications, images, rate the product, leave reviews, and rate others' reviews.
+- A brand page with a description and product categories with this brand.
 - Promo and discount mechanism.
 - Live search by products and brands.
 - User registration and authentication mechanism with email confirmation and password reset.
@@ -18,9 +19,9 @@ This is a second version of a multipage E-commerce web application (work in prog
 - Comparing products by their specifications.
 - Any user regardless of authentication status can use a product cart, make an order, see his order history, manage Favorites section, and compare products.
 - Products have "Available at" and "Available until" properties that can be used to schedule their availability in stock.
-- Multi-language support.
+- Full multi-language support. The website, the Admin panel interface, and all the content can be viewed and managed on 3 languages.
 - Multi-currency support. Every product's price can be set in arbitrary currency. Prices calculated according to exchange rates which updates daily. 
-- Correct responsive layout for all devices: smartphones, tablets, laptops and PCs.
+- Correct responsive layout on all devices. The site and the Admin panel are comfortable to use on computers, laptops, tablets and smartphones.
 - An Admin panel for managing everything: adding, searching, exploring, editing, deleting — categories, products, attributes, variants, specifications, reviews, promos, languages and translations, currencies, as well as viewing log, the dashboard with sales and rate statistics, managing orders and users.
 
 Currently, the work in progress.

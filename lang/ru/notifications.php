@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 return [
     'greeting' => 'Здравствуйте, :name!',
     'signature1' => 'С уважением,',

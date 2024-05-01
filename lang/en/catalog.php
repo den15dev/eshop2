@@ -1,25 +1,17 @@
 <?php
-
-declare(strict_types=1);
-
 return [
-    'filters' => [
-        'apply' => 'Apply',
-        'reset' => 'Reset',
+    "filters" => ["apply" => "Apply", "reset" => "Reset"],
+    "layout_settings" => [
+        "on_page" => "On page:",
+        "sort" => [
+            "cheap" => "Cheap first",
+            "discounted" => "Discounted first",
+            "expensive" => "Expensive first",
+            "new" => "New first",
+            "popular" => "Popular first"
+        ]
     ],
-
-    'layout_settings' => [
-        'sort' => [
-            'new' => 'New first',
-            'cheap' => 'Cheap first',
-            'expensive' => 'Expensive first',
-            'popular' => 'Popular first',
-            'discounted' => 'Discounted first',
-        ],
-        'on_page' => 'On page:',
-    ],
-
-    'recent' => 'Recently Viewed',
-    'product_num' => ':count product|:count products',
-    'no_products' => 'No products',
+    "no_products" => "No products",
+    "product_num" => ":count product|:count products",
+    "recent" => "Recently Viewed"
 ];

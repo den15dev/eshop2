@@ -77,10 +77,18 @@ $margins-and-paddings: (
   width: fit-content;
 }
 
+.text-start {
+  text-align: left;
+}
+
 .text-center {
   text-align: center;
 }
 
 .text-end {
   text-align: right;
+}
+
+.nowrap {
+  white-space: nowrap;
 }

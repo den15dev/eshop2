@@ -35,81 +35,81 @@ $bottom-nav-color-active: $color1;
     display: none;
   }
 
-  .bottom-nav-btn,
-  .bottom-nav-user-btn {
-    display: block;
-    position: relative;
-    height: 54px;
-    width: 66px;
-    text-align: center;
-
-    @include sm {
-      width: 86px;
-    }
-  }
-
-  .bottom-nav-btn {
-    color: $bottom-nav-color;
-    padding-top: 8px;
-
-    @include sm {
-      padding-top: 6px;
-    }
-
-    svg {
-      display: block;
-      height: 22px;
-      margin: 0 auto 4px auto;
-      fill: none;
-      stroke-width: 1.6;
-      stroke: $bottom-nav-color;
-
-      @include sm {
-        margin: 0 auto 3px auto;
-      }
-    }
-
-    &.active {
-      color: $bottom-nav-color-active;
-      svg {
-        stroke: $bottom-nav-color-active;
-      }
-    }
-  }
-
-  .bottom-nav-user-btn {
-    padding-top: 7px;
-
-    svg, img {
-      display: block;
-      width: 40px;
-      height: 40px;
-      margin: 0 auto;
-      border-radius: 50%;
-    }
-
-    #bNavUserIconBG {
-      fill: $grey-235;
-    }
-    #bNavUserIconHead, #bNavUserIconBody {
-      fill: $grey-210;
-    }
-
-    &.active {
-      #bNavUserIconBG {
-        fill: color($color1, light, 8);
-      }
-      #bNavUserIconHead, #bNavUserIconBody {
-        fill: color($color1, light, 5);
-      }
-    }
-  }
-
   .badge-round, .badge-round-red, .badge-round-grey {
     top: 2px;
     right: 14%;
     @include sm {
       right: 20%;
+    }
+  }
+}
+
+.bottom-nav-btn,
+.bottom-nav-user-btn {
+  display: block;
+  position: relative;
+  height: 54px;
+  width: 66px;
+  text-align: center;
+
+  @include sm {
+    width: 86px;
+  }
+}
+
+.bottom-nav-btn {
+  color: $bottom-nav-color;
+  padding-top: 8px;
+
+  @include sm {
+    padding-top: 6px;
+  }
+
+  svg {
+    display: block;
+    height: 22px;
+    margin: 0 auto 4px auto;
+    fill: none;
+    stroke-width: 1.6;
+    stroke: $bottom-nav-color;
+
+    @include sm {
+      margin: 0 auto 3px auto;
+    }
+  }
+
+  &.active {
+    color: $bottom-nav-color-active;
+    svg {
+      stroke: $bottom-nav-color-active;
+    }
+  }
+}
+
+.bottom-nav-user-btn {
+  padding-top: 7px;
+
+  svg, img {
+    display: block;
+    width: 40px;
+    height: 40px;
+    margin: 0 auto;
+    border-radius: 50%;
+  }
+
+  #bNavUserIconBG {
+    fill: $grey-235;
+  }
+  #bNavUserIconHead, #bNavUserIconBody {
+    fill: $grey-210;
+  }
+
+  &.active {
+    #bNavUserIconBG {
+      fill: color($color1, light, 8);
+    }
+    #bNavUserIconHead, #bNavUserIconBody {
+      fill: color($color1, light, 5);
     }
   }
 }

@@ -1,5 +1,5 @@
-<div class="catalog-settings-cont mb-4">
-    <div class="sort-cont dropdown">
+<div class="catalog-prefs mb-4">
+    <div class="dropdown catalog-prefs_sort">
         <div class="dropdown-btn" data-sort="{{ $prefs->sorting_active->sorting }}">
             {{ $prefs->sorting_active->description }}
             <span class="icon-chevron-down xsmall"></span>
@@ -23,27 +23,27 @@
         </ul>
     </div>
 
-    <div class="layout-cont">
-        <div class="dropdown">
-            <div class="dropdown-btn">
-                <span class="sm">{{ __('catalog.layout_settings.on_page') }} </span>{{ $prefs->per_page_num }}
-                <span class="icon-chevron-down xsmall"></span>
-            </div>
-            <ul class="dropdown-list dd-right">
-                @foreach($prefs->per_page as $per_page)
-                    @if($per_page->is_active)
-                        <li>
-                            <div class="dropdown-item active">{{ $per_page->num }} <span class="icon-check-lg"></span></div>
-                        </li>
-                    @else
-                        <li>
-                            <div class="dropdown-item">{{ $per_page->num }}</div>
-                        </li>
-                    @endif
-                @endforeach
-            </ul>
+    <div class="dropdown catalog-prefs_per-page">
+        <div class="dropdown-btn">
+            <span class="sm">{{ __('catalog.layout_settings.on_page') }} </span>{{ $prefs->per_page_num }}
+            <span class="icon-chevron-down xsmall"></span>
         </div>
+        <ul class="dropdown-list dd-right">
+            @foreach($prefs->per_page as $per_page)
+                @if($per_page->is_active)
+                    <li>
+                        <div class="dropdown-item active">{{ $per_page->num }} <span class="icon-check-lg"></span></div>
+                    </li>
+                @else
+                    <li>
+                        <div class="dropdown-item">{{ $per_page->num }}</div>
+                    </li>
+                @endif
+            @endforeach
+        </ul>
+    </div>
 
+    <div class="dropdown catalog-prefs_layout">
         <svg width="2" height="2" style="display: none">
             <symbol viewBox="0 0 22 22" id="catalogGrid">
                 <path d="M13.2222 20.3333V13.8889C13.2222 13.5207 13.5207 13.2222 13.8889 13.2222H20.3333C20.7015 13.2222 21 13.5207 21 13.8889V20.3333C21 20.7015 20.7015 21 20.3333 21H13.8889C13.5207 21 13.2222 20.7015 13.2222 20.3333Z" />

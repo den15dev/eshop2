@@ -1,19 +1,16 @@
 <?php
-
-declare(strict_types=1);
-
 return [
-    'stores' => 'Stores',
-    'list' => 'List',
-    'map' => 'Map',
-    'weekdays' => [
-        'mo' => 'Mo',
-        'tu' => 'Tu',
-        'we' => 'We',
-        'th' => 'Th',
-        'fr' => 'Fr',
-        'sa' => 'Sa',
-        'su' => 'Su',
-    ],
-    'closed' => 'closed',
+    "closed" => "closed",
+    "list" => "List",
+    "map" => "Map",
+    "stores" => "Stores",
+    "weekdays" => [
+        "fr" => "Fr",
+        "mo" => "Mo",
+        "sa" => "Sa",
+        "su" => "Su",
+        "th" => "Th",
+        "tu" => "Tu",
+        "we" => "We"
+    ]
 ];
