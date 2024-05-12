@@ -5,6 +5,7 @@ namespace App\Modules\Cart\Actions;
 use App\Modules\Products\Models\Sku;
 use Illuminate\Database\Eloquent\Builder as EBuilder;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 
 class GetCartSkusAction
 {
@@ -16,6 +17,7 @@ class GetCartSkusAction
         }
 
         $skus = Sku::join('products', 'skus.product_id', 'products.id')
+            ->joinActivePromos()
             ->select(
                 'skus.id',
                 'skus.name',
@@ -24,8 +26,7 @@ class GetCartSkusAction
                 'skus.short_descr',
                 'skus.currency_id',
                 'skus.price',
-                'skus.discount_prc',
-                'skus.final_price',
+                DB::raw(Sku::DISCOUNT . ' as discount'),
             )
             ->whereIn('skus.id', $ids)
             ->when(count($ids), function (EBuilder $query) use ($ids) {

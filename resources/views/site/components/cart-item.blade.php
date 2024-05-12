@@ -25,7 +25,7 @@
         <x-quantity-btns :skuid="$sku->id" :incart="$sku->in_cart" :twosizes="true" />
 
         <div class="cart-item_sum">
-            @if($sku->discount_prc)
+            @if($sku->discount)
                 <div class="product-card_old-price">
                     <del>{!! $sku->cost_formatted !!}</del>
                 </div>

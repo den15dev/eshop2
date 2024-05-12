@@ -9,7 +9,7 @@
         {{ __('product.product_id') }}: {{ $sku->id }}
     </div>
     <div>
-        @if($sku->discount_prc)
+        @if($sku->discount)
             <div class="product-card_old-price">
                 <del>{!! $sku->price_formatted !!}</del>
             </div>

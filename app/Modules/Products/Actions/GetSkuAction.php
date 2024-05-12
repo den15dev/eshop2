@@ -3,6 +3,7 @@
 namespace App\Modules\Products\Actions;
 
 use App\Modules\Products\Models\Sku;
+use Illuminate\Support\Facades\DB;
 
 class GetSkuAction
 {
@@ -10,9 +11,24 @@ class GetSkuAction
     {
         $sku = Sku::join('products', 'skus.product_id', 'products.id')
             ->join('brands', 'products.brand_id', 'brands.id')
-            ->joinPromos()
+            ->joinActivePromos()
             ->select(
-                'skus.*',
+                'skus.id',
+                'skus.product_id',
+                'skus.name',
+                'skus.slug',
+                'skus.sku',
+                'skus.short_descr',
+                'skus.description',
+                'skus.currency_id',
+                'skus.price',
+                DB::raw(Sku::DISCOUNT . ' as discount'),
+                'skus.rating',
+                'skus.vote_num',
+                'skus.images',
+                'skus.available_from',
+                'skus.available_until',
+                'skus.promo_id',
                 'products.category_id',
                 'brands.name AS brand_name',
                 'brands.slug AS brand_slug',

@@ -4,6 +4,7 @@ namespace App\Modules\Cart\Actions;
 
 use App\Modules\Products\Models\Sku;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 
 class GetSkuCostsAction
 {
@@ -14,12 +15,12 @@ class GetSkuCostsAction
             $ids[] = $cart_item[0];
         }
 
-        $skus = Sku::select(
-                'id',
-                'currency_id',
-                'price',
-                'discount_prc',
-                'final_price',
+        $skus = Sku::joinActivePromos()
+            ->select(
+                'skus.id',
+                'skus.currency_id',
+                'skus.price',
+                DB::raw(Sku::DISCOUNT . ' as discount'),
             )
             ->whereIn('skus.id', $ids)
             ->orderByRaw(order_by_array($ids))

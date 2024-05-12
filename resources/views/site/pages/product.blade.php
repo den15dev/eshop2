@@ -9,9 +9,9 @@
         <h4 class="mb-3">
             {{ $sku->name }}
             @if($sku->promo_id)
-            &nbsp;<a href="{{ route('promo', $sku->promo_url_slug) }}" class="product-name_badge-link" title="{{ $sku->promo_name }}">-{{ $sku->discount_prc }}%</a>
-            @elseif($sku->discount_prc)
-            &nbsp;<div class="product-name_badge" title="{{ $sku->promo_name }}">-{{ $sku->discount_prc }}%</div>
+            &nbsp;<a href="{{ route('promo', $sku->promo_url_slug) }}" class="product-name_badge-link" title="{{ $sku->promo_name }}">-{{ $sku->discount }}%</a>
+            @elseif($sku->discount)
+            &nbsp;<div class="product-name_badge" title="{{ $sku->promo_name }}">-{{ $sku->discount }}%</div>
             @endif
         </h4>
 
@@ -109,7 +109,7 @@
 
 
                 <div class="mb-3">
-                    @if($sku->discount_prc)
+                    @if($sku->discount)
                         <div class="product-main_old-price">
                             <del>{!! $sku->price_formatted !!}</del>
                         </div>

@@ -26,7 +26,7 @@ return [
         'brand_name' => 'Бренд',
         'currency_id' => 'Валюта',
         'price' => 'Цена без скидки',
-        'discount_prc' => 'Скидка, %',
+        'discount' => 'Скидка, %',
         'final_price' => 'Цена',
         'rating' => 'Рейтинг',
         'vote_num' => 'Кол-во оценок',

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Admin\IndexTable\IndexTableService;
 use App\Admin\Products\ProductService;
-use App\Admin\Products\Requests\ProductAjaxRequest;
 use App\Admin\Products\Requests\StoreProductRequest;
 use App\Http\Controllers\Controller;
 use App\Modules\Brands\Models\Brand;
@@ -13,7 +12,6 @@ use App\Modules\Categories\Models\Category;
 use App\Modules\Languages\LanguageService;
 use App\Modules\Products\Models\Product;
 use App\Modules\Products\Models\Sku;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 

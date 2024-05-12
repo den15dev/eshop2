@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->jsonb('name');
             $table->string('slug', 150);
+            $table->smallInteger('discount')->nullable();
             $table->dateTime('starts_at');
             $table->dateTime('ends_at');
             $table->jsonb('description');

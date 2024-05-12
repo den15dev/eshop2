@@ -47,6 +47,8 @@ class Sku extends Model
     protected $guarded = [];
 
     const IMG_DIR = 'storage/images/products';
+    const DISCOUNT = 'COALESCE(skus.discount, promos.discount, 0)';
+    const FINAL_PRICE = '((skus.price * (100 - COALESCE(skus.discount, promos.discount, 0)) / 100))';
 
 
     public function specifications(): BelongsToMany
@@ -114,7 +116,7 @@ class Sku extends Model
     public function scopeGetCards(Builder $query): void
     {
         $query->join('products', 'skus.product_id', 'products.id')
-            ->joinPromos()
+            ->joinActivePromos()
             ->selectForCards()
             ->active();
     }
@@ -128,7 +130,7 @@ class Sku extends Model
             });
     }
 
-    public function scopeJoinPromos(Builder $query): void
+    public function scopeJoinActivePromos(Builder $query): void
     {
         $query->leftJoin('promos', function (JoinClause $join) {
             $current_date = date('Y-m-d H:i:s');
@@ -148,13 +150,13 @@ class Sku extends Model
             'skus.short_descr',
             'skus.currency_id',
             'skus.price',
-            'skus.discount_prc',
-            'skus.final_price',
+            DB::raw(self::DISCOUNT . ' as discount'),
             'skus.rating',
             'skus.vote_num',
             'promos.id as promo_id',
             'promos.name as promo_name',
             'promos.slug as promo_slug',
+            'promos.discount as promo_discount',
         );
     }
 
@@ -169,12 +171,12 @@ class Sku extends Model
     {
         if (isset($query_arr['price_min']) && is_numeric($query_arr['price_min'])) {
             $price_min = bcmul(Price::parse($query_arr['price_min']), CurrencyService::$cur_currency->exchange_rate);
-            $query = $query->where(DB::raw('skus.final_price * ' . CurrencyService::RATE_SUBQUERY), '>=', $price_min);
+            $query = $query->where(DB::raw(self::FINAL_PRICE . ' * ' . CurrencyService::RATE_SUBQUERY), '>=', $price_min);
         }
 
         if (isset($query_arr['price_max']) && is_numeric($query_arr['price_max'])) {
             $price_max = bcmul(Price::parse($query_arr['price_max']), CurrencyService::$cur_currency->exchange_rate);
-            $query = $query->where(DB::raw('skus.final_price * ' . CurrencyService::RATE_SUBQUERY), '<=', $price_max);
+            $query = $query->where(DB::raw(self::FINAL_PRICE . ' * ' . CurrencyService::RATE_SUBQUERY), '<=', $price_max);
         }
     }
 
@@ -208,6 +210,13 @@ class Sku extends Model
     public function getImageMdAttribute(): string
     {
         return get_image(self::IMG_DIR . '/' . $this->id . '/01_230.jpg', 230);
+    }
+
+    public function getFinalPriceAttribute(): string
+    {
+        $multiplier = (100 - $this->discount) / 100;
+
+        return bcmul($this->price, $multiplier);
     }
 
     public function getPriceFormattedAttribute(): string

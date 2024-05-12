@@ -1,6 +1,9 @@
 <?php
 
 use App\Admin\Products\ColumnFormatter;
+use App\Modules\Currencies\CurrencyService;
+use App\Modules\Products\Models\Sku;
+use Illuminate\Support\Facades\DB;
 
 return [
     [
@@ -60,14 +63,14 @@ return [
         'class_list' => 'nowrap',
     ],
     [
-        'id' => 'discount_prc',
-        'order_by' => 'skus.discount_prc',
+        'id' => 'discount',
+        'order_by' => 'skus.discount',
     ],
     [
         'id' => 'final_price',
         'class_list' => 'nowrap',
         'is_default' => true,
-        'order_by' => 'skus.final_price',
+        'order_by' => DB::raw(Sku::FINAL_PRICE . ' * ' . CurrencyService::RATE_SUBQUERY),
         'format' => new ColumnFormatter('finalPriceFormatted'),
     ],
     [

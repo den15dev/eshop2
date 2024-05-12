@@ -28,7 +28,7 @@
                                     {{ $sku->name }}
                                 </a>
                                 <div class="grey-text mb-1">
-                                    {{ $sku->final_price_formatted }}
+                                    {!! $sku->final_price_formatted !!}
                                 </div>
                             </td>
                         @endforeach

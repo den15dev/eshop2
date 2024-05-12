@@ -5,6 +5,7 @@ namespace App\Modules\Catalog;
 use App\Modules\Brands\Models\Brand;
 use App\Modules\Products\Models\Sku;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 
 class SearchService
 {
@@ -30,13 +31,15 @@ class SearchService
     public function getDropdownSkus(string $search_query): Collection
     {
         return Sku::join('products', 'skus.product_id', 'products.id')
+            ->joinActivePromos()
             ->select(
                 'skus.id',
                 'skus.name',
                 'skus.slug',
                 'products.category_id',
                 'skus.currency_id',
-                'skus.final_price',
+                'skus.price',
+                DB::raw(Sku::DISCOUNT . ' as discount'),
             )
             ->where('skus.name->' . app()->getLocale(), 'ilike', '%' . $search_query . '%')
             ->active()

@@ -25,8 +25,7 @@ return new class extends Migration
             $table->string('currency_id');
             $table->foreign('currency_id')->references('id')->on('currencies')->onUpdate('cascade')->onDelete('no action');
             $table->decimal('price', 12, 2);
-            $table->unsignedTinyInteger('discount_prc')->nullable();
-            $table->decimal('final_price', 12, 2);
+            $table->smallInteger('discount')->nullable();
             $table->decimal('rating', 4, 2)->nullable();
             $table->unsignedInteger('vote_num')->nullable();
             $table->jsonb('images')->nullable();

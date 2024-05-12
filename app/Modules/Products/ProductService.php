@@ -27,7 +27,7 @@ class ProductService
     public function getDiscounted()
     {
         return Sku::getCards()
-            ->orderByDesc('skus.discount_prc')
+            ->orderByDesc('skus.discount')
             ->orderByDesc('skus.created_at')
             ->limit(self::HOME_CAROUSEL_LIMIT)
             ->get();

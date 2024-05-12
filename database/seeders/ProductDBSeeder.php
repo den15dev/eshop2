@@ -399,11 +399,7 @@ class ProductDBSeeder
                             $description->en = $obj_en->description;
                             $description->de = $obj_de->description;
 
-                            $discount_prc = fake()->randomElement([0, 0, 0, 0, 0, 0, 5, 10]);
-                            $final_price = $obj_ru->price;
-                            if ($discount_prc > 0) {
-                                $final_price = bcmul($obj_ru->price, bcdiv(bcsub(100, $discount_prc), 100));
-                            }
+                            $discount = fake()->randomElement([0, 0, 0, 0, 0, 0, 5, 10]);
 
                             $images = [];
                             foreach ($obj_ru->images as $key => $url) {
@@ -419,12 +415,14 @@ class ProductDBSeeder
                                 'description' => json_encode($description, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
                                 'currency_id' => 'rub',
                                 'price' => $obj_ru->price,
-                                'discount_prc' => $discount_prc,
-                                'final_price' => $final_price,
                                 'images' => json_encode($images, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
                                 'created_at' => $date_time,
                                 'updated_at' => $date_time,
                             ];
+
+                            if ($discount) {
+                                $sku_arr['discount'] = $discount;
+                            }
 
                             $sku_id = DB::table('skus')->insertGetId($sku_arr);
 

@@ -26,7 +26,7 @@ return [
         'brand_name' => 'Marke',
         'currency_id' => 'Währung',
         'price' => 'Preis ohne Rabatt',
-        'discount_prc' => 'Rabatt, %',
+        'discount' => 'Rabatt, %',
         'final_price' => 'Preis',
         'rating' => 'Bewertung',
         'vote_num' => 'Anzahl der Noten',

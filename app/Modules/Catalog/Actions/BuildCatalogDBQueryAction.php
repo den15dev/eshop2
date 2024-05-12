@@ -11,7 +11,7 @@ class BuildCatalogDBQueryAction
     public static function run(int $category_id, array $query_arr): Builder
     {
         $db_query = Sku::join('products', 'skus.product_id', 'products.id')
-            ->joinPromos()
+            ->joinActivePromos()
             ->when(isset($query_arr['specs']), function (Builder $query) {
                 $query->join('sku_specification AS ss', 'skus.id', 'ss.sku_id');
             })

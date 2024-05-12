@@ -26,7 +26,7 @@ class RecentlyViewedService
         if (!count($ids)) return new ECollection();
 
         return Sku::join('products', 'skus.product_id', 'products.id')
-            ->joinPromos()
+            ->joinActivePromos()
             ->selectForCards()
             ->whereIn('skus.id', $ids)
             ->orderByRaw(order_by_array($ids))

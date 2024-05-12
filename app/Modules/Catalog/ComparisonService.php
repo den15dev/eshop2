@@ -6,6 +6,7 @@ use App\Modules\Categories\Models\Specification;
 use App\Modules\Products\Models\Sku;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 
 class ComparisonService
 {
@@ -56,13 +57,15 @@ class ComparisonService
         $ids = self::$data->sku_ids;
 
         return Sku::join('products', 'skus.product_id', 'products.id')
+            ->joinActivePromos()
             ->select(
                 'skus.id',
                 'skus.name',
                 'skus.slug',
                 'products.category_id',
                 'skus.currency_id',
-                'skus.final_price',
+                'skus.price',
+                DB::raw(Sku::DISCOUNT . ' as discount'),
             )
             ->whereIn('skus.id', $ids)
             ->orderByRaw(order_by_array($ids))

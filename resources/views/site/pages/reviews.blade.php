@@ -33,9 +33,9 @@
                             {{ $sku->name }}
                             </a>
                             @if($sku->promo_id)
-                            &nbsp;<a href="{{ route('promo', $sku->promo_url_slug) }}" class="product-name_badge-link-small" title="{{ $sku->promo_name }}">-{{ $sku->discount_prc }}%</a>
-                            @elseif($sku->discount_prc)
-                            &nbsp;<div class="product-name_badge-small">-{{ $sku->discount_prc }}%</div>
+                            &nbsp;<a href="{{ route('promo', $sku->promo_url_slug) }}" class="product-name_badge-link-small" title="{{ $sku->promo_name }}">-{{ $sku->discount }}%</a>
+                            @elseif($sku->discount)
+                            &nbsp;<div class="product-name_badge-small">-{{ $sku->discount }}%</div>
                             @endif
                         </h5>
                         @if($reviews_num)

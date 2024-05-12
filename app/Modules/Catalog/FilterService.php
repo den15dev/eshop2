@@ -10,6 +10,7 @@ use App\Modules\Catalog\Actions\GetPriceRangeAction;
 use App\Modules\Catalog\Actions\GetSpecsAction;
 use App\Modules\Catalog\Enums\ProductSorting;
 use App\Modules\Currencies\CurrencyService;
+use App\Modules\Products\Models\Sku;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -32,10 +33,10 @@ class FilterService
     {
         return match ($sorting->sorting) {
             ProductSorting::New->value => $query->orderBy('skus.created_at', 'desc'),
-            ProductSorting::Cheap->value => $query->orderBy(DB::raw('skus.final_price * ' . CurrencyService::RATE_SUBQUERY)),
-            ProductSorting::Expensive->value => $query->orderBy(DB::raw('skus.final_price * ' . CurrencyService::RATE_SUBQUERY), 'desc'),
+            ProductSorting::Cheap->value => $query->orderBy(DB::raw(Sku::FINAL_PRICE . ' * ' . CurrencyService::RATE_SUBQUERY)),
+            ProductSorting::Expensive->value => $query->orderBy(DB::raw(Sku::FINAL_PRICE . ' * ' . CurrencyService::RATE_SUBQUERY), 'desc'),
             ProductSorting::Popular->value => $query->orderByRaw('skus.rating IS NULL, skus.rating DESC')->orderBy('skus.vote_num', 'desc'),
-            ProductSorting::Discounted->value => $query->orderBy('skus.discount_prc', 'desc'),
+            ProductSorting::Discounted->value => $query->orderBy(DB::raw(Sku::DISCOUNT), 'desc'),
         };
     }
 

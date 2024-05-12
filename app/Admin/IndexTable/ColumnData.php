@@ -2,6 +2,7 @@
 
 namespace App\Admin\IndexTable;
 
+use Illuminate\Database\Query\Expression;
 use Illuminate\Support\Facades\Lang;
 
 class ColumnData
@@ -10,7 +11,7 @@ class ColumnData
     public ?string $name = null;
     public bool $show_name = true;
     public ?string $class_list = null;
-    public ?string $order_by = null;
+    public null|string|Expression $order_by = null;
     public ?string $sort_order = null;
     public ?string $search_field = null;
     public ?object $format = null;

@@ -25,7 +25,7 @@ class PromoService
             self::$active_promos = Cache::rememberForever('promos', function () {
                 $current_date = date('Y-m-d H:i:s');
 
-                return Promo::select('id', 'name', 'slug', 'starts_at', 'ends_at')
+                return Promo::select('id', 'name', 'slug', 'discount', 'starts_at', 'ends_at')
                     ->whereDate('starts_at', '<=', $current_date)
                     ->whereDate('ends_at', '>=', $current_date)
                     ->get();

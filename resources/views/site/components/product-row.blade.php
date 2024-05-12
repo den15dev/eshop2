@@ -5,9 +5,9 @@
             <div class="image-link-tint"></div>
         </a>
         @if($sku->promo_id)
-            <a href="{{ route('promo', $sku->promo_url_slug) }}" class="product-card_badge-link" title="{{ $sku->promo_name }}">-{{ $sku->discount_prc }}%</a>
-        @elseif($sku->discount_prc)
-            <div class="product-card_badge">-{{ $sku->discount_prc }}%</div>
+            <a href="{{ route('promo', $sku->promo_url_slug) }}" class="product-card_badge-link" title="{{ $sku->promo_name }}">-{{ $sku->discount }}%</a>
+        @elseif($sku->discount)
+            <div class="product-card_badge">-{{ $sku->discount }}%</div>
         @endif
     </div>
 
@@ -27,7 +27,7 @@
 
         <div class="product-row_group1">
             <div class="mb-2">
-                @if($sku->discount_prc)
+                @if($sku->discount)
                     <div class="product-card_old-price">
                         <del>{!! $sku->price_formatted !!}</del>
                     </div>
