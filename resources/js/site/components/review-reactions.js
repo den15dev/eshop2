@@ -38,13 +38,18 @@ function updateReaction(reactCont, review_id, up_down) {
         }),
     })
     .then(response => {
-        if (!response.ok) throw new Error(`${response.status} (${response.statusText})`);
+        if (!response.ok) {
+            const error = new Error();
+            error.status = response.status;
+            error.statusText = response.statusText;
+            throw error;
+        }
         return response.json();
     })
     .then(result => {
         updateDOM(reactCont, result);
     })
-    .catch(err => showErrorMessage(err.message));
+    .catch(err => showErrorMessage(err));
 }
 
 

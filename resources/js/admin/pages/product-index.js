@@ -11,7 +11,7 @@ export default function init() {
 
 
 function initCategorySelect() {
-    const categorySelect = document.querySelector('.product-index_category-cont select');
+    const categorySelect = document.querySelector('.product-index_category select');
 
     categorySelect.addEventListener('change', () => {
         if (categorySelect.value) {
@@ -28,7 +28,7 @@ function initCategorySelect() {
 
 
 function initCheckboxes() {
-    const checkboxes = document.querySelectorAll('.product-index_checkboxes input');
+    const checkboxes = document.querySelectorAll('.index_checkboxes input');
 
     checkboxes.forEach(chb => {
         chb.addEventListener('change', () => {

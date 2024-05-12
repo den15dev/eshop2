@@ -16,4 +16,12 @@ return [
         'orders' => 'Orders',
         'stores' => 'Stores',
     ],
+
+    'save' => 'Save',
+    'create' => 'Create',
+    'move' => 'Move',
+    'add' => 'Add',
+    'delete' => 'Delete',
+    'close' => 'Close',
+    'caution' => 'Caution!',
 ];

@@ -7,6 +7,7 @@ return [
     'messages' => [
         'error' => 'Ошибка',
         'error_occurred' => 'Произошла ошибка',
+        'forbidden' => 'Действие не разрешено',
     ],
 
     'modal' => [

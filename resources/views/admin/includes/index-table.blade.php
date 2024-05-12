@@ -25,7 +25,7 @@
         </thead>
 
         <tbody>
-        @foreach($skus as $sku)
+        @foreach($items as $item)
             <tr>
                 @foreach($current_columns as $column)
                     <td {!! $column->class_list ? 'class="' . $column->class_list . '"' : '' !!}>
@@ -34,9 +34,9 @@
                         @endphp
 
                         @if($column->format)
-                            {!! $column->format->get($sku) !!}
+                            {!! $column->format->get($item) !!}
                         @else
-                            {{ $sku->$prop ?: '-' }}
+                            {{ $item->$prop ?: '-' }}
                         @endif
                     </td>
                 @endforeach
@@ -46,7 +46,7 @@
     </table>
 
 
-    @if(!$skus->count())
+    @if(!$items->count())
         <div class="index-table_not-found">
             {{ __('admin/products.no_products') }}
         </div>
@@ -54,6 +54,6 @@
 </div>
 
 <div>
-    {{ $skus->hasPages() ? $skus->links('common.pagination.results-shown') : '' }}
-    {{ $skus->onEachSide(1)->withPath(route('admin.' . $table_name . '.table'))->withQueryString()->links('common.pagination.page-links') }}
+    {{ $items->hasPages() ? $items->links('common.pagination.results-shown') : '' }}
+    {{ $items->onEachSide(1)->withPath(route('admin.' . $table_name . '.table'))->withQueryString()->links('common.pagination.page-links') }}
 </div>

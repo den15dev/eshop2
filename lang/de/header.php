@@ -1,14 +1,18 @@
 <?php
 return [
     "catalog" => "Katalog",
-    "search" => ["search" => "Suche"],
+
     "top_menu" => [
+        'admin_panel' => 'Administrationsmenü',
         "bonuses" => "Bonusprogramm",
         "for_customers" => "Für Kunden",
         "return" => "Umtausch und Rückgabe",
         "service" => "Service-Center",
         "warranty" => "Garantie"
     ],
+
+    "search" => ["search" => "Suche"],
+
     "user_menu" => [
         "cart" => "Warenkorb",
         "cart_empty" => "Warenkorb ist leer",

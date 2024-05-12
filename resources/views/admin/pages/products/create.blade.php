@@ -1,6 +1,6 @@
 @extends('admin.layout')
 
-@section('page_title',  __('admin/products.adding_product') . ' - ' . __('admin/layout.admin_panel'))
+@section('page_title',  __('admin/products.adding_product') . ' - ' . __('admin/general.admin_panel'))
 
 @section('page_header', __('admin/products.adding_product'))
 

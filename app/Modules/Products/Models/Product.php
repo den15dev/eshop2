@@ -35,6 +35,6 @@ class Product extends Model
 
     public function attributes(): HasMany
     {
-        return $this->hasMany(Attribute::class);
+        return $this->hasMany(Attribute::class)->orderBy('id');
     }
 }

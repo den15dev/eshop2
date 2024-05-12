@@ -10,7 +10,6 @@ class ReviewRequest extends FormRequest
 {
     use RequestHelper;
 
-
     /**
      * Determine if the user is authorized to make this request.
      */

@@ -17,20 +17,20 @@ class ColumnData
     public bool $is_default = false;
 
 
-    public function __construct(array $column_data)
+    public function __construct(string $table_name, array $column_data)
     {
         foreach ($column_data as $key => $val) {
             $this->$key = $val;
         }
 
-        if (Lang::has('admin/products.columns.' . $column_data['id'])) {
-            $this->name = __('admin/products.columns.' . $column_data['id']);
+        if (Lang::has('admin/' . $table_name . '.columns.' . $column_data['id'])) {
+            $this->name = __('admin/' . $table_name . '.columns.' . $column_data['id']);
         }
     }
 
 
-    public static function fromArray(array $column_data): self
+    public static function fromArray(string $table_name, array $column_data): self
     {
-        return new self($column_data);
+        return new self($table_name, $column_data);
     }
 }

@@ -4,6 +4,7 @@ return [
     'catalog' => 'Каталог',
 
     'top_menu' => [
+        'admin_panel' => 'Админка',
         'warranty' => 'Гарантия',
         'for_customers' => 'Покупателям',
         'bonuses' => 'Бонусная программа',

@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Admin\Brands\BrandService;
 use App\Admin\IndexTable\IndexTableService;
 use App\Admin\Products\ProductService;
 use App\Modules\Cart\CartService;
@@ -28,5 +29,6 @@ class EncryptCookies extends Middleware
         // Admin panel
         IndexTableService::PER_PAGE_COOKIE,
         ProductService::COLUMNS_COOKIE,
+        BrandService::COLUMNS_COOKIE,
     ];
 }

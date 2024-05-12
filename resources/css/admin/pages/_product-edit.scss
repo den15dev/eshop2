@@ -1,0 +1,93 @@
+.product-edit_attribute-item {
+  margin-bottom: 0.25rem;
+}
+
+.product-edit_attribute-dd-win {
+  margin-top: 0.25rem;
+  margin-left: 0;
+  padding-top: 1rem;
+}
+
+.product-edit_variant-item {
+  padding-left: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.product-edit_attribute-item_dd-btn,
+.product-edit_variant-item_dd-btn {
+  cursor: pointer;
+  width: fit-content;
+
+  &:hover {
+    color: $color1;
+  }
+}
+
+.product-edit_attribute-item_dd-btn {
+  font-weight: $font-weight-bold;
+}
+
+.product-edit_add-item_dd-btn {
+  cursor: pointer;
+  width: fit-content;
+  color: $color1;
+
+  &:hover {
+    color: color($color1, light, 4);
+  }
+}
+
+.product-edit_attribute_input-cont {
+  display: flex;
+  align-items: center;
+  column-gap: 0.5rem;
+  margin-bottom: 0.75rem;
+
+  & > div {
+    flex: 1;
+
+    .invalid-feedback {
+      line-height: 1;
+      margin-top: 0.5rem;
+    }
+  }
+}
+
+.product-edit_attribute_btns {
+  display: flex;
+  column-gap: 1rem;
+}
+
+.product-edit_attribute_save-btn,
+.product-edit_attribute_add-btn,
+.product-edit_attribute_delete-btn,
+.product-edit_attribute_close-btn {
+  cursor: pointer;
+  width: fit-content;
+}
+
+.product-edit_attribute_save-btn,
+.product-edit_attribute_add-btn {
+  color: $link-color;
+
+  &:hover {
+    color: color($link-color, light, 3);
+  }
+}
+
+.product-edit_attribute_delete-btn {
+  color: $color-red;
+
+  &:hover {
+    color: color($color-red, light, 3);
+  }
+}
+
+.product-edit_attribute_close-btn {
+  margin-left: auto;
+  color: $grey-150;
+
+  &:hover {
+    color: $grey-120;
+  }
+}

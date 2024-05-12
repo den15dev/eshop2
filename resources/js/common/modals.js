@@ -105,6 +105,10 @@ export function showClientModal(data = {}) {
         if (data.okAction) {
             okBtn.addEventListener('click', data.okAction);
 
+            okBtn.addEventListener('click', () => {
+                okBtn.removeEventListener('click', data.okAction);
+            });
+
             cancelBtn.addEventListener('click', () => {
                 okBtn.removeEventListener('click', data.okAction);
             });
@@ -138,10 +142,25 @@ export function showClientModal(data = {}) {
 }
 
 
-export function showErrorMessage(message) {
+export function showErrorMessage(error) {
+    let message;
+    let icon;
+
+    switch (error.status) {
+        case 403:
+            message = translations.general.messages.forbidden;
+            icon = 'info';
+            break;
+        default:
+            message = translations.general.messages.error_occurred;
+            icon = 'warning';
+            break;
+    }
+
     showClientModal({
-        message: translations.general.messages.error_occurred,
-        icon: 'warning',
+        message: message,
+        icon: icon,
     });
-    console.error(message);
+
+    console.error(`${error.status} (${error.statusText})`);
 }

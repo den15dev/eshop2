@@ -11,14 +11,10 @@ class CheckIsAdmin
 {
     public function handle(Request $request, Closure $next): Response
     {
-        /*
-        if (Auth::user()?->isAdmin()) {
+        if (env('ADMIN_DEMO') || Auth::user()?->isAdmin()) {
             return $next($request);
         }
 
         abort(404);
-        */
-
-        return $next($request);
     }
 }

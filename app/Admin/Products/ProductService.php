@@ -2,144 +2,32 @@
 
 namespace App\Admin\Products;
 
-use App\Admin\Categories\CategoryService as AdmCategoryService;
 use App\Admin\IndexTable\IndexTableService;
-use App\Modules\Categories\CategoryService;
-use App\Modules\Products\Models\Sku;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Query\JoinClause;
+use App\Admin\Products\Actions\BuildIndexQueryAction;
+use App\Modules\Products\Models\Attribute;
+use App\Modules\Products\Models\Product;
+use App\Modules\Products\Models\Variant;
+use Illuminate\Database\Query\Builder as QBuilder;
+use Illuminate\Database\Eloquent\Builder as EBuilder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class ProductService
 {
     public const TABLE_NAME = 'products';
     public const COLUMNS_COOKIE = 'cls_products';
-    public array $columns;
 
 
     public function __construct(
-        private readonly AdmCategoryService $categoryService,
-        private readonly IndexTableService $tableService,
+        private readonly BuildIndexQueryAction $buildIndexQueryAction,
     ){}
 
 
-    public function getColumns(?array $query = null): array
-    {
-        if (!isset($this->columns)) {
-            $columns = include_once __DIR__ . '/columns.php';
-
-            if (isset($query['sort'])) {
-                foreach ($columns as &$column) {
-                    if ($column['id'] === $query['sort']) {
-                        $column['sort_order'] = $query['order'];
-                        break;
-                    }
-                }
-            }
-
-            $this->columns = $columns;
-        }
-
-        return $this->columns;
-    }
-
-
-    public function getSkusQuery(array $query): Builder
-    {
-        // All the column ids in the "columns" array must present
-        // in the "select" statement
-
-        $columns = $this->getColumns();
-
-        $sku_count = Sku::select(
-                'product_id',
-                DB::raw('count(*) as sku_count'),
-            )
-            ->groupBy('product_id');
-
-        $db_query = Sku::join('products', 'skus.product_id', 'products.id')
-            ->joinSub($sku_count, 'sku_count', function (JoinClause $join) {
-                $join->on('skus.product_id', 'sku_count.product_id');
-            })
-            ->join('categories', 'products.category_id', 'categories.id')
-            ->join('brands', 'products.brand_id', 'brands.id')
-            ->leftJoin('promos', 'skus.promo_id', 'promos.id')
-            ->select(
-                'skus.id',
-                'skus.product_id',
-                'products.name as product_name',
-                'sku_count',
-                'skus.name',
-                'skus.slug',
-                'skus.sku',
-                'products.category_id',
-                'categories.name as category_name',
-                'brands.name as brand_name',
-                'skus.currency_id',
-                'skus.price',
-                'skus.discount_prc',
-                'skus.final_price',
-                'skus.rating',
-                'skus.vote_num',
-                'skus.available_from',
-                'skus.available_until',
-                'skus.promo_id',
-                'promos.name as promo_name',
-                'skus.created_at',
-            );
-
-        if (isset($query['category'])) {
-            $children_ids = $this->categoryService->getAllChildrenIds($query['category'], CategoryService::getAll());
-
-            $db_query = $db_query->whereIn('products.category_id', $children_ids);
-        }
-
-        if (isset($query['search'])) {
-            $db_query = $this->tableService->constrainBySearchStr($db_query, $query['search'], $this->getColumns());
-        }
-
-        if (isset($query['chb'])) {
-            $checkboxes = [];
-            foreach ($query['chb'] as $key => $val) {
-                $checkboxes[$key] = $val === 'true';
-            }
-
-            $db_query = $this->constrainByCheckboxes($db_query, $checkboxes);
-        }
-
-        return isset($query['sort'])
-            ? $this->orderQuery($db_query, $query)
-            : $db_query->orderByDesc('skus.id');
-    }
-
-
-    private function constrainByCheckboxes(Builder $db_query, array $checkboxes): Builder
-    {
-        if ($checkboxes['active'] && !$checkboxes['out_of_stock'] && !$checkboxes['scheduled']) {
-            $db_query->active();
-
-        } elseif (!$checkboxes['active'] && $checkboxes['out_of_stock'] && !$checkboxes['scheduled']) {
-            $db_query = $db_query->whereDate('skus.available_until', '<=', now());
-
-        } elseif (!$checkboxes['active'] && !$checkboxes['out_of_stock'] && $checkboxes['scheduled']) {
-            $db_query = $db_query->whereDate('skus.available_from', '>', now());
-
-        } elseif ($checkboxes['active'] && $checkboxes['out_of_stock'] && !$checkboxes['scheduled']) {
-            $db_query = $db_query->whereDate('skus.available_from', '<=', now());
-
-        } elseif ($checkboxes['active'] && !$checkboxes['out_of_stock'] && $checkboxes['scheduled']) {
-            $db_query = $db_query->whereDate('skus.available_until', '>', now())
-                ->orWhereNull('skus.available_until');
-
-        } elseif (!$checkboxes['active'] && $checkboxes['out_of_stock'] && $checkboxes['scheduled']) {
-            $db_query = $db_query->whereDate('skus.available_from', '>', now())
-                ->orWhereDate('skus.available_until', '<=', now());
-
-        } elseif (!$checkboxes['active'] && !$checkboxes['out_of_stock'] && !$checkboxes['scheduled']) {
-            $db_query = $db_query->whereNull('skus.available_from');
-        }
-
-        return $db_query;
+    public function buildIndexQuery(
+        array $query,
+        IndexTableService $tableService,
+    ): EBuilder {
+        return $this->buildIndexQueryAction->run($query, $tableService);
     }
 
 
@@ -159,16 +47,68 @@ class ProductService
     }
 
 
-    private function orderQuery(Builder $db_query, $query): Builder
+    public function moveToCategory(int $product_id, int $category_id): void
     {
-        $order_by = 'skus.id';
-        foreach ($this->getColumns() as $column) {
-            if ($column['id'] === $query['sort']) {
-                $order_by = $column['order_by'];
-                break;
-            }
-        }
+        DB::beginTransaction();
 
-        return $db_query->orderBy($order_by, $query['order']);
+        try {
+            Product::where('id', $product_id)->update(['category_id' => $category_id]);
+
+            DB::table('sku_specification')
+                ->whereIn('sku_id', function (QBuilder $query) use ($product_id) {
+                    $query->select('id')
+                        ->from('skus')
+                        ->where('product_id', $product_id);
+                })
+                ->delete();
+
+            DB::commit();
+
+        } catch (\Throwable $e) {
+            DB::rollBack();
+            Log::channel('events')->info('An exception caught while trying to move the product ' . $product_id . ' to another category: ' . $e->getMessage());
+            abort(500);
+        }
+    }
+
+
+    public function updateAttribute(int $id, array $fields): void
+    {
+        Attribute::where('id', $id)->update([
+            'name' => json_encode($fields, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
+        ]);
+    }
+
+    public function updateVariant(int $id, array $fields): void
+    {
+        Variant::where('id', $id)->update([
+            'name' => json_encode($fields, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
+        ]);
+    }
+
+    public function deleteAttribute(int $id): void
+    {
+        Attribute::where('id', $id)->delete();
+    }
+
+    public function deleteVariant(int $id): void
+    {
+        Variant::where('id', $id)->delete();
+    }
+
+    public function createAttribute(int $product_id, array $fields): void
+    {
+        $attribute = new Attribute();
+        $attribute->product_id = $product_id;
+        $attribute->name = $fields;
+        $attribute->save();
+    }
+
+    public function createVariant(int $attribute_id, array $fields): void
+    {
+        $variant = new Variant();
+        $variant->attribute_id = $attribute_id;
+        $variant->name = $fields;
+        $variant->save();
     }
 }

@@ -26,9 +26,11 @@
 @import 'admin/main/footer';
 
 @import "admin/pages/product-index";
+@import "admin/pages/product-edit";
 
-@import "admin/components/index-search";
+@import "admin/components/index-page";
 @import "admin/components/index-table";
+@import "admin/components/form-layout";
 
 @import 'common/utilities';
 @import 'common/icons/bi-light';

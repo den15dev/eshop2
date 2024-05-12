@@ -3,11 +3,11 @@
 return [
     'products' => 'Produkte',
     'add_product' => 'Produkt hinzufügen',
-    'adding_product' => 'Ein Produkt hinzufügen',
-    'product_editing' => 'Produktbearbeitung',
+    'adding_product' => 'Produkt hinzufügen',
+    'editing_product' => 'Produkt bearbeiten',
     'add_sku' => 'SKU hinzufügen',
-    'adding_sku' => 'Hinzufügen einer SKU',
-    'sku_editing' => 'SKU-Bearbeitung',
+    'adding_sku' => 'SKU hinzufügen',
+    'editing_sku' => 'SKU bearbeiten',
     'in_stock' => 'Auf Lager',
     'out_of_stock' => 'Ausverkauft',
     'scheduled' => 'Geplant',
@@ -35,5 +35,19 @@ return [
         'promo_id' => 'Promo-ID',
         'promo_name' => 'Promo',
         'created_at' => 'Hergestellt in',
-    ]
+    ],
+
+    'name' => 'Name',
+    'brand' => 'Marke',
+    'category' => 'Kategorie',
+    'category_note' => 'Nach dem Verschieben des Produkts in eine andere Kategorie werden alle Spezifikationen aller SKUs dieses Produkts gelöscht.',
+    'attributes' => 'Attribute',
+    'add_variant' => 'Variante hinzufügen',
+    'add_attribute' => 'Attribute hinzufügen',
+    'delete_product' => 'Dieses Produkt löschen',
+
+    'messages' => [
+        'updated' => 'Die Produktdaten wurden erfolgreich aktualisiert.',
+        'category_changed' => 'Das Produkt wurde erfolgreich in die Kategorie ":category" verschoben. Alle aktuellen Spezifikationen für alle SKUs dieses Produkts wurden entfernt. Bitte füllen Sie diese erneut aus.',
+    ],
 ];

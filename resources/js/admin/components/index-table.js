@@ -3,7 +3,7 @@ import { closeDropdown, reInitDropdowns } from "../../common/dropdowns.js";
 import { showErrorMessage } from "../../common/modals.js";
 
 export const tableCont = document.querySelector('#indexTableCont');
-export const searchInput = document.querySelector('.product-index_search-cont input');
+export const searchInput = document.querySelector('#searchInput');
 
 const url = new URL(window.location.href);
 export const searchParams = url.searchParams;
@@ -25,7 +25,7 @@ export default function init() {
     if (searchInput) {
         searchInput.addEventListener('input', handleSearchInput);
 
-        clearSearchBtn = searchInput.parentNode.querySelector('.index-search_close-btn');
+        clearSearchBtn = searchInput.parentNode.querySelector('.index_search_close-btn');
 
         clearSearchBtn.addEventListener('click', () => {
             clearSearchInput();
@@ -139,7 +139,12 @@ export function getTable() {
         method: 'get',
     })
     .then(response => {
-        if (!response.ok) throw new Error(`${response.status} (${response.statusText})`);
+        if (!response.ok) {
+            const error = new Error();
+            error.status = response.status;
+            error.statusText = response.statusText;
+            throw error;
+        }
         return response.text();
     })
     .then(result => {
@@ -154,7 +159,7 @@ export function getTable() {
         initPaginationLinks();
         setURL();
     })
-    .catch(err => showErrorMessage(err.message));
+    .catch(err => showErrorMessage(err));
 }
 
 

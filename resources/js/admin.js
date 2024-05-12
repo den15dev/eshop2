@@ -8,6 +8,7 @@ import initOpeners from './admin/main/menu-openers.js';
 import initIndexTable from "./admin/components/index-table.js";
 
 import initProductIndex from "./admin/pages/product-index.js"
+import initProductEdit from "./admin/pages/product-edit.js"
 
 // --------------- Common ------------------
 
@@ -28,6 +29,7 @@ initOpeners();
 // --------------- Products ------------------
 
 initProductIndex();
+initProductEdit();
 
 
 // --------------- Get client translations ------------------

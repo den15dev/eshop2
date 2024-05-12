@@ -1,14 +1,20 @@
 <?php
 return [
     "catalog" => "Catalog",
-    "search" => ["search" => "Search"],
+
     "top_menu" => [
+        'admin_panel' => 'Admin Panel',
         "bonuses" => "Bonus Program",
         "for_customers" => "For Customers",
         "return" => "Exchange and Return",
         "service" => "Service Centers",
         "warranty" => "Warranty"
     ],
+
+    "search" => [
+        "search" => "Search"
+    ],
+
     "user_menu" => [
         "cart" => "Cart",
         "cart_empty" => "Cart is empty",

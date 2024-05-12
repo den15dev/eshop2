@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>@yield('page_title', __('admin/layout.admin_panel') . ' - ' . __('general.app_name'))</title>
+    <title>@yield('page_title', __('admin/general.admin_panel') . ' - ' . __('general.app_name'))</title>
 
     <link rel="icon" type="image/png" href="{{ asset('img/41b106e0/adm_icon_16.png') }}" sizes="16x16">
     <link rel="icon" type="image/png" href="{{ asset('img/41b106e0/adm_icon_32.png') }}" sizes="32x32">
@@ -34,7 +34,7 @@
                             <a href="{{ route('admin.dashboard') }}" class="sidebar-logo_link">
                                 <img src="{{ asset('img/logo/logo_en_160.png') }}" alt="{{ __('general.app_name') }}">
                             </a>
-                            <div class="sidebar-logo_subtitle">{{ __('admin/layout.admin_panel') }}</div>
+                            <div class="sidebar-logo_subtitle">{{ __('admin/general.admin_panel') }}</div>
                         </div>
 
                         @include('admin.main.navigation')
@@ -46,7 +46,7 @@
                                 <h4>@yield('page_header')</h4>
                             </div>
                             <div class="page-header_right">
-                                <a href="{{ route('home') }}" class="page-header_site-link grey-link">{{ __('admin/layout.go_to_site') }}</a>
+                                <a href="{{ route('home') }}" class="page-header_site-link grey-link">{{ __('admin/general.go_to_site') }}</a>
                                 <x-languages-dropdown type="desktop" :languages="$languages" :curlang="$languages->first()" />
                             </div>
                         </div>

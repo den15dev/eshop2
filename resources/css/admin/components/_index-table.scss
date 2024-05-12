@@ -21,12 +21,6 @@
   }
 }
 
-.index-table_img-link {
-  display: block;
-  height: 40px;
-  margin: 0 auto;
-}
-
 .index-table_head-btn {
   cursor: pointer;
   width: fit-content;
@@ -97,21 +91,9 @@
 }
 
 .column-selector_close-btn {
-  position: absolute;
+  @include close-btn;
   top: 10px;
   right: 10px;
-  width: 24px;
-  height: 24px;
-  cursor: pointer;
-  text-align: center;
-  font-size: $font-size-base;
-  color: $grey-200;
-  line-height: 1;
-  padding-top: 4px;
-
-  &:hover {
-    color: color($color1, light, 2);
-  }
 }
 
 .column-selector_list-cont {
@@ -137,6 +119,20 @@
 
 
 // -------------- Column styling -------------
+
+.index-table_img-link,
+.index-table_img-link-brand {
+  display: block;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.index-table_img-link {
+  height: 40px;
+}
+.index-table_img-link-brand {
+  height: 20px;
+}
 
 .index-table_col-scheduled {
   color: $color1;

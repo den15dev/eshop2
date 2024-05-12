@@ -16,4 +16,12 @@ return [
         'orders' => 'Aufträge',
         'stores' => 'Shops',
     ],
+
+    'save' => 'Speichern',
+    'create' => 'Erstellen',
+    'move' => 'Bewegen',
+    'add' => 'Hinzufügen',
+    'delete' => 'Löschen',
+    'close' => 'Schließen',
+    'caution' => 'Vorsicht!',
 ];

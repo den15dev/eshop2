@@ -13,66 +13,79 @@ class GetAttributesAction
     {
         $product = self::getProduct($product_id);
 
+        // Check for incorrect attributes that should be skipped
+        $inactive_attr_ids = [];
+        foreach ($product->attributes as $attr) {
+            $is_active = false;
+            foreach ($attr->variants as $var) {
+                if ($var->skus->contains('id', $sku_id)) {
+                    $is_active = true;
+                    break;
+                }
+            }
+            if (!$is_active) $inactive_attr_ids[] = $attr->id;
+        }
+
         $attributes = new Collection();
 
         foreach ($product->attributes as $attr) {
-            $attribute = new Attribute();
-            $attribute->id = $attr->id;
-            $attribute->name = $attr->name;
+            if (!in_array($attr->id, $inactive_attr_ids)) {
+                $attribute = new Attribute();
+                $attribute->id = $attr->id;
+                $attribute->name = $attr->name;
 
-            $current_variant = new Variant();
-            foreach ($attr->variants as $var) {
-                foreach ($var->skus as $sku) {
-                    if ($sku->id === $sku_id) {
-                        $current_variant->id = $var->id;
-                        $current_variant->name = $var->name;
-                        $current_variant->url = null;
-                        $current_variant->is_current = true;
+                $current_variant = new Variant();
+                foreach ($attr->variants as $var) {
+                    foreach ($var->skus as $sku) {
+                        if ($sku->id === $sku_id) {
+                            $current_variant->id = $var->id;
+                            $current_variant->name = $var->name;
+                            $current_variant->url = null;
+                            $current_variant->is_current = true;
+                        }
                     }
                 }
-            }
-            $attribute->cur_variant = $current_variant;
+                $attribute->cur_variant = $current_variant;
 
-            $variant_list = new Collection();
+                $variant_list = new Collection();
 
-            foreach ($attr->variants as $var) {
-                if ($var->id === $current_variant->id) {
-                    $variant = $current_variant;
+                foreach ($attr->variants as $var) {
+                    if ($var->id === $current_variant->id) {
+                        $variant = $current_variant;
 
-                } else {
-                    $variant = new Variant();
-                    $variant->id = $var->id;
-                    $variant->name = $var->name;
-                    $variant->url = null;
-                    $variant->is_current = false;
+                    } else {
+                        $variant = new Variant();
+                        $variant->id = $var->id;
+                        $variant->name = $var->name;
+                        $variant->url = null;
+                        $variant->is_current = false;
 
-                    // Search a sku in other attributes where current $sku_id is presented
-                    foreach ($var->skus as $sku) {
-                        $match_count = 0;
-                        foreach ($product->attributes as $search_attr) {
-                            if ($search_attr->id !== $attr->id) {
-                                foreach ($search_attr->variants as $search_var) {
-                                    if ($search_var->skus->contains('id', $sku->id) &&
-                                        $search_var->skus->contains('id', $sku_id)) {
-                                        $match_count++;
+                        // Search a sku in other attributes where current $sku_id is presented
+                        foreach ($var->skus as $sku) {
+                            $match_count = 0;
+                            foreach ($product->attributes as $search_attr) {
+                                if ($search_attr->id !== $attr->id && !in_array($attr->id, $inactive_attr_ids)) {
+                                    foreach ($search_attr->variants as $search_var) {
+                                        if ($search_var->skus->contains('id', $sku->id) &&
+                                            $search_var->skus->contains('id', $sku_id)) {
+                                            $match_count++;
+                                        }
                                     }
                                 }
                             }
-                        }
 
-                        if ($match_count === (count($product->attributes) - 1)) {
-                            $variant->url = route('product', [$product->category_slug, $sku->slug . '-' . $sku->id]);
+                            if ($match_count === (count($product->attributes) - count($inactive_attr_ids) - 1)) {
+                                $variant->url = route('product', [$product->category_slug, $sku->slug . '-' . $sku->id]);
+                            }
                         }
                     }
+
+                    $variant_list->push($variant);
                 }
 
-                $variant_list->push($variant);
+                $attribute->variant_list = $variant_list;
+                $attributes->push($attribute);
             }
-
-            $variant_list = $variant_list->sortBy('name');
-
-            $attribute->variant_list = $variant_list;
-            $attributes->push($attribute);
         }
 
         return $attributes;

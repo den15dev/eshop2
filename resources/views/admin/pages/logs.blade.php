@@ -1,6 +1,6 @@
 @extends('admin.layout')
 
-@section('page_title',  __('admin/layout.navigation.logs') . ' - ' . __('admin/layout.admin_panel'))
+@section('page_title',  __('admin/general.navigation.logs') . ' - ' . __('admin/general.admin_panel'))
 
 @section('page_header', 'Журнал')
 

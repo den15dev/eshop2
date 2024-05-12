@@ -1,6 +1,6 @@
 @extends('admin.layout')
 
-@section('page_title',  __('admin/layout.navigation.reviews') . ' - ' . __('admin/layout.admin_panel'))
+@section('page_title',  __('admin/general.navigation.reviews') . ' - ' . __('admin/general.admin_panel'))
 
 @section('page_header', 'Отзывы')
 

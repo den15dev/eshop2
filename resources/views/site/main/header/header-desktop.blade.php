@@ -18,18 +18,13 @@
     <nav class="top-center">
         <ul class="nav-list-top">
             <li>
-                <a href="{{ route('delivery') }}">
-                    {{ __('delivery.delivery') }}
+                <a href="{{ route('admin.products') }}">
+                    {{ __('header.top_menu.admin_panel') }}
                 </a>
             </li>
             <li>
                 <a href="{{ route('stores') }}">
                     {{ __('stores.stores') }}
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('warranty') }}">
-                    {{ __('warranty.warranty') }}
                 </a>
             </li>
             <li class="dropdown">
@@ -39,8 +34,13 @@
                 </div>
                 <ul class="dropdown-list">
                     <li>
-                        <a href="#" class="dropdown-item">
-                            {{ __('header.top_menu.bonuses') }}
+                        <a href="{{ route('delivery') }}" class="dropdown-item">
+                            {{ __('delivery.delivery') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('warranty') }}" class="dropdown-item">
+                            {{ __('warranty.warranty') }}
                         </a>
                     </li>
                     <li>

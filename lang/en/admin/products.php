@@ -4,10 +4,10 @@ return [
     'products' => 'Products',
     'add_product' => 'Add product',
     'adding_product' => 'Adding a product',
-    'product_editing' => 'Product editing',
+    'editing_product' => 'Editing a product',
     'add_sku' => 'Add SKU',
     'adding_sku' => 'Adding a SKU',
-    'sku_editing' => 'SKU editing',
+    'editing_sku' => 'Editing a SKU',
     'in_stock' => 'In stock',
     'out_of_stock' => 'Out of stock',
     'scheduled' => 'Scheduled',
@@ -35,5 +35,19 @@ return [
         'promo_id' => 'Promo ID',
         'promo_name' => 'Promo',
         'created_at' => 'Created at',
-    ]
+    ],
+
+    'name' => 'Name',
+    'brand' => 'Brand',
+    'category' => 'Category',
+    'category_note' => 'After moving the product to another category, all specifications of all SKUs of this product will be deleted.',
+    'attributes' => 'Attributes',
+    'add_variant' => 'Add variant',
+    'add_attribute' => 'Add attribute',
+    'delete_product' => 'Delete this product',
+
+    'messages' => [
+        'updated' => 'The product data have been successfully updated.',
+        'category_changed' => 'The product has been successfully moved to the ":category" category. All current specifications for all SKUs of this product have been removed. Please fill them out again.',
+    ],
 ];

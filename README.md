@@ -8,12 +8,12 @@ This is a second version of a multipage E-commerce web application (work in prog
 - Products can have any number of variants grouped by attributes.
 - A product page where users can see all product's specifications, images, rate the product, leave reviews, and rate others' reviews.
 - A brand page with a description and product categories with this brand.
-- Promo and discount mechanism.
+- Promo pages with ability to set discounts to groups of products with scheduling starting and ending day. Separate discount settings for individual products.
 - Live search by products and brands.
 - User registration and authentication mechanism with email confirmation and password reset.
 - User profile page with ability to edit all personal data.
 - A product cart.
-- An ordering mechanism.
+- An order history page.
 - User notifications about order status changing — by email, and on a web page.
 - Adding products to Favorites.
 - Comparing products by their specifications.

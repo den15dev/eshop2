@@ -12,6 +12,22 @@ $button-bg-red-hover: color($color-red, light, 1);
   text-align: center;
 }
 
+@mixin close-btn {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  text-align: center;
+  font-size: $font-size-base;
+  color: $grey-200;
+  line-height: 1;
+  padding-top: 4px;
+
+  &:hover {
+    color: color($color1, light, 2);
+  }
+}
+
 button,
 .btn,
 .btn-2sizes {

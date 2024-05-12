@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\AjaxController;
+use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\IndexController;
 use App\Http\Controllers\Admin\LogController;
@@ -12,8 +14,7 @@ use App\Http\Controllers\Admin\DashboardController;
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/translations', [LanguageController::class, 'adminTranslations'])->name('translations');
-
-//Route::get('/search', [IndexController::class, 'search'])->name('search');
+Route::post('/ajax', [AjaxController::class, 'post'])->name('ajax.post');
 
 Route::get('/logs', [LogController::class, 'index'])->name('logs');
 
@@ -21,13 +22,17 @@ Route::get('/products', [ProductController::class, 'index'])->name('products');
 Route::get('/products/table', [ProductController::class, 'table'])->name('products.table');
 Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
 Route::get('/products/{id}/edit', [ProductController::class, 'edit'])->whereNumber('id')->name('products.edit');
+Route::put('/products/{id}', [ProductController::class, 'update'])->whereNumber('id')->name('products.update');
+Route::delete('/products/{id}', [ProductController::class, 'destroy'])->whereNumber('id')->name('products.destroy');
 
 Route::get('/skus/create', [SkuController::class, 'create'])->name('skus.create');
 Route::get('/skus/{id}/edit', [SkuController::class, 'edit'])->whereNumber('id')->name('skus.edit');
 
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
 
-Route::get('/brands', IndexController::class)->name('brands');
+Route::get('/brands', [BrandController::class, 'index'])->name('brands');
+Route::get('/brands/table', [BrandController::class, 'table'])->name('brands.table');
+Route::get('/brands/{id}/edit', [BrandController::class, 'edit'])->whereNumber('id')->name('brands.edit');
 
 Route::get('/promos', IndexController::class)->name('promos');
 

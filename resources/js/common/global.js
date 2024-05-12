@@ -25,6 +25,11 @@ export function getCookieValue(a, b, c) {
 }
 
 
+export function ucfirst(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+
 export function getSiteTranslations() {
     fetch('/translations', {
         method: 'get',

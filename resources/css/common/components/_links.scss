@@ -35,6 +35,15 @@ $link-color: $color1;
   }
 }
 
+.red-link {
+  cursor: pointer;
+  color: $color-red;
+
+  &:hover {
+    color: color($color-red, light, 3);
+  }
+}
+
 .image-link-tint {
   position: absolute;
   top: 0;

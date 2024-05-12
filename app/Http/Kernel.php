@@ -41,11 +41,11 @@ class Kernel extends HttpKernel
             // Do not change the order!
             \App\Http\Middleware\SetPreferredLanguage::class,
             \App\Http\Middleware\SetRouteLanguage::class,
+            \App\Http\Middleware\SetSiteData::class,
         ],
 
         'site' => [
             \App\Http\Middleware\SetCurrency::class,
-            \App\Http\Middleware\SetSiteData::class,
         ],
 
         'admin' => [

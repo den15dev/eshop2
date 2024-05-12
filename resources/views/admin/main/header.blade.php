@@ -8,7 +8,7 @@
             <a href="{{ route('admin.dashboard') }}">
                 <img src="{{ asset('img/logo/logo_en_160.png') }}" alt="{{ __('general.app_name') }}">
             </a>
-            <div class="header-mobile_logo-subtitle">{{ __('admin/layout.admin_panel') }}</div>
+            <div class="header-mobile_logo-subtitle">{{ __('admin/general.admin_panel') }}</div>
         </div>
         <div class="btn-icon header-mobile_menu-btn" id="headerMobileRightBtn">
             <svg class="header-mobile_open-icon"><use href="#listIcon"/></svg>
@@ -30,7 +30,7 @@
                     <x-languages-dropdown type="mobile" :languages="$languages" :curlang="$languages->first()" />
                 </li>
                 <li>
-                    <a href="{{ route('home') }}" class="header-desktop_site-link grey-link">{{ __('admin/layout.go_to_site') }}</a>
+                    <a href="{{ route('home') }}" class="header-desktop_site-link grey-link">{{ __('admin/general.go_to_site') }}</a>
                 </li>
             </ul>
         </div>

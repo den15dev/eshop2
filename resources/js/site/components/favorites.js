@@ -29,7 +29,12 @@ function sendData(sku_id) {
         }),
     })
     .then(response => {
-        if (!response.ok) throw new Error(`${response.status} (${response.statusText})`);
+        if (!response.ok) {
+            const error = new Error();
+            error.status = response.status;
+            error.statusText = response.statusText;
+            throw error;
+        }
         return response.json();
     })
     .then(result => {
@@ -43,7 +48,7 @@ function sendData(sku_id) {
             window.location.reload();
         }
     })
-    .catch(err => showErrorMessage(err.message));
+    .catch(err => showErrorMessage(err));
 }
 
 

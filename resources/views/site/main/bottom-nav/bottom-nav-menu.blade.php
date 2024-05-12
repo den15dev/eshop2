@@ -10,6 +10,9 @@
         </div>
 
         <ul class="bottom-menu_list">
+            <li>
+                <a href="{{ route('admin.products') }}">{{ __('header.top_menu.admin_panel') }}</a>
+            </li>
             @isset($filters)
             <li>
                 <a href="{{ route('orders') }}">{{ __('orders.orders') }}</a>
@@ -24,9 +27,6 @@
             </li>
             <li>
                 <a href="{{ route('warranty') }}">{{ __('warranty.warranty') }}</a>
-            </li>
-            <li>
-                <a href="#">{{ __('header.top_menu.for_customers') }}</a>
             </li>
             <li>
                 <a href="#">{{ __('footer.other.help') }}</a>

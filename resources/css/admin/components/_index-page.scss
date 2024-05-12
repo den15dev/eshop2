@@ -1,0 +1,69 @@
+.index_search-add {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+
+  @include sm {
+    flex-direction: row;
+  }
+}
+
+.index_search {
+  position: relative;
+  flex: 1;
+  order: 1;
+
+  @include sm {
+    order: 0;
+  }
+
+  @include md {
+    flex: 0 0 60%;
+  }
+
+  @include xl {
+    flex: 0 0 50%;
+  }
+}
+
+.index_search_close-btn {
+  @include close-btn;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px;
+
+  &.hidden {
+    display: none;
+  }
+}
+
+.index_add-btn {
+  order: 0;
+
+  @include sm {
+    order: 1;
+  }
+
+  button {
+    padding: 0.4rem 1.5rem 0.4rem 1.25rem;
+  }
+}
+
+// --------- Checkboxes ---------
+
+.index_checkboxes {
+  display: flex;
+  column-gap: 2rem;
+  row-gap: 0.5rem;
+  flex-wrap: wrap;
+
+  label {
+    padding-top: 1px;
+  }
+}
+
+.index_checkbox-cont {
+  display: flex;
+  gap: 0.5rem;
+}
