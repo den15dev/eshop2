@@ -27,15 +27,27 @@ class StoreProductRequest extends FormRequest
         $rules = [];
 
         if ($this->has('name')) {
-            $rules['name.*'] = ['nullable'];
-            $rules['name.en'] = ['required'];
-            $rules['brand'] = ['required', 'exists:brands,id'];
+            $rules = array_merge($rules, [
+                'name.*' => ['nullable'],
+                'name.' . app()->getFallbackLocale() => ['required'],
+                'brand' => ['required'],
+            ]);
         }
 
         if ($this->has('category')) {
-            $rules['category'] = ['required', 'exists:categories,id'];
+            $rules = array_merge($rules, [
+                'category' => ['required'],
+            ]);
         }
 
         return $rules;
+    }
+
+
+    public function messages(): array
+    {
+        return [
+            '*.' . app()->getFallbackLocale() . '.required' => __('admin/validation.field_is_required'),
+        ];
     }
 }

@@ -27,7 +27,7 @@ class OrderItem extends Model
 
     public function getPriceFormattedAttribute(): string
     {
-        return Price::formatToCurrency($this->price, $this->currency_id);
+        return Price::from($this->price, $this->currency_id, $this->currency_id)->formatted_full;
     }
 
     public function getCostAttribute(): string
@@ -37,6 +37,6 @@ class OrderItem extends Model
 
     public function getCostFormattedAttribute(): string
     {
-        return Price::formatToCurrency($this->cost, $this->currency_id);
+        return Price::from($this->cost, $this->currency_id, $this->currency_id)->formatted_full;
     }
 }

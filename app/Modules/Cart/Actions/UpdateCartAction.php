@@ -63,17 +63,19 @@ class UpdateCartAction
     private function getBubbleData(int $sku_id, int $sku_qty): \stdClass
     {
         $sku = Sku::join('products', 'products.id', 'skus.product_id')
+            ->join('categories', 'products.category_id', 'categories.id')
             ->select(
                 'skus.id',
                 'skus.name',
                 'skus.slug',
-                'products.category_id'
+                'products.category_id',
+                'categories.slug as category_slug',
             )
             ->firstWhere('skus.id', $sku_id);
 
         $header_bubble = new \stdClass();
         $header_bubble->url = $sku->url;
-        $header_bubble->image_sm = $sku->image_sm;
+        $header_bubble->image_tn = $sku->getImage('tn');
         $header_bubble->name = $sku->name;
         $header_bubble->qty = trans_choice('cart.header_bubble.qty', ['count' => $sku_qty]);
 

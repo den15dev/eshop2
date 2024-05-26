@@ -1,4 +1,4 @@
-<div class="mb-5">
+<div class="mb-6">
     @if(!isset($new))
         <div class="order-title fw-bold mb-1">{{ __('orders.num', ['num' => $order->id]) }}</div>
     @endif

@@ -45,6 +45,22 @@ $margins-and-paddings: (
   }
 }
 
+
+// Font sizes
+@each $size, $mult in $h-font-sizes {
+  .fs-#{$size} {
+    @if $size < 5 {
+      font-size: $font-size-base * ($mult - 0.25);
+      @include sm {
+        font-size: $font-size-base * $mult;
+      }
+    } @else {
+      font-size: $font-size-base * $mult;
+    }
+  }
+}
+
+
 .large {
   font-size: $font-size-lg;
 }
@@ -77,6 +93,10 @@ $margins-and-paddings: (
   width: fit-content;
 }
 
+.w-100 {
+  width: 100%;
+}
+
 .text-start {
   text-align: left;
 }
@@ -91,4 +111,13 @@ $margins-and-paddings: (
 
 .nowrap {
   white-space: nowrap;
+}
+
+.d-block {
+  display: block;
+  width: fit-content;
+}
+
+.hidden {
+  display: none;
 }

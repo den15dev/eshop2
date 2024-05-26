@@ -64,3 +64,41 @@ export function getAdminTranslations() {
         console.error('An error occurred while getting translations: ' + err.message);
     });
 }
+
+
+/**
+ * Set minimum height for all textarea elements
+ * and automatically adjust their height during typing
+ * inside them to avoid scrolling.
+ * You can set "data-minlines" attribute to a textarea
+ * and set minimum number of lines.
+ */
+export function adjustTextAreaHeights() {
+    const lineHeight = 24; // for 16px font size
+    const extraHeight = 14; // for 16px font size
+    let minLines = 3;
+
+    let minHeight = (lineHeight * minLines) + extraHeight;
+    const textAreas = document.querySelectorAll('textarea');
+
+    const adjust = textarea => {
+        if (textarea.dataset.minlines) {
+            minLines = parseInt(textarea.dataset.minlines, 10);
+            minHeight = (lineHeight * minLines) + extraHeight;
+        }
+
+        textarea.style.overflow = 'hidden';
+        textarea.style.height = minHeight + 'px';
+        if (textarea.scrollHeight > minHeight) {
+            textarea.style.height = textarea.scrollHeight + 'px';
+        }
+    };
+
+    textAreas.forEach(textarea => {
+        adjust(textarea);
+
+        textarea.addEventListener('keyup', () => {
+            adjust(textarea);
+        });
+    });
+}

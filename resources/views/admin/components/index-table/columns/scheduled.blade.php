@@ -1,1 +1,1 @@
-<span class="index-table_col-scheduled">{{ $from }}</span>
+<span class="text-scheduled">{{ $from }}</span>

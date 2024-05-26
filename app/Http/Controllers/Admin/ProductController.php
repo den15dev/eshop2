@@ -110,7 +110,7 @@ class ProductController extends Controller
             $category_id = $validated['category'];
             $new_category = Category::find($category_id);
 
-            $this->productService->moveToCategory($id, $category_id);
+            $this->productService->moveProductToCategory($id, $category_id);
 
             $message = __('admin/products.messages.category_changed', ['category' => $new_category->name]);
         }

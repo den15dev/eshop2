@@ -36,7 +36,7 @@ class SearchController extends Controller
         $filter_categories = $this->filterService->getCategories($search_query, $request->query('categories'));
         $filter_reset_url = route('search', ['query' => $search_query]);
 
-        $products = $db_query->paginate($prefs->per_page_num);
+        $skus = $db_query->paginate($prefs->per_page_num);
 
         $rv_cookie = $request->cookie(RecentlyViewedService::COOKIE);
         $recently_viewed = $this->recentlyViewedService->get($rv_cookie);
@@ -49,7 +49,7 @@ class SearchController extends Controller
             'filter_brands',
             'filter_categories',
             'filter_reset_url',
-            'products',
+            'skus',
             'recently_viewed',
         ));
     }
@@ -61,13 +61,13 @@ class SearchController extends Controller
 
         $total = $this->searchService->countDropdownProductResults($search_query);
         $brands = $this->searchService->getDropdownBrands($search_query);
-        $products = $this->searchService->getDropdownSkus($search_query);
+        $skus = $this->searchService->getDropdownSkus($search_query);
 
         return view('site.pages.search-dropdown', compact(
             'search_query',
             'total',
             'brands',
-            'products',
+            'skus',
         ));
     }
 }

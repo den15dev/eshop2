@@ -31,14 +31,14 @@
                     @if($sku->images)
                         @foreach($sku->images as $image)
                             <div class="f-carousel__slide"
-                                 data-thumb-src="{{ get_image('storage/images/products/' . $sku->id . '/' . $image . '_80.jpg', 80) }}"
+                                 data-thumb-src="{{ $sku->getImage('tn', $image) }}"
                                  data-fancybox="product_images"
-                                 data-src="{{ get_image('storage/images/products/' . $sku->id . '/' . $image . '_big.jpg', 1400) }}">
-                                <img src="{{ get_image('storage/images/products/' . $sku->id . '/' . $image . '_600.jpg', 600) }}" alt="{{ $sku->name }}">
+                                 data-src="{{ $sku->getImage('lg', $image) }}">
+                                <img src="{{ $sku->getImage('md', $image) }}" alt="{{ $sku->name }}">
                             </div>
                         @endforeach
                     @else
-                        <img src="{{ asset('img/default/no-image_600.jpg') }}" alt="">
+                        <img src="{{ asset('img/default/no-image_md.jpg') }}" alt="">
                     @endif
                 </div>
             </div>

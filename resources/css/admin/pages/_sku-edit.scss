@@ -1,0 +1,139 @@
+.sku-edit_images-title {
+  color: $grey-150;
+}
+
+.sku-edit_images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.sku-edit_image-item {
+  position: relative;
+  width: 162px;
+  height: 162px;
+
+  a, img {
+    display: block;
+    width: 100%;
+  }
+
+  a {
+    cursor: grab;
+  }
+}
+
+.sku-edit_image-item_close-btn {
+  $btn-size: 26px;
+
+  position: absolute;
+  width: $btn-size;
+  height: $btn-size;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  svg {
+    width: $btn-size - 8;
+    height: $btn-size - 8;
+    stroke: $grey-180;
+    stroke-width: 2;
+    fill: none;
+  }
+
+  &:hover {
+    svg {
+      stroke: color($color-red, light, 3);
+    }
+  }
+}
+
+.f-carousel__thumbs,
+.f-thumbs__slide {
+  --f-thumb-width: 80px;
+  --f-thumb-height: 80px;
+}
+
+.fancybox__backdrop {
+  opacity: $dark-tint-opacity !important;
+}
+
+
+// --------------- Specs ----------------
+
+.spec-item {
+  $column-gap: 2rem;
+  display: flex;
+  column-gap: $column-gap;
+  row-gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid $grey-230;
+
+  .spec-item_section {
+    flex: 1 0 100%;
+
+    @include md {
+      flex: 0 0 calc(50% - $column-gap/2);
+    }
+  }
+}
+
+.spec-item_checkboxes {
+  display: flex;
+  column-gap: 1rem;
+  row-gap: 0.25rem;
+  flex-wrap: wrap;
+
+  @include sm {
+    column-gap: 1.5rem;
+  }
+}
+
+.spec-item_checkbox-cont {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.spec-item_text-cont {
+  display: flex;
+  align-items: center;
+  column-gap: 0.5rem;
+  margin-bottom: 0.75rem;
+
+  & > div {
+    flex: 1;
+
+    .invalid-feedback {
+      line-height: 1;
+      margin-top: 0.5rem;
+    }
+  }
+
+  label {
+    width: 22px;
+
+    @include sm {
+      width: 25px;
+    }
+  }
+}
+
+.spec-item_btns {
+  display: flex;
+  column-gap: 1.25rem;
+  justify-content: right;
+  align-items: center;
+  margin-top: -0.25rem;
+  margin-bottom: 0.25rem;
+  font-size: $font-size-sm;
+}
+
+.spec-item_clear-btn {
+  //width: fit-content;
+  //margin: -0.25rem 0 0.25rem auto;
+}

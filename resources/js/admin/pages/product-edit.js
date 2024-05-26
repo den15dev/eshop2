@@ -1,7 +1,7 @@
 import { closeDropdown } from "../../common/dropdowns.js";
 import { showClientModal } from "../../common/modals.js";
 import { translations, ucfirst } from "../../common/global.js";
-import { post } from "../components/ajax.js";
+import { post, showFieldError } from "../components/ajax.js";
 
 const attributeList = document.querySelector('.product-edit_attribute-list');
 const changeCategoryBtn = document.querySelector('#changeCategoryBtn');
@@ -81,7 +81,7 @@ function updateAttribute(item) {
         function (result) {
             for (const fieldName in result.errors) {
                 const input = getAttributeInputByFieldName(item, fieldName);
-                if (input) showInputError(input, result.errors[fieldName][0]);
+                if (input) showFieldError(input, result.errors[fieldName][0]);
             }
         },
         function () {
@@ -115,7 +115,7 @@ function createAttribute(item) {
         function (result) {
             for (const fieldName in result.errors) {
                 const input = getAttributeInputByFieldName(item, fieldName);
-                if (input) showInputError(input, result.errors[fieldName][0]);
+                if (input) showFieldError(input, result.errors[fieldName][0]);
             }
         },
         function () {
@@ -190,15 +190,4 @@ function getAttributeInputByFieldName(item, fieldName) {
     });
 
     return input;
-}
-
-
-function showInputError(input, message) {
-    input.classList.add('is-invalid');
-    input.parentNode.querySelector('.invalid-feedback').innerText = message;
-}
-
-function hideInputError(input) {
-    input.classList.remove('is-invalid');
-    input.parentNode.querySelector('.invalid-feedback').innerText = '';
 }

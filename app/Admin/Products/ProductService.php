@@ -4,13 +4,19 @@ namespace App\Admin\Products;
 
 use App\Admin\IndexTable\IndexTableService;
 use App\Admin\Products\Actions\BuildIndexQueryAction;
+use App\Admin\Products\Actions\GetSkuFinalPricesAction;
+use App\Admin\Products\Actions\MoveProductToCategoryAction;
+use App\Admin\Products\Actions\UpdateSkuAttributesAction;
+use App\Admin\Products\Actions\UpdateSkuImagesAction;
+use App\Admin\Products\Actions\ValidateSkuAttributesAction;
+use App\Modules\Categories\Models\Specification;
+use App\Modules\Images\ImageService;
 use App\Modules\Products\Models\Attribute;
-use App\Modules\Products\Models\Product;
+use App\Modules\Products\Models\Sku;
 use App\Modules\Products\Models\Variant;
-use Illuminate\Database\Query\Builder as QBuilder;
 use Illuminate\Database\Eloquent\Builder as EBuilder;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 
 class ProductService
 {
@@ -47,28 +53,9 @@ class ProductService
     }
 
 
-    public function moveToCategory(int $product_id, int $category_id): void
+    public function moveProductToCategory(int $product_id, int $category_id): void
     {
-        DB::beginTransaction();
-
-        try {
-            Product::where('id', $product_id)->update(['category_id' => $category_id]);
-
-            DB::table('sku_specification')
-                ->whereIn('sku_id', function (QBuilder $query) use ($product_id) {
-                    $query->select('id')
-                        ->from('skus')
-                        ->where('product_id', $product_id);
-                })
-                ->delete();
-
-            DB::commit();
-
-        } catch (\Throwable $e) {
-            DB::rollBack();
-            Log::channel('events')->info('An exception caught while trying to move the product ' . $product_id . ' to another category: ' . $e->getMessage());
-            abort(500);
-        }
+        MoveProductToCategoryAction::run($product_id, $category_id);
     }
 
 
@@ -110,5 +97,96 @@ class ProductService
         $variant->attribute_id = $attribute_id;
         $variant->name = $fields;
         $variant->save();
+    }
+
+
+    public function getSku(int $id): Sku
+    {
+        return Sku::join('products', 'skus.product_id', 'products.id')
+            ->join('categories', 'products.category_id', 'categories.id')
+            ->select(
+                'skus.*',
+                'categories.id as category_id',
+                'categories.name as category_name',
+            )
+            ->with('promo')
+            ->with('product.attributes.variants:id,attribute_id,name')
+            ->with('variants:id,attribute_id,name')
+            ->with('specifications:id')
+            ->firstWhere('skus.id', $id);
+    }
+
+
+    public function getSkuFinalPrices(
+        string $price,
+        string $currency_id,
+        ?int $sku_discount,
+        ?int $promo_id
+    ): \stdClass
+    {
+        return GetSkuFinalPricesAction::run(
+            $price,
+            $currency_id,
+            $sku_discount,
+            $promo_id
+        );
+    }
+
+
+    public function getCategorySpecs(int $category_id)
+    {
+        return Specification::select(
+                'id',
+                'name',
+                'units',
+                'sort',
+                'is_filter',
+                'is_main',
+            )
+            ->where('category_id', $category_id)
+            ->orderBy('sort')
+            ->get();
+    }
+
+
+    public function validateSkuAttributes(int $sku_id, int $product_id, array $attributes): bool
+    {
+        return ValidateSkuAttributesAction::run($sku_id, $product_id, $attributes);
+    }
+
+
+    public function updateSkuAttributes(int $sku_id, array $attributes): void
+    {
+        UpdateSkuAttributesAction::run($sku_id, $attributes);
+    }
+
+
+    public function updateSkuImages(int $id, array $old_images, array $new_images, ?UploadedFile $file): void
+    {
+        UpdateSkuImagesAction::run($id, $old_images, $new_images, $file);
+    }
+
+
+    public function updateSkuSpec(int $sku_id, int $spec_id, array $fields): void
+    {
+        $existed = DB::table('sku_specification')
+            ->where('sku_id', $sku_id)
+            ->where('specification_id', $spec_id)
+            ->exists();
+
+        if ($existed) {
+            Sku::find($sku_id)->specifications()->updateExistingPivot($spec_id, [
+                'spec_value' => $fields,
+            ]);
+        } else {
+            Sku::find($sku_id)->specifications()->attach($spec_id, [
+                'spec_value' => $fields,
+            ]);
+        }
+    }
+
+    public function deleteSkuSpec(int $sku_id, int $spec_id): void
+    {
+        Sku::find($sku_id)->specifications()->detach($spec_id);
     }
 }

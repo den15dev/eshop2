@@ -96,6 +96,13 @@ button,
   }
 }
 
+.btn-inactive {
+  color: $grey-180;
+  background-color: $button-bg-grey;
+  cursor: default;
+  pointer-events: none;
+}
+
 .btn-outlined {
   color: $text-color;
   background-color: unset;

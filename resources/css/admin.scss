@@ -7,6 +7,7 @@
 @import 'common/base';
 
 @import 'common/vendors/bootstrap';
+@import 'common/vendors/fancybox';
 
 @import 'common/components/buttons';
 @import 'common/components/scrollbar-thin';
@@ -27,6 +28,7 @@
 
 @import "admin/pages/product-index";
 @import "admin/pages/product-edit";
+@import "admin/pages/sku-edit";
 
 @import "admin/components/index-page";
 @import "admin/components/index-table";

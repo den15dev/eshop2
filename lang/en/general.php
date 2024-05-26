@@ -6,7 +6,7 @@ return [
     "messages" => [
         "error" => "Error",
         "error_occurred" => "An error has occurred",
-        'forbidden' => 'Action not allowed',
+        'forbidden' => 'The action not allowed',
     ],
 
     "modal" => [

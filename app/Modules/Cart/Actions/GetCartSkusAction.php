@@ -17,12 +17,14 @@ class GetCartSkusAction
         }
 
         $skus = Sku::join('products', 'skus.product_id', 'products.id')
+            ->join('categories', 'products.category_id', 'categories.id')
             ->joinActivePromos()
             ->select(
                 'skus.id',
                 'skus.name',
                 'skus.slug',
                 'products.category_id',
+                'categories.slug as category_slug',
                 'skus.short_descr',
                 'skus.currency_id',
                 'skus.price',

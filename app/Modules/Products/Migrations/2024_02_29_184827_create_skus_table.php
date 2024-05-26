@@ -29,7 +29,7 @@ return new class extends Migration
             $table->decimal('rating', 4, 2)->nullable();
             $table->unsignedInteger('vote_num')->nullable();
             $table->jsonb('images')->nullable();
-            $table->timestamp('available_from')->useCurrent();
+            $table->timestamp('available_from')->nullable();
             $table->timestamp('available_until')->nullable();
             $table->unsignedBigInteger('promo_id')->nullable();
             $table->foreign('promo_id')->references('id')->on('promos')->onUpdate('cascade')->onDelete('set null');

@@ -6,7 +6,7 @@
 <div class="product-card">
     <div class="product-card_image-cont">
         <a href="{{ $sku->url }}" class="product-card_image-link">
-            <img src="{{ $sku->image_md }}" class="product-card_image" alt="{{ $sku->name }}">
+            <img src="{{ $sku->getImage('md') }}" class="product-card_image" alt="{{ $sku->name }}">
             <div class="image-link-tint"></div>
         </a>
         @if($sku->promo_id && $page !== 'promo')
@@ -24,7 +24,7 @@
 
     <x-rating size="small"
               mb="1"
-              :url="$sku->url . '/reviews'"
+              :url="$sku->reviews_url"
               :rating="$sku->rating"
               :ratingformatted="$sku->rating_formatted"
               :num="$sku->vote_num"/>

@@ -5,6 +5,7 @@ namespace App\Modules\Currencies\Commands;
 use App\Modules\Currencies\CurrencyService;
 use App\Modules\Currencies\Sources\SourceEnum;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Cache;
 
 class UpdateRates extends Command
 {
@@ -19,6 +20,7 @@ class UpdateRates extends Command
     public function handle(CurrencyService $currencyService)
     {
         $this->updateRates($currencyService);
+        Cache::forget('currencies');
         $this->info('Currency exchange rates updated');
     }
 

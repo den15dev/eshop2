@@ -64,7 +64,7 @@ return [
     ],
     [
         'id' => 'discount',
-        'order_by' => 'skus.discount',
+        'order_by' => DB::raw(Sku::DISCOUNT_FILTERED),
     ],
     [
         'id' => 'final_price',

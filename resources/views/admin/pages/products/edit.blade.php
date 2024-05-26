@@ -1,6 +1,6 @@
 @extends('admin.layout')
 
-@section('page_title',  __('admin/products.editing_product') . ' ' . $product->id . ' - ' . __('admin/general.admin_panel'))
+@section('page_title',  $product->name . ' - ' . __('admin/products.editing_product'))
 
 @section('page_header', __('admin/products.editing_product'))
 
@@ -86,7 +86,7 @@
             @endforeach
         </ul>
 
-        <a href="{{ route('admin.skus.create') }}" class="btn btn-add mb-6">+&nbsp;&nbsp;{{ __('admin/products.add_sku') }}</a>
+        <a href="{{ route('admin.skus.create', ['product_id' => $product->id]) }}" class="btn btn-add mb-6">+&nbsp;&nbsp;{{ __('admin/products.add_sku') }}</a>
 
 
         <h5 class="mb-3">{{ __('admin/products.attributes') }}</h5>
@@ -115,7 +115,11 @@
         <form class="mb-4" action="{{ route('admin.products.destroy', $product->id) }}" method="POST">
             @method('DELETE')
             @csrf
-            <button class="btn-bg-red">{{ __('admin/products.delete_product') }}</button>
+            <button class="btn-bg-red mb-3">{{ __('admin/products.delete_product') }}</button>
+            <div class="small fst-italic">
+                <span class="fw-semibold">{{ __('admin/general.caution') }}</span>
+                <span class="grey-text">{{ __('admin/products.delete_product_warning') }}</span>
+            </div>
         </form>
     </div>
 @endsection

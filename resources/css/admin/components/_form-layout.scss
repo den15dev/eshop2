@@ -22,7 +22,7 @@
   gap: $form-flex-gap;
   flex-wrap: wrap;
 
-  & > div {
+  & > div, form {
     flex: 1 0 100%;
 
     @include md {

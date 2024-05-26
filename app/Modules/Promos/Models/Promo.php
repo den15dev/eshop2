@@ -20,6 +20,11 @@ class Promo extends Model
 
     protected $guarded = [];
 
+    protected $casts = [
+        'starts_at' => 'date',
+        'ends_at' => 'date',
+    ];
+
 
     public function skus(): HasMany
     {
@@ -40,5 +45,29 @@ class Promo extends Model
         static::deleted(function (self $model) {
             Cache::forget('promos');
         });
+    }
+
+
+    public function getStatusAttribute(): string
+    {
+        if ($this->ends_at->isPast()) {
+            return 'ended';
+
+        } elseif ($this->starts_at->isPast() && $this->ends_at->isFuture()) {
+            return 'active';
+
+        } else {
+            return 'scheduled';
+        }
+    }
+
+
+    public function getStatusDescriptionAttribute(): string
+    {
+        return match($this->status) {
+            'ended' => __('admin/products.promo_status.ended') . ' ' . $this->ends_at->isoFormat('D MMMM YYYY'),
+            'active' => __('admin/products.promo_status.active_until') . ' ' . $this->ends_at->isoFormat('D MMMM YYYY'),
+            'scheduled' => __('admin/products.promo_status.will_start') . ' ' . $this->starts_at->isoFormat('D MMMM YYYY'),
+        };
     }
 }

@@ -4,9 +4,9 @@
 
 @section('main_content')
     <div class="container">
-        <h4 class="mb-4">{{ __('search.query_results', ['query' => $search_query, 'num' => $products->total()]) }}</h4>
+        <h4 class="mb-4">{{ __('search.query_results', ['query' => $search_query, 'num' => $skus->total()]) }}</h4>
 
-        @if($products->count())
+        @if($skus->count())
             <div class="catalog-page-wrap mb-6">
                 <div class="sidebar-cont">
                     <form method="GET" action="" id="filterFormDesktop">
@@ -24,19 +24,19 @@
 
                     @if($prefs->layout === 1)
                         <div class="catalog-cards-cont mb-5">
-                            @foreach($products as $product)
-                                <x-product-card :product="$product"/>
+                            @foreach($skus as $sku)
+                                <x-product-card :sku="$sku"/>
                             @endforeach
                         </div>
 
                     @elseif($prefs->layout === 2)
-                        @foreach($products as $product)
-                            <x-product-row :product="$product"/>
+                        @foreach($skus as $sku)
+                            <x-product-row :sku="$sku"/>
                         @endforeach
                     @endif
 
-                    {{ $products->links('common.pagination.results-shown') }}
-                    {{ $products->onEachSide(1)->withQueryString()->links('common.pagination.page-links') }}
+                    {{ $skus->links('common.pagination.results-shown') }}
+                    {{ $skus->onEachSide(1)->withQueryString()->links('common.pagination.page-links') }}
                 </div>
             </div>
         @else

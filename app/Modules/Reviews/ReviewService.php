@@ -37,12 +37,14 @@ class ReviewService
     public function getSku(int $sku_id): Sku
     {
         return Sku::join('products', 'skus.product_id', 'products.id')
+            ->join('categories', 'products.category_id', 'categories.id')
             ->joinActivePromos()
             ->select(
                 'skus.id',
                 'skus.name',
                 'skus.slug',
                 'products.category_id',
+                'categories.slug as category_slug',
                 'skus.discount',
                 'skus.rating',
                 'skus.vote_num',

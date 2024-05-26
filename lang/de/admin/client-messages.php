@@ -12,4 +12,9 @@ return [
         'delete_attribute' => 'Sind Sie sicher, dass Sie das Attribut entfernen möchten? Alle Varianten dieses Attributs werden aus allen SKUs entfernt!',
         'delete_variant' => 'Sind Sie sicher, dass Sie diese Variante aus allen SKUs dieses Produkts entfernen möchten?',
     ],
+
+    'skus' => [
+        'spec_updated' => 'Die Spezifikation wurde aktualisiert',
+        'spec_cleared' => 'Die Spezifikation wurde gelöscht',
+    ],
 ];

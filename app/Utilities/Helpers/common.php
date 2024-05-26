@@ -149,18 +149,14 @@ if (!function_exists('getImageBySlug')) {
 if (!function_exists('get_image')) {
     /**
      * Looks if an image exists, if it doesn't, returns a placeholder.
-     *
-     * @param string $image_path - like 'storage/images/...'.
-     * @param int|string $placeholder_resolution
-     * @return string
      */
-    function get_image(string $image_path, int|string $placeholder_resolution): string
+    function get_image(string $image_path, int|string $placeholder_size): string
     {
         if (file_exists($image_path)) {
             return asset($image_path);
         }
 
-        return asset('img/default/no-image_' . $placeholder_resolution . '.jpg');
+        return asset('img/default/no-image_' . $placeholder_size . '.jpg');
     }
 }
 

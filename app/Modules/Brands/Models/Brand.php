@@ -2,6 +2,7 @@
 
 namespace App\Modules\Brands\Models;
 
+use App\Modules\Images\ImageService;
 use App\Modules\Products\Models\Product;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -13,7 +14,7 @@ class Brand extends Model
 
     public array $translatable = ['description'];
     protected $guarded = [];
-    const IMG_DIR = 'storage/images/brands';
+    const IMG_DIR = 'brands';
 
 
     public function products(): HasMany
@@ -29,6 +30,6 @@ class Brand extends Model
 
     public function getImageUrlAttribute(): string
     {
-        return getImageBySlug(self::IMG_DIR . '/' . $this->slug);
+        return getImageBySlug(ImageService::PUBLIC_DIR . '/' . self::IMG_DIR . '/' . $this->slug);
     }
 }

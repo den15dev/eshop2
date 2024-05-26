@@ -1,9 +1,9 @@
-<a href="{{ $product->url }}" class="search-dropdown_item">
-    <img src="{{ $product->image_sm }}">
+<a href="{{ $sku->url }}" class="search-dropdown_item">
+    <img src="{{ $sku->getImage('tn') }}">
     <div class="product-title">
-        {{ $product->name }}
+        {{ $sku->name }}
     </div>
     <div class="product-price">
-        {!! $product->final_price_formatted !!}
+        {!! $sku->final_price_formatted !!}
     </div>
 </a>

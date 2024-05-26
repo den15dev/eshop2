@@ -6,6 +6,7 @@ use App\Modules\Products\Actions\GetAttributesAction;
 use App\Modules\Products\Actions\GetSkuAction;
 use App\Modules\Products\Models\Sku;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 
 class ProductService
 {
@@ -27,7 +28,7 @@ class ProductService
     public function getDiscounted()
     {
         return Sku::getCards()
-            ->orderByDesc('skus.discount')
+            ->orderByDesc(DB::raw(Sku::DISCOUNT))
             ->orderByDesc('skus.created_at')
             ->limit(self::HOME_CAROUSEL_LIMIT)
             ->get();

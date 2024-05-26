@@ -20,8 +20,8 @@
             </a>
         </div>
 
-        @foreach($products as $product)
-            <x-search-dropdown-item :product="$product" />
+        @foreach($skus as $sku)
+            <x-search-dropdown-item :sku="$sku" />
         @endforeach
     @endif
 

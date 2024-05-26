@@ -22,6 +22,11 @@ return [
     'move' => 'Bewegen',
     'add' => 'Hinzufügen',
     'delete' => 'Löschen',
+    'clear' => 'Klar',
     'close' => 'Schließen',
     'caution' => 'Vorsicht!',
+    'Yes' => 'Ja',
+    'yes' => 'Ja',
+    'No' => 'Nein',
+    'no' => 'Nein',
 ];

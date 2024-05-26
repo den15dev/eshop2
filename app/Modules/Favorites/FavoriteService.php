@@ -58,6 +58,7 @@ class FavoriteService
         $ids = array_reverse(self::$favorites);
 
         return Sku::join('products', 'skus.product_id', 'products.id')
+            ->join('categories', 'products.category_id', 'categories.id')
             ->joinActivePromos()
             ->selectForCards()
             ->whereIn('skus.id', $ids)

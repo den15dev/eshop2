@@ -14,6 +14,9 @@ use App\Http\Controllers\Admin\DashboardController;
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/translations', [LanguageController::class, 'adminTranslations'])->name('translations');
+
+Route::get('/ajax/json', [AjaxController::class, 'getJson'])->name('ajax.get.json');
+Route::get('/ajax/html', [AjaxController::class, 'getHtml'])->name('ajax.get.html');
 Route::post('/ajax', [AjaxController::class, 'post'])->name('ajax.post');
 
 Route::get('/logs', [LogController::class, 'index'])->name('logs');
@@ -27,8 +30,11 @@ Route::delete('/products/{id}', [ProductController::class, 'destroy'])->whereNum
 
 Route::get('/skus/create', [SkuController::class, 'create'])->name('skus.create');
 Route::get('/skus/{id}/edit', [SkuController::class, 'edit'])->whereNumber('id')->name('skus.edit');
+Route::put('/skus/{id}', [SkuController::class, 'update'])->whereNumber('id')->name('skus.update');
+Route::delete('/skus/{id}', [SkuController::class, 'destroy'])->whereNumber('id')->name('skus.destroy');
 
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
+Route::get('/categories/{id}/edit', [CategoryController::class, 'edit'])->whereNumber('id')->name('categories.edit');
 
 Route::get('/brands', [BrandController::class, 'index'])->name('brands');
 Route::get('/brands/table', [BrandController::class, 'table'])->name('brands.table');

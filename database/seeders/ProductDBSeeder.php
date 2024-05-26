@@ -416,6 +416,7 @@ class ProductDBSeeder
                                 'currency_id' => 'rub',
                                 'price' => $obj_ru->price,
                                 'images' => json_encode($images, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
+                                'available_from' => now(),
                                 'created_at' => $date_time,
                                 'updated_at' => $date_time,
                             ];

@@ -102,26 +102,26 @@ export function showClientModal(data = {}) {
     if (data.type === 'confirm') {
         cancelBtn.style.display = 'block';
 
-        if (data.okAction) {
-            okBtn.addEventListener('click', data.okAction);
-
-            okBtn.addEventListener('click', () => {
-                okBtn.removeEventListener('click', data.okAction);
-            });
-
-            cancelBtn.addEventListener('click', () => {
-                okBtn.removeEventListener('click', data.okAction);
-            });
-
-            const closeBtn = okBtn.closest('.modal-win').querySelector('.modal-close-btn');
-            closeBtn.addEventListener('click', () => {
-                okBtn.removeEventListener('click', data.okAction);
-            });
-        }
-
         if (data.cancelText) {
             cancelBtn.innerText = data.cancelText;
         }
+    }
+
+    if (data.okAction) {
+        okBtn.addEventListener('click', data.okAction);
+
+        okBtn.addEventListener('click', () => {
+            okBtn.removeEventListener('click', data.okAction);
+        });
+
+        cancelBtn?.addEventListener('click', () => {
+            okBtn.removeEventListener('click', data.okAction);
+        });
+
+        const closeBtn = okBtn.closest('.modal-win').querySelector('.modal-close-btn');
+        closeBtn?.addEventListener('click', () => {
+            okBtn.removeEventListener('click', data.okAction);
+        });
     }
 
     if (data.okText) {

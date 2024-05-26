@@ -7,74 +7,91 @@ use App\Modules\Currencies\Models\Currency;
 
 class Price
 {
-    public readonly ?string $value;
-    public readonly string $currency_id;
+    public readonly string $value;
     public readonly string $converted; // Clean numeric
     public readonly string $formatted; // With thousands and decimal separators
     public readonly string $formatted_full; // With currency sign
 
-    private readonly Currency $cur_currency;
+    private static Currency $from_currency;
+    private static Currency $to_currency;
 
 
-    public function __construct(?string $value, ?string $currency_id = null)
-    {
+    public function __construct(
+        string $value,
+        ?string $from_currency_id = null,
+        ?string $to_currency_id = null
+    ) {
         $this->value = $value;
+        $currencies = CurrencyService::getAll();
 
-        $cur_currency = CurrencyService::$cur_currency;
-        $this->currency_id = $currency_id ?? $cur_currency->id;
-        $this->cur_currency = $cur_currency;
+        if ($to_currency_id && $to_currency_id !== CurrencyService::$cur_currency->id) {
+            self::$to_currency = $currencies->firstWhere('id', $to_currency_id);
 
-        $this->converted = $this->getConverted();
+            if ($to_currency_id === $from_currency_id) {
+                $this->converted = $value;
+            } else {
+                self::$from_currency = $currencies->firstWhere('id', $from_currency_id);
+
+                $this->converted = $this->getConverted($value, self::$from_currency->id, self::$to_currency->id);
+            }
+
+        } elseif ($from_currency_id && $from_currency_id !== CurrencyService::$cur_currency->id) {
+            self::$to_currency = CurrencyService::$cur_currency;
+            self::$from_currency = $currencies->firstWhere('id', $from_currency_id);
+
+            $this->converted = $this->getConverted($value, self::$from_currency->id, self::$to_currency->id);
+
+        } else {
+            self::$to_currency = CurrencyService::$cur_currency;
+            $this->converted = $value;
+        }
+
         $this->formatted = $this->getFormatted();
         $this->formatted_full = $this->getFormattedFull();
     }
 
 
-    public static function from(?string $value, ?string $currency_id = null): self
+    /**
+     * Null means current currency id.
+     */
+    public static function from(
+        string $value,
+        ?string $from_currency_id = null,
+        ?string $to_currency_id = null
+    ): self
     {
-        return new self($value, $currency_id);
+        return new self($value, $from_currency_id, $to_currency_id);
     }
 
 
-    private function getConverted(): string
+    private static function getConverted(string $value, string $from_currency_id, string $to_currency_id): string
     {
-        if ($this->currency_id === $this->cur_currency->id) {
-            return $this->value;
-        }
+        if ($from_currency_id === $to_currency_id) return $value;
 
-        $currencies = CurrencyService::getAll();
-        $cur_currency = $this->cur_currency;
+        $exchanging_value = bcmul($value, self::$from_currency->exchange_rate);
 
-        // Calculate in exchanging currency
-        $sku_exch_rate = $currencies->firstWhere('id', $this->currency_id)->exchange_rate;
-        $exchanging_value = bcmul($this->value, $sku_exch_rate);
-
-        // Calculate in current currency
-        return bcdiv($exchanging_value, $cur_currency->exchange_rate);
+        return bcdiv($exchanging_value, self::$to_currency->exchange_rate);
     }
 
 
     private function getFormatted(): string
     {
-        $cur_currency = $this->cur_currency;
-
         return self::format(
             $this->converted,
-            $cur_currency->decimal_sep,
-            $cur_currency->thousands_sep
+            self::$to_currency->decimal_sep,
+            self::$to_currency->thousands_sep
         );
     }
 
 
     private function getFormattedFull(): string
     {
-        $cur_currency = $this->cur_currency;
         $formatted_full = $this->formatted;
 
-        if ($cur_currency->symbol_precedes) {
-            $formatted_full = $cur_currency->symbol . $formatted_full;
+        if (self::$to_currency->symbol_precedes) {
+            $formatted_full = self::$to_currency->symbol . $formatted_full;
         } else {
-            $formatted_full = $formatted_full . ' ' . $cur_currency->symbol;
+            $formatted_full = $formatted_full . ' ' . self::$to_currency->symbol;
         }
 
         return $formatted_full;
@@ -100,16 +117,5 @@ class Price
         }
 
         return $num;
-    }
-
-
-    public static function formatToCurrency(string $price, string $currency_id): string
-    {
-        $currency = CurrencyService::getAll()->firstWhere('id', $currency_id);
-        $formatted = self::format($price, $currency->decimal_sep, $currency->thousands_sep);
-
-        return $currency->symbol_precedes
-            ? $currency->symbol . $formatted
-            : $formatted . ' ' . $currency->symbol;
     }
 }

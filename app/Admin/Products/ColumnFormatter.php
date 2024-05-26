@@ -33,7 +33,7 @@ class ColumnFormatter
     private function imageLink(Sku $sku)
     {
         $url = route('admin.skus.edit', $sku->id);
-        $imgurl = $sku->image_sm;
+        $imgurl = $sku->getImage('tn');
 
         return View::make( 'admin.components.index-table.columns.image-link', compact('url', 'imgurl'))->render();
     }
@@ -50,7 +50,7 @@ class ColumnFormatter
 
     private function finalPriceFormatted(Sku $sku): string
     {
-        return Price::formatToCurrency($sku->final_price, $sku->currency_id);
+        return Price::from($sku->final_price, $sku->currency_id, $sku->currency_id)->formatted_full;
     }
 
 

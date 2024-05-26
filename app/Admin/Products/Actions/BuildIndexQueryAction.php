@@ -47,7 +47,7 @@ class BuildIndexQueryAction
                 'brands.name as brand_name',
                 'skus.currency_id',
                 'skus.price',
-                DB::raw(Sku::DISCOUNT . ' as discount'),
+                DB::raw(Sku::DISCOUNT_FILTERED . ' as discount'),
                 'skus.rating',
                 'skus.vote_num',
                 'skus.available_from',

@@ -22,6 +22,11 @@ return [
     'move' => 'Move',
     'add' => 'Add',
     'delete' => 'Delete',
+    'clear' => 'Clear',
     'close' => 'Close',
     'caution' => 'Caution!',
+    'Yes' => 'Yes',
+    'yes' => 'yes',
+    'No' => 'No',
+    'no' => 'no',
 ];

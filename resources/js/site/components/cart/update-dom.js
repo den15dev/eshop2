@@ -105,7 +105,7 @@ export function showHeaderBubble(result) {
         const data = result.header_bubble;
 
         imgLink.href = data.url;
-        img.src = data.image_sm;
+        img.src = data.image_tn;
         img.alt = data.name;
         titleLink.href = data.url;
         titleLink.innerText = data.name;

@@ -5,12 +5,12 @@ namespace App\Modules\Products\Models;
 use App\Modules\Cart\CartService;
 use App\Modules\Cart\Models\CartItem;
 use App\Modules\Catalog\ComparisonService;
-use App\Modules\Categories\CategoryService;
 use App\Modules\Categories\Models\Specification;
 use App\Modules\Currencies\CurrencyService;
 use App\Modules\Currencies\Models\Currency;
 use App\Modules\Favorites\FavoriteService;
 use App\Modules\Favorites\Models\Favorite;
+use App\Modules\Images\ImageService;
 use App\Modules\Orders\Models\OrderItem;
 use App\Modules\Products\ValueObjects\Price;
 use App\Modules\Promos\Models\Promo;
@@ -40,14 +40,21 @@ class Sku extends Model
 
     protected $casts = [
         'images' => 'array',
-        'available_from' => 'date',
-        'available_until' => 'date',
+        'available_from' => 'datetime',
+        'available_until' => 'datetime',
     ];
 
     protected $guarded = [];
 
-    const IMG_DIR = 'storage/images/products';
+    const IMG_DIR = 'products';
+    const IMG_SIZES = [
+        'tn' => 80,
+        'sm' => 230,
+        'md' => 600,
+        'lg' => 1400,
+    ];
     const DISCOUNT = 'COALESCE(skus.discount, promos.discount, 0)';
+    const DISCOUNT_FILTERED = 'COALESCE(skus.discount, (CASE WHEN promos.starts_at <= NOW() AND promos.ends_at > NOW() THEN promos.discount ELSE NULL END), 0)';
     const FINAL_PRICE = '((skus.price * (100 - COALESCE(skus.discount, promos.discount, 0)) / 100))';
 
 
@@ -116,6 +123,7 @@ class Sku extends Model
     public function scopeGetCards(Builder $query): void
     {
         $query->join('products', 'skus.product_id', 'products.id')
+            ->join('categories', 'products.category_id', 'categories.id')
             ->joinActivePromos()
             ->selectForCards()
             ->active();
@@ -147,6 +155,7 @@ class Sku extends Model
             'skus.name',
             'skus.slug',
             'products.category_id',
+            'categories.slug as category_slug',
             'skus.short_descr',
             'skus.currency_id',
             'skus.price',
@@ -181,12 +190,6 @@ class Sku extends Model
     }
 
 
-    public function getCategorySlugAttribute()
-    {
-        return $this->category_id
-            ? CategoryService::getAll()->firstWhere('id', $this->category_id)->slug
-            : null;
-    }
 
     public function getUrlSlugAttribute(): string
     {
@@ -195,21 +198,12 @@ class Sku extends Model
 
     public function getUrlAttribute(): string
     {
-        $category_slug = $this->category_id
-            ? CategoryService::getAll()->firstWhere('id', $this->category_id)->slug
-            : null;
-
-        return route('product', [$category_slug, $this->url_slug]);
+        return route('product', [$this->category_slug, $this->url_slug]);
     }
 
-    public function getImageSmAttribute(): string
+    public function getReviewsUrlAttribute(): string
     {
-        return get_image(self::IMG_DIR . '/' . $this->id . '/01_80.jpg', 80);
-    }
-
-    public function getImageMdAttribute(): string
-    {
-        return get_image(self::IMG_DIR . '/' . $this->id . '/01_230.jpg', 230);
+        return route('reviews', [$this->category_slug, $this->url_slug]);
     }
 
     public function getFinalPriceAttribute(): string
@@ -276,5 +270,19 @@ class Sku extends Model
         $comparison_arr = ComparisonService::get()?->sku_ids;
 
         return $comparison_arr && in_array($this->id, $comparison_arr);
+    }
+
+
+    public function getImage(string $size, int|string $num = 1): ?string
+    {
+        $placeholder_size = match ($size) {
+            'tn' => 'tn',
+            'sm' => 'sm',
+            default => 'md',
+        };
+
+        if (!is_numeric($num)) return null;
+
+        return get_image(ImageService::PUBLIC_DIR . '/' . self::IMG_DIR . '/' . $this->id . '/' . sprintf('%02d', $num) . '_' . $size . '.jpg', $placeholder_size);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Modules\Categories\Models;
 
+use App\Modules\Images\ImageService;
 use App\Modules\Products\Models\Product;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -15,7 +16,7 @@ class Category extends Model
 
     public array $translatable = ['name'];
     protected $guarded = [];
-    const IMG_DIR = 'storage/images/categories';
+    const IMG_DIR = 'categories';
 
 
     public function products(): HasMany
@@ -57,6 +58,6 @@ class Category extends Model
 
     public function getImageMdAttribute(): string
     {
-        return get_image(self::IMG_DIR . '/' . $this->slug . '.jpg', 230);
+        return get_image(ImageService::PUBLIC_DIR . '/' . self::IMG_DIR . '/' . $this->slug . '.jpg', 230);
     }
 }

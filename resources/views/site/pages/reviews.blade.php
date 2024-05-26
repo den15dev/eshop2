@@ -25,7 +25,7 @@
 
                 <div class="reviews-head-cont">
                     <a href="{{ $sku->url }}">
-                        <img src="{{ $sku->image_md }}" alt="{{ $sku->name }}">
+                        <img src="{{ $sku->getImage('sm') }}" alt="{{ $sku->name }}">
                     </a>
                     <div class="reviews-head-name-cont">
                         <h5>

@@ -21,11 +21,13 @@ class GetOrdersAction
                     )->with([
                     'sku' => function ($q) {
                         $q->join('products', 'products.id', 'skus.product_id')
+                            ->join('categories', 'products.category_id', 'categories.id')
                             ->select(
                                 'skus.id',
                                 'skus.name',
                                 'skus.slug',
                                 'products.category_id as category_id',
+                                'categories.slug as category_slug',
                             );
                     }
                 ]);

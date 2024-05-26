@@ -50,12 +50,12 @@ class Order extends Model
 
     public function getItemsCostFormattedAttribute(): string
     {
-        return Price::formatToCurrency($this->items_cost, $this->currency_id);
+        return Price::from($this->items_cost, $this->currency_id, $this->currency_id)->formatted_full;
     }
 
     public function getTotalCostFormattedAttribute(): string
     {
-        return Price::formatToCurrency($this->total_cost, $this->currency_id);
+        return Price::from($this->total_cost, $this->currency_id, $this->currency_id)->formatted_full;
     }
 
     public function getLocalUrlAttribute(): string

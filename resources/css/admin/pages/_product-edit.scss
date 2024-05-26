@@ -51,6 +51,14 @@
       margin-top: 0.5rem;
     }
   }
+
+  label {
+    width: 22px;
+
+    @include sm {
+      width: 25px;
+    }
+  }
 }
 
 .product-edit_attribute_btns {

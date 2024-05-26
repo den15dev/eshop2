@@ -1,7 +1,7 @@
 <div class="product-row">
     <div class="product-row_image-cont">
         <a href="{{ $sku->url }}" class="product-row_image-link">
-            <img src="{{ $sku->image_md }}" class="product-row_image" alt="{{ $sku->name }}">
+            <img src="{{ $sku->getImage('sm') }}" class="product-row_image" alt="{{ $sku->name }}">
             <div class="image-link-tint"></div>
         </a>
         @if($sku->promo_id)
