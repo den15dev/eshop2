@@ -42,6 +42,10 @@ $link-color: $color1;
   &:hover {
     color: color($color-red, light, 3);
   }
+
+  &:active {
+    color: color($color-red, dark, 2);
+  }
 }
 
 .image-link-tint {

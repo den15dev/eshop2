@@ -5,8 +5,16 @@ const tint = document.querySelector('.modal-tint');
 const flashModal = document.querySelector('#flashModal');
 
 const clientModal = document.querySelector('#clientModal');
-const okBtn = clientModal.querySelector('#clientOkBtn');
-const cancelBtn = clientModal.querySelector('#clientCancelBtn');
+const messageCont = clientModal?.querySelector('p');
+const okBtn = clientModal?.querySelector('#clientOkBtn');
+const cancelBtn = clientModal?.querySelector('#clientCancelBtn');
+const infoIcon = clientModal?.querySelector('.modal-icon.info');
+const successIcon = clientModal?.querySelector('.modal-icon.success');
+const warningIcon = clientModal?.querySelector('.modal-icon.warning');
+const confirmIcon = clientModal?.querySelector('.modal-icon.confirm');
+const closeBtn = okBtn?.closest('.modal-win').querySelector('.modal-close-btn');
+
+let closeOnOk = true;
 
 
 export default function init() {
@@ -19,16 +27,9 @@ export default function init() {
         });
     });
 
-    if (okBtn) {
-        okBtn.addEventListener('click', () => {
-            closeModal(clientModal);
-        });
-    }
-
-    if (cancelBtn) {
-        cancelBtn.addEventListener('click', () => {
-            closeModal(clientModal);
-        });
+    if (clientModal) {
+        okBtn.addEventListener('click', closeClientModal);
+        cancelBtn.addEventListener('click', closeClientModal);
     }
 
     if (flashModal) {
@@ -40,6 +41,11 @@ export default function init() {
 export function closeModal(modalElem) {
     fadeOut(modalElem, fadeSpeed, () => hideModalContainer(modalElem));
     fadeOut(tint, fadeSpeed);
+}
+
+
+function closeClientModal() {
+    closeModal(clientModal);
 }
 
 
@@ -86,59 +92,87 @@ function hideModalContainer(modalElem) {
  *     'okAction' - a callback for an 'ok' button;
  *     'okText' - text for 'ok' button (default is 'ok');
  *     'cancelText' - text for 'Cancel' button (default is 'Cancel');
+ *     'reloadOnClose' - if passed true the page will be reloaded after closing the modal;
+ *     'closeOnOk' - if passed false the modal will not close after okAction.
+ *                          Used to show another modal on action.
  * }
  */
 export function showClientModal(data = {}) {
-    const infoIcon = clientModal.querySelector('.modal-icon.info');
-    const successIcon = clientModal.querySelector('.modal-icon.success');
-    const warningIcon = clientModal.querySelector('.modal-icon.warning');
-    const confirmIcon = clientModal.querySelector('.modal-icon.confirm');
+    if (clientModal) {
+        resetClientModal();
 
-    if (data.message) {
-        const messageCont = clientModal.querySelector('p');
-        messageCont.innerHTML = data.message;
-    }
-
-    if (data.type === 'confirm') {
-        cancelBtn.style.display = 'block';
-
-        if (data.cancelText) {
-            cancelBtn.innerText = data.cancelText;
+        if (data.message) {
+            messageCont.innerHTML = data.message;
         }
-    }
 
-    if (data.okAction) {
-        okBtn.addEventListener('click', data.okAction);
+        if (data.type === 'confirm') {
+            cancelBtn.style.display = 'block';
 
-        okBtn.addEventListener('click', () => {
-            okBtn.removeEventListener('click', data.okAction);
-        });
+            if (data.cancelText) {
+                cancelBtn.innerText = data.cancelText;
+            }
+        }
 
-        cancelBtn?.addEventListener('click', () => {
-            okBtn.removeEventListener('click', data.okAction);
-        });
+        if (data.reloadOnClose && data.type !== 'confirm') {
+            okBtn.addEventListener('click', () => window.location.reload());
+            closeBtn?.addEventListener('click', () => window.location.reload());
+        }
 
-        const closeBtn = okBtn.closest('.modal-win').querySelector('.modal-close-btn');
-        closeBtn?.addEventListener('click', () => {
-            okBtn.removeEventListener('click', data.okAction);
-        });
-    }
+        if (data.okAction) {
+            okBtn.addEventListener('click', data.okAction);
 
-    if (data.okText) {
-        okBtn.innerText = data.okText;
-    }
+            okBtn.addEventListener('click', () => {
+                okBtn.removeEventListener('click', data.okAction);
+            });
 
-    if (data.icon === 'success') {
-        successIcon.style.display = 'block';
-    } else if (data.icon === 'warning') {
-        warningIcon.style.display = 'block';
-    } else if (data.icon === 'confirm') {
-        confirmIcon.style.display = 'block';
+            cancelBtn?.addEventListener('click', () => {
+                okBtn.removeEventListener('click', data.okAction);
+            });
+
+            closeBtn?.addEventListener('click', () => {
+                okBtn.removeEventListener('click', data.okAction);
+            });
+        }
+
+        if (data.closeOnOk === false) {
+            okBtn.removeEventListener('click', closeClientModal);
+            closeOnOk = false;
+        } else if (!closeOnOk) {
+            okBtn.addEventListener('click', closeClientModal);
+            closeOnOk = true;
+        }
+
+        if (data.okText) {
+            okBtn.innerText = data.okText;
+        }
+
+        if (data.icon === 'success') {
+            successIcon.style.display = 'block';
+        } else if (data.icon === 'warning') {
+            warningIcon.style.display = 'block';
+        } else if (data.icon === 'confirm') {
+            confirmIcon.style.display = 'block';
+        } else {
+            infoIcon.style.display = 'block';
+        }
+
+        showModal(clientModal);
+
     } else {
-        infoIcon.style.display = 'block';
+        console.error('No client modal element found');
     }
+}
 
-    showModal(clientModal);
+
+function resetClientModal() {
+    successIcon.style.display = 'none';
+    warningIcon.style.display = 'none';
+    confirmIcon.style.display = 'none';
+    infoIcon.style.display = 'none';
+    messageCont.innerHTML = '';
+    cancelBtn.style.display = 'none';
+    cancelBtn.innerText = translations.general.modal.cancel;
+    okBtn.innerText = 'Ok';
 }
 
 

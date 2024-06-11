@@ -13,7 +13,10 @@ class Product extends Model
 {
     use HasTranslations;
 
-    public array $translatable = ['name'];
+    public array $translatable = [
+        'name',
+        'category_name',
+    ];
 
     protected $guarded = [];
 

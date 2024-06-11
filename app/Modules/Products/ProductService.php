@@ -13,7 +13,7 @@ class ProductService
     private const HOME_CAROUSEL_LIMIT = 10;
 
 
-    public function getSku(int $id): Sku
+    public function getSku(int $id): ?Sku
     {
         return GetSkuAction::run($id);
     }

@@ -30,7 +30,7 @@ class UpdateSkuAttributesAction
                     ->update(['variant_id' => $variant_id]);
             } else {
                 DB::table('sku_variant')->insert(
-                    ['sku_id' => $variants[$key]->sku_id, 'variant_id' => $variant_id]
+                    ['sku_id' => $sku_id, 'variant_id' => $variant_id]
                 );
             }
         }

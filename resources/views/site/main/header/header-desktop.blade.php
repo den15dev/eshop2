@@ -17,27 +17,38 @@
     </div>
     <nav class="top-center">
         <ul class="nav-list-top">
-            <li>
-                <a href="{{ route('admin.products') }}">
-                    {{ __('header.top_menu.admin_panel') }}
-                </a>
-            </li>
+            @if(env('ADMIN_DEMO'))
+                <li>
+                    <a href="{{ route('admin.products') }}">
+                        {{ __('header.top_menu.admin_panel') }}
+                    </a>
+                </li>
+            @endif
             <li>
                 <a href="{{ route('stores') }}">
                     {{ __('stores.stores') }}
                 </a>
             </li>
+            @unless(env('ADMIN_DEMO'))
+                <li>
+                    <a href="{{ route('delivery') }}">
+                        {{ __('delivery.delivery') }}
+                    </a>
+                </li>
+            @endunless
             <li class="dropdown">
                 <div class="dropdown-btn">
                     {{ __('header.top_menu.for_customers') }}
                     <span class="icon-chevron-down xsmall"></span>
                 </div>
                 <ul class="dropdown-list">
-                    <li>
-                        <a href="{{ route('delivery') }}" class="dropdown-item">
-                            {{ __('delivery.delivery') }}
-                        </a>
-                    </li>
+                    @if(env('ADMIN_DEMO'))
+                        <li>
+                            <a href="{{ route('delivery') }}" class="dropdown-item">
+                                {{ __('delivery.delivery') }}
+                            </a>
+                        </li>
+                    @endif
                     <li>
                         <a href="{{ route('warranty') }}" class="dropdown-item">
                             {{ __('warranty.warranty') }}

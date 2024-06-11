@@ -56,8 +56,14 @@ class Category extends Model
     }
 
 
-    public function getImageMdAttribute(): string
+    public function getImagePathAttribute(): string
     {
-        return get_image(ImageService::PUBLIC_DIR . '/' . self::IMG_DIR . '/' . $this->slug . '.jpg', 230);
+        return ImageService::PUBLIC_DIR . '/' . self::IMG_DIR . '/' . $this->slug . '.jpg';
+    }
+
+
+    public function getImageAttribute(): string
+    {
+        return get_image($this->image_path, 230);
     }
 }

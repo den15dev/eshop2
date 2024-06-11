@@ -1,14 +1,15 @@
 import { closeDropdown } from "../../common/dropdowns.js";
 import { showClientModal } from "../../common/modals.js";
-import { translations, ucfirst } from "../../common/global.js";
+import { submit403Messages, translations, ucfirst } from "../../common/global.js";
 import { post, showFieldError } from "../components/ajax.js";
 
-const attributeList = document.querySelector('.product-edit_attribute-list');
+const productAttributes = document.querySelector('#editProductAttributes');
 const changeCategoryBtn = document.querySelector('#changeCategoryBtn');
+const removeProductForm = document.querySelector('#removeProductForm');
 
 
 export default function init() {
-    if (attributeList) {
+    if (productAttributes) {
         const items = document.querySelectorAll('.product-edit_attribute-item, .product-edit_variant-item');
 
         items.forEach(item => {
@@ -37,6 +38,24 @@ export default function init() {
     if (changeCategoryBtn) {
         handleCategoryChanging();
     }
+
+    if (removeProductForm) {
+        const removeProductBtn = removeProductForm.querySelector('button[type="submit"]');
+
+        if (!submit403Messages) {
+            removeProductBtn.addEventListener('click', e => {
+                e.preventDefault();
+
+                showClientModal({
+                    type: 'confirm',
+                    icon: 'warning',
+                    message: translations.messages.products.delete_product,
+                    okText: translations.admin_general.delete,
+                    okAction: () => removeProductForm.submit(),
+                });
+            });
+        }
+    }
 }
 
 
@@ -49,7 +68,7 @@ function handleCategoryChanging() {
         event.preventDefault();
         const newCategoryId = document.querySelector('#productCategory').value;
 
-        if (newCategoryId !== oldCategoryId) {
+        if (newCategoryId !== oldCategoryId && !submit403Messages) {
             showClientModal({
                 type: 'confirm',
                 icon: 'warning',

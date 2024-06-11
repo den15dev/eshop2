@@ -8,7 +8,11 @@ use App\Http\Controllers\Controller;
 use App\Modules\Currencies\CurrencyService;
 use App\Modules\Languages\LanguageService;
 use App\Admin\Promos\PromoService;
+use App\Modules\Products\Models\Product;
 use App\Modules\Products\Models\Sku;
+use DragonCode\Support\Facades\Helpers\Str;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class SkuController extends Controller
@@ -43,9 +47,32 @@ class SkuController extends Controller
     }
 
 
-    public function create(): View
+    public function create(Request $request): View
     {
-        return view('admin.pages.skus.create');
+        $product = Product::join('categories', 'products.category_id', 'categories.id')
+            ->select(
+                'products.*',
+                'categories.name as category_name',
+            )
+            ->with('attributes.variants:id,attribute_id,name')
+            ->find($request->query('product_id'));
+
+        abort_unless($product, 404);
+
+        $languages = LanguageService::getActive();
+        $currencies = CurrencyService::getAll();
+        $promos = PromoService::getAllPromos();
+        $final_prices = $this->productService->getSkuFinalPrices(0, CurrencyService::$cur_currency->id, null, null);
+        $category_specs = $this->productService->getCategorySpecs($product->category_id);
+
+        return view('admin.pages.skus.create', compact(
+            'product',
+            'languages',
+            'currencies',
+            'promos',
+            'final_prices',
+            'category_specs',
+        ));
     }
 
 
@@ -60,31 +87,31 @@ class SkuController extends Controller
 
         if ($request->has('attributes')) {
             if (!$this->productService->validateSkuAttributes($id, $request->product_id, $request['attributes'])) {
-                return back()->withInput()->with('attributes_error', __('admin/products.errors.sku_attributes_error'));
+                return back()->withInput()->with('attributes_error', __('admin/skus.errors.sku_attributes_error'));
             }
 
             $this->productService->updateSkuAttributes($id, $request['attributes']);
-            $flash_message = __('admin/products.messages.attributes_updated');
+            $flash_message = __('admin/skus.messages.attributes_updated');
         }
 
         if ($request->has('sku')) {
             $updated = $request->validated();
         }
 
-        if ($request->has('images')) {
+        if ($request->has('old_images')) {
             $validated = $request->validated();
 
             $old_images = isset($validated['old_images']) ? json_decode($validated['old_images']) : [];
-            $new_images = isset($validated['images']) ? json_decode($validated['images']) : [];
+            $new_images = isset($validated['new_images']) ? json_decode($validated['new_images']) : [];
             $image_file = $request->file('image');
 
             $this->productService->updateSkuImages($id, $old_images, $new_images, $image_file);
-            $flash_message = __('admin/products.messages.images_updated');
+            $flash_message = __('admin/skus.messages.images_updated');
         }
 
         if (count($updated)) {
             Sku::firstWhere('id', $id)->update($updated);
-            $flash_message = __('admin/products.messages.sku_updated');
+            $flash_message = __('admin/skus.messages.sku_updated');
         }
 
         if (!empty($flash_message)) $request->flashSuccessMessage($flash_message);
@@ -93,8 +120,77 @@ class SkuController extends Controller
     }
 
 
+    public function store(StoreSkuRequest $request): RedirectResponse
+    {
+        $validated = $request->validated();
+
+        $sku = new Sku();
+        $sku->product_id = $request->product_id;
+        $sku->name = $validated['name'];
+        $sku->slug = Str::slug($validated['name'][app()->getFallbackLocale()]);
+        $sku->sku = $validated['sku'];
+        $sku->short_descr = $validated['short_descr'];
+        $sku->description = $validated['description'];
+        $sku->currency_id = $validated['currency_id'];
+        $sku->price = $validated['price'];
+        $sku->discount = $validated['discount'] ?: null;
+        $sku->images = null;
+        $sku->available_from = $validated['available_from'];
+        $sku->available_until = $validated['available_until'];
+        $sku->promo_id = $validated['promo_id'];
+        $sku->save();
+
+        if ($request->has('attributes')) {
+            $attributes = $request['attributes'];
+            if (!$this->productService->validateSkuAttributes($sku->id, $sku->product_id, $attributes)) {
+                return back()->withInput()->with('attributes_error', __('admin/skus.errors.sku_attributes_error'));
+            }
+
+            foreach ($attributes as $variant_id) {
+                $sku->variants()->attach($variant_id);
+            }
+        }
+
+        if (isset($validated['specs'])) {
+            $specs = $validated['specs'];
+            foreach ($specs as $spec_id => $fields) {
+                $sku->specifications()->attach($spec_id, ['spec_value' => $fields]);
+            }
+        }
+
+        if (isset($validated['images']) && count($validated['images'])) {
+            $images = $validated['images'];
+            $images_arr = [];
+
+            foreach ($images as $index => $image) {
+                $this->productService->saveSkuImage($sku->id, $index, $image);
+                $images_arr[] = sprintf('%02d', $index);
+            }
+
+            $sku->update(['images' => $images_arr]);
+        }
+
+        $request->flashSuccessMessage(__('admin/products.messages.sku_added', ['name' => $sku->name]));
+
+        return redirect()->route('admin.products.edit', $sku->product_id);
+    }
+
+
     public function destroy(int $id)
     {
+        $sku = Sku::find($id);
+        $this->productService->deleteSkuImages($id);
+        $sku_name = $sku->name;
+        $sku->delete();
+
+        $message = __('admin/skus.messages.sku_deleted', ['name' => $sku_name]);
+
+        session()->flash('message', [
+            'type' => 'success',
+            'content' => $message,
+            'align' => 'center',
+        ]);
+
         return redirect()->route('admin.products');
     }
 }

@@ -10,9 +10,11 @@
         </div>
 
         <ul class="bottom-menu_list">
+            @if(env('ADMIN_DEMO'))
             <li>
                 <a href="{{ route('admin.products') }}">{{ __('header.top_menu.admin_panel') }}</a>
             </li>
+            @endif
             @isset($filters)
             <li>
                 <a href="{{ route('orders') }}">{{ __('orders.orders') }}</a>

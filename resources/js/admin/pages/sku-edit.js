@@ -1,12 +1,14 @@
-import { get, post, showFieldError } from "../components/ajax.js"
+import {get, post, showFieldErrors} from "../components/ajax.js"
 import Sortable from 'sortablejs';
 import { Fancybox } from "@fancyapps/ui";
 import { showClientModal } from "../../common/modals.js";
-import { translations } from "../../common/global.js";
+import { submit403Messages, translations } from "../../common/global.js";
 
 const skuEditMainForm = document.querySelector('#skuEditMainForm');
+const skuCreateForm = document.querySelector('#skuCreateForm');
 const imagesCont = document.querySelector('.sku-edit_images');
 const skuSpecsCont = document.querySelector('#skuSpecifications');
+const removeSkuForm = document.querySelector('#removeSkuForm');
 
 let priceInput;
 let currencySelect;
@@ -17,11 +19,16 @@ let skuId;
 
 
 export default function init() {
-    if (skuEditMainForm) {
+    if (skuEditMainForm || skuCreateForm) {
         priceInput = document.querySelector('#price');
         currencySelect = document.querySelector('#currency');
         discountInput = document.querySelector('#discount');
         promoSelect = document.querySelector('#promo');
+
+        // Always fill prices and promo info for cases
+        // after coming back with failed validation
+        fillPromoInfo();
+        getSkuFinalPrices();
 
         priceInput.addEventListener('input', () => {
             getSkuFinalPrices();
@@ -97,6 +104,24 @@ export default function init() {
             });
         });
     }
+
+    if (removeSkuForm) {
+        const removeSkuBtn = removeSkuForm.querySelector('button[type="submit"]');
+
+        if (!submit403Messages) {
+            removeSkuBtn.addEventListener('click', e => {
+                e.preventDefault();
+
+                showClientModal({
+                    type: 'confirm',
+                    icon: 'warning',
+                    message: translations.messages.products.delete_sku,
+                    okText: translations.admin_general.delete,
+                    okAction: () => removeSkuForm.submit(),
+                });
+            });
+        }
+    }
 }
 
 
@@ -123,23 +148,19 @@ function insertPriceData(result) {
 
 
 function getSkuFinalPrices() {
-    const priceData = getPriceData();
-
-    if (priceData.price) {
-        clearTimeout(priceInputTimeout);
-        priceInputTimeout = setTimeout(() => {
-            get(
-                'product',
-                'getSkuFinalPrices',
-                getPriceData(),
-                'json',
-                null,
-                function (result) {
-                    insertPriceData(result);
-                }
-            );
-        }, 200);
-    }
+    clearTimeout(priceInputTimeout);
+    priceInputTimeout = setTimeout(() => {
+        get(
+            'product',
+            'getSkuFinalPrices',
+            getPriceData(),
+            'json',
+            null,
+            function (result) {
+                insertPriceData(result);
+            }
+        );
+    }, 200);
 }
 
 
@@ -200,15 +221,12 @@ function updateSpec(sku_id, specForm) {
         'updateSkuSpec',
         args,
         function (result) {
-            for (const fieldName in result.errors) {
-                const textArea = getSpecTAreaByFieldName(specForm, fieldName);
-                if (textArea) showFieldError(textArea, result.errors[fieldName][0]);
-            }
+            showFieldErrors(specForm, result.errors);
         },
-        function () {
+        function (result) {
             showClientModal({
                 icon: 'success',
-                message: translations.messages.skus.spec_updated,
+                message: result.message,
             });
         }
     );
@@ -224,10 +242,10 @@ function deleteSpec(sku_id, specForm) {
         'deleteSkuSpec',
         args,
         null,
-        function () {
+        function (result) {
             showClientModal({
                 icon: 'success',
-                message: translations.messages.skus.spec_cleared,
+                message: result.message,
             });
         }
     );

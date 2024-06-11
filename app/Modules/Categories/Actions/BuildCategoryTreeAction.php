@@ -29,7 +29,8 @@ class BuildCategoryTreeAction
                         'slug' => $cat->slug,
                         'level' => $cat->level,
                         'sort' => $cat->sort,
-                        'product_count' => $cat->sku_num_children,
+                        'product_count' => $cat->sku_num_children ?: $cat->sku_num,
+                        'product_count_all' => $cat->sku_num_children_all ?: $cat->sku_num_all,
                     ];
 
                     $parent_id = $cat->id;

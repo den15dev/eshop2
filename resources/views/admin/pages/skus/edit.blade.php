@@ -1,14 +1,14 @@
 @extends('admin.layout')
 
-@section('page_title',  $sku->name . ' - ' . __('admin/products.editing_sku'))
+@section('page_title',  $sku->name . ' - ' . __('admin/skus.editing_sku'))
 
-@section('page_header', __('admin/products.editing_sku'))
+@section('page_header', __('admin/skus.editing_sku'))
 
 @section('main_content')
     <div class="admin-main-page">
         <a href="{{ route('admin.products.edit', $sku->product_id) }}" class="link d-block mb-3">
             <span class="icon-chevron-left xsmall va1"></span>
-            {{ __('admin/products.to_product', ['product' => $sku->product->name]) }}
+            {{ __('admin/skus.to_product', ['product' => $sku->product->name]) }}
         </a>
 
         <div class="mb-3">
@@ -21,10 +21,10 @@
             @csrf
             <div class="form-flex-cont mb-4">
                 <div>
-                    <label for="availableFrom" class="form-label mb-0">{{ __('admin/products.available_from') }}
+                    <label for="availableFrom" class="form-label mb-0">{{ __('admin/skus.available_from') }}
                         :</label>
                     <div class="small grey-text fst-italic mb-2">
-                        {{ __('admin/products.available_from_note') }}
+                        {{ __('admin/skus.available_from_note') }}
                     </div>
                     <input type="text"
                            class="form-control @error('available_from') is-invalid @enderror"
@@ -37,10 +37,10 @@
                 </div>
 
                 <div>
-                    <label for="availableUntil" class="form-label mb-0">{{ __('admin/products.available_until') }}
+                    <label for="availableUntil" class="form-label mb-0">{{ __('admin/skus.available_until') }}
                         :</label>
                     <div class="small grey-text fst-italic mb-2">
-                        {{ __('admin/products.available_until_note') }}
+                        {{ __('admin/skus.available_until_note') }}
                     </div>
                     <input type="text"
                            class="form-control @error('available_until') is-invalid @enderror"
@@ -95,7 +95,7 @@
         <form class="mb-6" action="{{ route('admin.skus.update', $sku->id) }}" method="POST" id="skuEditMainForm">
             @method('PUT')
             @csrf
-            <h5 class="mb-3">{{ __('admin/products.general_info') }}</h5>
+            <h5 class="mb-3">{{ __('admin/skus.general_info') }}</h5>
 
             <div class="mb-4">
                 @foreach($languages as $lang)
@@ -116,7 +116,7 @@
 
             <div class="form-flex-cont mb-4">
                 <div>
-                    <label for="sku" class="form-label">{{ __('admin/products.sku') }}:</label>
+                    <label for="sku" class="form-label">{{ __('admin/skus.sku') }}:</label>
                     <input type="text"
                            class="form-control @error('sku') is-invalid @enderror"
                            name="sku"
@@ -132,7 +132,7 @@
                 @foreach($languages as $lang)
                     <div>
                         <label for="shortDescr_{{ $lang->id }}"
-                               class="form-label">{{ __('admin/products.short_descr') . ' (' . $lang->id . ')' }}
+                               class="form-label">{{ __('admin/skus.short_descr') . ' (' . $lang->id . ')' }}
                             :</label>
                         <textarea class="form-control @error('short_descr.' . $lang->id) is-invalid @enderror"
                                   name="short_descr[{{ $lang->id }}]"
@@ -148,7 +148,7 @@
                 @foreach($languages as $lang)
                     <div>
                         <label for="description_{{ $lang->id }}"
-                               class="form-label">{{ __('admin/products.description') . ' (' . $lang->id . ')' }}
+                               class="form-label">{{ __('admin/skus.description') . ' (' . $lang->id . ')' }}
                             :</label>
                         <textarea class="form-control @error('description.' . $lang->id) is-invalid @enderror"
                                   name="description[{{ $lang->id }}]"
@@ -162,7 +162,7 @@
 
             <div class="form-flex-cont mb-3">
                 <div>
-                    <label for="price" class="form-label">{{ __('admin/products.price') }}:</label>
+                    <label for="price" class="form-label">{{ __('admin/skus.price') }}:</label>
                     <input type="text"
                            class="form-control @error('price') is-invalid @enderror"
                            name="price"
@@ -174,7 +174,7 @@
                 </div>
 
                 <div>
-                    <label for="currency" class="form-label">{{ __('admin/products.currency') }}:</label>
+                    <label for="currency" class="form-label">{{ __('admin/skus.currency') }}:</label>
                     <select name="currency_id" class="form-select @error('currency') is-invalid @enderror"
                             id="currency">
                         @foreach($currencies as $currency)
@@ -192,9 +192,9 @@
 
             <div class="form-flex-cont mb-3">
                 <div>
-                    <label for="discount" class="form-label mb-0">{{ __('admin/products.discount') }}:</label>
+                    <label for="discount" class="form-label mb-0">{{ __('admin/skus.discount') }}:</label>
                     <div class="small grey-text fst-italic mb-2">
-                        {{ __('admin/products.discount_note') }}
+                        {{ __('admin/skus.discount_note') }}
                     </div>
                     <input type="text"
                            class="form-control @error('discount') is-invalid @enderror"
@@ -209,7 +209,7 @@
 
             <div class="form-flex-cont mb-4" id="promoSection">
                 <div>
-                    <label for="promo" class="form-label">{{ __('admin/products.promo') }}:</label>
+                    <label for="promo" class="form-label">{{ __('admin/skus.promo') }}:</label>
                     <select name="promo_id" class="form-select @error('promo') is-invalid @enderror" id="promo">
                         <option value="" {{ $sku->promo_id ? '' : 'selected' }}>{{ __('admin/general.No') }}</option>
                         @foreach($promos as $promo)
@@ -228,7 +228,7 @@
 
                     <div @if(!$sku->promo) class="hidden" @endif id="promoInfo">
                         <div class="mt-2">
-                            <span class="grey-text">{{ __('admin/products.promo_discount') }}:</span>
+                            <span class="grey-text">{{ __('admin/skus.promo_discount') }}:</span>
                             <span id="promoDiscount">
                                 @if($sku->promo)
                                     {{ $sku->promo->discount }}%
@@ -236,7 +236,7 @@
                             </span>
                         </div>
                         <div>
-                            <span class="grey-text">{{ __('admin/products.promo_status.status') }}:</span>
+                            <span class="grey-text">{{ __('admin/skus.promo_status.status') }}:</span>
                             <span id="promoStatus" @if($sku->promo?->status === 'scheduled') class="text-scheduled" @endif>
                                 @if($sku->promo)
                                     {{ $sku->promo->status_description }}
@@ -249,7 +249,7 @@
 
             <div class="mb-4" id="finalPriceSection">
                 <div>
-                    <span class="grey-text">{{ __('admin/products.final_discount') }}:</span>
+                    <span class="grey-text">{{ __('admin/skus.final_discount') }}:</span>
                     <span id="finalDiscount">{{ $final_prices->discount }}</span>
                 </div>
                 @foreach($currencies as $currency)
@@ -257,7 +257,7 @@
                         @php
                             $currency_id = $currency->id;
                         @endphp
-                        <span class="grey-text">{{ __('admin/products.final_price') }} ({{ strtoupper($currency->id) }}):</span>
+                        <span class="grey-text">{{ __('admin/skus.final_price') }} ({{ strtoupper($currency->id) }}):</span>
                         <span class="fw-semibold"
                               data-currency="{{ $currency->id }}">{!! $final_prices->$currency_id !!}</span>
                     </div>
@@ -269,7 +269,7 @@
 
 
         <div class="mb-6">
-            <h5 class="mb-4">{{ __('admin/products.images.title') }}</h5>
+            <h5 class="mb-4">{{ __('admin/skus.images.title') }}</h5>
 
             <div class="sku-edit_images mb-4">
                 @foreach($sku->images as $img_num)
@@ -292,7 +292,7 @@
                     @csrf
                     <input type="hidden" name="old_images"
                            value="{{ json_encode($sku->images, JSON_UNESCAPED_UNICODE) }}"/>
-                    <input type="hidden" name="images" value="{{ json_encode($sku->images, JSON_UNESCAPED_UNICODE) }}"
+                    <input type="hidden" name="new_images" value="{{ json_encode($sku->images, JSON_UNESCAPED_UNICODE) }}"
                            id="skuImages"/>
 
                     <div class="mb-3">
@@ -309,7 +309,7 @@
                     </div>
 
                     <div class="small grey-text fst-italic mb-3">
-                        {{ __('admin/products.images.upload_note') }}
+                        {{ __('admin/skus.images.upload_note') }}
                     </div>
 
                     <button type="submit" class="btn-inactive" id="newImageSubmitBtn" disabled>{{ __('admin/general.save') }}</button>
@@ -319,15 +319,15 @@
 
 
         <div class="mb-7" data-sku-id="{{ $sku->id }}" id="skuSpecifications">
-            <h5 class="mb-3">{{ __('admin/products.specs.title') }}</h5>
+            <h5 class="mb-3">{{ __('admin/specifications.title') }}</h5>
 
             <a href="{{ route('admin.categories.edit', $sku->category_id) }}" class="d-block link mb-3">
-                {{ __('admin/products.specs.category_specs_link', ['category' => $sku->category_name]) }}
+                {{ __('admin/specifications.category_specs_link', ['category' => $sku->category_name]) }}
             </a>
 
             <div class="small grey-text fst-italic mb-4">
-                "{{ __('admin/products.specs.is_filter') }}" — {{ __('admin/products.specs.is_filter_note') }}<br>
-                "{{ __('admin/products.specs.is_main') }}" — {{ __('admin/products.specs.is_main_note') }}
+                "{{ __('admin/specifications.is_filter') }}" — {{ __('admin/specifications.is_filter_note') }}<br>
+                "{{ __('admin/specifications.is_main') }}" — {{ __('admin/specifications.is_main_note') }}
             </div>
 
             @foreach($category_specs as $cat_spec)
@@ -339,14 +339,14 @@
                                 <input type="checkbox" class="form-check-input" name="is_filter[{{ $cat_spec->id }}]"
                                        id="isFilter{{ $cat_spec->id }}" {{ $cat_spec->is_filter ? 'checked' : '' }} disabled />
                                 <label class="form-check-label grey-text"
-                                       for="isFilter{{ $cat_spec->id }}">{{ __('admin/products.specs.is_filter') }}</label>
+                                       for="isFilter{{ $cat_spec->id }}">{{ __('admin/specifications.is_filter') }}</label>
                             </div>
 
                             <div class="spec-item_checkbox-cont">
                                 <input type="checkbox" class="form-check-input" name="is_main[{{ $cat_spec->id }}]"
                                        id="isMain{{ $cat_spec->id }}" {{ $cat_spec->is_main ? 'checked' : '' }} disabled />
                                 <label class="form-check-label grey-text"
-                                       for="isMain{{ $cat_spec->id }}">{{ __('admin/products.specs.is_main') }}</label>
+                                       for="isMain{{ $cat_spec->id }}">{{ __('admin/specifications.is_main') }}</label>
                             </div>
                         </div>
                     </div>
@@ -381,13 +381,13 @@
 
 
 
-        <form class="mb-6" action="{{ route('admin.skus.destroy', $sku->id) }}" method="POST">
-            @method('PUT')
+        <form class="mb-6" action="{{ route('admin.skus.destroy', $sku->id) }}" method="POST" id="removeSkuForm">
+            @method('DELETE')
             @csrf
-            <button class="btn-bg-red mb-3">{{ __('admin/products.delete_sku') }}</button>
+            <button type="submit" class="btn-bg-red mb-3">{{ __('admin/skus.delete_sku') }}</button>
             <div class="small fst-italic">
                 <span class="fw-semibold">{{ __('admin/general.caution') }}</span>
-                <span class="grey-text">{{ __('admin/products.delete_sku_warning', ['available_until' => __('admin/products.available_until')]) }}</span>
+                <span class="grey-text">{{ __('admin/skus.delete_sku_warning', ['available_until' => __('admin/skus.available_until')]) }}</span>
             </div>
         </form>
     </div>

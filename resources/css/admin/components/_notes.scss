@@ -1,0 +1,8 @@
+.admin-note {
+  padding: 1rem 1.25rem;
+  background-color: $grey-245;
+  @if $border-radius-base > 0 {
+    border-radius: $border-radius-base;
+  }
+  border-left: 4px solid $grey-220;
+}

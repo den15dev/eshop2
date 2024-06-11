@@ -1,0 +1,12 @@
+.category-edit_child-item,
+.category-edit_order-item {
+  padding: 0.125rem 2rem 0.125rem 1rem;
+}
+
+.category-edit_order-item {
+  cursor: grab;
+
+  &:hover {
+    background-color: $grey-245;
+  }
+}

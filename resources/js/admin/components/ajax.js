@@ -105,6 +105,77 @@ function objectToQueryStringHelper(object, path, result) {
 }
 
 
+/**
+ * Convert to objects form fields with names
+ * containing square brackets like "spec[ru]".
+ */
+export function convertToNestedObjects(obj) {
+    const outObj = {};
+
+    for (let key in obj) {
+        const keyParse = key.match(/(.+)\[(.+)\]$/);
+        if (keyParse) {
+            const newObj = keyParse[1];
+            const newKey = keyParse[2];
+
+            if (newObj in outObj) {
+                outObj[newObj][newKey] = obj[key];
+            } else {
+                outObj[newObj] = {};
+                outObj[newObj][newKey] = obj[key];
+            }
+        } else {
+            outObj[key] = obj[key];
+        }
+    }
+
+    return outObj;
+}
+
+
+/**
+ * Remove nested objects whose all fields are empty.
+ * For example:
+ * units: {
+ *     ru: '',
+ *     en: '',
+ *     de: '',
+ * }
+ * will be removed.
+ */
+export function removeEmptyObjects(obj) {
+    for (let key in obj) {
+        if (typeof obj[key] === 'object' && !Array.isArray(obj[key]) && obj[key] !== null) {
+            const innerObj = obj[key];
+
+            let isEmpty = true;
+            for (let innerKey in innerObj) {
+                if (innerObj[innerKey]) isEmpty = false;
+            }
+
+            if (isEmpty) delete obj[key];
+        }
+    }
+
+    return obj;
+}
+
+
+export function showFieldErrors(form, errors) {
+    for (const fieldName in errors) {
+        const fieldParts = fieldName.split('.');
+
+        if (fieldParts.length > 1) {
+            const lastName = fieldParts.pop();
+            const preLastName = fieldParts.pop();
+            const elem = form.querySelector(`*[name="${lastName}"]`) || form.querySelector(`*[name="${preLastName}[${lastName}]"]`);
+
+            if (elem) showFieldError(elem, errors[fieldName][0]);
+        }
+    }
+}
+
+
 export function showFieldError(field, message) {
     field.classList.add('is-invalid');
     field.parentNode.querySelector('.invalid-feedback').innerText = message;

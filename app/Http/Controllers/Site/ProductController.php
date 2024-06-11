@@ -28,7 +28,7 @@ class ProductController extends Controller
         $sku_id = $slug_id[1];
 
         $sku = $productService->getSku($sku_id);
-        abort_if($sku->slug !== $slug_id[0], 404);
+        abort_unless($sku && $sku->slug === $slug_id[0], 404);
 
         $attributes = $productService->getAttributes($sku->product_id, $sku_id);
 

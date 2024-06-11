@@ -37,6 +37,10 @@ class CategoryService
     }
 
 
+    /**
+     * 'sku_num' means only active skus.
+     * 'sku_num_all' means all skus including inactive.
+     */
     private static function countChildrenSkus(Collection $categories): Collection
     {
         foreach ($categories as $category) {
@@ -45,11 +49,11 @@ class CategoryService
 
             $prod_self_all = $cur_category->sku_num_all;
             $prod_self = $cur_category->sku_num;
-            $cur_category->sku_num_children_all += $prod_self_all;
-            $cur_category->sku_num_children += $prod_self;
+            $cur_category->sku_num_children_all = 0;
+            $cur_category->sku_num_children  = 0;
 
             while ($parent_id) {
-                $parent = $categories->where('id', $cur_category->parent_id)->first();
+                $parent = $categories->firstWhere('id', $cur_category->parent_id);
                 $parent->sku_num_children_all += $prod_self_all;
                 $parent->sku_num_children += $prod_self;
 

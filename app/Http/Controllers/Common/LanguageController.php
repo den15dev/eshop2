@@ -41,6 +41,7 @@ class LanguageController extends Controller
     {
         $trans_arr = [];
         $trans_arr['general'] = Lang::get(key: 'general', locale: app()->getLocale());
+        $trans_arr['admin_general'] = Lang::get(key: 'admin/general', locale: app()->getLocale());
         $trans_arr['messages'] = Lang::get(key: 'admin/client-messages', locale: app()->getLocale());
 
         return response()->json($trans_arr);

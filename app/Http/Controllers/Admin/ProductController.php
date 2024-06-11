@@ -12,6 +12,7 @@ use App\Modules\Categories\Models\Category;
 use App\Modules\Languages\LanguageService;
 use App\Modules\Products\Models\Product;
 use App\Modules\Products\Models\Sku;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -25,12 +26,14 @@ class ProductController extends Controller
 
     public function index(Request $request): View
     {
+        $unfinished = Product::whereDoesntHave('skus')->get();
         $categories = CategoryService::getAll();
 
         $table_data = $this->getTableData($request);
         $state = $this->productService->getPageState($request->query());
 
         return view('admin.pages.products.index', array_merge(compact(
+            'unfinished',
             'categories',
             'state',
         ), $table_data));
@@ -74,13 +77,15 @@ class ProductController extends Controller
     public function edit(int $id): View
     {
         $product = Product::with('attributes.variants')->find($id);
+        $max_skus = $this->productService->getSkuMaxNum($product->attributes);
         $languages = LanguageService::getActive();
         $brands = Brand::select('id', 'name')->orderBy('name')->get();
-        $categories = CategoryService::getAll();
+        $categories = $this->productService->getCategories(CategoryService::getAll());
         $skus = Sku::select('id', 'name')->where('product_id', $id)->orderBy('id')->get();
 
         return view('admin.pages.products.edit', compact(
             'product',
+            'max_skus',
             'languages',
             'brands',
             'categories',
@@ -123,12 +128,51 @@ class ProductController extends Controller
 
     public function create(): View
     {
-        return view('admin.pages.products.create');
+        $languages = LanguageService::getActive();
+        $brands = Brand::select('id', 'name')->orderBy('name')->get();
+        $categories = $this->productService->getCategories(CategoryService::getAll());
+
+        return view('admin.pages.products.create', compact(
+            'languages',
+            'brands',
+            'categories',
+        ));
+    }
+
+
+    public function store(StoreProductRequest $request): RedirectResponse
+    {
+        $validated = $request->validated();
+
+        $product = new Product();
+        $product->name = $validated['name'];
+        $product->category_id = $validated['category'];
+        $product->brand_id = $validated['brand'];
+        $product->save();
+
+        $request->flashSuccessMessage(__('admin/products.messages.product_created', ['name' => $product->name]));
+
+        return redirect()->route('admin.products.edit', $product->id);
     }
 
 
     public function destroy(int $id)
     {
+        $product = Product::find($id);
+        $skus_num = $this->productService->deleteProductImages($id);
+        $product_name = $product->name;
+        $product->delete();
+
+        $message = $skus_num
+            ? __('admin/products.messages.product_deleted', ['name' => $product_name, 'num' => $skus_num])
+            : __('admin/products.messages.empty_product_deleted', ['name' => $product_name]);
+
+        session()->flash('message', [
+            'type' => 'success',
+            'content' => $message,
+            'align' => 'center',
+        ]);
+
         return redirect()->route('admin.products');
     }
 }

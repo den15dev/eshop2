@@ -32,13 +32,15 @@ Frameworks, libraries and tools:
 
 - Laravel PHP framework
 - Spatie/Laravel-translatable
+- Spatie/Image
 - PostgreSQL
-- Redis
+- Redis (for caching)
 - Docker
 - Vite
 - Some modules of Bootstrap library
 - Swiper
 - Fancybox
+- SortableJS
 
 Languages:
 

@@ -12,8 +12,7 @@ class AjaxRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
-//        return Auth::check() && $this->user()->isAdmin();
+        return Auth::check() && $this->user()->isAdmin();
     }
 
     /**
@@ -24,7 +23,8 @@ class AjaxRequest extends FormRequest
         $rules = [];
 
         if ($this->has('args.fields')) {
-            $rules['args.fields.' . app()->getFallbackLocale()] = ['required'];
+            $rules['args.fields.' . app()->getFallbackLocale()] = ['sometimes', 'required'];
+            $rules['args.fields.*.' . app()->getFallbackLocale()] = ['sometimes', 'required'];
         }
 
         return $rules;
@@ -35,6 +35,7 @@ class AjaxRequest extends FormRequest
     {
         return [
             'args.fields.*.required' => __('admin/validation.field_is_required'),
+            'args.fields.*.*.required' => __('admin/validation.field_is_required'),
         ];
     }
 }

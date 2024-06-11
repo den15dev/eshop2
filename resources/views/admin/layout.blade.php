@@ -15,6 +15,9 @@
     <link rel="apple-touch-icon" href="{{ asset('img/41b106e0/adm_icon_152.png') }}" sizes="152x152">
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    @if(env('ADMIN_DEMO'))
+    <meta name="submit-403-messages" content="{{ !request()->user()?->isAdmin() }}">
+    @endif
 
     {{ Vite::useHotFile('admin.hot')
         ->useBuildDirectory('admin')

@@ -18,8 +18,8 @@
   & > li {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 0 8px;
+    gap: 6px;
+    padding: 0 8px 0 6px;
     cursor: pointer;
     border-left: 4px solid white;
     transition-property: color, border-left-color;
@@ -37,18 +37,21 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 20px;
-    svg {
-      fill: none;
-      stroke-width: 1.6;
-      stroke: color($color1, light, 4);
-    }
+    width: 24px;
   }
 
   .item-text {
     display: block;
-    padding-top: 1px;
+    padding-top: 2px;
   }
+}
+
+.catalog-category-icon {
+  fill: none;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: color($color1, light, 4);
 }
 
 .catalog-desktop-body-cont {

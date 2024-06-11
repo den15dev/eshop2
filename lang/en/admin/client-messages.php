@@ -11,10 +11,11 @@ return [
         'field_must_be_filled' => 'This field must be filled out',
         'delete_attribute' => 'Are you sure you want to remove the attribute? All variants of this attribute will be removed from all SKUs!',
         'delete_variant' => 'Are you sure you want to remove this variant from all SKUs of this product?',
+        'delete_product' => 'Are you sure you want to remove this product? Along with it, all its SKUs will be permanently deleted, along with images, specifications, reviews, likes, items in user carts and favorites.',
+        'delete_sku' => 'Are you sure you want to delete this SKU? Along with it, its specifications, reviews, likes, positions in user baskets and favorites will be permanently deleted.',
     ],
 
-    'skus' => [
-        'spec_updated' => 'The specification has been updated',
-        'spec_cleared' => 'The specification has been cleared',
+    'categories' => [
+        'delete_spec' => 'Are you sure you want to remove the ":name" specification? The values for this specification will be removed from all SKUs in this category.',
     ],
 ];

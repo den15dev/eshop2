@@ -19,6 +19,10 @@ class SetRouteLanguage
      */
     public function handle(Request $request, Closure $next): Response
     {
+        if ($request->route()->getName() === 'language.set') {
+            return $next($request);
+        }
+
         $this->prefix = LanguageService::getRoutePrefix($request->segment(1));
         $this->cur_lang = app()->getLocale();
 

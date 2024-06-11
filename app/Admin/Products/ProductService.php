@@ -7,7 +7,6 @@ use App\Admin\Products\Actions\BuildIndexQueryAction;
 use App\Admin\Products\Actions\GetSkuFinalPricesAction;
 use App\Admin\Products\Actions\MoveProductToCategoryAction;
 use App\Admin\Products\Actions\UpdateSkuAttributesAction;
-use App\Admin\Products\Actions\UpdateSkuImagesAction;
 use App\Admin\Products\Actions\ValidateSkuAttributesAction;
 use App\Modules\Categories\Models\Specification;
 use App\Modules\Images\ImageService;
@@ -16,6 +15,7 @@ use App\Modules\Products\Models\Sku;
 use App\Modules\Products\Models\Variant;
 use Illuminate\Database\Eloquent\Builder as EBuilder;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 class ProductService
@@ -50,6 +50,28 @@ class ProductService
         $state->order = $query['order'] ?? null;
 
         return $state;
+    }
+
+
+    public function getSkuMaxNum(Collection $attributes): int
+    {
+        $max_num = 1;
+
+        foreach ($attributes as $attribute) {
+            $max_num = $max_num * $attribute->variants->count();
+        }
+
+        return $max_num;
+    }
+
+
+    public function getCategories(Collection $categories): Collection
+    {
+        foreach ($categories as $category) {
+            $category->has_children = $categories->contains('parent_id', $category->id);
+        }
+
+        return $categories;
     }
 
 
@@ -163,11 +185,77 @@ class ProductService
 
     public function updateSkuImages(int $id, array $old_images, array $new_images, ?UploadedFile $file): void
     {
-        UpdateSkuImagesAction::run($id, $old_images, $new_images, $file);
+        $dir = storage_path(ImageService::LOCAL_DIR) . '/' . Sku::IMG_DIR . '/' . $id;
+
+        // Remove unneeded images
+        foreach ($old_images as $old_image) {
+            if (!in_array($old_image, $new_images)) {
+                foreach (Sku::IMG_SIZES as $size => $res) {
+                    unlink($dir . '/' . $old_image . '_' . $size . '.jpg');
+                }
+            }
+        }
+
+        if ($file) {
+            $new_index = 1;
+            while (in_array(sprintf('%02d', $new_index), $new_images)) $new_index++;
+            $new_index = sprintf('%02d', $new_index);
+            $new_images[] = $new_index;
+
+            $this->saveSkuImage($id, $new_index, $file);
+        }
+
+        Sku::firstWhere('id', $id)->update([
+            'images' => count($new_images) ? $new_images : null
+        ]);
     }
 
 
-    public function updateSkuSpec(int $sku_id, int $spec_id, array $fields): void
+    public function saveSkuImage(int $sku_id, int|string $index, UploadedFile $file): void
+    {
+        $dir = storage_path(ImageService::LOCAL_DIR) . '/' . Sku::IMG_DIR . '/' . $sku_id;
+        if (!is_dir($dir)) mkdir($dir);
+
+        $source_path = $file->path();
+
+        foreach (Sku::IMG_SIZES as $size => $res) {
+            $out_path = $dir . '/' . sprintf('%02d', $index) . '_' . $size . '.jpg';
+            ImageService::saveToSquareFilled($source_path, $out_path, $res);
+        }
+    }
+
+
+    public function deleteProductImages(int $product_id): int
+    {
+        $sku_ids = Sku::select('id')
+            ->where('product_id', $product_id)
+            ->get()
+            ->pluck('id')
+            ->all();
+
+        foreach ($sku_ids as $sku_id) {
+            $this->deleteSkuImages($sku_id);
+        }
+
+        return count($sku_ids);
+    }
+
+
+    public function deleteSkuImages(int $sku_id): void
+    {
+        $dir = storage_path(ImageService::LOCAL_DIR) . '/' . Sku::IMG_DIR . '/' . $sku_id;
+
+        if (is_dir($dir)) {
+            $images = array_diff(scandir($dir), ['.', '..']);
+            foreach ($images as $img) {
+                unlink($dir . '/' . $img);
+            }
+            rmdir($dir);
+        }
+    }
+
+
+    public function updateSkuSpec(int $sku_id, int $spec_id, array $fields): \stdClass
     {
         $existed = DB::table('sku_specification')
             ->where('sku_id', $sku_id)
@@ -183,10 +271,20 @@ class ProductService
                 'spec_value' => $fields,
             ]);
         }
+
+        $response = new \stdClass();
+        $response->message = __('admin/specifications.messages.spec_updated');
+
+        return $response;
     }
 
-    public function deleteSkuSpec(int $sku_id, int $spec_id): void
+    public function deleteSkuSpec(int $sku_id, int $spec_id): \stdClass
     {
         Sku::find($sku_id)->specifications()->detach($spec_id);
+
+        $response = new \stdClass();
+        $response->message = __('admin/skus.messages.spec_cleared');
+
+        return $response;
     }
 }

@@ -279,7 +279,7 @@ class ProductDBSeeder
                 $spec_arr = [
                     'category_id' => self::$category_id,
                     'name' => json_encode($spec->name, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
-                    'units' => json_encode($spec->units, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
+                    'units' => $spec->units ? json_encode($spec->units, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) : null,
                     'sort' => $spec_sort,
                 ];
 

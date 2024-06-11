@@ -1,0 +1,81 @@
+.spec-item {
+  $column-gap: 2rem;
+  display: flex;
+  column-gap: $column-gap;
+  //row-gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid $grey-230;
+
+  .spec-item_section {
+    flex: 1 0 100%;
+
+    @include md {
+      flex: 0 0 calc(50% - $column-gap/2);
+    }
+  }
+}
+
+.spec-item_subsection {
+  display: flex;
+  column-gap: 2rem;
+
+  & > div {
+    flex: 1;
+  }
+}
+
+.spec-item_label {
+  color: $grey-150;
+  margin-bottom: 0.25rem;
+}
+
+.spec-item_checkboxes {
+  display: flex;
+  column-gap: 1rem;
+  row-gap: 0.25rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+
+  @include sm {
+    column-gap: 1.5rem;
+  }
+}
+
+.spec-item_checkbox-cont {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.spec-item_text-cont {
+  display: flex;
+  align-items: center;
+  column-gap: 0.5rem;
+  margin-bottom: 0.75rem;
+
+  & > div {
+    flex: 1;
+
+    .invalid-feedback {
+      line-height: 1;
+      margin-top: 0.5rem;
+    }
+  }
+
+  label {
+    width: 22px;
+
+    @include sm {
+      width: 25px;
+    }
+  }
+}
+
+.spec-item_btns {
+  display: flex;
+  column-gap: 1.25rem;
+  justify-content: right;
+  align-items: center;
+  margin-top: -0.25rem;
+  margin-bottom: 0.25rem;
+}

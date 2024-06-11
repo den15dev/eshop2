@@ -32,7 +32,7 @@ class GetSkuFinalPricesAction
                 if ($promo->status === 'active') $promo_discount = $promo->discount;
 
                 if ($promo->status === 'scheduled' && !$sku_discount) {
-                    $suffix = '% (' . $promo->discount . '% ' . __('admin/products.promo_status.from') . ' ' . $promo->starts_at->isoFormat('D MMMM YYYY') . ')';
+                    $suffix = '% (' . $promo->discount . '% ' . __('admin/skus.promo_status.from') . ' ' . $promo->starts_at->isoFormat('D MMMM YYYY') . ')';
                 }
             }
         }

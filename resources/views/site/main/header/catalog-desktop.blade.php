@@ -3,7 +3,7 @@
         @foreach($categories as $category)
             <li {!! $loop->first ? 'class="active"' : '' !!} data-id="{{ $category['id'] }}">
                 <div class="icon-cont">
-                    <svg viewBox="{{ $catalog_icons[$category['slug']]['viewbox'] }}" style="height: {{ $catalog_icons[$category['slug']]['height_prc'] }}%">
+                    <svg viewBox="0 0 24 24" class="catalog-category-icon">
                         <use href="#catalogIcon_{{ $category['slug'] }}"/>
                     </svg>
                 </div>

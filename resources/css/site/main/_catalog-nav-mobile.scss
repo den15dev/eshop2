@@ -18,16 +18,16 @@
   $row-height: 32px;
   $row-padding-top: 6px;
   $row-padding-bottom: 5px;
-  $icon-gap: 8px;
-  $icon-cont-width: 20px;
+  $icon-gap: 6px;
+  $icon-cont-width: 24px;
 
   // sm
   $font-size-sm: 18px;
   $row-height-sm: 36px;
   $row-padding-top-sm: 7px;
   $row-padding-bottom-sm: 6px;
-  $icon-gap-sm: 9px;
-  $icon-cont-width-sm: 24px;
+  $icon-gap-sm: 7px;
+  $icon-cont-width-sm: 26px;
 
   font-size: $font-size;
   li {
@@ -57,24 +57,17 @@
     align-items: center;
     justify-content: center;
     width: $icon-cont-width;
-
     height: $row-height;
-    @include sm {
-      height: $row-height-sm;
-    }
 
     @include sm {
       width: $icon-cont-width-sm;
-    }
-    svg {
-      fill: none;
-      stroke-width: 1.6;
-      stroke: color($color1, light, 4);
+      height: $row-height-sm;
     }
   }
+
   .cat-btn1-text {
     display: block;
-    padding-top: 1px;
+    padding-top: 3px;
   }
 
   .cat-btn2 {

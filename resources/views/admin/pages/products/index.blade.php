@@ -6,6 +6,21 @@
 
 @section('main_content')
     <div>
+        @if($unfinished->count())
+            <div class="mb-5">
+                <div class="mb-2">{{ __('admin/products.unfinished') }}:</div>
+                <ul>
+                    @foreach($unfinished as $uf_product)
+                        <li>
+                            <a href="{{ route('admin.products.edit', $uf_product->id) }}" class="red-link">
+                                {{ $uf_product->id }}. {{ $uf_product->name }}
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <div class="product-index_cont1 mb-3">
             <div class="product-index_search-category">
                 <div class="product-index_search">
@@ -16,9 +31,9 @@
                     <select name="category" class="form-select">
                         <option value="" {{ $state->category_id ? '' : 'selected' }}>{{ __('admin/products.all_categories') }}</option>
                         @foreach($categories as $category)
-                            @if($category->sku_num_children_all)
+                            @if($category->sku_num_children_all || $category->sku_num_all)
                                 <option value="{{ $category->id }}" {{ $state->category_id === $category->id ? 'selected' : '' }}>
-                                    {{ str_repeat('-', $category->level - 1) . ' ' . $category->name }} ({{ $category->sku_num_children_all }})
+                                    {{ str_repeat('-', $category->level - 1) . ' ' . $category->name }} ({{ $category->sku_num_children_all ?: $category->sku_num_all }})
                                 </option>
                             @endif
                         @endforeach
@@ -26,7 +41,7 @@
                 </div>
             </div>
             <div class="product-index_add-btn">
-                <button>+&nbsp;&nbsp;{{ __('admin/products.add_product') }}</button>
+                <a href="{{ route('admin.products.create') }}" class="btn btn-add">{{ __('admin/products.create_product') }}</a>
             </div>
         </div>
 

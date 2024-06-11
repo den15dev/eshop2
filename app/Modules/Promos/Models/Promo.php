@@ -65,9 +65,9 @@ class Promo extends Model
     public function getStatusDescriptionAttribute(): string
     {
         return match($this->status) {
-            'ended' => __('admin/products.promo_status.ended') . ' ' . $this->ends_at->isoFormat('D MMMM YYYY'),
-            'active' => __('admin/products.promo_status.active_until') . ' ' . $this->ends_at->isoFormat('D MMMM YYYY'),
-            'scheduled' => __('admin/products.promo_status.will_start') . ' ' . $this->starts_at->isoFormat('D MMMM YYYY'),
+            'ended' => __('admin/skus.promo_status.ended') . ' ' . $this->ends_at->isoFormat('D MMMM YYYY'),
+            'active' => __('admin/skus.promo_status.active_until') . ' ' . $this->ends_at->isoFormat('D MMMM YYYY'),
+            'scheduled' => __('admin/skus.promo_status.will_start') . ' ' . $this->starts_at->isoFormat('D MMMM YYYY'),
         };
     }
 }

@@ -1,3 +1,5 @@
+import {showClientModal} from "./modals.js";
+
 export const pageTint = document.querySelector('.page-tint');
 export const fadeSpeed = 200;
 export const htmlElem = document.querySelector('html');
@@ -6,6 +8,7 @@ export const smMedia = window.matchMedia('(min-width: 576px)');
 
 export const csrf = document.querySelector('meta[name="csrf-token"]').content;
 export const lang = document.documentElement.lang;
+export const submit403Messages = document.querySelector('meta[name="submit-403-messages"]')?.content;
 
 export let translations;
 
@@ -76,16 +79,15 @@ export function getAdminTranslations() {
 export function adjustTextAreaHeights() {
     const lineHeight = 24; // for 16px font size
     const extraHeight = 14; // for 16px font size
-    let minLines = 3;
+    const minLinesDefault = 3;
 
-    let minHeight = (lineHeight * minLines) + extraHeight;
     const textAreas = document.querySelectorAll('textarea');
 
     const adjust = textarea => {
-        if (textarea.dataset.minlines) {
-            minLines = parseInt(textarea.dataset.minlines, 10);
-            minHeight = (lineHeight * minLines) + extraHeight;
-        }
+        const minLines = textarea.dataset.minlines
+            ? parseInt(textarea.dataset.minlines, 10)
+            : minLinesDefault;
+        const minHeight = (lineHeight * minLines) + extraHeight;
 
         textarea.style.overflow = 'hidden';
         textarea.style.height = minHeight + 'px';
@@ -101,4 +103,21 @@ export function adjustTextAreaHeights() {
             adjust(textarea);
         });
     });
+}
+
+
+export function showSubmit403Messages() {
+    if (submit403Messages) {
+        const submitBtns = document.querySelectorAll('button[type="submit"]');
+
+        submitBtns.forEach(btn => {
+            btn.addEventListener('click', e => {
+                e.preventDefault();
+
+                showClientModal({
+                    message: translations.general.messages.forbidden,
+                });
+            });
+        });
+    }
 }
