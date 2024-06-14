@@ -31,6 +31,7 @@ return [
     'final_price' => 'Endgültiger Preis',
     'images' => [
         'title' => 'Bilder',
+        'order_note' => 'Ziehen Sie, um die Reihenfolge zu ändern.',
         'upload_note' => 'Die Bilder werden in ein Quadrat umgewandelt und die entstehenden leeren Bereiche werden mit Weiß gefüllt. Die minimale Auflösung auf jeder Seite beträgt 800 px, die maximale 5000 px.',
     ],
 

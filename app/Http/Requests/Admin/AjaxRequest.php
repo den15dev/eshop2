@@ -4,6 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class AjaxRequest extends FormRequest
 {
@@ -20,22 +21,20 @@ class AjaxRequest extends FormRequest
      */
     public function rules(): array
     {
-        $rules = [];
-
-        if ($this->has('args.fields')) {
-            $rules['args.fields.' . app()->getFallbackLocale()] = ['sometimes', 'required'];
-            $rules['args.fields.*.' . app()->getFallbackLocale()] = ['sometimes', 'required'];
-        }
-
-        return $rules;
+        return $this->getRequestInstance()->ajaxRules($this);
     }
 
 
     public function messages(): array
     {
-        return [
-            'args.fields.*.required' => __('admin/validation.field_is_required'),
-            'args.fields.*.*.required' => __('admin/validation.field_is_required'),
-        ];
+        return $this->getRequestInstance()->messages();
+    }
+
+
+    private function getRequestInstance()
+    {
+        $requestClassName = 'App\\Admin\\' . ucfirst(Str::plural($this->service)) . '\\Requests\\Store' . ucfirst($this->service) . 'Request';
+
+        return new $requestClassName();
     }
 }

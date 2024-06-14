@@ -269,7 +269,11 @@
 
 
         <div class="mb-6">
-            <h5 class="mb-4">{{ __('admin/skus.images.title') }}</h5>
+            <h5 class="mb-2">{{ __('admin/skus.images.title') }}</h5>
+
+            <div class="small grey-text fst-italic mb-4">
+                {{ __('admin/skus.images.order_note') }}
+            </div>
 
             <div class="sku-edit_images mb-4">
                 @foreach($sku->images as $img_num)
@@ -333,6 +337,7 @@
             @foreach($category_specs as $cat_spec)
                 <div class="spec-item">
                     <div class="spec-item_section">
+                        <div class="small lightgrey-text">#{{ $cat_spec->sort }}</div>
                         <div class="mb-2">{{ $cat_spec->name }}{{ $cat_spec->units ? ', ' . $cat_spec->units : '' }}</div>
                         <div class="spec-item_checkboxes">
                             <div class="spec-item_checkbox-cont">

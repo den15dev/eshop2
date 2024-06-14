@@ -2,6 +2,7 @@
 
 namespace App\Admin\Categories\Actions;
 
+use App\Admin\Categories\CategoryService;
 use Illuminate\Support\Collection;
 
 class GetParentCategoryListAction
@@ -42,6 +43,6 @@ class GetParentCategoryListAction
             }
         }
 
-        return $categories;
+        return CategoryService::sortToTree($categories);
     }
 }

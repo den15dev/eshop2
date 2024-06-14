@@ -32,5 +32,8 @@ return [
     'messages' => [
         'spec_updated' => 'Характеристика обновлена',
         'spec_deleted' => 'Характеристика удалена',
+        'image_saved' => 'Изображение сохранено',
+        'category_moved' => 'Категория перенесена в ":name"',
+        'order_changed' => 'Порядок изменён',
     ]
 ];

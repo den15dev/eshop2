@@ -32,5 +32,8 @@ return [
     'messages' => [
         'spec_updated' => 'The specification has been updated',
         'spec_deleted' => 'The specification has been deleted',
+        'image_saved' => 'The image has been saved',
+        'category_moved' => 'The category moved to ":name"',
+        'order_changed' => 'The order has been changed',
     ]
 ];

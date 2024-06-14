@@ -17,6 +17,7 @@ class Category extends Model
     public array $translatable = ['name'];
     protected $guarded = [];
     const IMG_DIR = 'categories';
+    const IMG_SIZE = 230;
 
 
     public function products(): HasMany

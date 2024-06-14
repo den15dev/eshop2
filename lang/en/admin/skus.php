@@ -31,6 +31,7 @@ return [
     'final_price' => 'Final price',
     'images' => [
         'title' => 'Images',
+        'order_note' => 'Drag to change the order.',
         'upload_note' => 'The images will be converted to a square and the resulting empty areas will be filled with white. The minimum resolution on any side is 800 px, the maximum is 5000 px.',
     ],
 

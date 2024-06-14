@@ -278,12 +278,13 @@ class ProductService
         return $response;
     }
 
+
     public function deleteSkuSpec(int $sku_id, int $spec_id): \stdClass
     {
         Sku::find($sku_id)->specifications()->detach($spec_id);
 
         $response = new \stdClass();
-        $response->message = __('admin/skus.messages.spec_cleared');
+        $response->message = __('admin/specifications.messages.spec_cleared');
 
         return $response;
     }

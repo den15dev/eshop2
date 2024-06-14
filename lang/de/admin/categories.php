@@ -32,5 +32,8 @@ return [
     'messages' => [
         'spec_updated' => 'Die Spezifikation wurde aktualisiert',
         'spec_deleted' => 'Die Spezifikation wurde gelöscht',
+        'image_saved' => 'Das Bild wurde gespeichert',
+        'category_moved' => 'Die Kategorie wurde nach „:name“ verschoben',
+        'order_changed' => 'Die Reihenfolge wurde geändert',
     ]
 ];

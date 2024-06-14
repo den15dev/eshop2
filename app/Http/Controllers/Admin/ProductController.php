@@ -8,6 +8,7 @@ use App\Admin\Products\Requests\StoreProductRequest;
 use App\Http\Controllers\Controller;
 use App\Modules\Brands\Models\Brand;
 use App\Modules\Categories\CategoryService;
+use App\Admin\Categories\CategoryService as AdmCategoryService;
 use App\Modules\Categories\Models\Category;
 use App\Modules\Languages\LanguageService;
 use App\Modules\Products\Models\Product;
@@ -27,7 +28,7 @@ class ProductController extends Controller
     public function index(Request $request): View
     {
         $unfinished = Product::whereDoesntHave('skus')->get();
-        $categories = CategoryService::getAll();
+        $categories = AdmCategoryService::sortToTree(CategoryService::getAll());
 
         $table_data = $this->getTableData($request);
         $state = $this->productService->getPageState($request->query());

@@ -2,6 +2,7 @@
 
 namespace App\Admin\Products\Requests;
 
+use App\Http\Requests\Admin\AjaxRequest;
 use App\Http\Requests\RequestHelper;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;

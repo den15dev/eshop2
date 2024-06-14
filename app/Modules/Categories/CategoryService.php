@@ -49,8 +49,8 @@ class CategoryService
 
             $prod_self_all = $cur_category->sku_num_all;
             $prod_self = $cur_category->sku_num;
-            $cur_category->sku_num_children_all = 0;
-            $cur_category->sku_num_children  = 0;
+            $cur_category->sku_num_children_all ??= 0;
+            $cur_category->sku_num_children ??= 0;
 
             while ($parent_id) {
                 $parent = $categories->firstWhere('id', $cur_category->parent_id);

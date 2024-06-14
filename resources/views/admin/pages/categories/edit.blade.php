@@ -10,7 +10,7 @@
             <span class="grey-text">ID {{ $category->id }}:</span> {{ $category->name }}
         </div>
 
-        <form class="mb-55" enctype="multipart/form-data" action="{{ route('admin.categories.update', $category->id) }}" method="POST">
+        <form class="mb-55" action="{{ route('admin.categories.update', $category->id) }}" method="POST">
             @method('PUT')
             @csrf
             <div class="form-flex-cont mb-45">
@@ -47,15 +47,19 @@
                 </div>
             </div>
 
+            <button type="submit">{{ __('admin/general.save') }}</button>
+        </form>
 
-            @if($category->level > 1)
-                <div class="form-flex-cont mb-45">
+        @if($category->level > 1)
+            <form class="mb-55" action="{{ route('admin.categories.update', $category->id) }}" method="POST">
+                @method('PUT')
+                @csrf
+                <div class="form-flex-cont mb-4">
                     <div>
                         <label for="parentCategory" class="form-label mb-0">{{ __('admin/categories.parent_category') }}:</label>
                         <div class="small grey-text fst-italic mb-2">
                             {{ __('admin/categories.parent_note') }}
                         </div>
-                        <input type="hidden" name="old_parent_id" class="hidden" value="{{ $category->id }}" />
                         <select name="parent_id" class="form-select" id="parentCategory">
                             @foreach($categories as $cat)
                                 <option value="{{ $cat->id }}"
@@ -67,16 +71,23 @@
                         </select>
                     </div>
                 </div>
-            @endif
+
+                <button type="submit">{{ __('admin/general.save') }}</button>
+            </form>
+        @endif
 
 
-            @if($children->isNotEmpty())
+        @if($children->isNotEmpty())
+            <form class="mb-55" action="{{ route('admin.categories.update', $category->id) }}" method="POST">
+                @method('PUT')
+                @csrf
                 <div class="grey-text mt-2">{{ __('admin/categories.change_order') }}:</div>
                 <div class="small grey-text fst-italic mb-2">
                     {{ __('admin/categories.order_note') }}
                 </div>
-                <input type="hidden" value="{{ json_encode($children->pluck('id')) }}" id="childCategoryOrderInput" />
-                <ul class="mb-45 w-fit" id="childCategoryOrderList">
+                <input type="hidden" name="old_children_order" value="{{ json_encode($children->pluck('id')) }}" />
+                <input type="hidden" name="children_order" value="{{ json_encode($children->pluck('id')) }}" id="childCategoryOrderInput" />
+                <ul class="mb-4 w-fit" id="childCategoryOrderList">
                     @foreach($children as $child)
                         <li class="category-edit_order-item" data-id="{{ $child->id }}">
                             {{ $child->name }}
@@ -84,10 +95,16 @@
                         </li>
                     @endforeach
                 </ul>
-            @endif
+
+                <button type="submit">{{ __('admin/general.save') }}</button>
+            </form>
+        @endif
 
 
-            <div class="form-flex-cont mb-45">
+        <form class="mb-55" enctype="multipart/form-data" action="{{ route('admin.categories.update', $category->id) }}" method="POST">
+            @method('PUT')
+            @csrf
+            <div class="form-flex-cont mb-4">
                 <div>
                     <label for="categoryImage" class="form-label">{{ __('admin/categories.image') }}:</label>
 
@@ -162,9 +179,9 @@
         </div>
 
 
-        @if($specs->count())
-            <div class="mb-5" id="categorySpecifications">
-                <h5 class="mb-3">{{ __('admin/specifications.title') }}</h5>
+        @if(($category->level === 3 || $category->level === 4) && !$children->count())
+            <div class="mb-4" id="categorySpecifications" data-category-id="{{ $category->id }}">
+                <h5 class="mb-3">{{ __('admin/specifications.title') }} <span class="fw-normal lightgrey-text">({{ $specs->count() }})</span></h5>
 
                 <div class="small grey-text fst-italic mb-4">
                     "{{ __('admin/specifications.is_filter') }}" — {{ __('admin/specifications.is_filter_note') }}<br>
@@ -172,96 +189,14 @@
                 </div>
 
                 @foreach($specs as $cat_spec)
-                    <form data-spec-id="{{ $cat_spec->id }}" data-category-id="{{ $category->id }}">
-                        <div class="small lightgrey-text mb-1">#{{ $cat_spec->id }}, {{ __('admin/specifications.used_in', ['num' => $cat_spec->skus_count]) }}</div>
-
-                        <div class="spec-item">
-                            <div class="spec-item_section">
-                                <div class="spec-item_label">{{ __('admin/categories.specs.name') }}:</div>
-                                @foreach($languages as $lang)
-                                    <div class="spec-item_text-cont">
-                                        @php
-                                            $id = 'specName' . $cat_spec->id . ucfirst($lang->id);
-                                        @endphp
-                                        <label for="{{ $id }}" class="form-label">{{ $lang->id }}:</label>
-                                        <div>
-                                            <textarea class="form-control" name="name[{{ $lang->id }}]"
-                                                      id="{{ $id }}"
-                                                      {!! $lang->id === app()->getLocale() ? 'data-current-name="true"' : '' !!}
-                                                      data-minlines="1">{{ $cat_spec->getTranslation('name', $lang->id, false) }}</textarea>
-                                            <div id="{{ $id }}Feedback" class="invalid-feedback"></div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-
-                            <div class="spec-item_section mb-2">
-                                <div class="spec-item_subsection">
-                                    <div>
-                                        <div class="spec-item_label">{{ __('admin/categories.specs.units') }}:</div>
-                                        @foreach($languages as $lang)
-                                            <div class="spec-item_text-cont">
-                                                @php
-                                                    $id = 'specUnits' . $cat_spec->id . ucfirst($lang->id);
-                                                @endphp
-                                                <label for="{{ $id }}" class="form-label">{{ $lang->id }}:</label>
-                                                <div>
-                                                    <input type="text"
-                                                           class="form-control @error('units.' . $lang->id) is-invalid @enderror"
-                                                           name="units[{{ $lang->id }}]"
-                                                           value="{{ old('units.' . $lang->id, $cat_spec->getTranslation('units', $lang->id, false)) }}"
-                                                           id="{{ $id }}" />
-                                                    <div id="{{ $id }}Feedback" class="invalid-feedback"></div>
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                    </div>
-
-                                    <div>
-                                        <div class="mb-25">
-                                            @php
-                                                $id = 'specOrderNum' . $cat_spec->id;
-                                            @endphp
-                                            <label class="spec-item_label">{{ __('admin/categories.specs.order') }}:</label>
-                                            <input type="hidden" name="old_sort" value="{{ $cat_spec->sort }}" />
-                                            <input type="text"
-                                                   class="form-control @error('sort') is-invalid @enderror"
-                                                   name="sort"
-                                                   value="{{ old('sort', $cat_spec->sort) }}"
-                                                   id="{{ $id }}" />
-                                            @error('sort')
-                                            <div id="{{ $id }}Feedback" class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-
-                                        <div>
-                                            <div class="spec-item_checkbox-cont mb-1">
-                                                <input type="checkbox" class="form-check-input" name="is_filter"
-                                                       id="isFilter{{ $cat_spec->id }}" {{ $cat_spec->is_filter ? 'checked' : '' }} />
-                                                <label class="form-check-label"
-                                                       for="isFilter{{ $cat_spec->id }}">{{ __('admin/specifications.is_filter') }}</label>
-                                            </div>
-
-                                            <div class="spec-item_checkbox-cont mb-1">
-                                                <input type="checkbox" class="form-check-input" name="is_main"
-                                                       id="isMain{{ $cat_spec->id }}" {{ $cat_spec->is_main ? 'checked' : '' }} />
-                                                <label class="form-check-label"
-                                                       for="isMain{{ $cat_spec->id }}">{{ __('admin/specifications.is_main') }}</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="spec-item_btns">
-                                    <div class="link spec-item_save-btn">{{ __('admin/general.save') }}</div>
-                                    <div class="red-link spec-item_delete-btn">{{ __('admin/general.delete') }}</div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+                    <x-admin::category-specification-form :spec="$cat_spec" :languages="$languages" />
                 @endforeach
             </div>
-        @endif
 
+            <div class="mb-5" id="categoryAddSpec">
+                <div class="mb-25 fw-semibold">Добавить характеристику:</div>
+                <x-admin::category-specification-form :languages="$languages" :specnum="$specs->count()" />
+            </div>
+        @endif
     </div>
 @endsection

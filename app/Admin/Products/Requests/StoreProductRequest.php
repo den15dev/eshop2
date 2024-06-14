@@ -2,6 +2,7 @@
 
 namespace App\Admin\Products\Requests;
 
+use App\Http\Requests\Admin\AjaxRequest;
 use App\Http\Requests\RequestHelper;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
@@ -43,10 +44,29 @@ class StoreProductRequest extends FormRequest
     }
 
 
+    public function ajaxRules(AjaxRequest $request): array
+    {
+        $rules = [];
+
+        if (in_array($request->action, [
+            'updateSkuSpec',
+            'updateAttribute',
+            'updateVariant',
+            'createAttribute',
+            'createVariant',
+        ])) {
+            $rules['args.fields.' . app()->getFallbackLocale()] = ['required'];
+        }
+
+        return $rules;
+    }
+
+
     public function messages(): array
     {
         return [
             '*.' . app()->getFallbackLocale() . '.required' => __('admin/validation.field_is_required'),
+            'args.fields.' . app()->getFallbackLocale() . '.required' => __('admin/validation.field_is_required'),
         ];
     }
 }

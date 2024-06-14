@@ -262,10 +262,3 @@ function isClearedSpec(specForm) {
 
     return is_deleting;
 }
-
-
-function getSpecTAreaByFieldName(specForm, fieldName) {
-    const lang = fieldName.split('.').pop();
-
-    return specForm.querySelector(`textarea[name=${lang}]`);
-}

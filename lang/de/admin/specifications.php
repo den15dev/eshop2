@@ -8,10 +8,12 @@ return [
     'is_main' => 'Hauptsächlich',
     'is_main_note' => 'bedeutet, dass diese Spezifikation in der Hauptspezifikationsliste auf der Produktseite neben dem Bild verwendet wird.',
     'used_in' => 'verwendet in :num SKU',
+    'not_used' => 'nicht benutzt',
 
     'messages' => [
         'spec_updated' => 'Die Spezifikation wurde aktualisiert',
         'spec_cleared' => 'Die Spezifikation wurde gelöscht',
+        'spec_added' => 'Die Spezifikation wurde hinzugefügt',
         'spec_deleted' => 'Die Spezifikation wurde gelöscht',
     ],
 ];

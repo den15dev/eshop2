@@ -29,4 +29,8 @@ return [
     'yes' => 'yes',
     'No' => 'No',
     'no' => 'no',
+
+    'messages' => [
+        'changes_saved' => 'Changes have been saved',
+    ],
 ];

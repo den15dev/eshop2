@@ -1,7 +1,7 @@
 import Sortable from "sortablejs";
 import {post, convertToNestedObjects, removeEmptyObjects, showFieldErrors} from "../components/ajax.js";
 import {showClientModal} from "../../common/modals.js";
-import {translations, ucfirst} from "../../common/global.js";
+import {translations} from "../../common/global.js";
 
 const catOrderList = document.querySelector('#childCategoryOrderList');
 const catSpecifications = document.querySelector('#categorySpecifications');
@@ -22,26 +22,33 @@ export default function init() {
 
     if (catSpecifications) {
         const specForms = catSpecifications.querySelectorAll('form');
+        const categoryId = catSpecifications.dataset.categoryId;
 
         specForms.forEach(specForm => {
             const specId = specForm.dataset.specId;
-            const categoryId = specForm.dataset.categoryId;
             const saveBtn = specForm.querySelector('.spec-item_save-btn');
             const deleteBtn = specForm.querySelector('.spec-item_delete-btn');
 
             saveBtn.addEventListener('click', () => {
-                updateSpec(categoryId, specId, specForm);
+                updateOrAddSpec(categoryId, specId, specForm, 'updateSpec');
             });
 
             deleteBtn.addEventListener('click', () => {
                 deleteSpec(specId, specForm);
             });
         });
+
+        const addSpecForm = document.querySelector('#categoryAddSpec form');
+        const addBtn = addSpecForm.querySelector('.spec-item_add-btn');
+
+        addBtn.addEventListener('click', () => {
+            updateOrAddSpec(categoryId, null, addSpecForm, 'storeSpec');
+        });
     }
 }
 
 
-function updateSpec(category_id, spec_id, specForm) {
+function updateOrAddSpec(category_id, spec_id, specForm, action) {
     validateSpecOrderNum(specForm);
 
     const specFormData = new FormData(specForm);
@@ -49,11 +56,12 @@ function updateSpec(category_id, spec_id, specForm) {
     fields = convertToNestedObjects(fields);
     fields = removeEmptyObjects(fields);
 
-    const args = {category_id, spec_id, fields};
+    const args = {category_id, fields};
+    if (spec_id) args['spec_id'] = spec_id;
 
     post(
         'category',
-        'updateSpec',
+        action,
         args,
         function (result) {
             showFieldErrors(specForm, result.errors);
@@ -100,16 +108,22 @@ function deleteSpec(spec_id, specForm) {
 
 
 function validateSpecOrderNum(specForm) {
-    const oldSortNum = specForm.querySelector('input[name="old_sort"]').value;
+    const oldSortNum = specForm.querySelector('input[name="old_sort"]')?.value;
     const orderInput = specForm.querySelector('input[name="sort"]');
     const specForms = catSpecifications.querySelectorAll('form');
     const specNum = specForms.length;
     const newSortNum = parseInt(orderInput.value, 10);
 
-    if (!newSortNum) {
-        orderInput.value = oldSortNum;
+    if (oldSortNum) { // Updating spec
+        if (!newSortNum) {
+            orderInput.value = oldSortNum;
 
-    } else if (newSortNum > specNum) {
-        orderInput.value = specNum;
+        } else if (newSortNum > specNum) {
+            orderInput.value = specNum;
+        }
+    } else { // Adding new spec
+        if (!newSortNum || newSortNum > (specNum + 1)) {
+            orderInput.value = specNum + 1;
+        }
     }
 }
