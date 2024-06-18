@@ -14,19 +14,19 @@
             <div class="footer_section-title">{{ __('footer.company.title') }}</div>
             <ul class="footer-list">
                 <li>
-                    <a href="#">{{ __('footer.company.about') }}</a>
+                    <div class="footer-list_link">{{ __('footer.company.about') }}</div>
                 </li>
                 <li>
-                    <a href="#">{{ __('footer.company.news') }}</a>
+                    <div class="footer-list_link">{{ __('footer.company.news') }}</div>
                 </li>
                 <li>
-                    <a href="#">{{ __('footer.company.for_partners') }}</a>
+                    <div class="footer-list_link">{{ __('footer.company.for_partners') }}</div>
                 </li>
                 <li>
-                    <a href="#">{{ __('footer.company.vacancies') }}</a>
+                    <div class="footer-list_link">{{ __('footer.company.vacancies') }}</div>
                 </li>
                 <li>
-                    <a href="#">{{ __('footer.company.privacy') }}</a>
+                    <div class="footer-list_link">{{ __('footer.company.privacy') }}</div>
                 </li>
             </ul>
         </div>
@@ -34,19 +34,19 @@
             <div class="footer_section-title">{{ __('footer.for_buyers.title') }}</div>
             <ul class="footer-list">
                 <li>
-                    <a href="#">{{ __('footer.for_buyers.make_order') }}</a>
+                    <div class="footer-list_link">{{ __('footer.for_buyers.make_order') }}</div>
                 </li>
                 <li>
-                    <a href="#">{{ __('footer.for_buyers.payment_methods') }}</a>
+                    <div class="footer-list_link">{{ __('footer.for_buyers.payment_methods') }}</div>
                 </li>
                 <li>
-                    <a href="#">{{ __('footer.for_buyers.credits') }}</a>
+                    <div class="footer-list_link">{{ __('footer.for_buyers.credits') }}</div>
                 </li>
                 <li>
-                    <a href="#">{{ __('footer.for_buyers.for_entities') }}</a>
+                    <div class="footer-list_link">{{ __('footer.for_buyers.for_entities') }}</div>
                 </li>
                 <li>
-                    <a href="#">{{ __('footer.for_buyers.corp_departments') }}</a>
+                    <div class="footer-list_link">{{ __('footer.for_buyers.corp_departments') }}</div>
                 </li>
             </ul>
         </div>
@@ -54,19 +54,19 @@
             <div class="footer_section-title">{{ __('footer.other.title') }}</div>
             <ul class="footer-list">
                 <li>
-                    <a href="#">{{ __('footer.other.delivery') }}</a>
+                    <div class="footer-list_link">{{ __('footer.other.delivery') }}</div>
                 </li>
                 <li>
-                    <a href="#">{{ __('footer.other.return') }}</a>
+                    <div class="footer-list_link">{{ __('footer.other.return') }}</div>
                 </li>
                 <li>
-                    <a href="#">{{ __('footer.other.gift_cards') }}</a>
+                    <div class="footer-list_link">{{ __('footer.other.gift_cards') }}</div>
                 </li>
                 <li>
-                    <a href="#">{{ __('footer.other.bonus_program') }}</a>
+                    <div class="footer-list_link">{{ __('footer.other.bonus_program') }}</div>
                 </li>
                 <li>
-                    <a href="#">{{ __('footer.other.help') }}</a>
+                    <div class="footer-list_link">{{ __('footer.other.help') }}</div>
                 </li>
             </ul>
         </div>

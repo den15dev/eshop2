@@ -12,17 +12,13 @@ class StoreCategoryRequest extends FormRequest
 {
     use RequestHelper;
 
-    /**
-     * Determine if the user is authorized to make this request.
-     */
+
     public function authorize(): bool
     {
         return Auth::check() && $this->user()->isAdmin();
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     */
+
     public function rules(): array
     {
         $rules = [];
@@ -65,6 +61,7 @@ class StoreCategoryRequest extends FormRequest
     public function messages(): array
     {
         return [
+            '*.' . app()->getFallbackLocale() . '.required' => __('admin/validation.field_is_required'),
             'args.fields.*.' . app()->getFallbackLocale() . '.required' => __('admin/validation.field_is_required'),
         ];
     }

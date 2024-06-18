@@ -11,7 +11,6 @@ class GetSkuAction
     {
         $sku = Sku::join('products', 'skus.product_id', 'products.id')
             ->join('categories', 'products.category_id', 'categories.id')
-            ->join('brands', 'products.brand_id', 'brands.id')
             ->joinActivePromos()
             ->select(
                 'skus.id',
@@ -32,8 +31,6 @@ class GetSkuAction
                 'skus.promo_id',
                 'products.category_id',
                 'categories.slug as category_slug',
-                'brands.name AS brand_name',
-                'brands.slug AS brand_slug',
                 'promos.id as promo_id',
                 'promos.name as promo_name',
                 'promos.slug as promo_slug',

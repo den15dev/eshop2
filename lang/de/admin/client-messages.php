@@ -17,5 +17,10 @@ return [
 
     'categories' => [
         'delete_spec' => 'Sind Sie sicher, dass Sie die Spezifikation „:name“ entfernen möchten? Die Werte für diese Spezifikation werden aus allen SKUs in dieser Kategorie entfernt.',
+        'delete_category' => 'Sind Sie sicher, dass Sie die Kategorie „:name“ löschen möchten? Sofern darin Produkte enthalten waren, werden auch sämtliche Angaben damit entfernt.',
+    ],
+
+    'brands' => [
+        'delete_brand' => 'Sind Sie sicher, dass Sie die Marke „:name“ entfernen möchten?',
     ],
 ];

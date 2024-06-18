@@ -7,10 +7,13 @@ use App\Http\Controllers\Controller;
 use App\Modules\Categories\CategoryService;
 use App\Admin\Categories\CategoryService as AdmCategoryService;
 use App\Modules\Categories\Models\Category;
-use App\Modules\Images\ImageService;
 use App\Modules\Languages\LanguageService;
+use App\Modules\Products\Models\Product;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class CategoryController extends Controller
@@ -33,18 +36,33 @@ class CategoryController extends Controller
     public function create(Request $request): View
     {
         $parent_id = $request->query('parent_id');
-        $languages = LanguageService::getActive();
+        $languages = LanguageService::getAll();
+        $categories = $this->admCategoryService->getParentCategoryList(CategoryService::getAll());
 
         return view('admin.pages.categories.create', compact(
             'parent_id',
             'languages',
+            'categories',
         ));
     }
 
 
     public function store(StoreCategoryRequest $request): RedirectResponse
     {
-        $request->flashSuccessMessage('Новая категория создана');
+        $validated = $request->validated();
+
+        $parent = Category::find($request->parent_id);
+        $children_num = Category::where('parent_id', $request->parent_id)->count();
+
+        $category = new Category();
+        $category->name = $validated['name'];
+        $category->slug = $validated['slug'];
+        $category->parent_id = $request->parent_id;
+        $category->level = $parent?->level + 1;
+        $category->sort = $children_num + 1;
+        $category->save();
+
+        $request->flashSuccessMessage(__('admin/categories.messages.category_created', ['name' => $category->name]));
 
         return redirect()->route('admin.categories');
     }
@@ -52,7 +70,7 @@ class CategoryController extends Controller
 
     public function edit(int $id)
     {
-        $languages = LanguageService::getActive();
+        $languages = LanguageService::getAll();
         $categories = $this->admCategoryService->getParentCategoryList(CategoryService::getAll(), $id);
         $category = $categories->firstWhere('id', $id);
         $parent = $categories->firstWhere('id', $category->parent_id);
@@ -87,7 +105,7 @@ class CategoryController extends Controller
         if ($request->has('name')) {
             $category->update($validated);
 
-            $dir = storage_path(ImageService::LOCAL_DIR) . '/' . Category::IMG_DIR;
+            $dir = Storage::disk('images')->path(Category::IMG_DIR);
             if (file_exists($dir . '/' . $old_slug . '.jpg')) {
                 rename($dir . '/' . $old_slug . '.jpg', $dir . '/' . $validated['slug'] . '.jpg');
             }
@@ -135,9 +153,41 @@ class CategoryController extends Controller
 
     public function destroy(int $id)
     {
+        $category = Category::find($id);
+        $product_num = Product::where('category_id', $id)->count();
+        $children_num = Category::where('parent_id', $id)->count();
+
+        if ($product_num || $children_num) {
+            session()->flash('message', [
+                'type' => 'warning',
+                'content' => __('admin/categories.messages.not_empty'),
+                'align' => 'center',
+            ]);
+
+            return back();
+        }
+
+        DB::beginTransaction();
+
+        try {
+            Category::where('parent_id', $category->parent_id)
+                ->where('sort', '>', $category->sort)
+                ->decrement('sort');
+
+            $category->delete();
+            $this->admCategoryService->deleteImage($category->slug);
+
+            DB::commit();
+
+        } catch (\Throwable $e) {
+            DB::rollBack();
+            Log::channel('events')->info('An exception caught while deleting the category ' . $category->name . ': ' . $e->getMessage());
+            abort(500);
+        }
+
         session()->flash('message', [
-            'type' => 'success',
-            'content' => 'Категория успешно удалена',
+            'type' => 'info',
+            'content' => __('admin/categories.messages.deleted', ['name' => $category->name]),
             'align' => 'center',
         ]);
 

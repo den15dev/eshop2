@@ -283,6 +283,6 @@ class Sku extends Model
 
         if (!is_numeric($num)) return null;
 
-        return get_image(ImageService::PUBLIC_DIR . '/' . self::IMG_DIR . '/' . $this->id . '/' . sprintf('%02d', $num) . '_' . $size . '.jpg', $placeholder_size);
+        return get_image(self::IMG_DIR . '/' . $this->id . '/' . sprintf('%02d', $num) . '_' . $size . '.jpg', $placeholder_size);
     }
 }

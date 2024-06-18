@@ -2,26 +2,20 @@
 
 namespace App\Admin\Products\Requests;
 
-use App\Http\Requests\Admin\AjaxRequest;
 use App\Http\Requests\RequestHelper;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 
 class StoreSkuRequest extends FormRequest
 {
     use RequestHelper;
 
-    /**
-     * Determine if the user is authorized to make this request.
-     */
+
     public function authorize(): bool
     {
-        return Auth::check() && $this->user()->isAdmin();
+        return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     */
+
     public function rules(): array
     {
         $rules = [];

@@ -4,6 +4,7 @@ namespace App\Modules\Categories\Commands;
 
 use App\Modules\Categories\Models\Category;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 
 class AddCategories extends Command
 {
@@ -36,6 +37,9 @@ class AddCategories extends Command
         $records = self::buildCategoryList($categories);
 
         Category::upsert($records, 'id');
+
+        // Fix for PostgreSQL after the upsert: sync the id sequence with the max Pkeys.
+        DB::statement('SELECT setval(\'categories_id_seq\', max(id)) FROM categories');
     }
 
 

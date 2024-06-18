@@ -34,7 +34,7 @@
                 <div>
                     <label for="categorySlug" class="form-label mb-0">Slug:</label>
                     <div class="small grey-text fst-italic mb-2">
-                        {{ __('admin/categories.slug_note') }}
+                        {{ __('admin/general.slug_note') }}
                     </div>
                     <input type="text"
                            class="form-control @error('slug') is-invalid @enderror"
@@ -110,7 +110,7 @@
 
                     @if(file_exists($category->image_path))
                         <div class="mb-2">
-                            <img src="{{ asset($category->image_path) }}" alt="{{ $category->name }}">
+                            <img src="{{ $category->image_url }}" alt="{{ $category->name }}">
                         </div>
                     @endif
 
@@ -193,10 +193,21 @@
                 @endforeach
             </div>
 
-            <div class="mb-5" id="categoryAddSpec">
-                <div class="mb-25 fw-semibold">Добавить характеристику:</div>
+            <div class="mb-6" id="categoryAddSpec">
+                <div class="mb-25 fw-semibold">{{ __('admin/specifications.add_spec') }}:</div>
                 <x-admin::category-specification-form :languages="$languages" :specnum="$specs->count()" />
             </div>
         @endif
+
+
+        <form class="mb-4" action="{{ route('admin.categories.destroy', $category->id) }}" method="POST" id="deleteCategoryForm">
+            @method('DELETE')
+            @csrf
+            <button type="submit" class="btn-bg-red mb-3 {{ ($category->has_children || $category->sku_num_all) ? 'btn-inactive' : '' }}" data-name="{{ $category->name }}">{{ __('admin/categories.delete_category') }}</button>
+            <div class="small fst-italic">
+                <span class="fw-semibold">{{ __('admin/general.caution') }}</span>
+                <span class="grey-text">{{ __('admin/categories.delete_warning') }}</span>
+            </div>
+        </form>
     </div>
 @endsection

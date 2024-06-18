@@ -7,8 +7,6 @@ use Spatie\Image\Manipulations;
 
 class ImageService
 {
-    const PUBLIC_DIR = 'storage/images';
-    const LOCAL_DIR = 'app/public/images';
     const JPG_QUALITY = 80;
 
     public static function saveToSquareCropped(string $source_path, string $out_path, int $size): void

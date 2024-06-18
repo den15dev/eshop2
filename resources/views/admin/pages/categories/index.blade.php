@@ -6,6 +6,8 @@
 
 @section('main_content')
     <div class="admin-main-page">
+        <div class="admin-note mb-45">{{ __('admin/categories.main_note') }}</div>
+
         @include('site.main.header.catalog-icons')
 
         <svg width="2" height="2" style="display: none">
@@ -146,7 +148,7 @@
             @endforeach
 
             <li>
-                <a href="#" class="link category-tree_add-root-btn">{{ __('admin/categories.add_root') }}</a>
+                <a href="{{ route('admin.categories.create', ['parent_id' => 0]) }}" class="link category-tree_add-root-btn">{{ __('admin/categories.add_root') }}</a>
             </li>
         </ul>
 

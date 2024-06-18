@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->jsonb('name');
             $table->unsignedBigInteger('category_id')->nullable();
-            $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('set null');
+            $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('no action');
             $table->unsignedBigInteger('brand_id')->nullable();
-            $table->foreign('brand_id')->references('id')->on('brands')->onUpdate('cascade')->onDelete('set null');
+            $table->foreign('brand_id')->references('id')->on('brands')->onUpdate('cascade')->onDelete('no action');
             $table->timestamps();
         });
 

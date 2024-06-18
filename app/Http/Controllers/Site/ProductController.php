@@ -31,6 +31,7 @@ class ProductController extends Controller
         abort_unless($sku && $sku->slug === $slug_id[0], 404);
 
         $attributes = $productService->getAttributes($sku->product_id, $sku_id);
+        $brand = $productService->getBrand($sku->product_id);
 
         $rv_cookie = $request->cookie(RecentlyViewedService::COOKIE);
         $recently_viewed = $recentlyViewedService->get($rv_cookie, $sku_id);
@@ -41,6 +42,7 @@ class ProductController extends Controller
             'breadcrumb',
             'category',
             'sku',
+            'brand',
             'attributes',
             'recently_viewed',
         ));

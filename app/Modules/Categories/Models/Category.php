@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Translatable\HasTranslations;
 
 class Category extends Model
@@ -59,12 +60,12 @@ class Category extends Model
 
     public function getImagePathAttribute(): string
     {
-        return ImageService::PUBLIC_DIR . '/' . self::IMG_DIR . '/' . $this->slug . '.jpg';
+        return Storage::disk('images')->path(self::IMG_DIR . '/' . $this->slug . '.jpg');
     }
 
 
-    public function getImageAttribute(): string
+    public function getImageUrlAttribute(): string
     {
-        return get_image($this->image_path, 230);
+        return get_image(self::IMG_DIR . '/' . $this->slug . '.jpg', 230);
     }
 }

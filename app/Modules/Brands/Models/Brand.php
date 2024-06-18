@@ -2,10 +2,10 @@
 
 namespace App\Modules\Brands\Models;
 
-use App\Modules\Images\ImageService;
 use App\Modules\Products\Models\Product;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Translatable\HasTranslations;
 
 class Brand extends Model
@@ -28,8 +28,21 @@ class Brand extends Model
         return $this->slug ? route('brand', $this->slug) : null;
     }
 
-    public function getImageUrlAttribute(): string
+
+    public function getImageUrlAttribute(): ?string
     {
-        return getImageBySlug(ImageService::PUBLIC_DIR . '/' . self::IMG_DIR . '/' . $this->slug);
+        $url = null;
+        $types = ['svg', 'png'];
+        $dir = Storage::disk('images')->path(self::IMG_DIR);
+        $relative_base = config('filesystems.disks.images.relative_url') . '/' . self::IMG_DIR;
+
+        foreach ($types as $ext) {
+            if (file_exists($dir . '/' . $this->slug . '.' . $ext)) {
+                $url = asset($relative_base . '/' . $this->slug . '.' . $ext);
+                break;
+            }
+        }
+
+        return $url;
     }
 }

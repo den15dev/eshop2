@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Builder as EBuilder;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ProductService
 {
@@ -185,7 +186,7 @@ class ProductService
 
     public function updateSkuImages(int $id, array $old_images, array $new_images, ?UploadedFile $file): void
     {
-        $dir = storage_path(ImageService::LOCAL_DIR) . '/' . Sku::IMG_DIR . '/' . $id;
+        $dir = Storage::disk('images')->path(Sku::IMG_DIR . '/' . $id);
 
         // Remove unneeded images
         foreach ($old_images as $old_image) {
@@ -213,7 +214,7 @@ class ProductService
 
     public function saveSkuImage(int $sku_id, int|string $index, UploadedFile $file): void
     {
-        $dir = storage_path(ImageService::LOCAL_DIR) . '/' . Sku::IMG_DIR . '/' . $sku_id;
+        $dir = Storage::disk('images')->path(Sku::IMG_DIR . '/' . $sku_id);
         if (!is_dir($dir)) mkdir($dir);
 
         $source_path = $file->path();
@@ -243,7 +244,7 @@ class ProductService
 
     public function deleteSkuImages(int $sku_id): void
     {
-        $dir = storage_path(ImageService::LOCAL_DIR) . '/' . Sku::IMG_DIR . '/' . $sku_id;
+        $dir = Storage::disk('images')->path(Sku::IMG_DIR . '/' . $sku_id);
 
         if (is_dir($dir)) {
             $images = array_diff(scandir($dir), ['.', '..']);

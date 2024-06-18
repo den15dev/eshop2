@@ -12,7 +12,7 @@
                 <div class="icon-x-lg index_search_close-btn {{ $state->search ? '' : 'hidden' }}"></div>
             </div>
             <div class="index_add-btn">
-                <a href="#" class="btn btn-add">{{ __('admin/brands.add_brand') }}</a>
+                <a href="{{ route('admin.brands.create') }}" class="btn btn-add">{{ __('admin/brands.add_brand') }}</a>
             </div>
         </div>
 

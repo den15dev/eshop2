@@ -5,7 +5,7 @@
 
     <div class="spec-item">
         <div class="spec-item_section">
-            <div class="spec-item_label">{{ __('admin/categories.specs.name') }}:</div>
+            <div class="spec-item_label">{{ __('admin/specifications.name') }}:</div>
             @foreach($languages as $lang)
                 <div class="spec-item_text-cont">
                     @php
@@ -29,7 +29,7 @@
         <div class="spec-item_section mb-2">
             <div class="spec-item_subsection">
                 <div>
-                    <div class="spec-item_label">{{ __('admin/categories.specs.units') }}:</div>
+                    <div class="spec-item_label">{{ __('admin/specifications.units') }}:</div>
                     @foreach($languages as $lang)
                         <div class="spec-item_text-cont">
                             @php
@@ -55,7 +55,7 @@
                         @php
                             $id = isset($spec) ? 'specOrderNum' . $spec->id : 'newSpecOrderNum';
                         @endphp
-                        <label class="spec-item_label">{{ __('admin/categories.specs.order') }}:</label>
+                        <label class="spec-item_label">{{ __('admin/specifications.order') }}:</label>
                         @isset($spec)
                             <input type="hidden" name="old_sort" value="{{ $spec->sort }}" />
                         @endisset

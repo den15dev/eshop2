@@ -17,5 +17,10 @@ return [
 
     'categories' => [
         'delete_spec' => 'Are you sure you want to remove the ":name" specification? The values for this specification will be removed from all SKUs in this category.',
+        'delete_category' => 'Are you sure you want to delete the ":name" category? If it contained products, all specifications will also be removed with it.',
+    ],
+
+    'brands' => [
+        'delete_brand' => 'Are you sure you want to remove the ":name" brand?',
     ],
 ];

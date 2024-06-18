@@ -49,7 +49,7 @@
                                 <h4>@yield('page_header')</h4>
                             </div>
                             <div class="page-header_right">
-                                <a href="{{ route('home') }}" class="page-header_site-link grey-link">{{ __('admin/general.go_to_site') }}</a>
+{{--                                <a href="{{ route('home') }}" class="page-header_site-link grey-link">{{ __('admin/general.go_to_site') }}</a>--}}
                                 <x-languages-dropdown type="desktop" :languages="$languages" :curlang="$languages->first()" />
                             </div>
                         </div>

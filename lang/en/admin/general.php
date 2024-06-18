@@ -30,6 +30,8 @@ return [
     'No' => 'No',
     'no' => 'no',
 
+    'slug_note' => 'Slug is used in links and must be unique. Only Latin characters, numbers and hyphens are allowed.',
+
     'messages' => [
         'changes_saved' => 'Changes have been saved',
     ],

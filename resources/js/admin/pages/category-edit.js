@@ -1,10 +1,11 @@
 import Sortable from "sortablejs";
 import {post, convertToNestedObjects, removeEmptyObjects, showFieldErrors} from "../components/ajax.js";
 import {showClientModal} from "../../common/modals.js";
-import {translations} from "../../common/global.js";
+import {submit403Messages, translations} from "../../common/global.js";
 
 const catOrderList = document.querySelector('#childCategoryOrderList');
 const catSpecifications = document.querySelector('#categorySpecifications');
+const deleteCategoryForm = document.querySelector('#deleteCategoryForm');
 
 
 export default function init() {
@@ -44,6 +45,26 @@ export default function init() {
         addBtn.addEventListener('click', () => {
             updateOrAddSpec(categoryId, null, addSpecForm, 'storeSpec');
         });
+    }
+
+    if (deleteCategoryForm) {
+        const deleteCategoryBtn = deleteCategoryForm.querySelector('button[type="submit"]');
+
+        if (!submit403Messages) {
+            deleteCategoryBtn.addEventListener('click', e => {
+                e.preventDefault();
+                const categoryName = deleteCategoryBtn.dataset.name;
+                const message = translations.messages.categories.delete_category.replace(':name', categoryName);
+
+                showClientModal({
+                    type: 'confirm',
+                    icon: 'warning',
+                    message: message,
+                    okText: translations.admin_general.delete,
+                    okAction: () => deleteCategoryForm.submit(),
+                });
+            });
+        }
     }
 }
 

@@ -66,9 +66,16 @@
                     </ul>
                 </div>
 
-                <a href="{{ route('brand', $sku->brand_slug) }}" class="product-main_brand">
-                    <img src="{{ getImageBySlug('storage/images/brands/' . $sku->brand_slug) }}" alt="{{ $sku->brand_name }}">
-                </a>
+
+                @isset($brand->image_url)
+                    <a href="{{ route('brand', $brand->slug) }}" class="product-main_brand">
+                        <img src="{{ $brand->image_url }}" alt="{{ $brand->name }}">
+                    </a>
+                @else
+                    <a href="{{ route('brand', $brand->slug) }}" class="link">
+                        {{ $brand->name }}
+                    </a>
+                @endisset
             </div>
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Modules\Products;
 
+use App\Modules\Brands\Models\Brand;
 use App\Modules\Products\Actions\GetAttributesAction;
 use App\Modules\Products\Actions\GetSkuAction;
 use App\Modules\Products\Models\Sku;
@@ -22,6 +23,18 @@ class ProductService
     public function getAttributes(int $product_id, int $sku_id): Collection
     {
         return GetAttributesAction::run($product_id, $sku_id);
+    }
+
+
+    public function getBrand(int $product_id): Brand
+    {
+        return Brand::join('products', 'brands.id', 'products.brand_id')
+            ->select(
+                'brands.id',
+                'brands.name',
+                'brands.slug',
+            )
+            ->firstWhere('products.id', $product_id);
     }
 
 

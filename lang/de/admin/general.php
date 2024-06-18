@@ -30,6 +30,8 @@ return [
     'No' => 'Nein',
     'no' => 'Nein',
 
+    'slug_note' => 'Slug wird in Links verwendet und muss eindeutig sein. Es sind nur lateinische Zeichen, Zahlen und Bindestriche erlaubt.',
+
     'messages' => [
         'changes_saved' => 'Die Änderungen wurden gespeichert',
     ],

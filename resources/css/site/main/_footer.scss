@@ -44,13 +44,6 @@ footer {
 .footer-col-cont {
   flex: 1 1 200px;
 
-  a {
-    color: $grey-120;
-    &:hover {
-      color: $text-color;
-    }
-  }
-
   @include lg {
     flex: 0 1 220px;
   }
@@ -80,5 +73,15 @@ footer {
 
   @include sm {
     font-size: 1.125rem;
+  }
+}
+
+.footer-list_link {
+  display: block;
+  cursor: pointer;
+  color: $grey-120;
+
+  &:hover {
+    color: $text-color;
   }
 }

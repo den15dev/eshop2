@@ -9,6 +9,7 @@ use App\Modules\Categories\Models\Specification;
 use App\Modules\Images\ImageService;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryService
 {
@@ -52,7 +53,7 @@ class CategoryService
     }
 
 
-    public function getParentCategoryList(Collection $categories, int $current_id): Collection
+    public function getParentCategoryList(Collection $categories, ?int $current_id = null): Collection
     {
         return GetParentCategoryListAction::run($categories, $current_id);
     }
@@ -111,7 +112,7 @@ class CategoryService
 
     public function saveImage(string $slug, UploadedFile $file): void
     {
-        $dir = storage_path(ImageService::LOCAL_DIR) . '/' . Category::IMG_DIR;
+        $dir = Storage::disk('images')->path(Category::IMG_DIR);
         if (!is_dir($dir)) mkdir($dir);
 
         if (file_exists($dir . '/' . $slug . '.jpg')) {
@@ -121,5 +122,14 @@ class CategoryService
         $source_path = $file->path();
         $out_path = $dir . '/' . $slug . '.jpg';
         ImageService::saveToSquareFilled($source_path, $out_path, Category::IMG_SIZE);
+    }
+
+
+    public function deleteImage(string $slug): void
+    {
+        $dir = Storage::disk('images')->path(Category::IMG_DIR);
+        if (file_exists($dir . '/' . $slug . '.jpg')) {
+            unlink($dir . '/' . $slug . '.jpg');
+        }
     }
 }

@@ -119,44 +119,24 @@ if (!function_exists('parse_price')) {
 }
 
 
-if (!function_exists('getImageBySlug')) {
-    /**
-     * Looks if any of *.svg, *.png, or *.jpg image exists.
-     *
-     * @param $image_path_base - base path starting from 'storage/...'
-     *                          ending with filename without dot and file extension,
-     *                          for example: 'storage/images/brands/amd'.
-     * @return string - path to asset or empty string
-     */
-    function getImageBySlug(string $image_path_base): string
-    {
-        $path_base = str_replace('storage', config('filesystems.disks.public.root'), $image_path_base);
-
-        if (file_exists($path_base . '.svg')) {
-            return asset($image_path_base . '.svg');
-        }
-        if (file_exists($path_base . '.png')) {
-            return asset($image_path_base . '.png');
-        }
-        if (file_exists($path_base . '.jpg')) {
-            return asset($image_path_base . '.jpg');
-        }
-        return '';
-    }
-}
-
-
 if (!function_exists('get_image')) {
     /**
-     * Looks if an image exists, if it doesn't, returns a placeholder.
+     * Looks if an image exists, if it doesn't, returns a placeholder or null.
+     *
+     * @param $short_path - a part of a path after the '.../images/',
+     *                      for example: 'brands/amd.svg'.
      */
-    function get_image(string $image_path, int|string $placeholder_size): string
+
+    function get_image(string $short_path, int|string|null $placeholder_size = null): ?string
     {
-        if (file_exists($image_path)) {
-            return asset($image_path);
+        $full_path = config('filesystems.disks.images.root') . '/' . $short_path;
+        $relative_url = config('filesystems.disks.images.relative_url') . '/' . $short_path;
+
+        if (file_exists($full_path)) {
+            return asset($relative_url);
         }
 
-        return asset('img/default/no-image_' . $placeholder_size . '.jpg');
+        return $placeholder_size ?? asset('img/default/no-image_' . $placeholder_size . '.jpg');
     }
 }
 

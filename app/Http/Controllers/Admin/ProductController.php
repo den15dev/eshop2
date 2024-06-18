@@ -79,7 +79,7 @@ class ProductController extends Controller
     {
         $product = Product::with('attributes.variants')->find($id);
         $max_skus = $this->productService->getSkuMaxNum($product->attributes);
-        $languages = LanguageService::getActive();
+        $languages = LanguageService::getAll();
         $brands = Brand::select('id', 'name')->orderBy('name')->get();
         $categories = $this->productService->getCategories(CategoryService::getAll());
         $skus = Sku::select('id', 'name')->where('product_id', $id)->orderBy('id')->get();
@@ -129,7 +129,7 @@ class ProductController extends Controller
 
     public function create(): View
     {
-        $languages = LanguageService::getActive();
+        $languages = LanguageService::getAll();
         $brands = Brand::select('id', 'name')->orderBy('name')->get();
         $categories = $this->productService->getCategories(CategoryService::getAll());
 

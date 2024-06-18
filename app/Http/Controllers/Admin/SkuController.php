@@ -25,7 +25,7 @@ class SkuController extends Controller
     public function edit(int $id): View
     {
         $sku = $this->productService->getSku($id);
-        $languages = LanguageService::getActive();
+        $languages = LanguageService::getAll();
         $currencies = CurrencyService::getAll();
         $promos = PromoService::getAllPromos();
         $final_prices = $this->productService->getSkuFinalPrices(
@@ -59,7 +59,7 @@ class SkuController extends Controller
 
         abort_unless($product, 404);
 
-        $languages = LanguageService::getActive();
+        $languages = LanguageService::getAll();
         $currencies = CurrencyService::getAll();
         $promos = PromoService::getAllPromos();
         $final_prices = $this->productService->getSkuFinalPrices(0, CurrencyService::$cur_currency->id, null, null);
