@@ -2,6 +2,7 @@
 
 namespace App\Modules\Promos\Models;
 
+use App\Modules\Languages\LanguageService;
 use App\Modules\Products\Models\Sku;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -45,6 +46,20 @@ class Promo extends Model
         static::deleted(function (self $model) {
             Cache::forget('promos');
         });
+    }
+
+
+    public function getImagesAttribute(): \stdClass
+    {
+        $sizes = [1296, 1140, 992, 788, 400];
+        $images = new \stdClass();
+
+        foreach ($sizes as $size) {
+            $size_prop = 'size_' . $size;
+            $images->$size_prop = LanguageService::getImageURL('promos/' . $this->id, $this->slug . '_' . $size . '.jpg');
+        }
+
+        return $images;
     }
 
 

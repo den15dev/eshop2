@@ -2,64 +2,86 @@
 
 namespace App\Admin\Products;
 
-use App\Modules\Products\Models\Sku;
 use App\Modules\Products\ValueObjects\Price;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\View;
 
 class ColumnFormatter
 {
+    private Model $model;
+    private string $property;
+
+
     public function __construct(
         public string $format
     ){}
 
 
-    public function get(Sku $sku): string
+    public function get(Model $model, string $property): string
     {
+        $this->model = $model;
+        $this->property = $property;
         $method = $this->format;
 
-        return $this->$method($sku);
+        return $this->$method();
     }
 
 
-    private function nameLink(Sku $sku)
+    private function nameLink()
     {
-        $url = route('admin.skus.edit', $sku->id);
-        $content = $sku->name;
+        $url = route('admin.skus.edit', $this->model->id);
+        $property = $this->property;
+        $content = $this->model->$property;
 
         return View::make('admin.components.index-table.columns.link', compact('url', 'content'))->render();
     }
 
 
-    private function imageLink(Sku $sku)
+    private function imageLink()
     {
-        $url = route('admin.skus.edit', $sku->id);
-        $imgurl = $sku->getImage('tn');
+        $url = route('admin.skus.edit', $this->model->id);
+        $imgurl = $this->model->getImage('tn');
 
         return View::make( 'admin.components.index-table.columns.image-link', compact('url', 'imgurl'))->render();
     }
 
 
-    private function productLink(Sku $sku)
+    private function productLink()
     {
-        $url = route('admin.products.edit', $sku->product_id);
-        $content = $sku->product_name;
+        $url = route('admin.products.edit', $this->model->product_id);
+        $property = $this->property;
+        $content = $this->model->$property;
 
         return View::make('admin.components.index-table.columns.link', compact('url', 'content'))->render();
     }
 
 
-    private function finalPriceFormatted(Sku $sku): string
+    private function finalPriceFormatted(): string
     {
-        return Price::from($sku->final_price, $sku->currency_id, $sku->currency_id)->formatted_full;
+        return Price::from(
+            $this->model->final_price,
+            $this->model->currency_id,
+            $this->model->currency_id
+        )->formatted_full;
     }
 
 
-    private function scheduled(Sku $sku): string
+    private function dateStatus(): string
     {
-        $from = $sku->available_from;
+        $from = $this->model->available_from;
+        $until = $this->model->available_until;
+        $property = $this->property;
+        $date = $this->model->$property ?? '-';
 
-        return $from->isFuture()
-            ? View::make('admin.components.index-table.columns.scheduled', compact('from'))->render()
-            : $from;
+        $status = null;
+        if ($from->isFuture()) {
+            $status = 'scheduled';
+        } elseif ($until?->isPast()) {
+            $status = 'inactive';
+        }
+
+        return $status
+            ? View::make('admin.components.index-table.columns.date-status', compact('status', 'date'))->render()
+            : $date;
     }
 }

@@ -34,7 +34,7 @@
                         @endphp
 
                         @if($column->format)
-                            {!! $column->format->get($item) !!}
+                            {!! $column->format->get($item, $prop) !!}
                         @else
                             {{ $item->$prop ?: '-' }}
                         @endif

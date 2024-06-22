@@ -3,7 +3,6 @@
 namespace App\Modules\Promos;
 
 use App\Modules\Products\Models\Sku;
-use App\Modules\Promos\Actions\GetBannerImagesAction;
 use App\Modules\Promos\Models\Promo;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Cache;
@@ -49,27 +48,6 @@ class PromoService
         return Sku::getCards()
             ->where('promo_id', $promo_id)
             ->get();
-    }
-
-
-    public function getBannerImages(int $promo_id, string $promo_slug): \stdClass
-    {
-        return GetBannerImagesAction::run($promo_id, $promo_slug);
-    }
-
-
-    /**
-     * Get active promos with banners for current language.
-     */
-    public function getBanners(): Collection
-    {
-        $promos = PromoService::getActive();
-
-        foreach ($promos as $promo) {
-            $promo->images = $this->getBannerImages($promo->id, $promo->slug);
-        }
-
-        return $promos;
     }
 
 

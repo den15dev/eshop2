@@ -1,0 +1,38 @@
+.promo_status-badge {
+  width: fit-content;
+  padding: 3px 16px 1px 16px;
+  font-size: $font-size-sm;
+  border-radius: 13px;
+
+  &.ended {
+    background-color: $grey-240;
+    color: $grey-120;
+  }
+
+  &.active {
+    background-color: color($color2, light, 4);
+    color: color($color2, dark, 9);
+  }
+
+  &.scheduled {
+    background-color: color($color1, light, 4);
+    color: white;
+  }
+}
+
+.promo_table-btn {
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+  padding: 0.25rem;
+
+  svg {
+    stroke: $grey-180;
+    stroke-width: 1.6px;
+    fill: none;
+  }
+
+  &:hover svg {
+    stroke: color($red, light, 2);
+  }
+}

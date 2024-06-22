@@ -14,6 +14,7 @@ import initSkuCreate from "./admin/pages/sku-create.js";
 import initCategoryIndex from "./admin/pages/category-index.js";
 import initCategoryEdit from "./admin/pages/category-edit.js";
 import initBrandEdit from "./admin/pages/brand-edit.js";
+import initPromoEdit from "./admin/pages/promo-edit.js";
 
 // --------------- Common ------------------
 
@@ -42,6 +43,7 @@ initSkuCreate();
 initCategoryIndex();
 initCategoryEdit();
 initBrandEdit();
+initPromoEdit();
 
 
 // --------------- Get client translations ------------------

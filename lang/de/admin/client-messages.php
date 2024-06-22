@@ -23,4 +23,8 @@ return [
     'brands' => [
         'delete_brand' => 'Sind Sie sicher, dass Sie die Marke „:name“ entfernen möchten?',
     ],
+
+    'promos' => [
+        'delete_promo' => 'Sind Sie sicher, dass Sie die Aktion „:name“ entfernen möchten?',
+    ],
 ];

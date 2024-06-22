@@ -120,16 +120,21 @@
 
 // -------------- Column styling -------------
 
-.index-table_img-link,
-.index-table_img-link-brand {
+@mixin table-img-link {
   display: block;
   width: fit-content;
   margin: 0 auto;
 }
 
 .index-table_img-link {
+  @include table-img-link;
   height: 40px;
 }
 .index-table_img-link-brand {
+  @include table-img-link;
   height: 20px;
+}
+.index-table_img-link-promo {
+  @include table-img-link;
+  height: 60px;
 }

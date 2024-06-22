@@ -96,6 +96,7 @@ class SkuController extends Controller
 
         if ($request->has('sku')) {
             $updated = $request->validated();
+            $updated['slug'] = Str::slug($request->validated('name')[app()->getFallbackLocale()]);
         }
 
         if ($request->has('old_images')) {

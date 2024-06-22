@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\IndexController;
 use App\Http\Controllers\Admin\LogController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\PromoController;
 use App\Http\Controllers\Admin\SkuController;
 use App\Http\Controllers\Common\LanguageController;
 use Illuminate\Support\Facades\Route;
@@ -59,6 +60,16 @@ Route::middleware('admin.protection')->group(function () {
 });
 
 Route::get('/promos', IndexController::class)->name('promos');
+
+Route::get('/promos', [PromoController::class, 'index'])->name('promos');
+Route::get('/promos/table', [PromoController::class, 'table'])->name('promos.table');
+Route::get('/promos/create', [PromoController::class, 'create'])->name('promos.create');
+Route::get('/promos/{id}/edit', [PromoController::class, 'edit'])->whereNumber('id')->name('promos.edit');
+Route::middleware('admin.protection')->group(function () {
+    Route::post('/promos', [PromoController::class, 'store'])->name('promos.store');
+    Route::put('/promos/{id}', [PromoController::class, 'update'])->whereNumber('id')->name('promos.update');
+    Route::delete('/promos/{id}', [PromoController::class, 'destroy'])->whereNumber('id')->name('promos.destroy');
+});
 
 Route::get('/users', IndexController::class)->name('users');
 

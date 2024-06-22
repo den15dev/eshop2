@@ -23,4 +23,8 @@ return [
     'brands' => [
         'delete_brand' => 'Are you sure you want to remove the ":name" brand?',
     ],
+
+    'promos' => [
+        'delete_promo' => 'Are you sure you want to remove the ":name" promo?',
+    ],
 ];

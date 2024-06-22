@@ -19,8 +19,6 @@ class PromoController extends Controller
         $promo = $promoService->getPromo($promo_id, $promo_slug);
         abort_unless((bool) $promo, 404);
 
-        $promo->images = $promoService->getBannerImages($promo_id, $promo_slug);
-
         $skus = $promoService->getPromoSkus($promo_id);
 
         return view('site.pages.promo', compact(

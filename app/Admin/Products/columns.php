@@ -84,11 +84,12 @@ return [
     [
         'id' => 'available_from',
         'order_by' => 'skus.available_from',
-        'format' => new ColumnFormatter('scheduled'),
+        'format' => new ColumnFormatter('dateStatus'),
     ],
     [
         'id' => 'available_until',
         'order_by' => 'skus.available_until',
+        'format' => new ColumnFormatter('dateStatus'),
     ],
     [
         'id' => 'promo_id',

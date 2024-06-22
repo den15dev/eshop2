@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Admin\Brands\BrandService;
 use App\Admin\IndexTable\IndexTableService;
 use App\Admin\Products\ProductService;
+use App\Admin\Promos\PromoService;
 use App\Modules\Cart\CartService;
 use App\Modules\Catalog\CatalogService;
 use App\Modules\Catalog\ComparisonService;
@@ -30,5 +31,6 @@ class EncryptCookies extends Middleware
         IndexTableService::PER_PAGE_COOKIE,
         ProductService::COLUMNS_COOKIE,
         BrandService::COLUMNS_COOKIE,
+        PromoService::COLUMNS_COOKIE,
     ];
 }

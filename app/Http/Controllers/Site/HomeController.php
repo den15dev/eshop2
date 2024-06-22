@@ -10,13 +10,12 @@ use Illuminate\View\View;
 class HomeController extends Controller
 {
     public function index(
-        PromoService $promoService,
         ProductService $productService
     ): View {
         $is_login_page = session()->has('login_page');
         $new_password = session()->has('new_password') ? session('new_password') : null;
 
-        $promos = $promoService->getBanners();
+        $promos = PromoService::getActive();
 
         $skus_discounted = $productService->getDiscounted();
         $skus_latest = $productService->getLatest();
