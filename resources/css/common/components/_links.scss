@@ -1,15 +1,49 @@
 $link-color: $color1;
 
+.external-link::after {
+  --icon: url("data:image/svg+xml,\
+  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgb(0,0,0)' stroke-width='1.6'>\
+    <path stroke='none' d='M0 0h24v24H0z' fill='none'/>\
+    <path d='M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6' />\
+    <path d='M11 13l9 -9' />\
+    <path d='M15 4h5v5' />\
+  </svg>");
+
+  display: inline-block;
+  content: '';
+  -webkit-mask: var(--icon);
+  mask: var(--icon);
+  width: 1.2em;
+  height: 1.2em;
+  vertical-align: -0.185em;
+  margin-left: 0.25em;
+}
+
+
 .link {
   cursor: pointer;
   color: $link-color;
 
+  &.external-link::after {
+    background-color: $link-color;
+  }
+
   &:hover {
-    color: color($link-color, light, 3);
+    $hover-color: color($link-color, light, 3);
+    color: $hover-color;
+
+    &.external-link::after {
+      background-color: $hover-color;
+    }
   }
 
   &:active {
-    color: color($link-color, dark, 4);
+    $active-color: color($link-color, dark, 4);
+    color: $active-color;
+
+    &.external-link::after {
+      background-color: $active-color;
+    }
   }
 }
 

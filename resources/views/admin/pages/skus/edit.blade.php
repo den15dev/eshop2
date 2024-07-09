@@ -12,7 +12,8 @@
         </a>
 
         <div class="mb-3">
-            <span class="grey-text">ID {{ $sku->id }}:</span> {{ $sku->name }}
+            <span class="grey-text">ID {{ $sku->id }}:</span>
+            <a href="{{ $sku->url }}" class="link external-link" target="_blank">{{ $sku->name }}</a>
         </div>
 
 
@@ -283,8 +284,8 @@
                                 <use href="#closeIcon"/>
                             </svg>
                         </div>
-                        <a href="{{ $sku->getImage('lg', $img_num) }}" data-fancybox="sku_{{ $sku->id }}">
-                            <img src="{{ $sku->getImage('sm', $img_num) }}" alt="">
+                        <a href="{{ $sku->getImageURL('lg', $img_num) }}" data-fancybox="sku_{{ $sku->id }}">
+                            <img src="{{ $sku->getImageURL('sm', $img_num) }}" alt="">
                         </a>
                     </div>
                 @endforeach
@@ -296,7 +297,8 @@
                     @csrf
                     <input type="hidden" name="old_images"
                            value="{{ json_encode($sku->images, JSON_UNESCAPED_UNICODE) }}"/>
-                    <input type="hidden" name="new_images" value="{{ json_encode($sku->images, JSON_UNESCAPED_UNICODE) }}"
+                    <input type="hidden" name="new_images"
+                           value="{{ json_encode($sku->images, JSON_UNESCAPED_UNICODE) }}"
                            id="skuImages"/>
 
                     <div class="mb-3">
@@ -316,14 +318,15 @@
                         {{ __('admin/skus.images.upload_note') }}
                     </div>
 
-                    <button type="submit" class="btn-inactive" id="newImageSubmitBtn" disabled>{{ __('admin/general.save') }}</button>
+                    <button type="submit" class="btn-inactive" id="newImageSubmitBtn"
+                            disabled>{{ __('admin/general.save') }}</button>
                 </form>
             </div>
         </div>
 
 
         <div class="mb-7" data-sku-id="{{ $sku->id }}" id="skuSpecifications">
-            <h5 class="mb-3">{{ __('admin/specifications.title') }}</h5>
+            <h5 class="mb-3">{{ __('admin/specifications.specifications') }}</h5>
 
             <a href="{{ route('admin.categories.edit', $sku->category_id) }}" class="d-block link mb-3">
                 {{ __('admin/specifications.category_specs_link', ['category' => $sku->category_name]) }}
@@ -342,14 +345,16 @@
                         <div class="spec-item_checkboxes">
                             <div class="spec-item_checkbox-cont">
                                 <input type="checkbox" class="form-check-input" name="is_filter[{{ $cat_spec->id }}]"
-                                       id="isFilter{{ $cat_spec->id }}" {{ $cat_spec->is_filter ? 'checked' : '' }} disabled />
+                                       id="isFilter{{ $cat_spec->id }}"
+                                       {{ $cat_spec->is_filter ? 'checked' : '' }} disabled/>
                                 <label class="form-check-label grey-text"
                                        for="isFilter{{ $cat_spec->id }}">{{ __('admin/specifications.is_filter') }}</label>
                             </div>
 
                             <div class="spec-item_checkbox-cont">
                                 <input type="checkbox" class="form-check-input" name="is_main[{{ $cat_spec->id }}]"
-                                       id="isMain{{ $cat_spec->id }}" {{ $cat_spec->is_main ? 'checked' : '' }} disabled />
+                                       id="isMain{{ $cat_spec->id }}"
+                                       {{ $cat_spec->is_main ? 'checked' : '' }} disabled/>
                                 <label class="form-check-label grey-text"
                                        for="isMain{{ $cat_spec->id }}">{{ __('admin/specifications.is_main') }}</label>
                             </div>
@@ -383,7 +388,6 @@
                 </div>
             @endforeach
         </div>
-
 
 
         <form class="mb-6" action="{{ route('admin.skus.destroy', $sku->id) }}" method="POST" id="removeSkuForm">

@@ -140,13 +140,13 @@ class LanguageService
 
     /**
      * Get image for current language. If it is not found
-     * get image for default of fallback languages.
+     * get an image for the fallback language.
      *
      * @param string $img_dirname - e.g. 'promos/2'
      * @param string $img_filename - e.g. 'ryzen-processors-promo_992.jpg'
      */
-    public static function getImageURL(string $img_dirname, string $img_filename): ?string
+    public static function getImageURL(string $img_dirname, string $img_filename, ?string $lang = null): ?string
     {
-        return GetImageURLAction::run($img_dirname, $img_filename);
+        return GetImageURLAction::run($img_dirname, $img_filename, $lang);
     }
 }

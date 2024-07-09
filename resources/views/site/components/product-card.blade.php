@@ -6,7 +6,7 @@
 <div class="product-card">
     <div class="product-card_image-cont">
         <a href="{{ $sku->url }}" class="product-card_image-link">
-            <img src="{{ $sku->getImage('md') }}" class="product-card_image" alt="{{ $sku->name }}">
+            <img src="{{ $sku->getImageURL('md') }}" class="product-card_image" alt="{{ $sku->name }}">
             <div class="image-link-tint"></div>
         </a>
         @if($sku->promo_id && $page !== 'promo')

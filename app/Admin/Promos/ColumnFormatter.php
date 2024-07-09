@@ -39,7 +39,7 @@ class ColumnFormatter
     private function imageLink()
     {
         $url = route('admin.promos.edit', $this->model->id);
-        $imgurl = $this->model->images->size_788;
+        $imgurl = $this->model->getImageURL('sm');
 
         return View::make('admin.components.index-table.columns.image-link-promo', compact('url', 'imgurl'))->render();
     }

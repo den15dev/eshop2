@@ -5,5 +5,6 @@ return [
     'columns' => 'Säulen',
     'apply' => 'Anwenden',
     'cancel' => 'Stornieren',
-    'on_page' => 'Auf Seite'
+    'on_page' => 'Auf Seite',
+    'not_found' => ':items nicht gefunden',
 ];

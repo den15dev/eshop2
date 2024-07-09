@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Admin\Products\ProductService;
-use App\Admin\Products\Requests\StoreSkuRequest;
+use App\Admin\Products\Requests\SkuRequest;
 use App\Http\Controllers\Controller;
 use App\Modules\Currencies\CurrencyService;
 use App\Modules\Languages\LanguageService;
@@ -76,7 +76,7 @@ class SkuController extends Controller
     }
 
 
-    public function update(StoreSkuRequest $request, int $id)
+    public function update(SkuRequest $request, int $id)
     {
         $updated = [];
         $flash_message = '';
@@ -121,7 +121,7 @@ class SkuController extends Controller
     }
 
 
-    public function store(StoreSkuRequest $request): RedirectResponse
+    public function store(SkuRequest $request): RedirectResponse
     {
         $validated = $request->validated();
 

@@ -48,7 +48,7 @@
 
     @if(!$items->count())
         <div class="index-table_not-found">
-            {{ __('admin/products.no_products') }}
+            {{ __('admin/index-page.not_found', ['items' => __('admin/' . $table_name . '.' . $table_name)]) }}
         </div>
     @endif
 </div>

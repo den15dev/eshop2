@@ -14,7 +14,9 @@ return [
     ],
 
     'starts_at' => 'Start date',
+    'starts_at_sample' => 'Example: 2024-07-23',
     'ends_at' => 'End date',
+    'ends_at_sample' => 'Example: 2024-08-23',
     'name' => 'Title',
     'discount' => 'Discount',
     'discount_note' => 'Promo discount applies to all SKUs that do not have an individual discount. Individual discounts set separately for SKUs will take precedence.',
@@ -27,6 +29,8 @@ return [
     'add_ids' => 'Add SKUs',
     'add_ids_note' => 'Enter the products\' IDs you want to add to the promo, separated by commas and dashes. For example: 14,38,41-47,62',
 
+    'delete_promo_warning' => 'Along with the promo, all its images for all languages will be removed.',
+
     'columns' => [
         'id' => 'ID',
         'name' => 'Name',
@@ -36,4 +40,11 @@ return [
         'ends_at' => 'Ends at',
         'created_at' => 'Created at',
     ],
+
+    'messages' => [
+        'images_updated' => 'The images have been updated',
+        'skus_added' => ':num SKU have been added',
+        'promo_added' => 'The promo ":name" has been added',
+        'deleted' => 'The promo ":name" has been deleted',
+    ]
 ];

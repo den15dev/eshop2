@@ -6,7 +6,7 @@ use App\Http\Requests\RequestHelper;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class StoreBrandRequest extends FormRequest
+class BrandRequest extends FormRequest
 {
     use RequestHelper;
 

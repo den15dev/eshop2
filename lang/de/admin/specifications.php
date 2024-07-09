@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'title' => 'Spezifikationen',
+    'specifications' => 'Spezifikationen',
     'category_specs_link' => 'Spezifikationen der Kategorie „:category“ bearbeiten',
     'is_filter' => 'Filter',
     'is_filter_note' => 'bedeutet, dass diese Spezifikation in Katalogfiltern verwendet wird.',

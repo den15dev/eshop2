@@ -273,7 +273,7 @@ class Sku extends Model
     }
 
 
-    public function getImage(string $size, int|string $num = 1): ?string
+    public function getImageURL(string $size, int|string $num = 1): ?string
     {
         $placeholder_size = match ($size) {
             'tn' => 'tn',

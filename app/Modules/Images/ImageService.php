@@ -7,7 +7,7 @@ use Spatie\Image\Manipulations;
 
 class ImageService
 {
-    const JPG_QUALITY = 80;
+    const JPG_QUALITY = 90;
 
     public static function saveToSquareCropped(string $source_path, string $out_path, int $size): void
     {
@@ -34,6 +34,16 @@ class ImageService
             ->background('ffffff')
             ->format(Manipulations::FORMAT_JPG)
             ->quality(self::getQuality($size))
+            ->save($out_path);
+    }
+
+
+    public static function saveToSameAspect(string $source_path, string $out_path, int $width): void
+    {
+        Image::load($source_path)
+            ->width($width)
+            ->format(Manipulations::FORMAT_JPG)
+            ->quality(self::getQuality($width))
             ->save($out_path);
     }
 

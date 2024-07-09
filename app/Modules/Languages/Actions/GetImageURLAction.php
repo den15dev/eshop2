@@ -2,26 +2,29 @@
 
 namespace App\Modules\Languages\Actions;
 
-use App\Modules\Languages\LanguageService;
+use Illuminate\Support\Facades\Storage;
 
 class GetImageURLAction
 {
-    public static function run(string $img_dirname, string $img_filename): string
+    public static function run(string $img_dirname, string $img_filename, ?string $lang = null): string
     {
+        if ($lang) {
+            $img_path = '/' . $img_dirname . '/' . $lang . '/' . $img_filename;
+            return asset(config('filesystems.disks.images.relative_url') . $img_path);
+        }
+
         $url = null;
-        $image_root = config('filesystems.disks.public.root') . '/images';
 
         $languages = [
             'current' => app()->getLocale(),
-            'default' => LanguageService::getDefault(),
-            'fallback' => LanguageService::getFallback(),
+            'fallback' => app()->getFallbackLocale(),
         ];
 
         foreach ($languages as $lang) {
             if (!$url) {
                 $img_path = '/' . $img_dirname . '/' . $lang . '/' . $img_filename;
-                if (file_exists($image_root . $img_path)) {
-                    $url = asset('storage/images' . $img_path);
+                if (file_exists(Storage::disk('images')->path($img_path))) {
+                    $url = asset(config('filesystems.disks.images.relative_url') . $img_path);
                 }
             }
         }

@@ -40,9 +40,9 @@ class ColumnFormatter
     private function imageLink()
     {
         $url = route('admin.skus.edit', $this->model->id);
-        $imgurl = $this->model->getImage('tn');
+        $imgurl = $this->model->getImageURL('tn');
 
-        return View::make( 'admin.components.index-table.columns.image-link', compact('url', 'imgurl'))->render();
+        return View::make('admin.components.index-table.columns.image-link', compact('url', 'imgurl'))->render();
     }
 
 

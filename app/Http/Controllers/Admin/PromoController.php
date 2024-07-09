@@ -4,13 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Admin\IndexTable\IndexTableService;
 use App\Admin\Promos\PromoService;
-use App\Admin\Promos\Requests\StorePromoRequest;
+use App\Admin\Promos\Requests\PromoRequest;
 use App\Http\Controllers\Controller;
 use App\Modules\Languages\LanguageService;
-use App\Modules\Products\Models\Sku;
 use App\Modules\Promos\Models\Promo;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\View\View;
 
 class PromoController extends Controller
@@ -80,7 +80,7 @@ class PromoController extends Controller
     {
         $promo = Promo::find($id);
         $languages = LanguageService::getAll();
-        $status = $this->promoService->getStatusText($promo);
+        $status = $this->promoService->getStatusText($promo->starts_at, $promo->ends_at);
         $skus = $promo->skus;
 
         return view('admin.pages.promos.edit', compact(
@@ -92,24 +92,51 @@ class PromoController extends Controller
     }
 
 
-    public function store(StorePromoRequest $request): RedirectResponse
+    public function store(PromoRequest $request): RedirectResponse
     {
         $validated = $request->validated();
 
         $promo = new Promo();
+        $promo->name = $validated['name'];
+        $promo->slug = Str::slug($validated['name'][app()->getFallbackLocale()]);
+        $promo->starts_at = $validated['starts_at'];
+        $promo->ends_at = $validated['ends_at'];
+        $promo->description = $validated['description'];
+        $promo->discount = $validated['discount'];
+        $promo->save();
 
-        $request->flashSuccessMessage(__('admin/brands.messages.brand_added', ['name' => $promo->name]));
+        $this->promoService->saveImages($promo->id, $request->image, $promo->slug);
+        $this->promoService->addSkus($validated['sku_ids'], $promo->id);
+
+        $request->flashSuccessMessage(__('admin/promos.messages.promo_added', ['name' => $promo->name]));
 
         return redirect()->route('admin.promos');
     }
 
 
-    public function update(StorePromoRequest $request, int $id): RedirectResponse
+    public function update(PromoRequest $request, int $id): RedirectResponse
     {
         $validated = $request->validated();
-        $promo = Promo::find($id);
+        $message = __('admin/general.messages.changes_saved');
 
-        $request->flashSuccessMessage(__('admin/general.messages.changes_saved'));
+        if ($request->has('name')) {
+            $new_slug = Str::slug($validated['name'][app()->getFallbackLocale()]);
+            $validated['slug'] = $new_slug;
+
+            Promo::find($id)->update($validated);
+
+            $this->promoService->updateImageNames($id, $request->old_slug, $new_slug);
+
+        } elseif ($request->has('image')) {
+            $this->promoService->saveImages($id, $request->image, $request->slug);
+            $message = __('admin/promos.messages.images_updated');
+
+        } elseif ($request->has('sku_ids')) {
+            $sku_num = $this->promoService->addSkus($request->sku_ids, $id);
+            $message = __('admin/promos.messages.skus_added', ['num' => $sku_num]);
+        }
+
+        $request->flashSuccessMessage($message);
 
         return back();
     }
@@ -118,10 +145,12 @@ class PromoController extends Controller
     public function destroy(int $id)
     {
         $promo = Promo::find($id);
+        $promo->delete();
+        $this->promoService->deleteImages($id);
 
         session()->flash('message', [
             'type' => 'info',
-            'content' => __('admin/brands.messages.deleted', ['name' => $promo->name]),
+            'content' => __('admin/promos.messages.deleted', ['name' => $promo->name]),
             'align' => 'center',
         ]);
 

@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'title' => 'Specifications',
+    'specifications' => 'Specifications',
     'category_specs_link' => 'Edit specifications of the category ":category"',
     'is_filter' => 'Filter',
     'is_filter_note' => 'means that this specification will be used in catalog filters.',

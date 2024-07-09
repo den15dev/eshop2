@@ -7,6 +7,7 @@ use App\Modules\Products\Models\Sku;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Translatable\HasTranslations;
 
 class Promo extends Model
@@ -24,6 +25,15 @@ class Promo extends Model
     protected $casts = [
         'starts_at' => 'date',
         'ends_at' => 'date',
+    ];
+
+    const IMG_DIR = 'promos';
+    const IMG_SIZES = [
+        'sm' => 400,
+        'md' => 788,
+        'lg' => 992,
+        'xl' => 1140,
+        'xxl' => 1296,
     ];
 
 
@@ -49,17 +59,25 @@ class Promo extends Model
     }
 
 
-    public function getImagesAttribute(): \stdClass
+    public function getUrlAttribute(): string
     {
-        $sizes = [1296, 1140, 992, 788, 400];
-        $images = new \stdClass();
+        return route('promo', $this->slug . '-' . $this->id);
+    }
 
-        foreach ($sizes as $size) {
-            $size_prop = 'size_' . $size;
-            $images->$size_prop = LanguageService::getImageURL('promos/' . $this->id, $this->slug . '_' . $size . '.jpg');
-        }
 
-        return $images;
+    public function getImagePath(string $size, string $lang): ?string
+    {
+        return Storage::disk('images')->path(self::IMG_DIR . '/' . $this->id . '/' . $lang . '/' . $this->slug . '_' . $size . '.jpg');
+    }
+
+
+    public function getImageURL(string $size, ?string $lang = null): ?string
+    {
+        return LanguageService::getImageURL(
+            self::IMG_DIR . '/' . $this->id,
+            $this->slug . '_' . $size . '.jpg',
+            $lang
+        );
     }
 
 

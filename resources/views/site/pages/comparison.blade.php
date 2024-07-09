@@ -22,7 +22,7 @@
                                     <span class="icon-x me-1"></span>{{ __('comparison.remove') }}
                                 </div>
                                 <a href="{{ $sku->url }}" class="comparison-table_img-link mb-2">
-                                    <img src="{{ $sku->getImage('tn') }}" alt="">
+                                    <img src="{{ $sku->getImageURL('tn') }}" alt="">
                                 </a>
                                 <a href="{{ $sku->url }}" class="comparison-table_name dark-link mb-2">
                                     {{ $sku->name }}

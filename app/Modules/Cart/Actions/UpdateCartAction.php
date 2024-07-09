@@ -75,7 +75,7 @@ class UpdateCartAction
 
         $header_bubble = new \stdClass();
         $header_bubble->url = $sku->url;
-        $header_bubble->image_tn = $sku->getImage('tn');
+        $header_bubble->image_tn = $sku->getImageURL('tn');
         $header_bubble->name = $sku->name;
         $header_bubble->qty = trans_choice('cart.header_bubble.qty', ['count' => $sku_qty]);
 

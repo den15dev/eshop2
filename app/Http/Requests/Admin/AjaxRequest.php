@@ -33,7 +33,7 @@ class AjaxRequest extends FormRequest
 
     private function getRequestInstance()
     {
-        $requestClassName = 'App\\Admin\\' . ucfirst(Str::plural($this->service)) . '\\Requests\\Store' . ucfirst($this->service) . 'Request';
+        $requestClassName = 'App\\Admin\\' . ucfirst(Str::plural($this->service)) . '\\Requests\\' . ucfirst($this->service) . 'Request';
 
         return new $requestClassName();
     }

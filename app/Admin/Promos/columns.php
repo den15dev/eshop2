@@ -17,6 +17,7 @@ return [
     ],
     [
         'id' => 'name',
+        'class_list' => 'text-start',
         'search_field' => 'promos.name',
         'order_by' => 'promos.name',
         'is_default' => true,

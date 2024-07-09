@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Admin\Categories\Requests\StoreCategoryRequest;
+use App\Admin\Categories\Requests\CategoryRequest;
 use App\Http\Controllers\Controller;
 use App\Modules\Categories\CategoryService;
 use App\Admin\Categories\CategoryService as AdmCategoryService;
@@ -47,7 +47,7 @@ class CategoryController extends Controller
     }
 
 
-    public function store(StoreCategoryRequest $request): RedirectResponse
+    public function store(CategoryRequest $request): RedirectResponse
     {
         $validated = $request->validated();
 
@@ -92,7 +92,7 @@ class CategoryController extends Controller
     }
 
 
-    public function update(StoreCategoryRequest $request, int $id): RedirectResponse
+    public function update(CategoryRequest $request, int $id): RedirectResponse
     {
         $validated = $request->validated();
         $message = __('admin/general.messages.changes_saved');

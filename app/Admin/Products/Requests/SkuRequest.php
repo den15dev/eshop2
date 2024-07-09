@@ -5,7 +5,7 @@ namespace App\Admin\Products\Requests;
 use App\Http\Requests\RequestHelper;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreSkuRequest extends FormRequest
+class SkuRequest extends FormRequest
 {
     use RequestHelper;
 

@@ -11,23 +11,23 @@
             $ends_at = \Carbon\Carbon::parse($promo->ends_at);
         @endphp
         <div class="mb-4">
-        @if($ends_at->isPast())
-            <div class="promo_inactive_badge">
-                {{ __('promo.completed') }}
-            </div>
-        @else
-            <div class="grey-text">
-                {{ __('promo.dates', ['start' => $starts_at->isoFormat('LL'), 'end' => $ends_at->isoFormat('LL')]) }}
-            </div>
-        @endif
+            @if($ends_at->isPast())
+                <div class="promo_inactive_badge">
+                    {{ __('promo.completed') }}
+                </div>
+            @else
+                <div class="grey-text">
+                    {{ __('promo.dates', ['start' => $starts_at->isoFormat('LL'), 'end' => $ends_at->isoFormat('LL')]) }}
+                </div>
+            @endif
         </div>
 
         <div class="promo-image-cont mb-5">
             <picture>
-                <source srcset="{{ $promo->images->size_1296 }}" media="(min-width: 1140px)" />
-                <source srcset="{{ $promo->images->size_1140 }}" media="(min-width: 992px)" />
-                <source srcset="{{ $promo->images->size_992 }}" media="(min-width: 768px)" />
-                <img src="{{ $promo->images->size_788 }}" alt="" />
+                <source srcset="{{ $promo->getImageURL('xxl') }}" media="(min-width: {{ $promo::IMG_SIZES['xl'] }}px)"/>
+                <source srcset="{{ $promo->getImageURL('xl') }}" media="(min-width: {{ $promo::IMG_SIZES['lg'] }}px)"/>
+                <source srcset="{{ $promo->getImageURL('lg') }}" media="(min-width: {{ $promo::IMG_SIZES['md'] }}px)"/>
+                <img src="{{ $promo->getImageURL('md') }}" alt=""/>
             </picture>
         </div>
 
@@ -38,7 +38,7 @@
 
             <div class="catalog-cards-cont mb-5">
                 @foreach($skus as $sku)
-                    <x-product-card :sku="$sku" page="promo" />
+                    <x-product-card :sku="$sku" page="promo"/>
                 @endforeach
             </div>
         @endif

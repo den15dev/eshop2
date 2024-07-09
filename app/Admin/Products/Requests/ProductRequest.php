@@ -6,7 +6,7 @@ use App\Http\Requests\Admin\AjaxRequest;
 use App\Http\Requests\RequestHelper;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreProductRequest extends FormRequest
+class ProductRequest extends FormRequest
 {
     use RequestHelper;
 

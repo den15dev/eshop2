@@ -5,17 +5,16 @@ namespace App\Admin\Categories\Requests;
 use App\Http\Requests\Admin\AjaxRequest;
 use App\Http\Requests\RequestHelper;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
-class StoreCategoryRequest extends FormRequest
+class CategoryRequest extends FormRequest
 {
     use RequestHelper;
 
 
     public function authorize(): bool
     {
-        return Auth::check() && $this->user()->isAdmin();
+        return true;
     }
 
 

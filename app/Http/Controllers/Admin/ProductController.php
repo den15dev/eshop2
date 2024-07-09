@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Admin\IndexTable\IndexTableService;
 use App\Admin\Products\ProductService;
-use App\Admin\Products\Requests\StoreProductRequest;
+use App\Admin\Products\Requests\ProductRequest;
 use App\Http\Controllers\Controller;
 use App\Modules\Brands\Models\Brand;
 use App\Modules\Categories\CategoryService;
@@ -95,7 +95,7 @@ class ProductController extends Controller
     }
 
 
-    public function update(StoreProductRequest $request, int $id)
+    public function update(ProductRequest $request, int $id)
     {
         $message = 'Something went wrong';
         $validated = $request->validated();
@@ -141,7 +141,7 @@ class ProductController extends Controller
     }
 
 
-    public function store(StoreProductRequest $request): RedirectResponse
+    public function store(ProductRequest $request): RedirectResponse
     {
         $validated = $request->validated();
 

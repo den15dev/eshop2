@@ -7,8 +7,10 @@
         <svg width="2" height="2" style="display: none">
             <symbol viewBox="0 0 38 38" id="userGreyAvatar">
                 <path d="M38 0H0V38H38V0Z" fill="#f0f0f0"/>
-                <path d="M19 21.432C23.4492 21.432 27.056 17.8252 27.056 13.376C27.056 8.9268 23.4492 5.32001 19 5.32001C14.5508 5.32001 10.944 8.9268 10.944 13.376C10.944 17.8252 14.5508 21.432 19 21.432Z" fill="#d2d2d2"/>
-                <path d="M34.8967 38C34.8967 32.1923 33.1233 23.7943 24.9913 21.736C21.5017 24.3833 16.1817 24.225 13.015 21.736C4.87667 23.7943 3.10333 32.1923 3.10333 38C6.65 38 31.35 38 34.8967 38Z" fill="#d2d2d2"/>
+                <path d="M19 21.432C23.4492 21.432 27.056 17.8252 27.056 13.376C27.056 8.9268 23.4492 5.32001 19 5.32001C14.5508 5.32001 10.944 8.9268 10.944 13.376C10.944 17.8252 14.5508 21.432 19 21.432Z"
+                      fill="#d2d2d2"/>
+                <path d="M34.8967 38C34.8967 32.1923 33.1233 23.7943 24.9913 21.736C21.5017 24.3833 16.1817 24.225 13.015 21.736C4.87667 23.7943 3.10333 32.1923 3.10333 38C6.65 38 31.35 38 34.8967 38Z"
+                      fill="#d2d2d2"/>
             </symbol>
         </svg>
 
@@ -25,17 +27,20 @@
 
                 <div class="reviews-head-cont">
                     <a href="{{ $sku->url }}">
-                        <img src="{{ $sku->getImage('sm') }}" alt="{{ $sku->name }}">
+                        <img src="{{ $sku->getImageURL('sm') }}" alt="{{ $sku->name }}">
                     </a>
                     <div class="reviews-head-name-cont">
                         <h5>
                             <a class="reviews-head-name mb-1" href="{{ $sku->url }}">
-                            {{ $sku->name }}
+                                {{ $sku->name }}
                             </a>
                             @if($sku->promo_id)
-                            &nbsp;<a href="{{ route('promo', $sku->promo_url_slug) }}" class="product-name_badge-link-small" title="{{ $sku->promo_name }}">-{{ $sku->discount }}%</a>
+                                &nbsp;<a href="{{ route('promo', $sku->promo_url_slug) }}"
+                                         class="product-name_badge-link-small"
+                                         title="{{ $sku->promo_name }}">-{{ $sku->discount }}%</a>
                             @elseif($sku->discount)
-                            &nbsp;<div class="product-name_badge-small">-{{ $sku->discount }}%</div>
+                                &nbsp;
+                                <div class="product-name_badge-small">-{{ $sku->discount }}%</div>
                             @endif
                         </h5>
                         @if($reviews_num)
@@ -51,10 +56,10 @@
                                   :ratingformatted="$sku->rating_formatted"
                                   :num="$sku->vote_num"
                                   :marks="$marks"
-                                  :max="$marks_max" />
+                                  :max="$marks_max"/>
 
                 @foreach($reviews as $review)
-                    <x-review :review="$review" :reactionsoff="$is_guest || $review->is_author" />
+                    <x-review :review="$review" :reactionsoff="$is_guest || $review->is_author"/>
                 @endforeach
             </div>
 
@@ -64,7 +69,7 @@
                                   :ratingformatted="$sku->rating_formatted"
                                   :num="$sku->vote_num"
                                   :marks="$marks"
-                                  :max="$marks_max" />
+                                  :max="$marks_max"/>
             </div>
         </div>
 

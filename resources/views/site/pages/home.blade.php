@@ -7,12 +7,12 @@
                 <div class="swiper-wrapper">
                     @foreach($promos as $promo)
                         <div class="swiper-slide">
-                            <a href="{{ route('promo', $promo->slug . '-' . $promo->id) }}">
+                            <a href="{{ $promo->url }}">
                                 <picture>
-                                    <source srcset="{{ $promo->images->size_1296 }}" media="(min-width: 1140px)" />
-                                    <source srcset="{{ $promo->images->size_1140 }}" media="(min-width: 992px)" />
-                                    <source srcset="{{ $promo->images->size_992 }}" media="(min-width: 768px)" />
-                                    <img src="{{ $promo->images->size_788 }}" alt="" />
+                                    <source srcset="{{ $promo->getImageURL('xxl') }}" media="(min-width: {{ $promo::IMG_SIZES['xl'] }}px)" />
+                                    <source srcset="{{ $promo->getImageURL('xl') }}" media="(min-width: {{ $promo::IMG_SIZES['lg'] }}px)" />
+                                    <source srcset="{{ $promo->getImageURL('lg') }}" media="(min-width: {{ $promo::IMG_SIZES['md'] }}px)" />
+                                    <img src="{{ $promo->getImageURL('md') }}" alt="{{ $promo->name }}" />
                                 </picture>
                             </a>
                         </div>

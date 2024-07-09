@@ -2,7 +2,7 @@
     <td>{{ $index }}</td>
     <td class="order-table_image">
         <a href="{{ $item->sku->url }}">
-            <img src="{{ $item->sku->getImage('tn') }}" alt="{{ $item->sku->name }}">
+            <img src="{{ $item->sku->getImageURL('tn') }}" alt="{{ $item->sku->name }}">
         </a>
     </td>
     <td class="order-table_description">

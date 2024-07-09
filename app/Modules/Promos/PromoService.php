@@ -21,7 +21,7 @@ class PromoService
     public static function getActive(): Collection
     {
         if (self::$active_promos === null) {
-            self::$active_promos = Cache::rememberForever('promos', function () {
+            self::$active_promos = Cache::remember('promos', 3600, function () {
                 $current_date = date('Y-m-d H:i:s');
 
                 return Promo::select('id', 'name', 'slug', 'discount', 'starts_at', 'ends_at')

@@ -1,5 +1,5 @@
 <a href="{{ $sku->url }}" class="search-dropdown_item">
-    <img src="{{ $sku->getImage('tn') }}">
+    <img src="{{ $sku->getImageURL('tn') }}">
     <div class="product-title">
         {{ $sku->name }}
     </div>

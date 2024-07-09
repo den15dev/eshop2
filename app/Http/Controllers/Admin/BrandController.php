@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Admin\Brands\BrandService;
-use App\Admin\Brands\Requests\StoreBrandRequest;
+use App\Admin\Brands\Requests\BrandRequest;
 use App\Admin\IndexTable\IndexTableService;
 use App\Http\Controllers\Controller;
 use App\Modules\Brands\Models\Brand;
@@ -95,7 +95,7 @@ class BrandController extends Controller
     }
 
 
-    public function store(StoreBrandRequest $request): RedirectResponse
+    public function store(BrandRequest $request): RedirectResponse
     {
         $validated = $request->validated();
 
@@ -115,7 +115,7 @@ class BrandController extends Controller
     }
 
 
-    public function update(StoreBrandRequest $request, int $id): RedirectResponse
+    public function update(BrandRequest $request, int $id): RedirectResponse
     {
         $validated = $request->validated();
         $brand = Brand::find($id);

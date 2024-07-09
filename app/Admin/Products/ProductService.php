@@ -131,6 +131,7 @@ class ProductService
                 'skus.*',
                 'categories.id as category_id',
                 'categories.name as category_name',
+                'categories.slug as category_slug',
             )
             ->with('promo')
             ->with('product.attributes.variants:id,attribute_id,name')

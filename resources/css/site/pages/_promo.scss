@@ -1,8 +1,9 @@
 .promo_inactive_badge {
   width: fit-content;
-  background-color: $grey-200;
-  color: white;
-  padding: 2px 12px 0 12px;
+  background-color: $grey-240;
+  color: $grey-90;
+  padding: 0.125em 1.25em 0 1.25em;
+  border-radius: 1em;
 }
 
 .promo-image-cont {

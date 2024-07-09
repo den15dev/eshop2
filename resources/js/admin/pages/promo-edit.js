@@ -1,8 +1,10 @@
 import {submit403Messages, translations} from "../../common/global.js";
 import {showClientModal} from "../../common/modals.js";
+import {post, showFieldErrors} from "../components/ajax.js";
 
 const deletePromoForm = document.querySelector('#deletePromoForm');
-
+const promoImagesForm = document.querySelector('#promoImagesForm');
+const promoSkuTable = document.querySelector('#promoSkuTable');
 
 export default function init() {
     if (deletePromoForm) {
@@ -24,4 +26,43 @@ export default function init() {
             });
         }
     }
+
+    if (promoImagesForm) {
+        const imageInputs = promoImagesForm.querySelectorAll('input');
+        const submitBtn = promoImagesForm.querySelector('button[type="submit"]');
+
+        imageInputs.forEach(imgInput => {
+            imgInput.addEventListener('change', () => {
+                submitBtn.classList.remove('btn-inactive');
+            });
+        });
+    }
+
+    if (promoSkuTable) {
+        const deleteBtns = promoSkuTable.querySelectorAll('.promo_table-btn.delete');
+
+        deleteBtns.forEach(deleteBtn => {
+            deleteBtn.addEventListener('click', () => {
+                const sku_id = deleteBtn.parentNode.dataset.id;
+
+                // console.log(sku_id);
+                deleteSku(sku_id);
+            });
+        });
+    }
+}
+
+
+function deleteSku(sku_id) {
+    const args = {sku_id};
+
+    post(
+        'promo',
+        'deleteSku',
+        args,
+        null,
+        function () {
+            window.location.reload();
+        }
+    );
 }

@@ -263,7 +263,7 @@
 
 
             <div class="mb-4">
-                <h5 class="mb-3">{{ __('admin/specifications.title') }}</h5>
+                <h5 class="mb-3">{{ __('admin/specifications.specifications') }}</h5>
 
                 <a href="{{ route('admin.categories.edit', $product->category_id) }}" class="d-block link mb-3">
                     {{ __('admin/specifications.category_specs_link', ['category' => $product->category_name]) }}

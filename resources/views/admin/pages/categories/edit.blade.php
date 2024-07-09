@@ -181,7 +181,7 @@
 
         @if(($category->level === 3 || $category->level === 4) && !$children->count())
             <div class="mb-4" id="categorySpecifications" data-category-id="{{ $category->id }}">
-                <h5 class="mb-3">{{ __('admin/specifications.title') }} <span class="fw-normal lightgrey-text">({{ $specs->count() }})</span></h5>
+                <h5 class="mb-3">{{ __('admin/specifications.specifications') }} <span class="fw-normal lightgrey-text">({{ $specs->count() }})</span></h5>
 
                 <div class="small grey-text fst-italic mb-4">
                     "{{ __('admin/specifications.is_filter') }}" — {{ __('admin/specifications.is_filter_note') }}<br>

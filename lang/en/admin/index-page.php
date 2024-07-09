@@ -5,5 +5,6 @@ return [
     'columns' => 'Columns',
     'apply' => 'Apply',
     'cancel' => 'Cancel',
-    'on_page' => 'On page'
+    'on_page' => 'On page',
+    'not_found' => ':items not found',
 ];
