@@ -47,6 +47,8 @@ class PromoController extends Controller
         $cookie = $request->cookie($col_cookie_name);
         $column_prefs = $cookie ? json_decode($cookie) : null;
 
+        $row_links = PromoService::ROW_LINKS;
+
         $column_list = $this->tableService->getColumnList($column_prefs);
         $per_page_list = IndexTableService::getPerPageList();
 
@@ -62,6 +64,7 @@ class PromoController extends Controller
             'table_name',
             'current_columns',
             'items',
+            'row_links',
         );
     }
 

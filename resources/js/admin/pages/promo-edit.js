@@ -1,6 +1,6 @@
 import {submit403Messages, translations} from "../../common/global.js";
 import {showClientModal} from "../../common/modals.js";
-import {post, showFieldErrors} from "../components/ajax.js";
+import {post} from "../components/ajax.js";
 
 const deletePromoForm = document.querySelector('#deletePromoForm');
 const promoImagesForm = document.querySelector('#promoImagesForm');
@@ -44,8 +44,6 @@ export default function init() {
         deleteBtns.forEach(deleteBtn => {
             deleteBtn.addEventListener('click', () => {
                 const sku_id = deleteBtn.parentNode.dataset.id;
-
-                // console.log(sku_id);
                 deleteSku(sku_id);
             });
         });

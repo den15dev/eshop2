@@ -1,6 +1,6 @@
 @extends('admin.layout')
 
-@section('page_title',  __('admin/brands.editing_brand') . ' ' . $brand->id . ' - ' . __('admin/general.admin_panel'))
+@section('page_title',  $brand->name . ' - ' . __('admin/brands.editing_brand') . ' ' . __('admin/general.admin_panel'))
 
 @section('page_header', __('admin/brands.editing_brand'))
 

@@ -1,0 +1,49 @@
+$order-new-color: $color-red;
+$order-accepted-color: #6ea9f6;
+$order-ready-color: #6ece14;
+$order-completed-color: $grey-150;
+$order-cancelled-color: #f6b56e;
+
+$order-not-paid-color: $color-red;
+$order-paid-color: $order-ready-color;
+
+
+// ----- Order Statuses -----
+
+.order-status_new {
+  color: $order-new-color;
+}
+
+.order-status_accepted {
+  color: $order-accepted-color;
+}
+
+.order-status_ready {
+  color: $order-ready-color;
+}
+
+.order-status_sent {
+  color: $order-ready-color;
+}
+
+.order-status_completed {
+  color: $order-completed-color;
+}
+
+.order-status_cancelled {
+  color: $order-cancelled-color;
+}
+
+// ----- Payment Statuses -----
+
+.payment-status_not_paid {
+  color: $order-not-paid-color;
+}
+
+.payment-status_paid {
+  color: $text-color;
+}
+
+.payment-status_pending {
+  color: $order-completed-color;
+}

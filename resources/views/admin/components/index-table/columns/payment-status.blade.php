@@ -1,0 +1,1 @@
+<span class="payment-status_{{ $status }}">{{ $description }}</span>

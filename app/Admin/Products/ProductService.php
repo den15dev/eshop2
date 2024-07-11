@@ -23,6 +23,7 @@ class ProductService
 {
     public const TABLE_NAME = 'products';
     public const COLUMNS_COOKIE = 'cls_products';
+    public const ROW_LINKS = false;
 
 
     public function __construct(

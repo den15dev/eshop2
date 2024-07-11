@@ -1,0 +1,1 @@
+<span class="order-status_{{ $status }}">{{ $description }}</span>

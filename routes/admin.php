@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\IndexController;
 use App\Http\Controllers\Admin\LogController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PromoController;
 use App\Http\Controllers\Admin\SkuController;
@@ -19,6 +20,10 @@ Route::get('/translations', [LanguageController::class, 'adminTranslations'])->n
 Route::get('/ajax/json', [AjaxController::class, 'getJson'])->name('ajax.get.json');
 Route::get('/ajax/html', [AjaxController::class, 'getHtml'])->name('ajax.get.html');
 Route::post('/ajax', [AjaxController::class, 'post'])->name('ajax.post')->middleware('admin.protection');
+
+Route::get('/orders', [OrderController::class, 'index'])->name('orders');
+Route::get('/orders/table', [OrderController::class, 'table'])->name('orders.table');
+Route::get('/orders/{id}/edit', [OrderController::class, 'edit'])->whereNumber('id')->name('orders.edit');
 
 Route::get('/logs', [LogController::class, 'index'])->name('logs');
 
@@ -74,7 +79,5 @@ Route::middleware('admin.protection')->group(function () {
 Route::get('/users', IndexController::class)->name('users');
 
 Route::get('/reviews', IndexController::class)->name('reviews');
-
-Route::get('/orders', IndexController::class)->name('orders');
 
 Route::get('/stores', IndexController::class)->name('stores');

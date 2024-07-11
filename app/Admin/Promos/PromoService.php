@@ -16,6 +16,7 @@ class PromoService
 {
     public const TABLE_NAME = 'promos';
     public const COLUMNS_COOKIE = 'cls_promos';
+    public const ROW_LINKS = false;
 
 
     public function buildIndexQuery(array $query, IndexTableService $tableService): Builder

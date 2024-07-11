@@ -63,6 +63,26 @@
   margin: 3rem auto;
 }
 
+.index-table_row-link {
+  cursor: pointer;
+
+  td {
+    background-color: unset;
+    padding: 0;
+  }
+
+  a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0.5rem;
+  }
+
+  &:hover {
+    background-color: $grey-246;
+  }
+}
+
 
 // -------------- Table preferences section -------------
 

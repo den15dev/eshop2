@@ -12,6 +12,7 @@ class BrandService
 {
     public const TABLE_NAME = 'brands';
     public const COLUMNS_COOKIE = 'cls_brands';
+    public const ROW_LINKS = false;
 
 
     public function buildIndexQuery(array $query, IndexTableService $tableService): Builder

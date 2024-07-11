@@ -26,17 +26,20 @@
 
         <tbody>
         @foreach($items as $item)
-            <tr>
+            <tr @if($row_links) class="index-table_row-link" @endif>
                 @foreach($current_columns as $column)
                     <td {!! $column->class_list ? 'class="' . $column->class_list . '"' : '' !!}>
                         @php
                             $prop = $column->id;
+                            $value = $column->format
+                                     ? $column->format->get($item, $prop)
+                                     : ($item->$prop ?: '-');
                         @endphp
 
-                        @if($column->format)
-                            {!! $column->format->get($item, $prop) !!}
+                        @if($row_links)
+                            <a href="{{ route('admin.' . $table_name . '.edit', $item->id) }}">{!! $value !!}</a>
                         @else
-                            {{ $item->$prop ?: '-' }}
+                            {!! $value !!}
                         @endif
                     </td>
                 @endforeach

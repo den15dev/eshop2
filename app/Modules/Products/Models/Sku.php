@@ -10,7 +10,6 @@ use App\Modules\Currencies\CurrencyService;
 use App\Modules\Currencies\Models\Currency;
 use App\Modules\Favorites\FavoriteService;
 use App\Modules\Favorites\Models\Favorite;
-use App\Modules\Images\ImageService;
 use App\Modules\Orders\Models\OrderItem;
 use App\Modules\Products\ValueObjects\Price;
 use App\Modules\Promos\Models\Promo;
@@ -188,7 +187,6 @@ class Sku extends Model
             $query = $query->where(DB::raw(self::FINAL_PRICE . ' * ' . CurrencyService::RATE_SUBQUERY), '<=', $price_max);
         }
     }
-
 
 
     public function getUrlSlugAttribute(): string
