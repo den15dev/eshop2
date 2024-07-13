@@ -10,7 +10,7 @@
         </div>
 
         <ul class="bottom-menu_list">
-            @if(env('ADMIN_DEMO'))
+            @if(config('app.admin_demo'))
             <li>
                 <a href="{{ route('admin.products') }}">{{ __('header.top_menu.admin_panel') }}</a>
             </li>

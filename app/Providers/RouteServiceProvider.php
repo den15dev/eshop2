@@ -27,7 +27,9 @@ class RouteServiceProvider extends ServiceProvider
         });
 
         $this->routes(function () {
-            $languagePrefix = LanguageService::getRoutePrefix(request()->segment(1));
+            $languagePrefix = app()->runningInConsole()
+                            ? 'en'
+                            : LanguageService::getRoutePrefix(request()->segment(1));
 
             Route::prefix($languagePrefix)
                 ->group(function () {

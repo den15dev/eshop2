@@ -4,6 +4,15 @@ return [
     'orders' => 'Aufträge',
     'order_managing' => 'Auftragsverwaltung',
 
+    'statuses' => [
+        'new' => 'Neu',
+        'accepted' => 'Akzeptiert',
+        'ready' => 'Bereit',
+        'sent' => 'Gesendet',
+        'completed' => 'Vollendet',
+        'cancelled' => 'Abgesagt',
+    ],
+
     'columns' => [
         'id' => 'ID',
         'status' => 'Status',

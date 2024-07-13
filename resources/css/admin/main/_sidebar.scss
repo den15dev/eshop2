@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 $nav-pointer-margin: $container-x-margins;
 $nav-pointer-border-width: 0.25rem;
 
@@ -65,4 +67,20 @@ $nav-pointer-border-width: 0.25rem;
 .admin-nav_title {
   padding-top: 3px;
   color: $grey-150;
+}
+
+.admin-nav_badge {
+    $size: 18px;
+    min-width: $size;
+    height: $size;
+    border-radius: math.div($size, 2);
+    text-align: center;
+    padding: 0 6px;
+    font-size: 12px;
+    margin-left: -2px;
+
+    &.red {
+        background-color: $color-red;
+        color: white;
+    }
 }

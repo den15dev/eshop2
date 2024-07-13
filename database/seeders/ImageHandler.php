@@ -2,13 +2,13 @@
 
 namespace Database\Seeders;
 
+use App\Modules\Products\Models\Sku;
 use Spatie\Image\Image;
 use Spatie\Image\Manipulations;
 
 class ImageHandler
 {
     const SLEEP = 3; // seconds
-    const SIZES = [1400, 600, 230, 80];
     const IMG_DIR = 'storage/app/public/images/products';
 
 
@@ -57,23 +57,18 @@ class ImageHandler
                     $orig_path = $img_dir . '/' . $orig_img;
                     $prefix = explode('_', $orig_img)[0];
 
-                    foreach (self::SIZES as $ind => $size) {
-                        if ($ind) {
-                            $out_path = $product_img_dir . '/' . $prefix . '_' . $size . '.jpg';
-                        } else {
-                            // First biggest image
-                            $orig_size = getimagesize($orig_path);
-                            $orig_width = $orig_size[0];
-                            $orig_height = $orig_size[1];
-                            $max = max($orig_width, $orig_height);
-                            $size = min($max, $size);
+                    foreach (Sku::IMG_SIZES as $size => $res) {
+                        $orig_size = getimagesize($orig_path);
+                        $orig_width = $orig_size[0];
+                        $orig_height = $orig_size[1];
+                        $max = max($orig_width, $orig_height);
+                        $res = min($max, $res);
 
-                            $out_path = $product_img_dir . '/' . $prefix . '_big.jpg';
-                        }
+                        $out_path = $product_img_dir . '/' . $prefix . '_' . $size . '.jpg';
 
                         if (!file_exists($out_path)) {
                             Image::load($orig_path)
-                                ->fit(Manipulations::FIT_FILL, $size, $size)
+                                ->fit(Manipulations::FIT_FILL, $res, $res)
                                 ->background('ffffff')
                                 ->format(Manipulations::FORMAT_JPG)
                                 ->quality(80)

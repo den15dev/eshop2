@@ -4,6 +4,15 @@ return [
     'orders' => 'Заказы',
     'order_managing' => 'Управление заказом',
 
+    'statuses' => [
+        'new' => 'Новые',
+        'accepted' => 'Принятые',
+        'ready' => 'Готовые',
+        'sent' => 'Отправленные',
+        'completed' => 'Завершённые',
+        'cancelled' => 'Отменённые',
+    ],
+
     'columns' => [
         'id' => 'ID',
         'status' => 'Статус',

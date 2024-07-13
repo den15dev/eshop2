@@ -11,7 +11,7 @@ class CheckIsAdmin
 {
     public function handle(Request $request, Closure $next): Response
     {
-        if (env('ADMIN_DEMO') || Auth::user()?->isAdmin()) {
+        if (config('app.admin_demo') || Auth::user()?->isAdmin()) {
             return $next($request);
         }
 

@@ -40,8 +40,10 @@ class AppServiceProvider extends ServiceProvider
         Blade::anonymousComponentPath(__DIR__.'/../../resources/views/admin/components', 'admin');
 
         // Set default and fallback languages
-        LanguageService::setDefaultLanguage();
-        LanguageService::setFallbackLanguage();
+        if (!app()->runningInConsole()) {
+            LanguageService::setDefaultLanguage();
+            LanguageService::setFallbackLanguage();
+        }
     }
 
 

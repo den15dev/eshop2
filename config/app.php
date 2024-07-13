@@ -61,6 +61,20 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Admin panel demo mode
+    |--------------------------------------------------------------------------
+    |
+    | When the admin panel demo mode is on, the "Admin panel" menu item
+    | is shown on the top navigation bar. Anybody can open the admin panel
+    | and navigate all its pages, but can't do any CRUD action there, if
+    | he is not an admin.
+    |
+    */
+
+    'admin_demo' => (bool) env('ADMIN_DEMO', false),
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Timezone
     |--------------------------------------------------------------------------
     |

@@ -17,7 +17,7 @@
     </div>
     <nav class="top-center">
         <ul class="nav-list-top">
-            @if(env('ADMIN_DEMO'))
+            @if(config('app.admin_demo'))
                 <li>
                     <a href="{{ route('admin.products') }}">
                         {{ __('header.top_menu.admin_panel') }}
@@ -29,7 +29,7 @@
                     {{ __('stores.stores') }}
                 </a>
             </li>
-            @unless(env('ADMIN_DEMO'))
+            @unless(config('app.admin_demo'))
                 <li>
                     <a href="{{ route('delivery') }}">
                         {{ __('delivery.delivery') }}
@@ -42,7 +42,7 @@
                     <span class="icon-chevron-down xsmall"></span>
                 </div>
                 <ul class="dropdown-list">
-                    @if(env('ADMIN_DEMO'))
+                    @if(config('app.admin_demo'))
                         <li>
                             <a href="{{ route('delivery') }}" class="dropdown-item">
                                 {{ __('delivery.delivery') }}

@@ -43,7 +43,6 @@ class AddCurrencies extends Command
                 'decimal_sep' => '.',
                 'language_id' => 'en',
                 'exchange_rate' => 92,
-                'exchange_to' => 'rub',
                 'source' => SourceEnum::Cbrf,
             ],
             [
@@ -55,7 +54,6 @@ class AddCurrencies extends Command
                 'decimal_sep' => ',',
                 'language_id' => 'ru',
                 'exchange_rate' => 1,
-                'exchange_to' => 'rub',
                 'source' => SourceEnum::Manual,
             ],
             [
@@ -67,7 +65,6 @@ class AddCurrencies extends Command
                 'decimal_sep' => '.',
                 'language_id' => 'de',
                 'exchange_rate' => 96,
-                'exchange_to' => 'rub',
                 'source' => SourceEnum::Cbrf,
             ],
         ];

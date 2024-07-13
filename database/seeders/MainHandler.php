@@ -18,7 +18,7 @@ class MainHandler
         BrandHandler::seedBrands();
 
         $categories = require_once self::CATEGORIES;
-        $translated_num = self::handleData($categories, $category_slug, 500);
+        $translated_num = self::handleData($categories, $category_slug, 8);
 
         Cache::forget('categories');
         echo 'Categories\' cache has been cleared to update skus count' . "\n";

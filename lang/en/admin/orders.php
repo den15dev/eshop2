@@ -4,6 +4,15 @@ return [
     'orders' => 'Orders',
     'order_managing' => 'Order managing',
 
+    'statuses' => [
+        'new' => 'New',
+        'accepted' => 'Accepted',
+        'ready' => 'Ready',
+        'sent' => 'Sent',
+        'completed' => 'Completed',
+        'cancelled' => 'Cancelled',
+    ],
+
     'columns' => [
         'id' => 'ID',
         'status' => 'Status',
