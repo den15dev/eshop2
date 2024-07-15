@@ -35,4 +35,17 @@ return [
         'created_at' => 'Created at',
         'updated_at' => 'Updated at',
     ],
+
+    'status_buttons' => [
+        'accept' => 'Accept',
+        'sent' => 'Sent',
+        'ready' => 'Ready for pickup',
+        'complete' => 'Complete',
+        'cancel' => 'Cancel',
+        'cancelled' => 'Order cancelled',
+    ],
+
+    'messages' => [
+        'status_updated' => 'The order #:id status has been changed to ":status"',
+    ],
 ];

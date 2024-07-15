@@ -19,6 +19,7 @@
 @import 'common/components/not-found';
 @import 'common/components/errors';
 @import 'common/components/localization-menu';
+@import 'common/components/order';
 
 @import 'admin/main/base';
 @import 'admin/main/layout';
@@ -39,6 +40,7 @@
 @import "admin/components/form-layout";
 @import "admin/components/notes";
 @import "admin/components/specification-items";
+@import "admin/components/order-statuses";
 
 @import 'common/utilities';
 @import 'common/icons/bi-light';

@@ -57,9 +57,9 @@ class AppServiceProvider extends ServiceProvider
     {
         if (!app()->environment(['production']) && app()->runningInConsole()) {
             config([
-                'database.connections.pgsql.host' => env('APP_URL'),
-                'database.redis.default.host' => env('APP_URL'),
-                'database.redis.cache.host' => env('APP_URL'),
+                'database.connections.pgsql.host' => config('app.url'),
+                'database.redis.default.host' => config('app.url'),
+                'database.redis.cache.host' => config('app.url'),
             ]);
         }
     }

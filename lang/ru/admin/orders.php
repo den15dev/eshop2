@@ -35,4 +35,17 @@ return [
         'created_at' => 'Дата создания',
         'updated_at' => 'Дата обновления',
     ],
+
+    'status_buttons' => [
+        'accept' => 'Принять',
+        'sent' => 'Отправлен',
+        'ready' => 'Готов к выдаче',
+        'complete' => 'Завершить',
+        'cancel' => 'Отменить',
+        'cancelled' => 'Заказ отменён',
+    ],
+
+    'messages' => [
+        'status_updated' => 'Статус заказа №:id изменён на ":status"',
+    ],
 ];

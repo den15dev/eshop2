@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Admin\IndexTable\IndexTableService;
 use App\Admin\Orders\OrderService;
 use App\Http\Controllers\Controller;
+use App\Modules\Orders\Enums\OrderStatus;
 use App\Modules\Orders\Models\Order;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
 class OrderController extends Controller
@@ -67,10 +70,30 @@ class OrderController extends Controller
 
     public function edit(int $id): View
     {
-        $order = Order::find($id);
+        $order = Order::withItems()->firstWhere('id', $id);
 
         return view('admin.pages.orders.edit', compact(
             'order',
         ));
+    }
+
+
+    public function update(Request $request, $id): RedirectResponse
+    {
+        $validated = $request->validate([
+            'status' => ['required', Rule::enum(OrderStatus::class)],
+        ]);
+
+        Order::find($id)->update($validated);
+
+        $message = __('admin/orders.messages.status_updated', ['id' => $id, 'status' => OrderStatus::from($validated['status'])->description()]);
+
+        session()->flash('message', [
+            'type' => 'info',
+            'content' => $message,
+            'align' => 'center',
+        ]);
+
+        return back();
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
 use App\Modules\Cart\CartService;
+use App\Modules\Orders\Models\Order;
 use App\Modules\Orders\OrderService;
 use App\Modules\Orders\Requests\OrderRequest;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +20,7 @@ class OrderController extends Controller
 
     public function index(): View
     {
-        $orders = $this->orderService->getOrders()->paginate(10);
+        $orders = $this->orderService->getOrders()?->paginate(10);
 
         return view('site.pages.orders', compact('orders'));
     }
@@ -45,7 +46,7 @@ class OrderController extends Controller
 
     public function new(int $order_id): View
     {
-        $order = $this->orderService->getOrders($order_id);
+        $order = Order::withItems()->firstWhere('id', $order_id);
 
         return view('site.pages.order-new', compact(
             'order',

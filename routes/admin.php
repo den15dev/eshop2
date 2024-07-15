@@ -24,6 +24,9 @@ Route::post('/ajax', [AjaxController::class, 'post'])->name('ajax.post')->middle
 Route::get('/orders', [OrderController::class, 'index'])->name('orders');
 Route::get('/orders/table', [OrderController::class, 'table'])->name('orders.table');
 Route::get('/orders/{id}/edit', [OrderController::class, 'edit'])->whereNumber('id')->name('orders.edit');
+Route::middleware('admin.protection')->group(function () {
+    Route::put('/orders/{id}', [OrderController::class, 'update'])->whereNumber('id')->name('orders.update');
+});
 
 Route::get('/logs', [LogController::class, 'index'])->name('logs');
 

@@ -3,7 +3,6 @@
 namespace App\Modules\Orders;
 
 use App\Modules\Orders\Actions\CreateOrderAction;
-use App\Modules\Orders\Actions\GetOrdersAction;
 use App\Modules\Orders\Actions\IsOrderOwnerAction;
 use App\Modules\Orders\Enums\OrderStatus;
 use App\Modules\Orders\Models\Order;
@@ -19,7 +18,6 @@ class OrderService
 
     public function __construct(
         private readonly CreateOrderAction $createOrderAction,
-        private readonly GetOrdersAction $getOrdersAction,
         private readonly IsOrderOwnerAction $isOrderOwnerAction,
     ){}
 
@@ -45,9 +43,18 @@ class OrderService
     }
 
 
-    public function getOrders(?int $order_id = null): Order|Builder
+    public function getOrders(): ?Builder
     {
-        return $this->getOrdersAction->run(self::$cookie_order_ids, $order_id);
+        $user_id = Auth::id();
+
+        if ($user_id) {
+            return Order::withItems()->where('user_id', $user_id);
+
+        } elseif (self::$cookie_order_ids) {
+            return Order::withItems()->whereIn('id', self::$cookie_order_ids);
+        }
+
+        return null;
     }
 
 

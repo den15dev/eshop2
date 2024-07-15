@@ -10,6 +10,7 @@ use App\Modules\Orders\Enums\PaymentStatus;
 use App\Modules\Products\ValueObjects\Price;
 use App\Modules\Shops\Models\Shop;
 use App\Modules\Users\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -40,6 +41,34 @@ class Order extends Model
     public function shop(): BelongsTo
     {
         return $this->belongsTo(Shop::class);
+    }
+
+
+    public function scopeWithItems(Builder $query): void
+    {
+        $query->with([
+            'orderItems' => function ($q) {
+                $q->join('orders', 'orders.id', 'order_items.order_id')
+                    ->select(
+                        'order_items.*',
+                        'orders.currency_id'
+                    )->with([
+                        'sku' => function ($q) {
+                            $q->join('products', 'products.id', 'skus.product_id')
+                                ->join('categories', 'products.category_id', 'categories.id')
+                                ->select(
+                                    'skus.id',
+                                    'skus.name',
+                                    'skus.slug',
+                                    'products.category_id as category_id',
+                                    'categories.slug as category_slug',
+                                );
+                        }
+                    ]);
+            }
+        ])
+        ->with('shop:id,address')
+        ->orderByDesc('created_at');
     }
 
 

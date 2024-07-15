@@ -35,4 +35,17 @@ return [
         'created_at' => 'Hergestellt in',
         'updated_at' => 'Aktualisiert am',
     ],
+
+    'status_buttons' => [
+        'accept' => 'Akzeptieren',
+        'sent' => 'Gesendet',
+        'ready' => 'Abholbereit',
+        'complete' => 'Vollständig',
+        'cancel' => 'Stornieren',
+        'cancelled' => 'Bestellung storniert',
+    ],
+
+    'messages' => [
+        'status_updated' => 'Der Status der Bestellung :id wurde in ":status" geändert.',
+    ],
 ];

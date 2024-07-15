@@ -6,7 +6,7 @@
     <div class="container">
         <h3 class="mb-4">{{ __('orders.orders') }}</h3>
 
-        @if($orders->count())
+        @if($orders && $orders->count())
             @foreach($orders as $order)
                 <x-order :order="$order" />
             @endforeach
@@ -22,6 +22,5 @@
                 {{ __('orders.no_orders') }}
             </div>
         @endif
-
     </div>
 @endsection

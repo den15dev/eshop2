@@ -1,4 +1,9 @@
-<div class="mb-6">
+@props([
+    'order',
+    'mb' => 'mb-6',
+])
+
+<div class="{{ $mb }}">
     @if(!isset($new))
         <div class="order-title fw-bold mb-1">{{ __('orders.num', ['num' => $order->id]) }}</div>
     @endif
