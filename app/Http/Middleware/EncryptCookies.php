@@ -7,6 +7,7 @@ use App\Admin\IndexTable\IndexTableService;
 use App\Admin\Orders\OrderService;
 use App\Admin\Products\ProductService;
 use App\Admin\Promos\PromoService;
+use App\Admin\Users\UserService;
 use App\Modules\Cart\CartService;
 use App\Modules\Catalog\CatalogService;
 use App\Modules\Catalog\ComparisonService;
@@ -34,5 +35,6 @@ class EncryptCookies extends Middleware
         BrandService::COLUMNS_COOKIE,
         PromoService::COLUMNS_COOKIE,
         OrderService::COLUMNS_COOKIE,
+        UserService::COLUMNS_COOKIE,
     ];
 }

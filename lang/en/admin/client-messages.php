@@ -27,4 +27,8 @@ return [
     'promos' => [
         'delete_promo' => 'Are you sure you want to remove the ":name" promo?',
     ],
+
+    'orders' => [
+        'cancel_order' => 'Are you sure you want to cancel this order?',
+    ],
 ];

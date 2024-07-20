@@ -17,8 +17,9 @@ class CurrencyService
 
     /**
      * Current preferred currency.
+     * In admin panel, it is null.
      */
-    public static Currency $cur_currency;
+    public static ?Currency $cur_currency = null;
 
     /**
      * All currencies will be stored here.

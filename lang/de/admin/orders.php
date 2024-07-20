@@ -47,5 +47,6 @@ return [
 
     'messages' => [
         'status_updated' => 'Der Status der Bestellung :id wurde in ":status" geändert.',
+        'order_cancelled' => 'Die Bestellung #:id wurde storniert.',
     ],
 ];

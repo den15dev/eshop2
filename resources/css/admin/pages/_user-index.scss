@@ -1,0 +1,9 @@
+.user-role {
+  &_admin {
+    color: $color-red;
+  }
+
+  &_boss {
+    color: $color-success-text;
+  }
+}

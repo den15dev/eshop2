@@ -6,7 +6,7 @@
 
 @section('main_content')
     <div>
-        <x-order :order="$order" mb="mb-4" :extended="true" />
+        <x-order :order="$order" mb="mb-4" />
 
         <div class="order-edit_btns-cont">
             @php
@@ -34,7 +34,7 @@
                     @endif
                 </form>
 
-                <form action="{{ route('admin.orders.update', $order->id) }}" class="order-edit_cancel-form" method="POST" id="cancelOrderForm">
+                <form action="{{ route('admin.orders.update', $order->id) }}" class="order-edit_cancel-form" method="POST">
                     @method('PUT')
                     @csrf
                     <input type="hidden" name="status" value="cancelled">

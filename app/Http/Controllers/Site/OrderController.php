@@ -29,10 +29,15 @@ class OrderController extends Controller
     public function store(OrderRequest $request)
     {
         $user_id = Auth::id();
-        $order = $this->orderService->createOrder($request->validated(), $user_id);
+        $validated = $request->validated();
+        $order = $this->orderService->createOrder($validated, $user_id);
         Cookie::expire(CartService::COOKIE);
 
-        if (!$user_id) {
+        if ($user_id) {
+            $delivery_address = $validated['delivery_address'] ?? null;
+            OrderService::updateUserPersonalData($validated['phone'], $delivery_address);
+
+        } else {
             $cookie = $this->orderService->createCookieString($order->id);
 
             return redirect()

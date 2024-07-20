@@ -11,7 +11,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class OrderSentMailable extends Mailable
+class OrderReadyMailable extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -24,17 +24,17 @@ class OrderSentMailable extends Mailable
     {
         return new Envelope(
             from: new Address(config('app.mail_from_address'), __('general.app_name', [], $this->order->language_id)),
-            subject: __('notifications.order_sent.subject', ['id' => $this->order->id], $this->order->language_id),
+            subject: __('notifications.order_ready.subject', ['id' => $this->order->id], $this->order->language_id),
         );
     }
 
 
     public function content(): Content
     {
-        $order = $this->order;
+        $order = $this->order->load('shop:id,name,address');
 
         return new Content(
-            view: 'emails.order-sent',
+            view: 'emails.order-ready',
             with: compact('order'),
         );
     }

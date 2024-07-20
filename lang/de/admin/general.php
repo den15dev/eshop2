@@ -2,7 +2,7 @@
 
 return [
     'admin_panel' => 'Administrationsmenü',
-    'go_to_site' => 'Webseite',
+    'go_to_site' => 'Zur Webseite',
 
     'navigation' => [
         'dashboard' => 'Armaturenbrett',
@@ -23,6 +23,7 @@ return [
     'add' => 'Hinzufügen',
     'delete' => 'Löschen',
     'clear' => 'Klar',
+    'cancel' => 'Stornieren',
     'close' => 'Schließen',
     'caution' => 'Vorsicht!',
     'Yes' => 'Ja',

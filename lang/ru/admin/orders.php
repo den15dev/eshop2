@@ -47,5 +47,6 @@ return [
 
     'messages' => [
         'status_updated' => 'Статус заказа №:id изменён на ":status"',
+        'order_cancelled' => 'Заказ №:id отменён.',
     ],
 ];

@@ -14,7 +14,9 @@ class SetSiteData
 {
     public function handle(Request $request, Closure $next): Response
     {
-        $excluded = ['translations'];
+        $excluded = [
+            'translations',
+        ];
         $route = $request->route()->getName();
 
         if (!in_array($route, $excluded)) {

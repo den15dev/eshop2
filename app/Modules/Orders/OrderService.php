@@ -43,6 +43,18 @@ class OrderService
     }
 
 
+    public static function updateUserPersonalData(?string $phone, ?string $delivery_address): void
+    {
+        $user = Auth::user();
+
+        if ($user) {
+            $user->phone ??= $phone;
+            $user->address ??= $delivery_address;
+            $user->save();
+        }
+    }
+
+
     public function getOrders(): ?Builder
     {
         $user_id = Auth::id();

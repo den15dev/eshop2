@@ -47,5 +47,6 @@ return [
 
     'messages' => [
         'status_updated' => 'The order #:id status has been changed to ":status"',
+        'order_cancelled' => 'The order #:id has been cancelled.',
     ],
 ];

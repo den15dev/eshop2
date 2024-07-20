@@ -2,11 +2,19 @@
 return [
     "copyright" => "Electronics store. All rights reserved.",
     "greeting" => "Hello, :name!",
+
     "order_sent" => [
-        "body" => "The order :id for amount :total_cost_formatted has been sent by delivery service to the address you specified. You can view information about orders and track their status in the :orders_link section.",
+        "subject" => "Order #:id has been sent.",
+        "body" => "The order #:id for amount :total_cost_formatted has been sent by delivery service to the address you specified. You can view information about orders and track their status in the :orders_link section.",
         "footer" => "You received this message because you placed an order on the :link website. If it was not you, please ignore this message.",
-        "subject" => "Order :id has been sent."
     ],
+
+    'order_ready' => [
+        'subject' => 'Order #:id is ready for pickup.',
+        'body' => 'The order #:id for amount :total_cost_formatted is ready for pickup, you can pick it up in the store at :shop_address. You can view information about orders and track their status in the :orders_link section.',
+        'footer' => 'You received this message because you placed an order on the :link website. If it was not you, please ignore this message.',
+    ],
+
     "reset_password" => [
         "body1" => "You are receiving this email because we received a password reset request for your account.",
         "body2" => "This password reset link will expire in 60 minutes.",
@@ -16,6 +24,7 @@ return [
         "footer" => "You received this message because you requested a password reset on the :link website. If it was not you, please ignore this message.",
         "subject" => "Reset Password Notification"
     ],
+
     "signature1" => "Regards,",
     "signature2" => "Electronics store team",
     "verify_email" => [

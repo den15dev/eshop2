@@ -33,7 +33,7 @@ class RouteServiceProvider extends ServiceProvider
 
             Route::prefix($languagePrefix)
                 ->group(function () {
-                    Route::middleware(['web'])
+                    Route::middleware(['web', 'site'])
                         ->group(base_path('routes/site.php'));
 
                     Route::middleware(['web', 'admin'])

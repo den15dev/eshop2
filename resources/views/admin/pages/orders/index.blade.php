@@ -15,18 +15,18 @@
 
         <div class="index_checkboxes mb-4">
             <div class="index_checkbox-cont">
-                <input type="checkbox" class="form-check-input" name="chb[new]" id="productsActive" {{ $state->new ? 'checked' : '' }} />
-                <label class="form-check-label" for="productsActive">{{ __('admin/orders.statuses.new') }}</label>
+                <input type="checkbox" class="form-check-input" name="chb[new]" id="ordersNew" {{ $state->new ? 'checked' : '' }} />
+                <label class="form-check-label" for="ordersNew">{{ __('admin/orders.statuses.new') }}</label>
             </div>
 
             <div class="index_checkbox-cont">
-                <input type="checkbox" class="form-check-input" name="chb[ready]" id="productsOutOfStock" {{ $state->ready ? 'checked' : '' }} />
-                <label class="form-check-label" for="productsOutOfStock">{{ __('admin/orders.statuses.ready') }}</label>
+                <input type="checkbox" class="form-check-input" name="chb[ready]" id="ordersReady" {{ $state->ready ? 'checked' : '' }} />
+                <label class="form-check-label" for="ordersReady">{{ __('admin/orders.statuses.ready') }}</label>
             </div>
 
             <div class="index_checkbox-cont">
-                <input type="checkbox" class="form-check-input" name="chb[cancelled]" id="productsScheduled" {{ $state->cancelled ? 'checked' : '' }} />
-                <label class="form-check-label" for="productsScheduled">{{ __('admin/orders.statuses.cancelled') }}</label>
+                <input type="checkbox" class="form-check-input" name="chb[cancelled]" id="ordersCancelled" {{ $state->cancelled ? 'checked' : '' }} />
+                <label class="form-check-label" for="ordersCancelled">{{ __('admin/orders.statuses.cancelled') }}</label>
             </div>
         </div>
 

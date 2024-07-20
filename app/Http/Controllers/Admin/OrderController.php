@@ -7,8 +7,11 @@ use App\Admin\Orders\OrderService;
 use App\Http\Controllers\Controller;
 use App\Modules\Orders\Enums\OrderStatus;
 use App\Modules\Orders\Models\Order;
+use App\Notifications\OrderReady;
+use App\Notifications\OrderSent;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
@@ -84,9 +87,34 @@ class OrderController extends Controller
             'status' => ['required', Rule::enum(OrderStatus::class)],
         ]);
 
-        Order::find($id)->update($validated);
+        $order = Order::find($id);
+        $order->status = $validated['status'];
+        $order->save();
 
-        $message = __('admin/orders.messages.status_updated', ['id' => $id, 'status' => OrderStatus::from($validated['status'])->description()]);
+        $user = $order->user;
+        if ($user) {
+            if ($validated['status'] === OrderStatus::Sent->value) {
+                $user->notify(new OrderSent($order));
+
+            } elseif ($validated['status'] === OrderStatus::Ready->value) {
+                $user->notify(new OrderReady($order));
+            }
+        } else {
+            if ($validated['status'] === OrderStatus::Sent->value) {
+                Notification::route('mail', $order->email)
+                    ->notify(new OrderSent($order));
+
+            } elseif ($validated['status'] === OrderStatus::Ready->value) {
+                Notification::route('mail', $order->email)
+                    ->notify(new OrderReady($order));
+            }
+        }
+
+        if ($validated['status'] === OrderStatus::Cancelled->value) {
+            $message = __('admin/orders.messages.order_cancelled', ['id' => $id]);
+        } else {
+            $message = __('admin/orders.messages.status_updated', ['id' => $id, 'status' => OrderStatus::from($validated['status'])->description()]);
+        }
 
         session()->flash('message', [
             'type' => 'info',

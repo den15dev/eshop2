@@ -72,7 +72,7 @@ return [
         'class_list' => null,
         'order_by' => 'orders.delivery_method',
         'search_field' => null,
-        'format' => null,
+        'format' => new ColumnFormatter('enumDescription'),
         'is_default' => false,
     ],
     [
@@ -81,7 +81,7 @@ return [
         'class_list' => null,
         'order_by' => 'orders.payment_method',
         'search_field' => null,
-        'format' => null,
+        'format' => new ColumnFormatter('enumDescription'),
         'is_default' => false,
     ],
     [

@@ -2,7 +2,7 @@
 
 return [
     'admin_panel' => 'Admin Panel',
-    'go_to_site' => 'Website',
+    'go_to_site' => 'To website',
 
     'navigation' => [
         'dashboard' => 'Dashboard',
@@ -23,6 +23,7 @@ return [
     'add' => 'Add',
     'delete' => 'Delete',
     'clear' => 'Clear',
+    'cancel' => 'Cancel',
     'close' => 'Close',
     'caution' => 'Caution!',
     'Yes' => 'Yes',

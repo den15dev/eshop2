@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PromoController;
 use App\Http\Controllers\Admin\SkuController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Common\LanguageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
@@ -79,7 +80,12 @@ Route::middleware('admin.protection')->group(function () {
     Route::delete('/promos/{id}', [PromoController::class, 'destroy'])->whereNumber('id')->name('promos.destroy');
 });
 
-Route::get('/users', IndexController::class)->name('users');
+Route::get('/users', [UserController::class, 'index'])->name('users');
+Route::get('/users/table', [UserController::class, 'table'])->name('users.table');
+Route::get('/users/{id}/edit', [UserController::class, 'edit'])->whereNumber('id')->name('users.edit');
+Route::middleware('admin.protection')->group(function () {
+    Route::put('/users/{id}', [UserController::class, 'update'])->whereNumber('id')->name('users.update');
+});
 
 Route::get('/reviews', IndexController::class)->name('reviews');
 

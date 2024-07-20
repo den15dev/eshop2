@@ -1,6 +1,7 @@
 @props([
     'order',
     'mb' => 'mb-6',
+    'extended' => false,
 ])
 
 <div class="{{ $mb }}">
@@ -13,6 +14,20 @@
             <span class="lightgrey-text">{{ __('orders.created_at') }}:</span>
             {{ $order->date }}
         </li>
+        @if($extended)
+            <li>
+                <span class="lightgrey-text">{{ __('orders.name') }}:</span>
+                {{ $order->name }}
+            </li>
+            <li>
+                <span class="lightgrey-text">{{ __('orders.phone') }}:</span>
+                {{ $order->phone }}
+            </li>
+            <li>
+                <span class="lightgrey-text">{{ __('orders.user_id') }}:</span>
+                {{ $order->user_id ?: '-' }}
+            </li>
+        @endif
         <li>
             <span class="lightgrey-text">{{ __('orders.status') }}:</span>
             <span class="order-status_{{ $order->status->value }}">{{ $order->status->description() }}</span>

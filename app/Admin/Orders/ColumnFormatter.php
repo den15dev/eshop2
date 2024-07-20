@@ -37,6 +37,14 @@ class ColumnFormatter
     }
 
 
+    private function enumDescription(): string
+    {
+        $property = $this->property;
+
+        return $this->model->$property->description();
+    }
+
+
     private function paymentStatus()
     {
         $property = $this->property;

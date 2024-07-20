@@ -27,4 +27,8 @@ return [
     'promos' => [
         'delete_promo' => 'Sind Sie sicher, dass Sie die Aktion „:name“ entfernen möchten?',
     ],
+
+    'orders' => [
+        'cancel_order' => 'Sind Sie sicher, dass Sie diese Bestellung stornieren möchten?',
+    ],
 ];

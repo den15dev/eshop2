@@ -16,6 +16,8 @@ import initCategoryEdit from "./admin/pages/category-edit.js";
 import initBrandEdit from "./admin/pages/brand-edit.js";
 import initPromoEdit from "./admin/pages/promo-edit.js";
 import initOrderIndex from "./admin/pages/order-index.js";
+import initOrderEdit from "./admin/pages/order-edit.js";
+import initUserIndex from "./admin/pages/user-index.js";
 
 // --------------- Common ------------------
 
@@ -46,6 +48,8 @@ initCategoryEdit();
 initBrandEdit();
 initPromoEdit();
 initOrderIndex();
+initOrderEdit();
+initUserIndex();
 
 
 // --------------- Get client translations ------------------
