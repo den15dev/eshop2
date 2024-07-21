@@ -6,8 +6,9 @@ export function post(
     service, // e.g. 'product' or 'category'
     action, // e.g. 'saveAttribute'
     args,
-    errorFunc = () => {},
     successFunc = () => {},
+    errorFunc = () => {},
+    responseErrorFunc = () => {},
 ) {
     fetch(`/${lang}/admin/ajax`, {
         method: 'post',
@@ -24,6 +25,7 @@ export function post(
     })
     .then(response => {
         if (!response.ok && response.status !== 422) {
+            responseErrorFunc();
             const error = new Error();
             error.status = response.status;
             error.statusText = response.statusText;
@@ -43,8 +45,8 @@ export function get(
     action, // e.g. 'saveAttribute'
     params,
     accept, // 'json' or 'html'
-    errorFunc = () => {},
     successFunc = () => {},
+    errorFunc = () => {},
 ) {
     const searchParams = objectToQueryString({
         service: service,

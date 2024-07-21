@@ -155,7 +155,6 @@ function getSkuFinalPrices() {
             'getSkuFinalPrices',
             getPriceData(),
             'json',
-            null,
             function (result) {
                 insertPriceData(result);
             }
@@ -221,13 +220,13 @@ function updateSpec(sku_id, specForm) {
         'updateSkuSpec',
         args,
         function (result) {
-            showFieldErrors(specForm, result.errors);
-        },
-        function (result) {
             showClientModal({
                 icon: 'success',
                 message: result.message,
             });
+        },
+        function (result) {
+            showFieldErrors(specForm, result.errors);
         }
     );
 }
@@ -241,7 +240,6 @@ function deleteSpec(sku_id, specForm) {
         'product',
         'deleteSkuSpec',
         args,
-        null,
         function (result) {
             showClientModal({
                 icon: 'success',

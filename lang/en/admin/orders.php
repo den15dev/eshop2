@@ -43,6 +43,7 @@ return [
         'complete' => 'Complete',
         'cancel' => 'Cancel',
         'cancelled' => 'Order cancelled',
+        'completed' => 'Order completed',
     ],
 
     'messages' => [

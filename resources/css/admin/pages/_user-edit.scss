@@ -1,0 +1,18 @@
+.user-edit_email-verified {
+  font-style: italic;
+  color: $color-success-text;
+}
+
+.user-edit_email-not-verified {
+  font-style: italic;
+  color: $color-red;
+}
+
+.user-edit_img-cont {
+  width: 200px;
+  height: 200px;
+
+  img {
+    width: 100%;
+  }
+}

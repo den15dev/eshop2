@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Modules\Users\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class UserController extends Controller
@@ -68,30 +70,54 @@ class UserController extends Controller
 
     public function edit(int $id): View
     {
-        $user = User::find($id);
+        $user = $this->userService->getUser($id);
+        $current_user = Auth::user();
 
         return view('admin.pages.users.edit', compact(
             'user',
+            'current_user',
         ));
     }
 
 
     public function update(Request $request, $id): RedirectResponse
     {
-        /*$validated = $request->validate([
-            'status' => ['required', Rule::enum(OrderStatus::class)],
+        $validated = $request->validate([
+            'role' => ['required', 'in:user,admin'],
         ]);
 
-        Order::find($id)->update($validated);
+        $user = User::find($id);
+        $user->role = $validated['role'];
+        $user->save();
 
-        $message = __('admin/orders.messages.status_updated', ['id' => $id, 'status' => OrderStatus::from($validated['status'])->description()]);
+        $message = match ($validated['role']) {
+            'admin' => __('admin/users.messages.now_admin', ['name' => $user->name]),
+            'user' => __('admin/users.messages.now_user', ['name' => $user->name]),
+        };
 
         session()->flash('message', [
             'type' => 'info',
             'content' => $message,
             'align' => 'center',
-        ]);*/
+        ]);
 
         return back();
+    }
+
+
+    public function destroy($id): RedirectResponse
+    {
+        $user = User::find($id);
+        $user->delete();
+
+        $this->userService->deleteUserImage($id);
+
+        session()->flash('message', [
+            'type' => 'info',
+            'content' => __('admin/users.messages.user_deleted', ['name' => $user->name]),
+            'align' => 'center',
+        ]);
+
+        return redirect()->route('admin.users');
     }
 }

@@ -12,9 +12,9 @@
             <input type="email" name="email" class="form-control" id="forgotPassEmailInput" placeholder="name@example.com" autocomplete="email">
             <div id="forgotPassEmailInputFeedback" class="invalid-feedback"></div>
         </div>
-        <div class="preloader-btn-cont">
+        <div class="preloader-cont">
             <button type="submit">{{ __('auth.modal.forgot_send') }}</button>
-            <img class="preloader" src="{{ asset('img/preloader.gif') }}" alt="">
+            <img class="preloader pl-btn hidden" src="{{ asset('img/preloader.gif') }}" alt="">
         </div>
     </form>
 </div>

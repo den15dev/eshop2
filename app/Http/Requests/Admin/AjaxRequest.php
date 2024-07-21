@@ -21,20 +21,20 @@ class AjaxRequest extends FormRequest
      */
     public function rules(): array
     {
-        return $this->getRequestInstance()->ajaxRules($this);
+        return $this->getRequestInstance()?->ajaxRules($this) ?? [];
     }
 
 
     public function messages(): array
     {
-        return $this->getRequestInstance()->messages();
+        return $this->getRequestInstance()?->messages() ?? [];
     }
 
 
-    private function getRequestInstance()
+    private function getRequestInstance(): ?FormRequest
     {
         $requestClassName = 'App\\Admin\\' . ucfirst(Str::plural($this->service)) . '\\Requests\\' . ucfirst($this->service) . 'Request';
 
-        return new $requestClassName();
+        return class_exists($requestClassName) ? new $requestClassName() : null;
     }
 }

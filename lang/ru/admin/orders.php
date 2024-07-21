@@ -43,6 +43,7 @@ return [
         'complete' => 'Завершить',
         'cancel' => 'Отменить',
         'cancelled' => 'Заказ отменён',
+        'completed' => 'Заказ завершён',
     ],
 
     'messages' => [

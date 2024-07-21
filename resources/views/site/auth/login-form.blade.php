@@ -18,9 +18,9 @@
         <input class="form-check-input" name="remember" type="checkbox" role="switch" id="signInRememberCheck">
         <label class="form-check-label" for="signInRememberCheck">{{ __('auth.modal.remember') }}</label>
     </div>
-    <div class="preloader-btn-cont mb-4">
+    <div class="preloader-cont mb-4">
         <button type="submit">{{ __('auth.modal.sign_in_button') }}</button>
-        <img class="preloader" src="{{ asset('img/preloader.gif') }}" alt="">
+        <img class="preloader pl-btn hidden" src="{{ asset('img/preloader.gif') }}" alt="">
     </div>
     <div class="link w-fit" role="button" id="forgotPasswordBtn">{{ __('auth.modal.forgot') }}</div>
 </form>

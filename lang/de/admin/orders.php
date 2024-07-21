@@ -43,6 +43,7 @@ return [
         'complete' => 'Vollständig',
         'cancel' => 'Stornieren',
         'cancelled' => 'Bestellung storniert',
+        'completed' => 'Bestellung abgeschlossen',
     ],
 
     'messages' => [

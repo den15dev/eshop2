@@ -13,7 +13,11 @@
                 $status = \App\Modules\Orders\Enums\OrderStatus::class;
                 $delivery_method = \App\Modules\Orders\Enums\DeliveryMethod::class;
             @endphp
-            @if($order->status !== $status::Cancelled)
+
+            @if($order->status === $status::Completed)
+                <div class="btn btn-outlined-inactive">{{ __('admin/orders.status_buttons.completed') }}</div>
+
+            @elseif($order->status !== $status::Cancelled)
                 <form action="{{ route('admin.orders.update', $order->id) }}" method="POST">
                     @method('PUT')
                     @csrf
@@ -40,6 +44,7 @@
                     <input type="hidden" name="status" value="cancelled">
                     <button type="submit" class="btn-bg-red">{{ __('admin/orders.status_buttons.cancel') }}</button>
                 </form>
+
             @else
                 <div class="btn btn-outlined-inactive">{{ __('admin/orders.status_buttons.cancelled') }}</div>
             @endif

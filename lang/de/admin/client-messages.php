@@ -31,4 +31,10 @@ return [
     'orders' => [
         'cancel_order' => 'Sind Sie sicher, dass Sie diese Bestellung stornieren möchten?',
     ],
+
+    'users' => [
+        'make_admin' => 'Sind Sie sicher, dass Sie :name zum Administrator machen möchten?',
+        'make_user' => 'Sind Sie sicher, dass Sie :name zu einem regulären Benutzer machen möchten?',
+        'delete_user' => 'Sind Sie sicher, dass Sie den Benutzer :name löschen möchten?',
+    ],
 ];

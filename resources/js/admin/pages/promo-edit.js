@@ -58,7 +58,6 @@ function deleteSku(sku_id) {
         'promo',
         'deleteSku',
         args,
-        null,
         function () {
             window.location.reload();
         }

@@ -130,15 +130,24 @@ button,
   pointer-events: none;
 }
 
-// Container for button with loader on the left.
-// These buttons used with ajax.
-.preloader-btn-cont {
+
+// ----- Preloader for buttons and switches (checkboxes) -----
+
+.preloader-cont {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  img {
-    display: none;
+}
+
+.preloader {
+  opacity: 0.4;
+
+  &.pl-btn {
     height: 28px;
-    opacity: 0.4;
+  }
+
+  &.pl-switch {
+    height: 20px;
+    margin-top: -4px;
   }
 }

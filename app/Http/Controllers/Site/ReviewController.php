@@ -45,6 +45,7 @@ class ReviewController extends Controller
 
         $is_reviewed = $this->reviewService->isReviewed($sku_id, Auth::id());
         $is_guest = !Auth::check();
+        $is_banned = !Auth::user()?->is_active;
 
         $rv_cookie = $request->cookie(RecentlyViewedService::COOKIE);
         $recently_viewed = $recentlyViewedService->get($rv_cookie);
@@ -56,6 +57,7 @@ class ReviewController extends Controller
             'marks',
             'is_reviewed',
             'is_guest',
+            'is_banned',
             'recently_viewed',
         ));
     }

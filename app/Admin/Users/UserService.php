@@ -3,8 +3,10 @@
 namespace App\Admin\Users;
 
 use App\Admin\IndexTable\IndexTableService;
+use App\Modules\Orders\Enums\OrderStatus;
 use App\Modules\Users\Models\User;
 use Illuminate\Database\Eloquent\Builder as EBuilder;
+use Illuminate\Support\Facades\Storage;
 
 class UserService
 {
@@ -64,5 +66,52 @@ class UserService
         }
 
         return $db_query;
+    }
+
+
+    public function getUser(int $user_id): User
+    {
+        return User::withCount(
+            [
+                'orders as completed_orders' => function (EBuilder $query) {
+                    $query->where('status', OrderStatus::Completed);
+                },
+                'orders as cancelled_orders' => function (EBuilder $query) {
+                    $query->where('status', OrderStatus::Cancelled);
+                },
+                'orders as active_orders' => function (EBuilder $query) {
+                    $query->whereNot('status', OrderStatus::Completed)
+                        ->whereNot('status', OrderStatus::Cancelled);
+                },
+            ]
+        )->withCount('reviews')
+         ->find($user_id);
+    }
+
+
+    public function updateBanStatus(int $user_id, bool $banned): \stdClass
+    {
+        User::firstWhere('id', $user_id)->update(['is_active' => !$banned]);
+
+        $response = new \stdClass();
+        $response->user_id = $user_id;
+        $response->banned = $banned;
+        $response->banned_type = gettype($banned);
+
+        return $response;
+    }
+
+
+    public function deleteUserImage(int $user_id): void
+    {
+        $dir = Storage::disk('images')->path(User::IMG_DIR . '/' . $user_id);
+
+        if (is_dir($dir)) {
+            $images = array_diff(scandir($dir), ['.', '..']);
+            foreach ($images as $img) {
+                unlink($dir . '/' . $img);
+            }
+            rmdir($dir);
+        }
     }
 }

@@ -31,4 +31,10 @@ return [
     'orders' => [
         'cancel_order' => 'Are you sure you want to cancel this order?',
     ],
+
+    'users' => [
+        'make_admin' => 'Are you sure you want to make :name an administrator?',
+        'make_user' => 'Are you sure you want to make :name a regular user?',
+        'delete_user' => 'Are you sure you want to delete user :name?',
+    ],
 ];

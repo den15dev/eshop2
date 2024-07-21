@@ -85,14 +85,14 @@ function updateOrAddSpec(category_id, spec_id, specForm, action) {
         action,
         args,
         function (result) {
-            showFieldErrors(specForm, result.errors);
-        },
-        function (result) {
             showClientModal({
                 icon: 'success',
                 message: result.message,
                 reloadOnClose: true,
             });
+        },
+        function (result) {
+            showFieldErrors(specForm, result.errors);
         }
     );
 }
@@ -111,14 +111,14 @@ function deleteSpec(spec_id, specForm) {
                 'deleteSpec',
                 { spec_id },
                 function (result) {
-                    console.error(result.errors);
-                },
-                function (result) {
                     showClientModal({
                         icon: 'success',
                         message: result.message,
                         reloadOnClose: true,
                     });
+                },
+                function (result) {
+                    console.error(result.errors);
                 }
             );
         },

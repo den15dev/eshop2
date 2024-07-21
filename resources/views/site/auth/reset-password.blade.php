@@ -21,9 +21,9 @@
             <input type="password" name="password_confirmation" class="form-control" id="confirmResetPasswordInput" autocomplete="new-password">
             <div id="confirmResetPasswordInputFeedback" class="invalid-feedback"></div>
         </div>
-        <div class="preloader-btn-cont">
+        <div class="preloader-cont">
             <button type="submit">{{ __('auth.modal.password_reset.submit_btn') }}</button>
-            <img class="preloader" src="{{ asset('img/preloader.gif') }}" alt="">
+            <img class="preloader pl-btn hidden" src="{{ asset('img/preloader.gif') }}" alt="">
         </div>
     </form>
 </div>

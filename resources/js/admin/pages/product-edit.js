@@ -97,14 +97,14 @@ function updateAttribute(item) {
         'product',
         action,
         args,
+        function () {
+            window.location.reload();
+        },
         function (result) {
             for (const fieldName in result.errors) {
                 const input = getAttributeInputByFieldName(item, fieldName);
                 if (input) showFieldError(input, result.errors[fieldName][0]);
             }
-        },
-        function () {
-            window.location.reload();
         }
     );
 }
@@ -131,14 +131,14 @@ function createAttribute(item) {
         'product',
         action,
         args,
+        function () {
+            window.location.reload();
+        },
         function (result) {
             for (const fieldName in result.errors) {
                 const input = getAttributeInputByFieldName(item, fieldName);
                 if (input) showFieldError(input, result.errors[fieldName][0]);
             }
-        },
-        function () {
-            window.location.reload();
         }
     );
 }
@@ -172,7 +172,6 @@ function deleteAttribute(item) {
                 'product',
                 action,
                 args,
-                () => {},
                 function () {
                     window.location.reload();
                 }

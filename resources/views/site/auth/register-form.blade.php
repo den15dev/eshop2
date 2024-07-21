@@ -24,8 +24,8 @@
         <input type="password" name="password_confirmation" class="form-control" id="registerConfirmPasswordInput" autocomplete="new-password">
         <div id="registerConfirmPasswordInputFeedback" class="invalid-feedback"></div>
     </div>
-    <div class="preloader-btn-cont">
+    <div class="preloader-cont">
         <button type="submit">{{ __('auth.modal.register') }}</button>
-        <img class="preloader" src="{{ asset('img/preloader.gif') }}" alt="">
+        <img class="preloader pl-btn hidden" src="{{ asset('img/preloader.gif') }}" alt="">
     </div>
 </form>

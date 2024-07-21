@@ -25,6 +25,7 @@ return [
     'clear' => 'Clear',
     'cancel' => 'Cancel',
     'close' => 'Close',
+    'proceed' => 'Proceed',
     'caution' => 'Caution!',
     'Yes' => 'Yes',
     'yes' => 'yes',

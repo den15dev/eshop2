@@ -81,7 +81,9 @@
         @endif
 
         @auth()
-            @if($is_reviewed)
+            @if($is_banned)
+                <div class="lightgrey-text py-3 mb-6">{{ __('reviews.you_banned') }}</div>
+            @elseif($is_reviewed)
                 <div class="lightgrey-text py-3 mb-6">{{ __('reviews.already_reviewed') }}</div>
             @else
                 @include('site.pages.review-form')

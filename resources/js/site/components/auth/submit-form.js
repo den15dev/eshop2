@@ -29,10 +29,10 @@ export function submitForm(formElem, submitBtn) {
 
 function showButtonPreloader(buttonElem) {
     const preloader = buttonElem.parentNode.querySelector('.preloader');
-    preloader.style.display = 'block';
+    preloader.classList.remove('hidden');
 }
 
 function hideButtonPreloader(buttonElem) {
     const preloader = buttonElem.parentNode.querySelector('.preloader');
-    preloader.style.display = 'none';
+    preloader.classList.add('hidden');
 }

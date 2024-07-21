@@ -24,6 +24,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'phone',
         'address',
+        'is_active',
     ];
 
     protected $hidden = [
@@ -35,6 +36,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    const IMG_DIR = 'users';
 
 
     public function orders(): HasMany
@@ -65,13 +68,13 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function isAdmin(): bool
     {
-        return $this->getAttribute('role') === 'admin' || $this->isBoss();
+        return $this->role === 'admin' || $this->isBoss();
     }
 
 
     public function isBoss(): bool
     {
-        return $this->getAttribute('role') === 'boss';
+        return $this->role === 'boss';
     }
 
 

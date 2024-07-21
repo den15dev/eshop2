@@ -85,6 +85,7 @@ Route::get('/users/table', [UserController::class, 'table'])->name('users.table'
 Route::get('/users/{id}/edit', [UserController::class, 'edit'])->whereNumber('id')->name('users.edit');
 Route::middleware('admin.protection')->group(function () {
     Route::put('/users/{id}', [UserController::class, 'update'])->whereNumber('id')->name('users.update');
+    Route::delete('/users/{id}', [UserController::class, 'destroy'])->whereNumber('id')->name('users.destroy');
 });
 
 Route::get('/reviews', IndexController::class)->name('reviews');

@@ -8,7 +8,7 @@
     <p>{!! __('notifications.order_ready.body', [
                 'id' => $order->id,
                 'total_cost_formatted' => $order->total_cost_formatted,
-                'shop_address' => $order->shop->address,
+                'shop_address' => $order->shop->getTranslation('address', $order->language_id),
                 'orders_link' => '<a href="' . $order->local_url . '" style="color: #716EF6;">' . __('orders.orders', [], $order->language_id) . '</a>',
             ], $order->language_id) !!}</p>
 
