@@ -1,0 +1,26 @@
+.admin-note {
+  padding: 1rem 1.25rem;
+  background-color: $grey-245;
+  @if $border-radius-base > 0 {
+    border-radius: $border-radius-base;
+  }
+  border-left: 4px solid $grey-220;
+}
+
+.manage-btns-cont {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+
+  & > form, button {
+    flex: 1 1 100%;
+
+    @include sm {
+      flex: unset;
+    }
+
+    button {
+      width: 100%;
+    }
+  }
+}

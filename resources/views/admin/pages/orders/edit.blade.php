@@ -1,6 +1,6 @@
 @extends('admin.layout')
 
-@section('page_title',  __('admin/orders.order_managing') . ' ' . $order->id . ' - ' . __('admin/general.admin_panel'))
+@section('page_title',  __('admin/orders.order_managing_num', ['id' => $order->id]) . ' - ' . __('admin/general.admin_panel'))
 
 @section('page_header', __('admin/orders.order_managing'))
 
@@ -8,7 +8,7 @@
     <div>
         <x-order :order="$order" mb="mb-4" :extended="true" />
 
-        <div class="order-edit_btns-cont">
+        <div class="manage-btns-cont">
             @php
                 $status = \App\Modules\Orders\Enums\OrderStatus::class;
                 $delivery_method = \App\Modules\Orders\Enums\DeliveryMethod::class;
@@ -38,7 +38,7 @@
                     @endif
                 </form>
 
-                <form action="{{ route('admin.orders.update', $order->id) }}" class="order-edit_cancel-form" method="POST" id="cancelOrderForm">
+                <form action="{{ route('admin.orders.update', $order->id) }}" style="margin-left: auto;" method="POST" id="cancelOrderForm">
                     @method('PUT')
                     @csrf
                     <input type="hidden" name="status" value="cancelled">

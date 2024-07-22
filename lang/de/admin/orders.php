@@ -3,6 +3,7 @@
 return [
     'orders' => 'Aufträge',
     'order_managing' => 'Auftragsverwaltung',
+    'order_managing_num' => 'Bestellen Sie #:id verwalten',
 
     'statuses' => [
         'new' => 'Neu',

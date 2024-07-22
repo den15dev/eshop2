@@ -37,4 +37,8 @@ return [
         'make_user' => 'Sind Sie sicher, dass Sie :name zu einem regulären Benutzer machen möchten?',
         'delete_user' => 'Sind Sie sicher, dass Sie den Benutzer :name löschen möchten?',
     ],
+
+    'reviews' => [
+        'delete_review' => 'Sind Sie sicher, dass Sie diese Bewertung löschen möchten?',
+    ],
 ];

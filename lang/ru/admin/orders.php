@@ -3,6 +3,7 @@
 return [
     'orders' => 'Заказы',
     'order_managing' => 'Управление заказом',
+    'order_managing_num' => 'Управление заказом №:id',
 
     'statuses' => [
         'new' => 'Новые',

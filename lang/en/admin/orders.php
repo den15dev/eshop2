@@ -3,6 +3,7 @@
 return [
     'orders' => 'Orders',
     'order_managing' => 'Order managing',
+    'order_managing_num' => 'Order #:id managing',
 
     'statuses' => [
         'new' => 'New',

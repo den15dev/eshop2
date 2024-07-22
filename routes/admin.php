@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\LogController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PromoController;
+use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\SkuController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Common\LanguageController;
@@ -68,8 +69,6 @@ Route::middleware('admin.protection')->group(function () {
     Route::delete('/brands/{id}', [BrandController::class, 'destroy'])->whereNumber('id')->name('brands.destroy');
 });
 
-Route::get('/promos', IndexController::class)->name('promos');
-
 Route::get('/promos', [PromoController::class, 'index'])->name('promos');
 Route::get('/promos/table', [PromoController::class, 'table'])->name('promos.table');
 Route::get('/promos/create', [PromoController::class, 'create'])->name('promos.create');
@@ -88,6 +87,12 @@ Route::middleware('admin.protection')->group(function () {
     Route::delete('/users/{id}', [UserController::class, 'destroy'])->whereNumber('id')->name('users.destroy');
 });
 
-Route::get('/reviews', IndexController::class)->name('reviews');
+Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews');
+Route::get('/reviews/table', [ReviewController::class, 'table'])->name('reviews.table');
+Route::get('/reviews/{id}/edit', [ReviewController::class, 'edit'])->whereNumber('id')->name('reviews.edit');
+Route::middleware('admin.protection')->group(function () {
+    Route::put('/reviews/{id}', [ReviewController::class, 'update'])->whereNumber('id')->name('reviews.update');
+    Route::delete('/reviews/{id}', [ReviewController::class, 'destroy'])->whereNumber('id')->name('reviews.destroy');
+});
 
 Route::get('/stores', IndexController::class)->name('stores');

@@ -37,4 +37,8 @@ return [
         'make_user' => 'Are you sure you want to make :name a regular user?',
         'delete_user' => 'Are you sure you want to delete user :name?',
     ],
+
+    'reviews' => [
+        'delete_review' => 'Are you sure you want to delete this review?',
+    ],
 ];

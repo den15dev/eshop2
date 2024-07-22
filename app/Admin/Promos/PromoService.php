@@ -37,7 +37,7 @@ class PromoService
 
         return isset($query['sort'])
             ? $tableService->orderQuery($db_query, $query)
-            : $db_query->orderByDesc('promos.id');
+            : $db_query->orderByDesc(self::TABLE_NAME . '.id');
     }
 
 

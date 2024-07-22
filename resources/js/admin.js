@@ -19,6 +19,7 @@ import initOrderIndex from "./admin/pages/order-index.js";
 import initOrderEdit from "./admin/pages/order-edit.js";
 import initUserIndex from "./admin/pages/user-index.js";
 import initUserEdit from "./admin/pages/user-edit.js";
+import initReviewEdit from "./admin/pages/review-edit.js";
 
 // --------------- Common ------------------
 
@@ -52,6 +53,7 @@ initOrderIndex();
 initOrderEdit();
 initUserIndex();
 initUserEdit();
+initReviewEdit();
 
 
 // --------------- Get client translations ------------------

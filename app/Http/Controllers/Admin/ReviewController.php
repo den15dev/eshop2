@@ -3,28 +3,29 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Admin\IndexTable\IndexTableService;
-use App\Admin\Users\UserService;
+use App\Admin\Reviews\ReviewService;
+use App\Modules\Reviews\ReviewService as SiteReviewService;
 use App\Http\Controllers\Controller;
-use App\Modules\Users\Models\User;
+use App\Modules\Reviews\Models\Review;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
-class UserController extends Controller
+class ReviewController extends Controller
 {
     public function __construct(
         private readonly IndexTableService $tableService,
-        private readonly UserService $userService,
+        private readonly ReviewService $reviewService,
+        private readonly SiteReviewService $siteReviewService,
     ){}
 
 
     public function index(Request $request): View
     {
         $table_data = $this->getTableData($request);
-        $state = $this->userService->getPageState($request->query());
+        $state = $this->reviewService->getPageState($request->query());
 
-        return view('admin.pages.users.index', array_merge(compact(
+        return view('admin.pages.reviews.index', array_merge(compact(
             'state',
         ), $table_data));
     }
@@ -38,21 +39,21 @@ class UserController extends Controller
 
     private function getTableData(Request $request): array
     {
-        $table_name = UserService::TABLE_NAME;
+        $table_name = ReviewService::TABLE_NAME;
         $this->tableService->initTable($table_name, $request->query());
 
-        $col_cookie_name = UserService::COLUMNS_COOKIE;
+        $col_cookie_name = ReviewService::COLUMNS_COOKIE;
         $cookie = $request->cookie($col_cookie_name);
         $column_prefs = $cookie ? json_decode($cookie) : null;
 
-        $row_links = UserService::ROW_LINKS;
+        $row_links = ReviewService::ROW_LINKS;
 
         $column_list = $this->tableService->getColumnList($column_prefs);
         $per_page_list = IndexTableService::getPerPageList();
 
         $current_columns = $this->tableService->getCurrentColumns($column_prefs);
 
-        $query = $this->userService->buildIndexQuery($request->query(), $this->tableService);
+        $query = $this->reviewService->buildIndexQuery($request->query(), $this->tableService);
         $items = $query->paginate(IndexTableService::$per_page);
 
         return compact(
@@ -69,34 +70,27 @@ class UserController extends Controller
 
     public function edit(int $id): View
     {
-        $user = $this->userService->getUser($id);
-        $current_user = Auth::user();
+        $review = $this->reviewService->getReview($id);
+        $sku = $this->reviewService->getSku($review->sku_id);
 
-        return view('admin.pages.users.edit', compact(
-            'user',
-            'current_user',
+        return view('admin.pages.reviews.edit', compact(
+            'review',
+            'sku',
         ));
     }
 
 
     public function update(Request $request, $id): RedirectResponse
     {
-        $validated = $request->validate([
-            'role' => ['required', 'in:user,admin'],
-        ]);
-
-        $user = User::find($id);
-        $user->role = $validated['role'];
-        $user->save();
-
-        $message = match ($validated['role']) {
-            'admin' => __('admin/users.messages.now_admin', ['name' => $user->name]),
-            'user' => __('admin/users.messages.now_user', ['name' => $user->name]),
-        };
+        $review = Review::find($id);
+        $review->pros = $request->pros;
+        $review->cons = $request->cons;
+        $review->comnt = $request->comnt;
+        $review->save();
 
         session()->flash('message', [
             'type' => 'info',
-            'content' => $message,
+            'content' => __('admin/general.messages.changes_saved'),
             'align' => 'center',
         ]);
 
@@ -106,17 +100,18 @@ class UserController extends Controller
 
     public function destroy($id): RedirectResponse
     {
-        $user = User::find($id);
-        $user->delete();
+        $review = Review::find($id);
+        $sku_id = $review->sku_id;
+        $review->delete();
 
-        $this->userService->deleteUserImage($id);
+        $this->siteReviewService->updateSkuRating($sku_id);
 
         session()->flash('message', [
             'type' => 'info',
-            'content' => __('admin/users.messages.user_deleted', ['name' => $user->name]),
+            'content' => __('admin/reviews.messages.review_deleted', ['id' => $id]),
             'align' => 'center',
         ]);
 
-        return redirect()->route('admin.users');
+        return redirect()->route('admin.reviews');
     }
 }

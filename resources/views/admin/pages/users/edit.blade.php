@@ -5,7 +5,7 @@
 @section('page_header', __('admin/users.user_managing'))
 
 @section('main_content')
-    <div id="userEditPage">
+    <div>
         @if($user->image)
             <div class="user-edit_img-cont mb-3">
                 <img src="{{ $user->image_url }}" alt="{{ $user->name }}">
@@ -80,7 +80,7 @@
             </div>
         @endif
 
-        <div class="order-edit_btns-cont mb-3">
+        <div class="manage-btns-cont mb-3">
             @if($current_user?->isBoss())
                 <form action="{{ route('admin.users.update', $user->id) }}" method="POST" id="changeRoleForm" data-name="{{ $user->name }}">
                     @method('PUT')
