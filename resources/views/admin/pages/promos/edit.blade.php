@@ -2,6 +2,10 @@
 
 @section('page_title',  __('admin/promos.editing_promo') . ' ' . $promo->id . ' - ' . __('admin/general.admin_panel'))
 
+@section('page_back')
+    <x-admin::back-link :url="route('admin.promos')" text="{{ __('admin/promos.promos') }}" />
+@endsection
+
 @section('page_header', __('admin/promos.editing_promo'))
 
 @section('main_content')
@@ -167,7 +171,7 @@
                         <tr>
                             <td>{{ $sku->id }}</td>
                             <td>
-                                <a href="#" class="index-table_img-link">
+                                <a href="{{ route('admin.skus.edit', $sku->id) }}" class="index-table_img-link">
                                     <img src="{{ $sku->getImageURL('tn') }}" alt="{{ $sku->name }}">
                                 </a>
                             </td>

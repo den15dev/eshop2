@@ -21,11 +21,11 @@ return [
     ],
 
     'brands' => [
-        'delete_brand' => 'Are you sure you want to remove the ":name" brand?',
+        'delete_brand' => 'Are you sure you want to delete the brand ":name"?',
     ],
 
     'promos' => [
-        'delete_promo' => 'Are you sure you want to remove the ":name" promo?',
+        'delete_promo' => 'Are you sure you want to delete the promo ":name"?',
     ],
 
     'orders' => [
@@ -40,5 +40,9 @@ return [
 
     'reviews' => [
         'delete_review' => 'Are you sure you want to delete this review?',
+    ],
+
+    'shops' => [
+        'delete_shop' => 'Are you sure you want to delete the store ":name"?',
     ],
 ];

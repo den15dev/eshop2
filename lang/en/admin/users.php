@@ -30,7 +30,7 @@ return [
         'address' => 'Address',
         'role' => 'Status',
         'is_active' => 'Banned',
-        'create_at' => 'Created at',
+        'created_at' => 'Created at',
         'updated_at' => 'Updated at',
     ],
 
@@ -49,5 +49,7 @@ return [
         'now_admin' => ':name is now an administrator',
         'now_user' => ':name is now a regular user',
         'user_deleted' => 'User :name has been deleted',
+        'user_banned' => ':name has been banned',
+        'user_unbanned' => ':name has been unbanned',
     ],
 ];

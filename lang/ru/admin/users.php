@@ -30,7 +30,7 @@ return [
         'address' => 'Адрес',
         'role' => 'Статус',
         'is_active' => 'Бан',
-        'create_at' => 'Дата создания',
+        'created_at' => 'Дата создания',
         'updated_at' => 'Дата обновления',
     ],
 
@@ -49,5 +49,7 @@ return [
         'now_admin' => ':name теперь администратор',
         'now_user' => ':name теперь обычный пользователь',
         'user_deleted' => 'Пользователь :name удалён',
+        'user_banned' => ':name забанен(а)',
+        'user_unbanned' => ':name разбанен(а)',
     ],
 ];

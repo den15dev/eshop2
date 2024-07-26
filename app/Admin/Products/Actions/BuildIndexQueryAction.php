@@ -84,32 +84,33 @@ class BuildIndexQueryAction
 
     private function constrainByCheckboxes(EBuilder $db_query, array $checkboxes): EBuilder
     {
-        if ($checkboxes['active'] && !$checkboxes['out_of_stock'] && !$checkboxes['scheduled']) {
-            $db_query->active();
+        if (count($checkboxes) === 1) {
+            if (isset($checkboxes['active'])) {
+                $db_query->active();
 
-        } elseif (!$checkboxes['active'] && $checkboxes['out_of_stock'] && !$checkboxes['scheduled']) {
-            $db_query = $db_query->whereDate('skus.available_until', '<=', now());
+            } elseif (isset($checkboxes['out_of_stock'])) {
+                $db_query = $db_query->whereDate('skus.available_until', '<=', now());
 
-        } elseif (!$checkboxes['active'] && !$checkboxes['out_of_stock'] && $checkboxes['scheduled']) {
-            $db_query = $db_query->whereDate('skus.available_from', '>', now());
+            } elseif (isset($checkboxes['scheduled'])) {
+                $db_query = $db_query->whereDate('skus.available_from', '>', now());
+            }
 
-        } elseif ($checkboxes['active'] && $checkboxes['out_of_stock'] && !$checkboxes['scheduled']) {
-            $db_query = $db_query->whereDate('skus.available_from', '<=', now());
+        } elseif (count($checkboxes) === 2) {
+            if (isset($checkboxes['active']) && isset($checkboxes['out_of_stock'])) {
+                $db_query = $db_query->whereDate('skus.available_from', '<=', now());
 
-        } elseif ($checkboxes['active'] && !$checkboxes['out_of_stock'] && $checkboxes['scheduled']) {
-            $db_query = $db_query->where(function (EBuilder $query) {
-                $query->whereDate('skus.available_until', '>', now())
-                    ->orWhereNull('skus.available_until');
-            });
+            } elseif (isset($checkboxes['active']) && isset($checkboxes['scheduled'])) {
+                $db_query = $db_query->where(function (EBuilder $query) {
+                    $query->whereDate('skus.available_until', '>', now())
+                        ->orWhereNull('skus.available_until');
+                });
 
-        } elseif (!$checkboxes['active'] && $checkboxes['out_of_stock'] && $checkboxes['scheduled']) {
-            $db_query = $db_query->where(function (EBuilder $query) {
-                $query->whereDate('skus.available_from', '>', now())
-                    ->orWhereDate('skus.available_until', '<=', now());
-            });
-
-        } elseif (!$checkboxes['active'] && !$checkboxes['out_of_stock'] && !$checkboxes['scheduled']) {
-            $db_query = $db_query->whereNull('skus.available_from');
+            } elseif (isset($checkboxes['out_of_stock']) && isset($checkboxes['scheduled'])) {
+                $db_query = $db_query->where(function (EBuilder $query) {
+                    $query->whereDate('skus.available_from', '>', now())
+                        ->orWhereDate('skus.available_until', '<=', now());
+                });
+            }
         }
 
         return $db_query;

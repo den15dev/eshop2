@@ -2,6 +2,10 @@
 
 @section('page_title',  $category->name . ' - ' . __('admin/categories.editing_category'))
 
+@section('page_back')
+    <x-admin::back-link :url="route('admin.categories')" text="{{ __('admin/categories.categories') }}" />
+@endsection
+
 @section('page_header', __('admin/categories.editing_category'))
 
 @section('main_content')

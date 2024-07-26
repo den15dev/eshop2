@@ -150,11 +150,8 @@
   @include table-img-link;
   height: 40px;
 }
-.index-table_img-link-brand {
-  @include table-img-link;
-  height: 20px;
-}
-.index-table_img-link-promo {
-  @include table-img-link;
-  height: 60px;
+
+.index-table_image {
+  display: block;
+  margin: 0 auto;
 }

@@ -41,4 +41,8 @@ return [
     'reviews' => [
         'delete_review' => 'Sind Sie sicher, dass Sie diese Bewertung löschen möchten?',
     ],
+
+    'shops' => [
+        'delete_shop' => 'Sind Sie sicher, dass Sie den Shop „:name“ löschen möchten?',
+    ],
 ];

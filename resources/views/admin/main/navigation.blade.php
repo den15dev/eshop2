@@ -8,5 +8,5 @@
     <x-admin::navigation-item route="promos" icon="navPromoIcon" />
     <x-admin::navigation-item route="users" icon="navUserIcon" />
     <x-admin::navigation-item route="reviews" icon="navReviewIcon" />
-    <x-admin::navigation-item route="stores" icon="navStoreIcon" />
+    <x-admin::navigation-item route="shops" icon="navStoreIcon" />
 </ul>

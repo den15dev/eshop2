@@ -79,7 +79,7 @@ return [
         'id' => 'created_at',
         'show_name' => true,
         'class_list' => null,
-        'order_by' => 'reviews.create_at',
+        'order_by' => 'reviews.created_at',
         'search_field' => null,
         'format' => null,
         'is_default' => true,

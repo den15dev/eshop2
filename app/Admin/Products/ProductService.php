@@ -23,7 +23,7 @@ class ProductService
 {
     public const TABLE_NAME = 'products';
     public const COLUMNS_COOKIE = 'cls_products';
-    public const ROW_LINKS = false;
+    public const ROW_LINKS = false; // A whole table row will be a link (every <td> content will be wrapped by <a> tag)
 
 
     public function __construct(
@@ -45,9 +45,9 @@ class ProductService
 
         $state->search = $query['search'] ?? null;
         $state->category_id = isset($query['category']) ? intval($query['category']) : null;
-        $state->active = isset($query['chb']['active']) ? $query['chb']['active'] === 'true' : true;
-        $state->out_of_stock = isset($query['chb']['out_of_stock']) ? $query['chb']['out_of_stock'] === 'true' : true;
-        $state->scheduled = isset($query['chb']['scheduled']) ? $query['chb']['scheduled'] === 'true' : true;
+        $state->active = isset($query['chb']['active']) ? $query['chb']['active'] === 'true' : false;
+        $state->out_of_stock = isset($query['chb']['out_of_stock']) ? $query['chb']['out_of_stock'] === 'true' : false;
+        $state->scheduled = isset($query['chb']['scheduled']) ? $query['chb']['scheduled'] === 'true' : false;
         $state->sort = $query['sort'] ?? null;
         $state->order = $query['order'] ?? null;
 

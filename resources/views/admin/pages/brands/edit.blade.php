@@ -2,6 +2,10 @@
 
 @section('page_title',  $brand->name . ' - ' . __('admin/brands.editing_brand') . ' ' . __('admin/general.admin_panel'))
 
+@section('page_back')
+    <x-admin::back-link :url="route('admin.brands')" text="{{ __('admin/brands.brands') }}" />
+@endsection
+
 @section('page_header', __('admin/brands.editing_brand'))
 
 @section('main_content')
@@ -80,7 +84,7 @@
                     </div>
                     @endisset
 
-                    <div class="mb-3">
+                    <div class="mb-2">
                         <input type="file"
                                class="form-control @if ($errors->get('image')) is-invalid @endif"
                                name="image"

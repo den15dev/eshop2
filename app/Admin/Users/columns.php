@@ -76,10 +76,10 @@ return [
         'is_default' => true,
     ],
     [
-        'id' => 'create_at',
+        'id' => 'created_at',
         'show_name' => true,
         'class_list' => null,
-        'order_by' => 'users.create_at',
+        'order_by' => 'users.created_at',
         'search_field' => null,
         'format' => null,
         'is_default' => false,

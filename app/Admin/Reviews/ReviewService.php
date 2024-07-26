@@ -11,7 +11,7 @@ class ReviewService
 {
     public const TABLE_NAME = 'reviews';
     public const COLUMNS_COOKIE = 'cls_reviews';
-    public const ROW_LINKS = true;
+    public const ROW_LINKS = true; // A whole table row will be a link (every <td> content will be wrapped by <a> tag)
 
 
     public function buildIndexQuery(array $query, IndexTableService $tableService): EBuilder

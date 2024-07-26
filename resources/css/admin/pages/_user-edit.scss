@@ -16,3 +16,9 @@
     width: 100%;
   }
 }
+
+.user-edit_ban_switch:checked {
+  background-color: $color-red;
+  border-color: $color-red;
+  -webkit-tap-highlight-color: rgba($color-red, 0.1);
+}

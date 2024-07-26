@@ -2,6 +2,10 @@
 
 @section('page_title',  __('admin/categories.creating_category') . ' - ' . __('admin/general.admin_panel'))
 
+@section('page_back')
+    <x-admin::back-link :url="route('admin.categories')" text="{{ __('admin/categories.categories') }}" />
+@endsection
+
 @section('page_header', __('admin/categories.creating_category'))
 
 @section('main_content')

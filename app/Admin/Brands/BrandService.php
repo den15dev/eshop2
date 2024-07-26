@@ -12,7 +12,7 @@ class BrandService
 {
     public const TABLE_NAME = 'brands';
     public const COLUMNS_COOKIE = 'cls_brands';
-    public const ROW_LINKS = false;
+    public const ROW_LINKS = true; // A whole table row will be a link (every <td> content will be wrapped by <a> tag)
 
 
     public function buildIndexQuery(array $query, IndexTableService $tableService): Builder

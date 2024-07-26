@@ -26,22 +26,12 @@ class ColumnFormatter
     }
 
 
-    private function nameLink()
+    private function promoImage(): string
     {
-        $url = route('admin.promos.edit', $this->model->id);
-        $property = $this->property;
-        $content = $this->model->$property;
-
-        return View::make('admin.components.index-table.columns.link', compact('url', 'content'))->render();
-    }
-
-
-    private function imageLink()
-    {
-        $url = route('admin.promos.edit', $this->model->id);
         $imgurl = $this->model->getImageURL('sm');
+        $img_height = 60;
 
-        return View::make('admin.components.index-table.columns.image-link-promo', compact('url', 'imgurl'))->render();
+        return View::make( 'admin.components.index-table.columns.image', compact('imgurl', 'img_height'))->render();
     }
 
 

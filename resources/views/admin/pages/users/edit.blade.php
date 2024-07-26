@@ -2,6 +2,10 @@
 
 @section('page_title',  __('admin/users.user_managing') . ' ' . $user->id . ' - ' . __('admin/general.admin_panel'))
 
+@section('page_back')
+    <x-admin::back-link :url="route('admin.users')" text="{{ __('admin/users.users') }}" />
+@endsection
+
 @section('page_header', __('admin/users.user_managing'))
 
 @section('main_content')
@@ -68,7 +72,7 @@
             <div class="mb-5" id="banUserSection" data-id="{{ $user->id }}">
                 <div class="preloader-cont">
                     <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="userBanSwitch" @checked(!$user->is_active)>
+                        <input class="form-check-input user-edit_ban_switch" type="checkbox" role="switch" id="userBanSwitch" @checked(!$user->is_active)>
                         <label class="form-check-label" for="userBanSwitch">{{ __('admin/users.ban') }}</label>
                     </div>
                     <img class="preloader pl-switch hidden" src="{{ asset('img/preloader.gif') }}" alt="">

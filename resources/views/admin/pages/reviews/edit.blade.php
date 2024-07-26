@@ -2,6 +2,10 @@
 
 @section('page_title',  __('admin/reviews.editing_review') . ' #' . $review->id . ' - ' . __('admin/general.admin_panel'))
 
+@section('page_back')
+    <x-admin::back-link :url="route('admin.reviews')" text="{{ __('admin/reviews.reviews') }}" />
+@endsection
+
 @section('page_header', __('admin/reviews.editing_review'))
 
 @section('main_content')

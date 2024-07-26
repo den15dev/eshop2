@@ -2,6 +2,10 @@
 
 @section('page_title',  __('admin/orders.order_managing_num', ['id' => $order->id]) . ' - ' . __('admin/general.admin_panel'))
 
+@section('page_back')
+    <x-admin::back-link :url="route('admin.orders')" text="{{ __('admin/orders.orders') }}" />
+@endsection
+
 @section('page_header', __('admin/orders.order_managing'))
 
 @section('main_content')

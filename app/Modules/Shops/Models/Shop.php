@@ -37,4 +37,10 @@ class Shop extends Model
     {
         return new Collection(ShopService::getOpeningHoursForHuman($this->opening_hours));
     }
+
+
+    public function getLocationStrAttribute(): string
+    {
+        return implode(', ', $this->location);
+    }
 }

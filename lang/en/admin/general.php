@@ -14,7 +14,7 @@ return [
         'users' => 'Users',
         'reviews' => 'Reviews',
         'orders' => 'Orders',
-        'stores' => 'Stores',
+        'shops' => 'Stores',
     ],
 
     'save' => 'Save',

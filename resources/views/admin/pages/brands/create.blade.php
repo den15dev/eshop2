@@ -2,6 +2,10 @@
 
 @section('page_title',  __('admin/brands.adding_brand') . ' - ' . __('admin/general.admin_panel'))
 
+@section('page_back')
+    <x-admin::back-link :url="route('admin.brands')" text="{{ __('admin/brands.brands') }}" />
+@endsection
+
 @section('page_header', __('admin/brands.adding_brand'))
 
 @section('main_content')

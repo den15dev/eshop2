@@ -30,7 +30,7 @@ return [
         'address' => 'Adresse',
         'role' => 'Status',
         'is_active' => 'Verboten',
-        'create_at' => 'Hergestellt in',
+        'created_at' => 'Hergestellt in',
         'updated_at' => 'Aktualisiert am',
     ],
 
@@ -49,5 +49,7 @@ return [
         'now_admin' => ':name ist jetzt Administrator',
         'now_user' => ':name ist jetzt ein regulärer Benutzer',
         'user_deleted' => 'Benutzer :name wurde gelöscht',
+        'user_banned' => ':name wurde verboten',
+        'user_unbanned' => ':name wurde entsperrt',
     ],
 ];

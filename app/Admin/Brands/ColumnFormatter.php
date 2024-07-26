@@ -26,21 +26,11 @@ class ColumnFormatter
     }
 
 
-    private function nameLink()
+    private function brandImage(): string
     {
-        $url = route('admin.brands.edit', $this->model->id);
-        $property = $this->property;
-        $content = $this->model->$property;
-
-        return View::make('admin.components.index-table.columns.link', compact('url', 'content'))->render();
-    }
-
-
-    private function imageLink()
-    {
-        $url = route('admin.brands.edit', $this->model->id);
         $imgurl = $this->model->image_url;
+        $img_height = 20;
 
-        return View::make( 'admin.components.index-table.columns.image-link-brand', compact('url', 'imgurl'))->render();
+        return View::make( 'admin.components.index-table.columns.image', compact('imgurl', 'img_height'))->render();
     }
 }

@@ -14,7 +14,7 @@ return [
         'users' => 'Benutzer',
         'reviews' => 'Rezensionen',
         'orders' => 'Aufträge',
-        'stores' => 'Shops',
+        'shops' => 'Shops',
     ],
 
     'save' => 'Speichern',

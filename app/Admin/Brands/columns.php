@@ -18,7 +18,7 @@ return [
         'class_list' => null,
         'order_by' => 'brands.name',
         'search_field' => 'brands.name',
-        'format' => new ColumnFormatter('nameLink'),
+        'format' => null,
         'is_default' => true,
     ],
     [
@@ -27,7 +27,7 @@ return [
         'class_list' => null,
         'order_by' => null,
         'search_field' => null,
-        'format' => new ColumnFormatter('imageLink'),
+        'format' => new ColumnFormatter('brandImage'),
         'is_default' => true,
     ],
     [

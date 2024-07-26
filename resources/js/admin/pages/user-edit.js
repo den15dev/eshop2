@@ -61,14 +61,16 @@ export default function init() {
 
 
 function switchUserBan(user_id, banned) {
-    const args = {user_id, banned};
-
     post(
         'user',
         'updateBanStatus',
-        args,
-        function () {
+        {user_id, banned},
+        function (result) {
             banSwitchPreloader.classList.add('hidden');
+            showClientModal({
+                icon: 'success',
+                message: result.message,
+            });
         },
         fallbackBanSwitch,
         fallbackBanSwitch

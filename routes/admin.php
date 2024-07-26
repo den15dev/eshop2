@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PromoController;
 use App\Http\Controllers\Admin\ReviewController;
+use App\Http\Controllers\Admin\ShopController;
 use App\Http\Controllers\Admin\SkuController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Common\LanguageController;
@@ -95,4 +96,12 @@ Route::middleware('admin.protection')->group(function () {
     Route::delete('/reviews/{id}', [ReviewController::class, 'destroy'])->whereNumber('id')->name('reviews.destroy');
 });
 
-Route::get('/stores', IndexController::class)->name('stores');
+Route::get('/stores', [ShopController::class, 'index'])->name('shops');
+Route::get('/shops/table', [ShopController::class, 'table'])->name('shops.table');
+Route::get('/stores/create', [ShopController::class, 'create'])->name('shops.create');
+Route::get('/stores/{id}/edit', [ShopController::class, 'edit'])->whereNumber('id')->name('shops.edit');
+Route::middleware('admin.protection')->group(function () {
+    Route::post('/stores', [ShopController::class, 'store'])->name('shops.store');
+    Route::put('/stores/{id}', [ShopController::class, 'update'])->whereNumber('id')->name('shops.update');
+    Route::delete('/stores/{id}', [ShopController::class, 'destroy'])->whereNumber('id')->name('shops.destroy');
+});

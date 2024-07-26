@@ -2,6 +2,10 @@
 
 @section('page_title',  $sku->name . ' - ' . __('admin/skus.editing_sku'))
 
+@section('page_back')
+    <x-admin::back-link :url="route('admin.products')" text="{{ __('admin/products.products') }}" />
+@endsection
+
 @section('page_header', __('admin/skus.editing_sku'))
 
 @section('main_content')

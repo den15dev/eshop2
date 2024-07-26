@@ -11,7 +11,7 @@ class OrderService
 {
     public const TABLE_NAME = 'orders';
     public const COLUMNS_COOKIE = 'cls_orders';
-    public const ROW_LINKS = true;
+    public const ROW_LINKS = true; // A whole table row will be a link (every <td> content will be wrapped by <a> tag)
     private static ?int $new_num = null;
 
 

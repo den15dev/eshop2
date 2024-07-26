@@ -12,7 +12,7 @@ class UserService
 {
     public const TABLE_NAME = 'users';
     public const COLUMNS_COOKIE = 'cls_users';
-    public const ROW_LINKS = true;
+    public const ROW_LINKS = true; // A whole table row will be a link (every <td> content will be wrapped by <a> tag)
 
 
     public function buildIndexQuery(array $query, IndexTableService $tableService): EBuilder
@@ -58,7 +58,7 @@ class UserService
     {
 
         if (isset($checkboxes['banned'])) {
-            $db_query = $db_query->where('is_active', 'false');
+            $db_query = $db_query->where('is_active', false);
         }
 
         if (isset($checkboxes['admins'])) {
@@ -91,12 +91,16 @@ class UserService
 
     public function updateBanStatus(int $user_id, bool $banned): \stdClass
     {
-        User::firstWhere('id', $user_id)->update(['is_active' => !$banned]);
+        $user = User::find($user_id);
+        $user->is_active = !$banned;
+        $user->save();
 
         $response = new \stdClass();
         $response->user_id = $user_id;
         $response->banned = $banned;
-        $response->banned_type = gettype($banned);
+        $response->message = $banned
+            ? __('admin/users.messages.user_banned', ['name' => $user->name])
+            : __('admin/users.messages.user_unbanned', ['name' => $user->name]);
 
         return $response;
     }
