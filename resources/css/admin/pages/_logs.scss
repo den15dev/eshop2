@@ -1,0 +1,66 @@
+.log-wrap {
+  width: 100%;
+
+  @include lg {
+    width: 80%;
+  }
+}
+
+.log-year {
+  margin-bottom: 2rem;
+}
+
+.log-year_title {
+  margin: 1rem auto;
+  width: fit-content;
+  padding: 0.125rem 1.5rem;
+  border-radius: 1rem;
+  background-color: $grey-245;
+}
+
+.log-day {
+  margin-bottom: 1.5rem;
+}
+
+.log-day_title {
+  font-weight: $font-weight-bold;
+  margin-bottom: 0.75rem;
+}
+
+.log-day_entry {
+  font-size: $font-size-sm;
+  margin-bottom: 0.75rem;
+}
+
+.log-day_entry_time {
+  color: $grey-150;
+}
+
+.log-update-time {
+  font-size: $font-size-sm;
+  color: $grey-150;
+  margin-bottom: 1.5rem;
+}
+
+.log-day_entry_content {
+  overflow-wrap: break-word;
+}
+
+// -------- Text colors --------
+
+.log-error_red {
+  color: $color-red;
+}
+
+.log-error_link {
+  color: $link-color;
+}
+
+.log-registration_text {
+  font-weight: $font-weight-semibold;
+}
+
+.log-new-order_text {
+  font-weight: $font-weight-semibold;
+  color: color($link-color, dark, 5);
+}

@@ -4,13 +4,13 @@ namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
 use App\Modules\Categories\CategoryService;
+use App\Modules\Log\LogService;
 use App\Modules\Products\ProductService;
 use App\Modules\Products\RecentlyViewedService;
 use App\Modules\Reviews\Requests\ReviewRequest;
 use App\Modules\Reviews\ReviewService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
 
 class ReviewController extends Controller
@@ -73,7 +73,15 @@ class ReviewController extends Controller
 
             $review = $this->reviewService->createReview($review_data);
 
-            Log::channel('events')->info('__new_review_added__ ' . $review->sku_id);
+            LogService::writeEventLog(
+                'review-added',
+                [
+                    'sku_id' => intval($review->sku_id),
+                    'mark' => $review->mark,
+                    'user_id' => $user->id,
+                    'user_name' => $user->name,
+                ]
+            );
 
             $message = __('reviews.review_added');
         } else {

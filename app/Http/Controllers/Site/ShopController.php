@@ -10,7 +10,7 @@ class ShopController extends Controller
 {
     public function __invoke(ShopService $shopService): View
     {
-        $shops = $shopService->getAll();
+        $shops = $shopService->getActive();
 
         $shops_json = $shopService->getJSON($shops);
 

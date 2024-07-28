@@ -20,6 +20,7 @@ import initOrderEdit from "./admin/pages/order-edit.js";
 import initUserEdit from "./admin/pages/user-edit.js";
 import initReviewEdit from "./admin/pages/review-edit.js";
 import initShopEdit from "./admin/pages/shop-edit.js";
+import initLog from "./admin/pages/log.js";
 
 // --------------- Common ------------------
 
@@ -54,6 +55,7 @@ initOrderEdit();
 initUserEdit();
 initReviewEdit();
 initShopEdit();
+initLog();
 
 
 // --------------- Get client translations ------------------

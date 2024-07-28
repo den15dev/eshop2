@@ -131,7 +131,7 @@ return [
             'driver' => 'daily',
             'path' => storage_path('logs/events.log'),
             'level' => env('LOG_LEVEL', 'debug'),
-            'days' => 7,
+            'days' => 10,
             'replace_placeholders' => true,
         ],
     ],

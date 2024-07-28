@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Modules\Log\LogService;
 use App\Modules\Users\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rules;
 
 class RegisteredUserController extends Controller
@@ -32,7 +32,13 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        Log::channel('events')->info('__new_user_registered__: ' . $user->name);
+        LogService::writeEventLog(
+            'registration',
+            [
+                'id' => $user->id,
+                'name' => $user->name,
+            ]
+        );
 
         return response()->json([
             'status' => 'registered',

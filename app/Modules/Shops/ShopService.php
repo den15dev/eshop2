@@ -8,15 +8,16 @@ use Illuminate\Support\Collection;
 
 class ShopService
 {
-    public function getAll(): Collection
+    public function getActive(): Collection
     {
-        return Shop::orderBy('sort')->get();
+        return Shop::where('is_active', true)->orderBy('sort')->get();
     }
 
 
     public function getShopsForCart(): Collection
     {
         return Shop::select(['id', 'address', 'sort'])
+            ->where('is_active', true)
             ->orderBy('sort')
             ->get();
     }

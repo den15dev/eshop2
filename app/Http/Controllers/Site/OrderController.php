@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
 use App\Modules\Cart\CartService;
+use App\Modules\Log\LogService;
 use App\Modules\Orders\Models\Order;
 use App\Modules\Orders\OrderService;
 use App\Modules\Orders\Requests\OrderRequest;
@@ -32,6 +33,16 @@ class OrderController extends Controller
         $validated = $request->validated();
         $order = $this->orderService->createOrder($validated, $user_id);
         Cookie::expire(CartService::COOKIE);
+
+        LogService::writeEventLog(
+            'new-order',
+            [
+                'id' => $order->id,
+                'cost' => $order->total_cost_formatted,
+                'user_id' => $user_id,
+                'name' => $order->name,
+            ]
+        );
 
         if ($user_id) {
             $delivery_address = $validated['delivery_address'] ?? null;

@@ -99,7 +99,7 @@ class ReviewService
 
         } catch (\Throwable $e) {
             DB::rollBack();
-            Log::channel('events')->info('An exception caught while trying to add new review (SKU ID: ' . $review_data['sku_id'] . '): ' . $e->getMessage());
+            Log::channel('events')->info('An exception caught while trying to add a new review (SKU ID: ' . $review_data['sku_id'] . '): ' . $e->getMessage());
             abort(500);
         }
     }
