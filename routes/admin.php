@@ -3,7 +3,6 @@
 use App\Http\Controllers\Admin\AjaxController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\IndexController;
 use App\Http\Controllers\Admin\LogController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
@@ -18,6 +17,8 @@ use App\Http\Controllers\Admin\DashboardController;
 
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/dashboard/charts', [DashboardController::class, 'charts'])->name('dashboard.charts');
+
 Route::get('/translations', [LanguageController::class, 'adminTranslations'])->name('translations');
 
 Route::get('/ajax/json', [AjaxController::class, 'getJson'])->name('ajax.get.json');

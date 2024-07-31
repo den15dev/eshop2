@@ -21,6 +21,7 @@ import initUserEdit from "./admin/pages/user-edit.js";
 import initReviewEdit from "./admin/pages/review-edit.js";
 import initShopEdit from "./admin/pages/shop-edit.js";
 import initLog from "./admin/pages/log.js";
+import initDashboard from "./admin/pages/dashboard.js";
 
 // --------------- Common ------------------
 
@@ -56,6 +57,7 @@ initUserEdit();
 initReviewEdit();
 initShopEdit();
 initLog();
+initDashboard();
 
 
 // --------------- Get client translations ------------------

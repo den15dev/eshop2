@@ -1,6 +1,8 @@
 ## About This App
 
-This is a second version of a multipage E-commerce web application (work in progress). The following features will be (or already have been) implemented:
+This is a multi-language E-commerce web application with an admin panel. It is a classic multi-page monolith web app created using Laravel Blade templates which renders html pages on a server in a classic way. It is made using Laravel PHP framework, vanilla Javascript (ES modules), pure CSS written with a SCSS preprocessor, and Vite.js for building assets to single files. For form elements, some Bootstrap modules were used.
+
+The following features were implemented:
 
 - 4 levels of category nesting. Categories with products have an individual sets of product specifications.
 - A product catalog with a set of filters by price, brand, and selected product specifications.
@@ -44,16 +46,17 @@ Frameworks, libraries and tools:
 
 Languages:
 
-- HTML
-- Blade
-- CSS, SCSS
-- Javascript (ES2016 and newer, ES modules)
 - PHP 8.2
 - SQL, Eloquent ORM
+- HTML
+- Laravel Blade
+- CSS, SCSS
+- Javascript (ES2016 and newer, ES modules)
+
 
 ## Installation
 
-Install app depencies:  
+Install app dependencies:  
 `$ composer install`
 
 Run migrations:  

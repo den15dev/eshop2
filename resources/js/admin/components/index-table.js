@@ -1,12 +1,11 @@
 import { lang } from "../../common/global.js";
 import { closeDropdown, reInitDropdowns } from "../../common/dropdowns.js";
 import { showErrorMessage } from "../../common/modals.js";
+import { searchParams, setURL } from "./set-url-query.js";
 
 export const tableCont = document.querySelector('#indexTableCont');
 export const searchInput = document.querySelector('#searchInput');
 
-const url = new URL(window.location.href);
-export const searchParams = url.searchParams;
 
 export let tableName;
 let searchInputTimeOut;
@@ -160,18 +159,6 @@ export function getTable() {
         setURL();
     })
     .catch(err => showErrorMessage(err));
-}
-
-
-function setURL() {
-    const url = new URL(window.location.href);
-
-    url.search = '';
-    searchParams.forEach((value, key) => {
-        url.searchParams.set(key, value);
-    });
-
-    window.history.pushState(null, '', url.toString());
 }
 
 

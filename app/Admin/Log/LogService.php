@@ -57,7 +57,7 @@ class LogService
             $day_log[] = self::createNewEntry($temp_entry);
         }
 
-        return $day_log;
+        return array_reverse($day_log);
     }
 
 

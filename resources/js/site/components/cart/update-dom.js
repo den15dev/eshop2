@@ -11,30 +11,30 @@ const bubbleFadeSpeed = 300;
 export function updateCartCosts(sku_id, cartItemElem, result) {
     // Update price
     const priceCont = cartItemElem.querySelector('.cart-item_id-price .product-card_old-price del');
-    if (priceCont) priceCont.innerText = result.item.price_formatted;
+    if (priceCont) priceCont.innerHTML = result.item.price_formatted;
 
     const priceMobileCont = cartItemElem.querySelector('.cart-item_id-price-mobile .product-card_old-price del');
-    if (priceMobileCont) priceMobileCont.innerText = result.item.price_formatted;
+    if (priceMobileCont) priceMobileCont.innerHTML = result.item.price_formatted;
 
     const finalPriceCont = cartItemElem.querySelector('.cart-item_id-price .product-card_price');
-    finalPriceCont.innerText = result.item.final_price_formatted;
+    finalPriceCont.innerHTML = result.item.final_price_formatted;
 
     const finalPriceMobileCont = cartItemElem.querySelector('.cart-item_id-price-mobile .product-card_price');
-    finalPriceMobileCont.innerText = result.item.final_price_formatted;
+    finalPriceMobileCont.innerHTML = result.item.final_price_formatted;
 
     // Update cost
     const costCont = cartItemElem.querySelector('.cart-item_sum .product-card_old-price del');
-    if (costCont) costCont.innerText = result.item.cost_formatted;
+    if (costCont) costCont.innerHTML = result.item.cost_formatted;
 
     const finalCostCont = cartItemElem.querySelector('.cart-item_sum .product-card_price');
-    finalCostCont.innerText = result.item.final_cost_formatted;
+    finalCostCont.innerHTML = result.item.final_cost_formatted;
 
     // Update total cost
     const totalCont = document.querySelector('.cart-total_sum .product-card_old-price del');
-    if (totalCont) totalCont.innerText = result.total.cost_formatted;
+    if (totalCont) totalCont.innerHTML = result.total.cost_formatted;
 
     const finalTotalCont = document.querySelector('.cart-total_sum .product-card_price');
-    finalTotalCont.innerText = result.total.final_cost_formatted;
+    finalTotalCont.innerHTML = result.total.final_cost_formatted;
 }
 
 

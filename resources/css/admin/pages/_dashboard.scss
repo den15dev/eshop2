@@ -1,0 +1,99 @@
+.dashboard-select_cont {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-size: $font-size-sm;
+
+  .form-control,
+  .form-select {
+    font-size: $font-size-sm;
+  }
+
+  @include md {
+    flex-wrap: nowrap;
+  }
+
+  @include lg {
+    font-size: $font-size-base;
+
+    .form-control,
+    .form-select {
+      font-size: $font-size-base;
+    }
+  }
+}
+
+.dashboard-select_period {
+  flex: 2 1 auto;
+  order: 0;
+}
+
+.dashboard-select_currency {
+  flex: 0 0 100px;
+  order: 1;
+
+  @include md {
+    order: 2;
+  }
+}
+
+.dashboard-select_category {
+  flex: 1 1 100%;
+  order: 2;
+
+  @include md {
+    flex: 4 1 auto;
+    order: 1;
+  }
+}
+
+.dashboard-chart_item {
+  position: relative;
+  margin-bottom: 2rem;
+
+  svg > g > g.google-visualization-tooltip {
+    pointer-events: none;
+  }
+}
+
+.dashboard-chart_preloader-cont {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  opacity: 0.3;
+  z-index: 100;
+
+  img {
+    display: block;
+    position: absolute;
+    width: 30px;
+    left: 50%;
+    top: 50%;
+    translate: -50% -50%;
+  }
+}
+
+.dashboard-chart_title {
+  margin-bottom: 0.5rem;
+  text-align: center;
+
+  & > .main-title {
+    font-weight: $font-weight-semibold;
+  }
+}
+
+.dashboard-chart {
+  height: 240px;
+}
+
+.dashboard_reset-btn {
+  width: fit-content;
+  margin: auto 0 0.75rem auto;
+
+  @include sm {
+    margin: auto 0 0.5rem auto;
+  }
+}

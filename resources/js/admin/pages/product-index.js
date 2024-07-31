@@ -1,5 +1,5 @@
-import { tableName, searchParams } from "../components/index-table.js";
-import { getTable } from "../components/index-table.js";
+import { searchParams } from "../components/set-url-query.js";
+import { tableName, getTable } from "../components/index-table.js";
 
 
 export default function init() {
