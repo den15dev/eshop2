@@ -95,6 +95,11 @@ export function updateBadges(items_num) {
     }
 }
 
+export function updateEmptyBubble(items_num) {
+    const emptyBubble = document.querySelector('#cartEmptyBubble');
+    emptyBubble.dataset.active = items_num ? '' : 1;
+}
+
 
 export function showHeaderBubble(result) {
     if (lgMedia.matches) {

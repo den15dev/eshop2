@@ -30,7 +30,7 @@ return [
         'address' => 'Address',
         'role' => 'Status',
         'is_active' => 'Banned',
-        'created_at' => 'Created at',
+        'created_at' => 'Registration date',
         'updated_at' => 'Updated at',
     ],
 

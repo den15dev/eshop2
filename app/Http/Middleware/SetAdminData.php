@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Admin\IndexTable\IndexTableService;
+use App\Modules\Common\CommonService;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,6 +24,9 @@ class SetAdminData
                 IndexTableService::$per_page = intval($per_page_cookie);
             }
         }
+
+        $tz = $request->cookie('tz');
+        if (isValidTimezoneId($tz)) CommonService::$timezone = $tz;
 
         return $next($request);
     }

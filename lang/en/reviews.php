@@ -1,5 +1,6 @@
 <?php
 return [
+    'reviews' => 'Reviews',
     "already_reviewed" => "You have already left a review",
     'you_banned' => 'You are not allowed to leave reviews',
     "back_to_product" => "Product page",

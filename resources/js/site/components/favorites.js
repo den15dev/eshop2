@@ -42,6 +42,7 @@ function sendData(sku_id) {
 
         toggleButtons(sku_id);
         updateBadges(favNum);
+        updateEmptyBubble(favNum);
 
         // Reload the page if we are on the Favorites page
         if (window.location.pathname.match(/favorites\/?$/)) {
@@ -128,4 +129,10 @@ function updateBadges(num) {
             badge.innerText = 0;
         }
     });
+}
+
+
+function updateEmptyBubble(num) {
+    const emptyBubble = document.querySelector('#favoritesEmptyBubble');
+    emptyBubble.dataset.active = num ? '' : 1;
 }

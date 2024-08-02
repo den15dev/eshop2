@@ -4,9 +4,12 @@ namespace App\Modules\Products\Models;
 
 use App\Modules\Brands\Models\Brand;
 use App\Modules\Categories\Models\Category;
+use App\Modules\Common\CommonService;
+use Illuminate\Database\Eloquent\Casts\Attribute as ModelAttribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Carbon;
 use Spatie\Translatable\HasTranslations;
 
 class Product extends Model
@@ -39,5 +42,13 @@ class Product extends Model
     public function attributes(): HasMany
     {
         return $this->hasMany(Attribute::class)->orderBy('id');
+    }
+
+
+    protected function createdAt(): ModelAttribute
+    {
+        return ModelAttribute::make(
+            get: fn (string $value) => Carbon::createFromDate($value)->tz(CommonService::$timezone),
+        );
     }
 }

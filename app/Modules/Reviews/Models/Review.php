@@ -2,10 +2,12 @@
 
 namespace App\Modules\Reviews\Models;
 
+use App\Modules\Common\CommonService;
 use App\Modules\Products\Models\Sku;
 use App\Modules\Reviews\Enums\TermOfUse;
 use App\Modules\Reviews\Factories\ReviewFactory;
 use App\Modules\Users\Models\User;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -44,14 +46,23 @@ class Review extends Model
     }
 
 
+    protected function createdAt(): Attribute
+    {
+        return Attribute::make(
+            get: fn (string $value) => Carbon::createFromDate($value)->tz(CommonService::$timezone),
+        );
+    }
+
     public function getDateAttribute(): string
     {
-        return Carbon::parse($this->created_at)->isoFormat('D MMMM YYYY, H:mm');
+        return $this->created_at->isoFormat('D MMMM YYYY, H:mm');
     }
 
     public function getHumanDateAttribute(): string
     {
-        return Carbon::parse($this->created_at)->diffForHumans();
+        return $this->created_at
+            ->tz(CommonService::$timezone)
+            ->diffForHumans();
     }
 
     public function getIsAuthorAttribute(): bool

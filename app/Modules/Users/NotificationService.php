@@ -2,8 +2,8 @@
 
 namespace App\Modules\Users;
 
+use App\Modules\Common\CommonService;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -16,9 +16,8 @@ class NotificationService
 
         foreach ($notifications as $notification) {
             $notification->type_snake = Str::snake(substr(strrchr($notification->type, '\\'), 1));
-            $creation_date = $notification->created_at;
-            $notification->created_at_humans = Carbon::parse($creation_date)->diffForHumans();
-            $notification->created_at_exact = Carbon::parse($creation_date)->isoFormat('D MMMM YYYY, H:mm');
+            $notification->created_at_humans = $notification->created_at->tz(CommonService::$timezone)->diffForHumans();
+            $notification->created_at_exact = $notification->created_at->tz(CommonService::$timezone)->isoFormat('D MMMM YYYY, H:mm');
             $data = $notification->data;
             $data['orders_link'] = '<a href="' . route('orders') . '" class="link">' . __('orders.orders') . '</a>';
             $notification->data = $data;

@@ -66,6 +66,6 @@ class Category extends Model
 
     public function getImageUrlAttribute(): string
     {
-        return get_image(self::IMG_DIR . '/' . $this->slug . '.jpg', 230);
+        return get_image(self::IMG_DIR . '/' . $this->slug . '.jpg', 'sm');
     }
 }

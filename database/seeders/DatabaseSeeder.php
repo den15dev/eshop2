@@ -3,8 +3,6 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-//use App\Modules\Temp_JsonbTest\Seeders\FlatProductSeeder;
-//use App\Modules\Temp_JsonbTest\Seeders\JsonbProductSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -23,10 +21,7 @@ class DatabaseSeeder extends Seeder
 
 
         $this->call([
-            // JsonbProductSeeder::class,
-            // FlatProductSeeder::class,
             // ReviewSeeder::class,
         ]);
-
     }
 }

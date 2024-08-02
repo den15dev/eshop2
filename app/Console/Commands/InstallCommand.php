@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Modules\Categories\Commands\AddCategories;
 use App\Modules\Currencies\Commands\AddCurrencies;
+use App\Modules\Currencies\Commands\UpdateRates;
 use App\Modules\Languages\Commands\AddLanguages;
 use App\Modules\Promos\Commands\AddPromos;
 use App\Modules\StaticPages\Commands\AddStaticPageParams;
@@ -30,6 +31,7 @@ class InstallCommand extends Command
         $this->createImageDirs();
         $this->call(AddLanguages::class);
         $this->call(AddCurrencies::class);
+        $this->call(UpdateRates::class, ['source' => 'cbrf']);
         $this->call(AddStaticPageParams::class);
         $this->call(AddShops::class);
         $this->call(AddPromos::class);

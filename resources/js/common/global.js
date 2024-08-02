@@ -33,6 +33,14 @@ export function ucfirst(str) {
 }
 
 
+export function setTimezoneCookie() {
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    if (getCookieValue('tz') !== tz) {
+        document.cookie = 'tz=' + tz + '; path=/; max-age=2592000';
+    }
+}
+
+
 export function getSiteTranslations() {
     fetch('/translations', {
         method: 'get',

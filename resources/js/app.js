@@ -1,4 +1,4 @@
-import { getSiteTranslations } from "./common/global.js";
+import {getSiteTranslations, setTimezoneCookie} from "./common/global.js";
 import dropdowns, { localizationDropdowns } from "./common/dropdowns";
 import tabs from "./common/tabs";
 import modals from "./common/modals.js";
@@ -29,6 +29,7 @@ import initShops from "./site/pages/shops.js";
 
 // --------------- Common ------------------
 
+setTimezoneCookie();
 dropdowns();
 tabs();
 modals();

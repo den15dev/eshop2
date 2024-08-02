@@ -20,6 +20,7 @@ return [
         "favorites_empty" => "Die Favoritenliste ist leer",
         "filters" => "Filter",
         "orders" => "Aufträge",
+        'orders_empty' => 'Die Bestellliste ist leer',
         "profile_menu" => [
             "admin_panel" => "Administrationsmenü",
             "logout" => "Ausloggen",

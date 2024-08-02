@@ -2,11 +2,9 @@
     <ul class="catalog-desktop-root-list">
         @foreach($categories as $category)
             <li {!! $loop->first ? 'class="active"' : '' !!} data-id="{{ $category['id'] }}">
-                <div class="icon-cont">
-                    <svg viewBox="0 0 24 24" class="catalog-category-icon">
-                        <use href="#catalogIcon_{{ $category['slug'] }}"/>
-                    </svg>
-                </div>
+                <svg viewBox="0 0 24 24" class="icon-cont root-category-icon">
+                    <use href="#catalogIcon_{{ $category['slug'] }}"/>
+                </svg>
                 <span class="item-text">{{ $category['name'] }}</span>
             </li>
         @endforeach

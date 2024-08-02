@@ -1,0 +1,48 @@
+services:
+  eshop2-nginx:
+    image: nginx:1.27.0
+    container_name: eshop2-nginx
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+    environment:
+      - VIRTUAL_HOST=${APP_URL}
+    ports:
+      - "8001:80"
+    depends_on:
+      - eshop2-app
+
+  eshop2-app:
+    build:
+      args:
+        user: ${DOCKER_APP_USER}
+        uid: ${DOCKER_APP_UID}
+      context: .
+      dockerfile: docker/app/Dockerfile
+    image: eshop2-app
+    container_name: eshop2-app
+    volumes:
+      - ./:/var/www
+
+# You also need to change the service name
+# in docker/nginx/conf.d/nginx.conf file!
+  eshop2-postgres:
+    image: postgres:16.0
+    container_name: eshop2-postgres
+    environment:
+      POSTGRES_DB: ${DB_DATABASE}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    volumes:
+      - ./docker/postgres/postgresql.conf:/var/lib/postgresql/data/postgresql.conf
+      - ./tmp/db:/var/lib/postgresql/data
+
+  eshop2-redis:
+    image: redis:7.2.3
+    container_name: eshop2-redis
+    ports:
+      - "6379:6379"

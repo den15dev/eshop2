@@ -2,6 +2,7 @@
 
 namespace App\Admin\Log;
 
+use App\Modules\Common\CommonService;
 use Carbon\Carbon;
 
 class LogService
@@ -12,14 +13,22 @@ class LogService
     public static function getLog(): array
     {
         $log = [];
+        $entries_stack = [];
         $files = array_reverse(glob(storage_path('logs') . '/' . self::PREFIX . '-*.log'));
 
         foreach ($files as $file) {
-            $date = substr(pathinfo($file, PATHINFO_FILENAME), strlen(self::PREFIX) + 1);
-            $year = Carbon::parse($date)->year;
-            $day = Carbon::parse($date)->isoFormat('D MMMM');
+            $entries_stack = array_merge($entries_stack, self::parseDayEntries($file));
+        }
 
-            $log[$year][$day] = self::parseDayEntries($file);
+        foreach ($entries_stack as $entry) {
+            $year = $entry->datetime->tz(CommonService::$timezone)->year;
+            $day = $entry->datetime->tz(CommonService::$timezone)->isToday()
+                ? __('admin/logs.today')
+                : $entry->datetime->tz(CommonService::$timezone)->isoFormat('D MMMM');
+
+            $entry->time = $entry->datetime->tz(CommonService::$timezone)->isoFormat('H:mm:ss');
+
+            $log[$year][$day][] = $entry;
         }
 
         return $log;
@@ -37,13 +46,10 @@ class LogService
             if (preg_match('/^\[(\d{4}-\d{2}-\d{2} [\d:]{7,8})] local.INFO: (\{[\s\S]+)/', $part, $matches)) {
                 if ($temp_entry !== '') {
                     $day_log[] = self::createNewEntry($temp_entry);
-                    $temp_entry = '';
                 }
 
                 $temp_entry = new \stdClass();
-                $date_time = explode(' ', $matches[1]);
-                $temp_entry->date = $date_time[0];
-                $temp_entry->time = $date_time[1];
+                $temp_entry->datetime = Carbon::createFromDate($matches[1]);
                 $temp_entry->message = $matches[2];
 
             } else {
@@ -65,7 +71,7 @@ class LogService
     {
         $message = json_decode(trim($temp_entry->message));
         $new_entry = new \stdClass();
-        $new_entry->time = $temp_entry->time;
+        $new_entry->datetime = $temp_entry->datetime;
         $new_entry->type = $message->type;
         $new_entry->data = $message->data;
 

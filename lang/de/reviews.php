@@ -1,5 +1,6 @@
 <?php
 return [
+    'reviews' => 'Rezensionen',
     "already_reviewed" => "Sie haben bereits eine Bewertung abgegeben",
     'you_banned' => 'Es ist Ihnen nicht gestattet, Bewertungen abzugeben',
     "back_to_product" => "Produktseite",

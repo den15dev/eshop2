@@ -1,6 +1,6 @@
 @extends('site.layout')
 
-@section('page_title', 'Процессор AMD Ryzen 5 5600X BOX' . ' - ' . __('general.app_name'))
+@section('page_title', __('reviews.reviews') . ' - ' . $sku->name . ' - ' . __('general.app_name'))
 
 @section('main_content')
     <div class="container">

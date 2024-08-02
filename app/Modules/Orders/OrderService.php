@@ -31,7 +31,7 @@ class OrderService
     /**
      * Order ids from cookie.
      */
-    public function getOrderIds(): ?array
+    public function getCookieOrderIds(): ?array
     {
         return self::$cookie_order_ids;
     }
@@ -76,24 +76,33 @@ class OrderService
     }
 
 
-    public static function countReadyOrders(): int
+    public static function countOrders(): \stdClass
     {
+        $orders_count = new \stdClass();
+        $orders_count->total = 0;
+        $orders_count->ready = 0;
+        $query = Order::select('id', 'status');
+
         $user_id = Auth::id();
         if ($user_id) {
-            $query = Order::where('user_id', $user_id);
+            $query = $query->where('user_id', $user_id);
         } elseif (self::$cookie_order_ids) {
-            $query = Order::whereIn('id', self::$cookie_order_ids);
+            $query = $query->whereIn('id', self::$cookie_order_ids);
         } else {
-            return 0;
+            return $orders_count;
         }
 
-        return $query->where('status', OrderStatus::Ready)->count();
+        $orders = $query->get();
+        $orders_count->total = $orders->count();
+        $orders_count->ready = $orders->where('status', OrderStatus::Ready)->count();
+
+        return $orders_count;
     }
 
 
     public function createCookieString(int $order_id): string
     {
-        $ids = $this->getOrderIds();
+        $ids = $this->getCookieOrderIds();
         if ($ids) {
             array_unshift($ids, $order_id);
         } else {

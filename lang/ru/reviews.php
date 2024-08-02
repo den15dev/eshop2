@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'reviews' => 'Отзывы',
     'back_to_product' => 'На страницу товара',
     'reviews_num' => ':count отзыв|:count отзыва|:count отзывов',
     'no_reviews' => 'Нет отзывов',

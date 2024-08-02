@@ -33,7 +33,7 @@
     "src": "resources/css/common/icons/bi-light.woff2"
   },
   "resources/js/admin.js": {
-    "file": "assets/admin-cecbd249.js",
+    "file": "assets/admin-17b4e34f.js",
     "isEntry": true,
     "src": "resources/js/admin.js"
   }

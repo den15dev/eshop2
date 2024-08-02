@@ -2,10 +2,13 @@
 
 namespace App\Modules\Promos\Models;
 
+use App\Modules\Common\CommonService;
 use App\Modules\Languages\LanguageService;
 use App\Modules\Products\Models\Sku;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Spatie\Translatable\HasTranslations;
@@ -56,6 +59,28 @@ class Promo extends Model
         static::deleted(function (self $model) {
             Cache::forget('promos');
         });
+    }
+
+
+    protected function createdAt(): Attribute
+    {
+        return Attribute::make(
+            get: fn (string $value) => Carbon::createFromDate($value)->tz(CommonService::$timezone),
+        );
+    }
+
+    protected function startsAt(): Attribute
+    {
+        return Attribute::make(
+            get: fn (string $value) => Carbon::createFromDate($value)->tz(CommonService::$timezone),
+        );
+    }
+
+    protected function endsAt(): Attribute
+    {
+        return Attribute::make(
+            get: fn (string $value) => Carbon::createFromDate($value)->tz(CommonService::$timezone),
+        );
     }
 
 

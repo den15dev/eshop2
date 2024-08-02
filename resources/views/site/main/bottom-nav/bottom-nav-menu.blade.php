@@ -18,7 +18,7 @@
             @isset($filters)
             <li>
                 <a href="{{ route('orders') }}">{{ __('orders.orders') }}</a>
-                <div class="badge-round_inline-big-green {{ $ready_orders_num ? 'active' : '' }}"> {{ $ready_orders_num }}</div>
+                <div class="badge-round_inline-big-green {{ $orders_count->ready ? 'active' : '' }}"> {{ $orders_count->ready }}</div>
             </li>
             @endisset
             <li>

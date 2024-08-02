@@ -127,7 +127,7 @@ if (!function_exists('get_image')) {
      *                      for example: 'brands/amd.svg'.
      */
 
-    function get_image(string $short_path, int|string|null $placeholder_size = null): ?string
+    function get_image(string $short_path, string $placeholder_size): ?string
     {
         $full_path = config('filesystems.disks.images.root') . '/' . $short_path;
         $relative_url = config('filesystems.disks.images.relative_url') . '/' . $short_path;
@@ -136,7 +136,7 @@ if (!function_exists('get_image')) {
             return asset($relative_url);
         }
 
-        return $placeholder_size ?? asset('img/default/no-image_' . $placeholder_size . '.jpg');
+        return asset('img/default/no-image_' . $placeholder_size . '.jpg');
     }
 }
 
@@ -222,4 +222,23 @@ if (!function_exists('mb_ucfirst')) {
         $fc = mb_strtoupper(mb_substr($str, 0, 1));
         return $fc.mb_substr($str, 1);
     }
+}
+
+
+function isValidTimezoneId(?string $timezone_id): bool
+{
+    if (!$timezone_id) return false;
+
+    $valid = array();
+    $tza = timezone_abbreviations_list();
+    foreach ($tza as $zone)
+    {
+        foreach ($zone as $item)
+        {
+            $valid[$item['timezone_id']] = true;
+        }
+    }
+    unset($valid['']);
+
+    return isset($valid[$timezone_id]);
 }

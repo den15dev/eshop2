@@ -124,7 +124,7 @@
                     {{ __('header.user_menu.favorites') }}
                     <div class="badge-round {{ $favorites_num ? 'active' : '' }}">{{ $favorites_num }}</div>
                 </a>
-                <div class="header-bubble empty">{{ __('header.user_menu.favorites_empty') }}</div>
+                <div class="header-bubble empty" id="favoritesEmptyBubble" data-active="{{ $favorites_num ? '' : '1' }}">{{ __('header.user_menu.favorites_empty') }}</div>
             </li>
             <li>
                 <a href="{{ route('cart') }}" class="outline-btn">
@@ -135,7 +135,7 @@
                     <div class="badge-round-red {{ $cart_items_num ? 'active' : '' }}" id="cartBadgeDesktop">{{ $cart_items_num }}</div>
                 </a>
                 <x-header-bubble-cart />
-                <div class="header-bubble empty">{{ __('header.user_menu.cart_empty') }}</div>
+                <div class="header-bubble empty" id="cartEmptyBubble" data-active="{{ $cart_items_num ? '' : '1' }}">{{ __('header.user_menu.cart_empty') }}</div>
             </li>
             <li>
                 <a href="{{ route('orders') }}" class="outline-btn">
@@ -143,8 +143,9 @@
                         <use href="#ordersIcon"/>
                     </svg>
                     {{ __('header.user_menu.orders') }}
-                    <div class="badge-round-green {{ $ready_orders_num ? 'active' : '' }}">{{ $ready_orders_num }}</div>
+                    <div class="badge-round-green {{ $orders_count->ready ? 'active' : '' }}">{{ $orders_count->ready }}</div>
                 </a>
+                <div class="header-bubble empty" id="ordersEmptyBubble" data-active="{{ $orders_count->total ? '' : '1' }}">{{ __('header.user_menu.orders_empty') }}</div>
             </li>
             @guest
             <li>

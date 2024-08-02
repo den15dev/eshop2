@@ -1,6 +1,6 @@
 ## About This App
 
-This is a multi-language E-commerce web application with an admin panel. It is a classic multi-page monolith web app created using Laravel Blade templates which renders html pages on a server in a classic way. It is made using Laravel PHP framework, vanilla Javascript (ES modules), pure CSS written with a SCSS preprocessor, and Vite.js for building assets to single files. For form elements, some Bootstrap modules were used.
+This is a multi-language E-commerce web application with an admin panel. It is made using Laravel PHP framework, Blade templates, vanilla Javascript organized in ES modules, pure CSS written with a SCSS preprocessor, and Vite.js for building assets. For form elements, some Bootstrap modules were used.
 
 The following features were implemented:
 
@@ -21,12 +21,18 @@ The following features were implemented:
 - Recently viewed products.
 - Any user regardless of authentication status can use a product cart, make an order, see his order history, manage Favorites section, and compare products.
 - Products have "Available at" and "Available until" properties that can be used to schedule their availability in stock.
-- Full multi-language support. The website, the Admin panel interface, and all the content can be viewed and managed on 3 languages.
-- Multi-currency support. Every product's price can be set in arbitrary currency. Prices calculated according to exchange rates which updates daily. 
+- Full multi-language support. The website, the Admin panel interface, and all the content can be viewed and managed in 3 languages.
+- Multi-currency support. Every product's price can be set in arbitrary currency. Prices calculated according to exchange rates which updates daily.
 - Correct responsive layout on all devices. The site and the Admin panel are comfortable to use on computers, laptops, tablets and smartphones.
-- An Admin panel for managing everything: adding, searching, exploring, editing, deleting — categories, products, attributes, variants, specifications, reviews, promos, languages and translations, currencies, as well as viewing log, the dashboard with sales and rate statistics, managing orders and users.
 
-Currently, the work in progress.
+In the admin panel, the following implemented:
+
+- Managing everything: adding, viewing, editing, live searching, and deleting — categories, products, SKUs, attributes, variants, specifications, reviews, promos, managing orders and users.
+- The log page for viewing important website events like making orders, user registration, written reviews, and all app errors.
+- The dashboard with monthly and yearly column charts (using Google charts) about sales amount in any currency, orders, reviews, and registered users count. The data can be filtered by category.
+
+The ERD diagram can be viewed [here](https://dbdiagram.io/d/Eshop2-65dc93615cd0412774d47280).
+
 
 ## Technology stack
 

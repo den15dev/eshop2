@@ -22,5 +22,9 @@
                 {{ __('orders.no_orders') }}
             </div>
         @endif
+
+        @if($recently_viewed->count())
+            @include('site.includes.recently-viewed')
+        @endif
     </div>
 @endsection

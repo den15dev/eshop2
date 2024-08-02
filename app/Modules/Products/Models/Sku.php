@@ -6,6 +6,7 @@ use App\Modules\Cart\CartService;
 use App\Modules\Cart\Models\CartItem;
 use App\Modules\Catalog\ComparisonService;
 use App\Modules\Categories\Models\Specification;
+use App\Modules\Common\CommonService;
 use App\Modules\Currencies\CurrencyService;
 use App\Modules\Currencies\Models\Currency;
 use App\Modules\Favorites\FavoriteService;
@@ -15,11 +16,13 @@ use App\Modules\Products\ValueObjects\Price;
 use App\Modules\Promos\Models\Promo;
 use App\Modules\Reviews\Models\Review;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Query\JoinClause;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Spatie\Translatable\HasTranslations;
@@ -188,6 +191,13 @@ class Sku extends Model
         }
     }
 
+
+    protected function createdAt(): Attribute
+    {
+        return Attribute::make(
+            get: fn (string $value) => Carbon::createFromDate($value)->tz(CommonService::$timezone),
+        );
+    }
 
     public function getUrlSlugAttribute(): string
     {

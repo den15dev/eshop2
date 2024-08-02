@@ -8,7 +8,7 @@
     <div>
         <div class="log-update-time">
             {{ __('admin/logs.page_updated', ['num' => 30]) }}<br>
-            {{ __('admin/logs.updated') }}: <span id="logUpdateTime">{{ now()->format('H:i:s') }}</span>
+            {{ __('admin/logs.updated') }}: <span id="logUpdateTime">{{ $current_time }}</span>
         </div>
 
         <div class="log-wrap">

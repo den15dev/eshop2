@@ -25,6 +25,7 @@ class EncryptCookies extends Middleware
      * @var array<int, string>
      */
     protected $except = [
+        'tz',
         CatalogService::PREF_COOKIE,
         CartService::COOKIE,
         ComparisonService::COOKIE,

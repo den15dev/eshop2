@@ -30,7 +30,7 @@ return [
         'address' => 'Адрес',
         'role' => 'Статус',
         'is_active' => 'Бан',
-        'created_at' => 'Дата создания',
+        'created_at' => 'Дата регистрации',
         'updated_at' => 'Дата обновления',
     ],
 

@@ -2,7 +2,10 @@
 
 namespace App\Modules\Orders\Models;
 
+use App\Modules\Common\CommonService;
+use App\Modules\Currencies\Models\Currency;
 use App\Modules\Languages\LanguageService;
+use App\Modules\Languages\Models\Language;
 use App\Modules\Orders\Enums\DeliveryMethod;
 use App\Modules\Orders\Enums\OrderStatus;
 use App\Modules\Orders\Enums\PaymentMethod;
@@ -11,6 +14,7 @@ use App\Modules\Products\ValueObjects\Price;
 use App\Modules\Shops\Models\Shop;
 use App\Modules\Users\Models\User;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -36,6 +40,16 @@ class Order extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function language(): BelongsTo
+    {
+        return $this->belongsTo(Language::class);
+    }
+
+    public function currency(): BelongsTo
+    {
+        return $this->belongsTo(Currency::class);
     }
 
     public function shop(): BelongsTo
@@ -72,9 +86,16 @@ class Order extends Model
     }
 
 
+    protected function createdAt(): Attribute
+    {
+        return Attribute::make(
+            get: fn (string $value) => Carbon::createFromDate($value)->tz(CommonService::$timezone),
+        );
+    }
+
     public function getDateAttribute(): string
     {
-        return Carbon::parse($this->created_at)->isoFormat('D MMMM YYYY, H:mm');
+        return $this->created_at->isoFormat('D MMMM YYYY, H:mm');
     }
 
     public function getItemsCostFormattedAttribute(): string

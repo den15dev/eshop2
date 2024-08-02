@@ -1,7 +1,7 @@
-.cart-head-cont {
+.cart-header {
   display: flex;
   gap: 1.5rem;
-  justify-content: space-between;
+  justify-content: end;
   align-items: end;
   padding-bottom: 0.5rem;
   border-bottom: $grey-240 solid 1px;

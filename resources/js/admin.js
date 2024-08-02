@@ -1,4 +1,9 @@
-import {adjustTextAreaHeights, getAdminTranslations, showSubmit403Messages} from "./common/global.js";
+import {
+    adjustTextAreaHeights,
+    getAdminTranslations,
+    setTimezoneCookie,
+    showSubmit403Messages
+} from "./common/global.js";
 import initDropdowns, { localizationDropdowns } from "./common/dropdowns";
 import modals from "./common/modals.js";
 import initPagination from "./common/pagination.js";
@@ -25,6 +30,7 @@ import initDashboard from "./admin/pages/dashboard.js";
 
 // --------------- Common ------------------
 
+setTimezoneCookie();
 initDropdowns();
 modals();
 initPagination();

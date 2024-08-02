@@ -22,6 +22,7 @@ return [
         "favorites_empty" => "Favorites list is empty",
         "filters" => "Filters",
         "orders" => "Orders",
+        'orders_empty' => 'Orders list is empty',
         "profile_menu" => [
             "admin_panel" => "Admin Panel",
             "logout" => "Logout",

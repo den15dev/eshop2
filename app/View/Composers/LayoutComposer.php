@@ -28,7 +28,7 @@ class LayoutComposer
 
         $favorites_num = FavoriteService::count();
         $cart_items_num = count(CartService::getCart());
-        $ready_orders_num = OrderService::countReadyOrders();
+        $orders_count = OrderService::countOrders();
         $unread_notifications_num = Auth::user()?->unreadNotifications->count();
 
         $comparisonData = ComparisonService::get();
@@ -46,7 +46,7 @@ class LayoutComposer
             'phone_tel',
             'categories',
             'cart_items_num',
-            'ready_orders_num',
+            'orders_count',
             'unread_notifications_num',
             'is_popup_collapsed',
             'comparison_skus',

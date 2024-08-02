@@ -4,10 +4,11 @@
 
 @section('main_content')
     <div class="container">
+        <h3 class="mb-0">{{ __('cart.cart') }}</h3>
+
         @if(count($skus))
             <div class="cart-cont mb-5">
-                <div class="cart-head-cont">
-                    <h3 class="mb-0">{{ __('cart.cart') }}</h3>
+                <div class="cart-header">
                     <div class="btn-link link" role="button" id="clearCartBtn">{{ __('cart.clear_cart') }}</div>
                 </div>
 

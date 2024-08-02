@@ -3,15 +3,18 @@
 namespace App\Modules\Users\Models;
 
 use App\Modules\Cart\Models\CartItem;
+use App\Modules\Common\CommonService;
 use App\Modules\Favorites\Models\Favorite;
 use App\Modules\Orders\Models\Order;
 use App\Modules\Reviews\Models\Reaction;
 use App\Modules\Reviews\Models\Review;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Carbon;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -77,6 +80,13 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->role === 'boss';
     }
 
+
+    protected function createdAt(): Attribute
+    {
+        return Attribute::make(
+            get: fn (string $value) => Carbon::createFromDate($value)->tz(CommonService::$timezone),
+        );
+    }
 
     public function getImageUrlAttribute(): ?string
     {

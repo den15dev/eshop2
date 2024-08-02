@@ -4,6 +4,7 @@ return [
     'log' => 'Журнал',
     'updated' => 'Обновлено',
     'page_updated' => 'Страница обновляется каждые :num секунд.',
+    'today' => 'Сегодня',
 
     'entries' => [
         'review-added' => ':user_name (id :user_id) добавил новый отзыв к товару :sku_id и поставил оценку :mark.',

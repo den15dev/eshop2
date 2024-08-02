@@ -1,7 +1,7 @@
 import { csrf, lang } from "../../../common/global.js";
 import { showErrorMessage } from "../../../common/modals.js";
 import { updateCookie } from "./update-cookie.js";
-import { updateBadges } from "./update-dom.js";
+import { updateBadges, updateEmptyBubble } from "./update-dom.js";
 
 
 export function updateCart(sku_id, sku_qty, updateDOM, get_cost = false) {
@@ -38,6 +38,7 @@ export function updateCart(sku_id, sku_qty, updateDOM, get_cost = false) {
 
         updateDOM(result);
         updateBadges(cart.length);
+        updateEmptyBubble(cart.length);
     })
     .catch(err => showErrorMessage(err));
 }

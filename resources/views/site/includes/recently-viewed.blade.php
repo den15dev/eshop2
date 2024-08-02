@@ -1,4 +1,4 @@
-<h3 class="mb-4">{{ __('catalog.recent') }}</h3>
+<h4 class="mb-4">{{ __('catalog.recent') }}</h4>
 
 <div class="swiper product-carousel mb-2">
     <div class="swiper-wrapper">

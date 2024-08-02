@@ -34,9 +34,6 @@
   }
 
   .icon-cont {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     width: 24px;
   }
 
@@ -46,7 +43,7 @@
   }
 }
 
-.catalog-category-icon {
+.root-category-icon {
   fill: none;
   stroke-width: 1.6;
   stroke-linecap: round;

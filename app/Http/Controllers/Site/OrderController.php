@@ -8,6 +8,8 @@ use App\Modules\Log\LogService;
 use App\Modules\Orders\Models\Order;
 use App\Modules\Orders\OrderService;
 use App\Modules\Orders\Requests\OrderRequest;
+use App\Modules\Products\RecentlyViewedService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\View\View;
@@ -19,11 +21,19 @@ class OrderController extends Controller
     ){}
 
 
-    public function index(): View
+    public function index(
+        Request $request,
+        RecentlyViewedService $recentlyViewedService,
+    ): View
     {
         $orders = $this->orderService->getOrders()?->paginate(10);
+        $rv_cookie = $request->cookie(RecentlyViewedService::COOKIE);
+        $recently_viewed = $recentlyViewedService->get($rv_cookie);
 
-        return view('site.pages.orders', compact('orders'));
+        return view('site.pages.orders', compact(
+            'orders',
+            'recently_viewed',
+        ));
     }
 
 

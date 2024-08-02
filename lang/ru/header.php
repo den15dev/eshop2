@@ -22,6 +22,7 @@ return [
         'cart' => 'Корзина',
         'cart_empty' => 'Корзина пуста',
         'orders' => 'Заказы',
+        'orders_empty' => 'Список заказов пуст',
         'sign_in' => 'Вход',
         'filters' => 'Фильтры',
         'profile_menu' => [
