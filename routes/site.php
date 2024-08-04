@@ -17,7 +17,6 @@ use App\Http\Controllers\Site\SearchController;
 use App\Http\Controllers\Site\ShopController;
 use App\Http\Controllers\Site\StaticPages\DeliveryController;
 use App\Http\Controllers\Site\StaticPages\WarrantyController;
-use App\Http\Controllers\Site\Temp\TempController;
 use App\Http\Controllers\Site\UserNotificationController;
 use App\Http\Controllers\Site\UserProfileController;
 use App\Http\Middleware\CheckOrderOwner;
@@ -77,23 +76,3 @@ Route::get('/delivery', DeliveryController::class)->name('delivery');
 Route::get('/warranty', WarrantyController::class)->name('warranty');
 
 require __DIR__.'/auth.php';
-
-
-// ---------- TEMP FOR DELETE ----------
-
-Route::get('/temp', [TempController::class, 'temp'])->name('temp');
-Route::get('/notification', function () {
-    /*
-    $order = \App\Modules\Orders\Models\Order::find(1);
-    $user = $order->user;
-
-    return (new \App\Notifications\OrderSent($order))->toMail($user);
-    */
-
-    $user = \Illuminate\Support\Facades\Auth::user();
-    $url = 'http://eshop2.local/en/verify-email/1/8d94e9653bd4ed083d6d8af236837e40517bc229?expires=1705444022&signature=774ac50907eb9124f5221c57d4e4ecd352229e3db93640c39a295aa816219c89';
-
-    return new \App\Mail\ResetPasswordMailable($user, $url);
-});
-
-// -----------------------------------

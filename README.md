@@ -68,5 +68,14 @@ Install app dependencies:
 Run migrations:  
 `$ php artisan migrate`
 
+Generate app key:
+`$ php artisan key:generate`
+
 Run all necessary app installation commands:  
 `$ php artisan app:install`
+
+Generate storage symbolic link:
+`$ php artisan storage:link`
+
+And finally clear cache:
+`$ php artisan cache:clear`

@@ -34,7 +34,7 @@
                 <div class="admin-page-wrap">
                     <div class="sidebar-cont">
                         <div class="sidebar-logo">
-                            <a href="{{ route('admin.dashboard') }}" class="sidebar-logo_link">
+                            <a href="{{ route('home') }}" class="sidebar-logo_link">
                                 <img src="{{ asset('img/logo/logo_en_160.png') }}" alt="{{ __('general.app_name') }}">
                             </a>
                             <div class="sidebar-logo_subtitle">{{ __('admin/general.admin_panel') }}</div>
