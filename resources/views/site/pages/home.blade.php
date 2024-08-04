@@ -26,58 +26,64 @@
 
         <h3>{{ __('home.best_prices') }}</h3>
 
-        <div class="swiper product-carousel mb-6">
-            <div class="swiper-wrapper">
-                @foreach($skus_discounted as $sku)
-                    <div class="swiper-slide">
-                        <x-product-card :sku="$sku" />
-                    </div>
-                @endforeach
+        @if($skus_discounted->count())
+            <div class="swiper product-carousel mb-6">
+                <div class="swiper-wrapper">
+                    @foreach($skus_discounted as $sku)
+                        <div class="swiper-slide">
+                            <x-product-card :sku="$sku" />
+                        </div>
+                    @endforeach
+                </div>
+                <div class="carousel-next-btn">
+                    <span class="icon-chevron-right"></span>
+                </div>
+                <div class="carousel-prev-btn">
+                    <span class="icon-chevron-left"></span>
+                </div>
             </div>
-            <div class="carousel-next-btn">
-                <span class="icon-chevron-right"></span>
-            </div>
-            <div class="carousel-prev-btn">
-                <span class="icon-chevron-left"></span>
-            </div>
-        </div>
+        @endif
 
 
         <h3>{{ __('home.new') }}</h3>
 
-        <div class="swiper product-carousel mb-6">
-            <div class="swiper-wrapper">
-                @foreach($skus_latest as $sku)
-                    <div class="swiper-slide">
-                        <x-product-card :sku="$sku" />
-                    </div>
-                @endforeach
+        @if($skus_latest->count())
+            <div class="swiper product-carousel mb-6">
+                <div class="swiper-wrapper">
+                    @foreach($skus_latest as $sku)
+                        <div class="swiper-slide">
+                            <x-product-card :sku="$sku" />
+                        </div>
+                    @endforeach
+                </div>
+                <div class="carousel-next-btn">
+                    <span class="icon-chevron-right"></span>
+                </div>
+                <div class="carousel-prev-btn">
+                    <span class="icon-chevron-left"></span>
+                </div>
             </div>
-            <div class="carousel-next-btn">
-                <span class="icon-chevron-right"></span>
-            </div>
-            <div class="carousel-prev-btn">
-                <span class="icon-chevron-left"></span>
-            </div>
-        </div>
+        @endif
 
 
         <h3>{{ __('home.popular') }}</h3>
 
-        <div class="swiper product-carousel mb-5">
-            <div class="swiper-wrapper">
-                @foreach($skus_popular as $sku)
-                    <div class="swiper-slide">
-                        <x-product-card :sku="$sku" />
-                    </div>
-                @endforeach
+        @if($skus_latest->count())
+            <div class="swiper product-carousel mb-5">
+                <div class="swiper-wrapper">
+                    @foreach($skus_popular as $sku)
+                        <div class="swiper-slide">
+                            <x-product-card :sku="$sku" />
+                        </div>
+                    @endforeach
+                </div>
+                <div class="carousel-next-btn">
+                    <span class="icon-chevron-right"></span>
+                </div>
+                <div class="carousel-prev-btn">
+                    <span class="icon-chevron-left"></span>
+                </div>
             </div>
-            <div class="carousel-next-btn">
-                <span class="icon-chevron-right"></span>
-            </div>
-            <div class="carousel-prev-btn">
-                <span class="icon-chevron-left"></span>
-            </div>
-        </div>
+        @endif
     </div>
 @endsection

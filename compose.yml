@@ -14,6 +14,8 @@ services:
     networks:
       - nw1
 
+  # The app service name should also be changed
+  # in docker/nginx/conf.d/nginx.conf file
   eshop2-app:
     build:
       args:
@@ -28,8 +30,6 @@ services:
     networks:
       - nw1
 
-# You also need to change the service name
-# in docker/nginx/conf.d/nginx.conf file!
   eshop2-postgres:
     image: postgres:16.0
     container_name: eshop2-postgres

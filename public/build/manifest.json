@@ -33,7 +33,7 @@
     "src": "resources/css/common/icons/bi-light.woff2"
   },
   "resources/js/app.js": {
-    "file": "assets/app-400781cb.js",
+    "file": "assets/app-7ad6dfe6.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   }
