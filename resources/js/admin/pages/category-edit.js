@@ -2,10 +2,12 @@ import Sortable from "sortablejs";
 import {post, convertToNestedObjects, removeEmptyObjects, showFieldErrors} from "../components/ajax.js";
 import {showClientModal} from "../../common/modals.js";
 import {submit403Messages, translations} from "../../common/global.js";
+import {fadeIn, fadeOut} from "../../common/effects/fade.js";
 
 const catOrderList = document.querySelector('#childCategoryOrderList');
 const catSpecifications = document.querySelector('#categorySpecifications');
 const deleteCategoryForm = document.querySelector('#deleteCategoryForm');
+let formSuccessAlertTimeout;
 
 
 export default function init() {
@@ -85,11 +87,16 @@ function updateOrAddSpec(category_id, spec_id, specForm, action) {
         action,
         args,
         function (result) {
-            showClientModal({
-                icon: 'success',
-                message: result.message,
-                reloadOnClose: true,
-            });
+            if (action === 'updateSpec') {
+                showFormSuccessAlert(specForm);
+
+            } else if (action === 'storeSpec') {
+                showClientModal({
+                    icon: 'success',
+                    message: result.message,
+                    reloadOnClose: true,
+                });
+            }
         },
         function (result) {
             showFieldErrors(specForm, result.errors);
@@ -147,4 +154,16 @@ function validateSpecOrderNum(specForm) {
             orderInput.value = specNum + 1;
         }
     }
+}
+
+
+function showFormSuccessAlert(specForm) {
+    const alert = specForm.querySelector('.form-alert-center_success');
+    const fadeSpeed = 300;
+    fadeIn(alert, fadeSpeed);
+
+    clearTimeout(formSuccessAlertTimeout);
+    formSuccessAlertTimeout = setTimeout(() => {
+        fadeOut(alert, fadeSpeed);
+    }, 1000);
 }

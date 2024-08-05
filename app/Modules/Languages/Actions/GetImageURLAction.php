@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Storage;
 
 class GetImageURLAction
 {
-    public static function run(string $img_dirname, string $img_filename, ?string $lang = null): string
+    public static function run(string $img_dirname, string $img_filename, ?string $lang = null): ?string
     {
         if ($lang) {
             $img_path = '/' . $img_dirname . '/' . $lang . '/' . $img_filename;
@@ -29,6 +29,6 @@ class GetImageURLAction
             }
         }
 
-        return $url;
+        return $url ?? asset('img/default/no-image_promo.jpg');
     }
 }

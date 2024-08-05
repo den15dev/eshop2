@@ -8,8 +8,8 @@ return [
             'de' => 'Bis zu 10 % Rabatt auf NVIDIA-Gaming-Grafikkarten',
         ], JSON_UNESCAPED_UNICODE),
         'slug' => str('Up to 10% off NVIDIA Gaming Graphics Cards')->slug()->value(),
-        'starts_at' => date('Y-m-d H:i:s', strtotime('10-01-2024')),
-        'ends_at' => date('Y-m-d H:i:s', strtotime('10-04-2024')),
+        'starts_at' => now()->startOfMonth()->isoFormat('YYYY-MM-DD HH:mm:ss'),
+        'ends_at' => now()->startOfMonth()->addMonths(4)->isoFormat('YYYY-MM-DD HH:mm:ss'),
         'description' => json_encode([
             'ru' => 'Графические процессоры NVIDIA GeForce RTX 40 обеспечивают невероятную скорость для игр и творчества. Они созданы на основе сверхэффективной архитектуры NVIDIA Ada Lovelace, которая обеспечивает качественный скачок как в производительности, так и в графических возможностях на базе ИИ. Погрузитесь в виртуальные миры с трассировкой лучей и сверхвысоким FPS с минимальной задержкой. Используйте новые возможности для творчества с беспрецедентным ускорением рабочего процесса.',
             'en' => 'NVIDIA GeForce RTX 40 Series GPUs are beyond fast for gamers and creators. They\'re powered by the ultra-efficient NVIDIA Ada Lovelace architecture which delivers a quantum leap in both performance and AI-powered graphics. Experience lifelike virtual worlds with ray tracing and ultra-high FPS gaming with the lowest latency. Discover revolutionary new ways to create and unprecedented workflow acceleration.',
@@ -24,8 +24,8 @@ return [
             'de' => 'Bis zu 5 % Rabatt auf AMD Ryzen 5000-Prozessoren',
         ], JSON_UNESCAPED_UNICODE),
         'slug' => str('Up to 5% off AMD Ryzen 5000 processors')->slug()->value(),
-        'starts_at' => date('Y-m-d H:i:s', strtotime('18-12-2023')),
-        'ends_at' => date('Y-m-d H:i:s', strtotime('18-03-2024')),
+        'starts_at' => now()->startOfMonth()->isoFormat('YYYY-MM-DD HH:mm:ss'),
+        'ends_at' => now()->startOfMonth()->addMonths(3)->isoFormat('YYYY-MM-DD HH:mm:ss'),
         'description' => json_encode([
             'ru' => 'Только процессоры AMD Ryzen оснащены моделями с эксклюзивной технологией AMD 3D V-Cache, позволяющей значительно повысить производительность в играх. AMD сочетает в себе свои топовые процессоры серии Ryzen 7000X3D с колоссальной встроенной памятью объемом до 144 МБ в сочетании с самыми совершенными процессорными ядрами, которые только можно найти в игровом ПК, чтобы энтузиасты могли использовать возможности максимальной производительности для игр и творчества. в одном чипе. С процессорами AMD Ryzen никакая рабочая нагрузка не является запретной.',
             'en' => 'Only AMD Ryzen processors feature models with exclusive AMD 3D V-Cache technology for a massive gaming performance boost. AMD combines its top-end Ryzen 7000X3D series processors, with up to a colossal 144MB of on-chip memory, paired with the most advanced processor cores you can get in a gaming PC so enthusiasts can harness the power of the ultimate gaming and creator performance in one chip. No workload is off limits with AMD Ryzen processors.',
@@ -40,8 +40,8 @@ return [
             'de' => 'Bis zu 7 % Rabatt auf Intel-Prozessoren der 13er-Serie',
         ], JSON_UNESCAPED_UNICODE),
         'slug' => str('Up to 7% off Intel 13-Series Processors')->slug()->value(),
-        'starts_at' => date('Y-m-d H:i:s', strtotime('01-01-2024')),
-        'ends_at' => date('Y-m-d H:i:s', strtotime('01-05-2024')),
+        'starts_at' => now()->startOfMonth()->isoFormat('YYYY-MM-DD HH:mm:ss'),
+        'ends_at' => now()->startOfMonth()->addMonths(3)->isoFormat('YYYY-MM-DD HH:mm:ss'),
         'description' => json_encode([
             'ru' => 'Процессоры Intel Core 13-го поколения развивают гибридную архитектуру производительности с поддержкой до восьми высокопроизводительных ядер (P-ядро) и до 16 эффективных ядер (E-ядро) в сочетании с рабочими нагрузками, интеллектуально маршрутизируемыми Intel Thread Director. Создан для геймеров, которым нужна максимальная производительность для новейших игр, а также возможность справляться с другими рабочими нагрузками. Новые ПК на базе процессоров Intel Core 13-го поколения делают все это возможным.',
             'en' => '13th Gen Intel Core processors advances performance hybrid architecture with up to eight Performance-cores (P-core) and up to 16 Efficient-cores (E-core), combined with workloads intelligently routed by Intel Thread Director. Built for gamers looking for maximum performance to play the latest games, while also having the capabilities to tackle other workloads. New 13th Gen Intel Core processor-based PCs make it all possible.',

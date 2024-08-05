@@ -18,6 +18,7 @@ return [
     ],
 
     'save' => 'Save',
+    'saved' => 'Saved',
     'create' => 'Create',
     'move' => 'Move',
     'add' => 'Add',

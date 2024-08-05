@@ -1,6 +1,6 @@
 {
   "resources/css/admin.scss": {
-    "file": "assets/admin-f32904f2.css",
+    "file": "assets/admin-02f48a11.css",
     "isEntry": true,
     "src": "resources/css/admin.scss"
   },
@@ -33,7 +33,7 @@
     "src": "resources/css/common/icons/bi-light.woff2"
   },
   "resources/js/admin.js": {
-    "file": "assets/admin-17b4e34f.js",
+    "file": "assets/admin-3a369a17.js",
     "isEntry": true,
     "src": "resources/js/admin.js"
   }

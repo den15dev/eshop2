@@ -18,7 +18,7 @@ return [
     'description' => 'Description',
     'image' => 'Image',
     'product_count' => 'The catalog contains :product_num (:sku_num SKU) of this brand.',
-    'product_num' => ':count товар|:count товара|:count товаров',
+    'product_num' => ':count product|:count products',
     'no_products' => 'The catalog does not contain products of this brand.',
 
     'image_note' => 'The preferred format is .svg, otherwise it should be .png.',

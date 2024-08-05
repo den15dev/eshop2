@@ -52,6 +52,7 @@ export function getSiteTranslations() {
     })
     .then(result => {
         translations = result;
+        document.dispatchEvent(new Event('translations_loaded'));
     })
     .catch(err => {
         console.error('An error occurred while getting translations: ' + err.message);

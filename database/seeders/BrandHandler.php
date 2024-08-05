@@ -23,6 +23,8 @@ class BrandHandler
                 $brand = $obj->brand;
                 $description = new \stdClass();
                 $description->ru = '';
+                $description->en = '';
+                $description->de = '';
                 $brand->description = $description;
                 $slug = str($cur_name)->slug()->value();
                 file_put_contents(self::DIR . '/' . $slug . '.json', json_encode($brand, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));

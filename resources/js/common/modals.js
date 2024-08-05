@@ -171,7 +171,7 @@ function resetClientModal() {
     infoIcon.style.display = 'none';
     messageCont.innerHTML = '';
     cancelBtn.style.display = 'none';
-    cancelBtn.innerText = translations.general.modal.cancel;
+    cancelBtn.innerText = translations?.general.modal.cancel || 'Cancel';
     okBtn.innerText = 'Ok';
 }
 

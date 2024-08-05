@@ -12,4 +12,6 @@ return [
     "modal" => [
         "cancel" => "Cancel"
     ],
+
+    'demo_note' => 'This website is created <b>only for demonstration purposes</b>. It is a part of a personal web development portfolio.',
 ];

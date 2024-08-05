@@ -11,7 +11,8 @@
 @section('main_content')
     <div>
         <div class="mb-3">
-            <span class="grey-text">ID {{ $brand->id }}:</span> {{ $brand->name }}
+            <span class="grey-text">ID {{ $brand->id }}:</span>
+            <a href="{{ $brand->url }}" class="link external-link" target="_blank">{{ $brand->name }}</a>
         </div>
 
         <form class="mb-55" action="{{ route('admin.brands.update', $brand->id) }}" method="POST">

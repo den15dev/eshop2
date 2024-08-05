@@ -9,6 +9,7 @@ import catalogMobile from './site/main/catalog-mobile.js';
 import { catalogDesktopRoot, catalogDesktopDropdowns } from "./site/main/catalog-desktop.js";
 import search from './site/main/search.js';
 import headerEmptyBubbles from './site/main/header-empty-bubbles.js';
+import showDemoNote from './site/main/demo-note.js';
 
 import initAuth from "./site/components/auth/_init.js";
 import initCartComponent from "./site/components/cart/_init.js";
@@ -68,3 +69,7 @@ initShops();
 // --------------- Get client translations ------------------
 
 getSiteTranslations();
+
+// -------------------- Other ------------------
+
+showDemoNote();

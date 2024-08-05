@@ -12,4 +12,6 @@ return [
     "modal" => [
         "cancel" => "Stornieren"
     ],
+
+    'demo_note' => 'Diese Website wird <b>nur zu Demonstrationszwecken</b> erstellt. Es ist Teil eines persönlichen Webentwicklungsportfolios.',
 ];

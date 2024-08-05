@@ -1,4 +1,4 @@
-<form @isset($spec) data-spec-id="{{ $spec->id }}" @endisset>
+<form class="category-edit_spec-form" @isset($spec) data-spec-id="{{ $spec->id }}" @endisset>
     @isset($spec)
     <div class="small lightgrey-text mb-1">#{{ $spec->sort }}, {{ $spec->skus_count ? __('admin/specifications.used_in', ['num' => $spec->skus_count]) : __('admin/specifications.not_used') }}</div>
     @endisset
@@ -95,4 +95,6 @@
             </div>
         </div>
     </div>
+
+    <div class="form-alert-center_success">{{ __('admin/general.saved') }}</div>
 </form>

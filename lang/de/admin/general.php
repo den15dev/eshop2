@@ -18,6 +18,7 @@ return [
     ],
 
     'save' => 'Speichern',
+    'saved' => 'Gerettet',
     'create' => 'Erstellen',
     'move' => 'Bewegen',
     'add' => 'Hinzufügen',

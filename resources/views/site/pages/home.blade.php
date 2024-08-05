@@ -24,10 +24,10 @@
         </div>
 
 
-        <h3>{{ __('home.best_prices') }}</h3>
+        <h3 class="mb-4">{{ __('home.best_prices') }}</h3>
 
         @if($skus_discounted->count())
-            <div class="swiper product-carousel mb-6">
+            <div class="swiper product-carousel mb-5">
                 <div class="swiper-wrapper">
                     @foreach($skus_discounted as $sku)
                         <div class="swiper-slide">
@@ -45,10 +45,10 @@
         @endif
 
 
-        <h3>{{ __('home.new') }}</h3>
+        <h3 class="mb-4">{{ __('home.new') }}</h3>
 
         @if($skus_latest->count())
-            <div class="swiper product-carousel mb-6">
+            <div class="swiper product-carousel mb-5">
                 <div class="swiper-wrapper">
                     @foreach($skus_latest as $sku)
                         <div class="swiper-slide">
@@ -66,7 +66,7 @@
         @endif
 
 
-        <h3>{{ __('home.popular') }}</h3>
+        <h3 class="mb-4">{{ __('home.popular') }}</h3>
 
         @if($skus_latest->count())
             <div class="swiper product-carousel mb-5">
