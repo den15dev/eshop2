@@ -1,14 +1,14 @@
 @extends('admin.layout')
 
-@section('page_title',  __('admin/logs.log') . ' - ' . __('admin/general.admin_panel'))
+@section('page_title',  __('admin/log.log') . ' - ' . __('admin/general.admin_panel'))
 
-@section('page_header', __('admin/logs.log'))
+@section('page_header', __('admin/log.log'))
 
 @section('main_content')
     <div>
         <div class="log-update-time">
-            {{ __('admin/logs.page_updated', ['num' => 30]) }}<br>
-            {{ __('admin/logs.updated') }}: <span id="logUpdateTime">{{ $current_time }}</span>
+            {{ __('admin/log.page_updated', ['num' => 30]) }}<br>
+            {{ __('admin/log.updated') }}: <span id="logUpdateTime">{{ $current_time }}</span>
         </div>
 
         <div class="log-wrap">

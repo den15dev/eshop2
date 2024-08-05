@@ -1,3 +1,3 @@
 <div class="log-day_entry_content">
-    <span class="log-registration_text">{{ __('admin/logs.entries.registration', ['name' => $data->name, 'id' => $data->id]) }}</span>
+    <span class="log-registration_text">{{ __('admin/log.entries.registration', ['name' => $data->name, 'id' => $data->id]) }}</span>
 </div>

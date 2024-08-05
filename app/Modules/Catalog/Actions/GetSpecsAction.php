@@ -12,8 +12,21 @@ class GetSpecsAction
     {
         $specs = Specification::join('sku_specification AS ss', 'specifications.id', 'ss.specification_id')
             ->join('skus', 'ss.sku_id', 'skus.id')
-            ->selectRaw('ss.spec_value, specifications.name, specifications.units, ss.specification_id, count(skus.id) as skus_num')
-            ->groupBy('ss.spec_value', 'specifications.name', 'specifications.units', 'ss.specification_id')
+            ->selectRaw(
+                'ss.spec_value,
+                specifications.name,
+                specifications.units,
+                specifications.sort,
+                ss.specification_id,
+                count(skus.id) as skus_num'
+            )
+            ->groupBy(
+                'ss.spec_value',
+                'specifications.name',
+                'specifications.units',
+                'specifications.sort',
+                'ss.specification_id'
+            )
             ->where('specifications.category_id', $category_id)
             ->where('specifications.is_filter', true)
             ->whereDate('skus.available_from', '<=', now())
@@ -21,6 +34,7 @@ class GetSpecsAction
                 $builder->whereDate('skus.available_until', '>', now())
                     ->orWhereNull('skus.available_until');
             })
+            ->orderBy('specifications.sort')
             ->get();
 
         $filter_specs = new Collection([]);
@@ -42,6 +56,7 @@ class GetSpecsAction
                 $filter_spec->id = $spec_id;
                 $filter_spec->name = $spec->name;
                 $filter_spec->units = $spec->units;
+                $filter_spec->sort = $spec->sort;
                 $filter_spec->has_checked = false;
 
                 $values = new Collection();

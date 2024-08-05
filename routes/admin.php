@@ -32,7 +32,7 @@ Route::middleware('admin.protection')->group(function () {
     Route::put('/orders/{id}', [OrderController::class, 'update'])->whereNumber('id')->name('orders.update');
 });
 
-Route::get('/logs', [LogController::class, 'index'])->name('logs');
+Route::get('/log', [LogController::class, 'index'])->name('log');
 
 Route::get('/products', [ProductController::class, 'index'])->name('products');
 Route::get('/products/table', [ProductController::class, 'table'])->name('products.table');

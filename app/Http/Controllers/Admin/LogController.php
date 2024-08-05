@@ -14,7 +14,7 @@ class LogController extends Controller
         $log = LogService::getLog();
         $current_time = now()->tz(CommonService::$timezone)->format('H:i:s');
 
-        return view('admin.pages.logs', compact(
+        return view('admin.pages.log', compact(
             'log',
             'current_time',
         ));

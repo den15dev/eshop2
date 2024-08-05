@@ -6,7 +6,7 @@ return [
 
     'navigation' => [
         'dashboard' => 'Dashboard',
-        'logs' => 'Logs',
+        'log' => 'Log',
         'products' => 'Products',
         'categories' => 'Categories',
         'brands' => 'Brands',

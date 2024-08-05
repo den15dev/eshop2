@@ -3,7 +3,7 @@
 return [
     'log' => 'Log',
     'updated' => 'Updated',
-    'page_updated' => 'The page is updated every :num seconds.',
+    'page_updated' => 'The page updates every :num seconds.',
     'today' => 'Today',
 
     'entries' => [

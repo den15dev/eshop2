@@ -6,7 +6,7 @@ return [
 
     'navigation' => [
         'dashboard' => 'Armaturenbrett',
-        'logs' => 'Protokolle',
+        'log' => 'Protokolle',
         'products' => 'Produkte',
         'categories' => 'Kategorien',
         'brands' => 'Marken',

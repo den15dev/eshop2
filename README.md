@@ -2,6 +2,8 @@
 
 This is a multi-language E-commerce web application with an admin panel. It is made using Laravel PHP framework, Blade templates, vanilla Javascript organized in ES modules, pure CSS written with a SCSS preprocessor, and Vite.js for building assets. For form elements, some Bootstrap modules were used.
 
+[The demo website](https://eshop2.den15.dev)
+
 The following features were implemented:
 
 - 4 levels of category nesting. Categories with products have an individual sets of product specifications.
@@ -62,20 +64,20 @@ Languages:
 
 ## Installation
 
-Install app dependencies:  
+Install app dependencies:\
 `$ composer install`
 
-Run migrations:  
+Run migrations:\
 `$ php artisan migrate`
 
-Generate app key:
+Generate app key:\
 `$ php artisan key:generate`
 
-Run all necessary app installation commands:  
+Run all necessary app installation commands. This will populate the database with languages, currencies, categories, promos, stores, static pages' parameters, and update currency rates:\
 `$ php artisan app:install`
 
-Generate storage symbolic link:
+Generate storage symbolic link:\
 `$ php artisan storage:link`
 
-And finally clear cache:
+And finally, clear the cache:\
 `$ php artisan cache:clear`

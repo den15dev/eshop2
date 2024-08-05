@@ -23,7 +23,7 @@ class LogService
         foreach ($entries_stack as $entry) {
             $year = $entry->datetime->tz(CommonService::$timezone)->year;
             $day = $entry->datetime->tz(CommonService::$timezone)->isToday()
-                ? __('admin/logs.today')
+                ? __('admin/log.today')
                 : $entry->datetime->tz(CommonService::$timezone)->isoFormat('D MMMM');
 
             $entry->time = $entry->datetime->tz(CommonService::$timezone)->isoFormat('H:mm:ss');

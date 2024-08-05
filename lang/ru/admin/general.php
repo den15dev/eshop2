@@ -6,7 +6,7 @@ return [
 
     'navigation' => [
         'dashboard' => 'Статистика',
-        'logs' => 'Журнал',
+        'log' => 'Журнал',
         'products' => 'Товары',
         'categories' => 'Категории',
         'brands' => 'Бренды',
