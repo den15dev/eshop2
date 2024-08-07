@@ -41,7 +41,7 @@ if (!function_exists('order_by_array')) {
     {
         if (!$arr || !count($arr)) return '';
 
-        return match (env('DB_CONNECTION')) {
+        return match (config('database.default')) {
             'pgsql' => 'ARRAY_POSITION(ARRAY[' . implode(', ', $arr) . '], skus.id)',
             'mysql' => 'FIELD(skus.id, ' . implode(', ', $arr) . ')',
             default => '',

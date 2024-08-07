@@ -17,7 +17,9 @@
 
             <div class="catalog-cards-cont mb-5">
                 @foreach($brand_categories as $category)
-                    <x-category-card :category="$category" :skunum="$category->sku_num" />
+                    <x-category-card :category="$category"
+                                     :skunum="$category->sku_num"
+                                     :url="route('catalog', ['category' => $category->slug, 'brands[0]' => $brand->id])" />
                 @endforeach
             </div>
         @endif

@@ -1,14 +1,14 @@
 <div class="category-card">
     @if($skunum)
         <div class="product-card_image-cont">
-            <a href="{{ route('catalog', $category->slug) }}" class="product-card_image-link">
+            <a href="{{ $url }}" class="product-card_image-link">
                 <img src="{{ $category->image_url }}" class="product-card_image" alt="{{ $category->name }}">
                 <div class="image-link-tint"></div>
             </a>
         </div>
 
         <div class="category-card_title-cont">
-            <a href="{{ route('catalog', $category->slug) }}" class="category-card_title">
+            <a href="{{ $url }}" class="category-card_title">
                 {{ $category->name }}
             </a>
 

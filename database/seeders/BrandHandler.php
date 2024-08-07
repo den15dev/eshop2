@@ -23,12 +23,11 @@ class BrandHandler
                 $brand = $obj->brand;
                 $description = new \stdClass();
                 $description->ru = '';
-                $description->en = '';
-                $description->de = '';
                 $brand->description = $description;
                 $slug = str($cur_name)->slug()->value();
                 file_put_contents(self::DIR . '/' . $slug . '.json', json_encode($brand, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
-                echo 'Brand ' . $cur_name . ' added' . "\n";
+                echo 'Brand ' . $cur_name . ' json added. Before next start of the script, Please add a description (ru) manually for auto translations' . "\n";
+                $existed[] = $cur_name;
                 $count_collected++;
             }
         }

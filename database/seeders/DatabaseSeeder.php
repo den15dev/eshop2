@@ -21,7 +21,10 @@ class DatabaseSeeder extends Seeder
 
 
         $this->call([
-            // ReviewSeeder::class,
+//            UserSeeder::class, // Creates users ONLY if they don't exist yet.
+//            ReviewSeeder::class, // Add new reviews every run.
+
+            ReviewAndUserUnseeder::class, // Clear all fake users, reviews, reactions, and update all SKUs' ratings.
         ]);
     }
 }

@@ -28,7 +28,7 @@ class ResetPasswordMailable extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address(env('MAIL_FROM_ADDRESS'), __('general.app_name')),
+            from: new Address(config('app.mail_from_address'), __('general.app_name')),
             to: $this->notifiable->email,
             subject: __('notifications.reset_password.subject'),
         );

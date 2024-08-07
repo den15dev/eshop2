@@ -4,6 +4,7 @@ namespace App\Admin\IndexTable;
 
 use Illuminate\Database\Eloquent\Builder as EBuilder;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class IndexTableService

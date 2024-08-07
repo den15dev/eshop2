@@ -113,7 +113,10 @@ class ReviewService
 
         DB::table('skus')
             ->where('id', $sku_id)
-            ->update(['rating' => $rating->rating, 'vote_num' => $rating->vote_num]);
+            ->update([
+                'rating' => $rating->rating ?: null,
+                'vote_num' => $rating->vote_num ?: null,
+            ]);
     }
 
 
