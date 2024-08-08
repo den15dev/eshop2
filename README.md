@@ -27,7 +27,7 @@ The following features were implemented:
 - Multi-currency support. Every product's price can be set in arbitrary currency. Prices calculated according to exchange rates which updates daily.
 - Correct responsive layout on all devices. The site and the Admin panel are comfortable to use on computers, laptops, tablets and smartphones.
 
-In the admin panel, the following implemented:
+In the [admin panel](https://eshop2.den15.dev/admin), the following implemented:
 
 - Managing everything: adding, viewing, editing, live searching, and deleting — categories, products, SKUs, attributes, variants, specifications, reviews, promos, managing orders and users.
 - The log page for viewing important website events like making orders, user registration, written reviews, and all app errors.
