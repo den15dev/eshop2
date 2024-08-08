@@ -1,6 +1,6 @@
 <?php
 
-use App\Admin\Shops\ColumnFormatter;
+use App\Admin\Shops\ShopColumnFormatter;
 
 return [
     [
@@ -36,7 +36,7 @@ return [
         'class_list' => null,
         'order_by' => null,
         'search_field' => null,
-        'format' => new ColumnFormatter('openingHours'),
+        'format' => new ShopColumnFormatter('openingHours'),
         'is_default' => false,
     ],
     [
@@ -45,7 +45,7 @@ return [
         'class_list' => null,
         'order_by' => 'shops.is_active',
         'search_field' => null,
-        'format' => new ColumnFormatter('isActive'),
+        'format' => new ShopColumnFormatter('isActive'),
         'is_default' => true,
     ],
     [

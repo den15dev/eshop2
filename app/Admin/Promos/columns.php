@@ -1,6 +1,6 @@
 <?php
 
-use App\Admin\Promos\ColumnFormatter;
+use App\Admin\Promos\PromoColumnFormatter;
 
 return [
     [
@@ -18,7 +18,7 @@ return [
         'class_list' => null,
         'order_by' => null,
         'search_field' => null,
-        'format' => new ColumnFormatter('promoImage'),
+        'format' => new PromoColumnFormatter('promoImage'),
         'is_default' => true,
     ],
     [
@@ -36,7 +36,7 @@ return [
         'class_list' => null,
         'order_by' => 'promos.discount',
         'search_field' => null,
-        'format' => new ColumnFormatter('percent'),
+        'format' => new PromoColumnFormatter('percent'),
         'is_default' => false,
     ],
     [
@@ -45,7 +45,7 @@ return [
         'class_list' => null,
         'order_by' => 'promos.starts_at',
         'search_field' => null,
-        'format' => new ColumnFormatter('dateFormat'),
+        'format' => new PromoColumnFormatter('dateFormat'),
         'is_default' => false,
     ],
     [
@@ -54,7 +54,7 @@ return [
         'class_list' => null,
         'order_by' => 'promos.ends_at',
         'search_field' => null,
-        'format' => new ColumnFormatter('dateFormat'),
+        'format' => new PromoColumnFormatter('dateFormat'),
         'is_default' => false,
     ],
     [

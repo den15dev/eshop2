@@ -1,6 +1,6 @@
 <?php
 
-use App\Admin\Reviews\ColumnFormatter;
+use App\Admin\Reviews\ReviewColumnFormatter;
 
 return [
     [
@@ -54,7 +54,7 @@ return [
         'class_list' => 'text-start',
         'order_by' => null,
         'search_field' => 'reviews.pros',
-        'format' => new ColumnFormatter('clipText'),
+        'format' => new ReviewColumnFormatter('clipText'),
         'is_default' => true,
     ],
     [
@@ -63,7 +63,7 @@ return [
         'class_list' => 'text-start',
         'order_by' => null,
         'search_field' => 'reviews.cons',
-        'format' => new ColumnFormatter('clipText'),
+        'format' => new ReviewColumnFormatter('clipText'),
         'is_default' => true,
     ],
     [
@@ -72,7 +72,7 @@ return [
         'class_list' => 'text-start',
         'order_by' => null,
         'search_field' => 'reviews.comnt',
-        'format' => new ColumnFormatter('clipText'),
+        'format' => new ReviewColumnFormatter('clipText'),
         'is_default' => true,
     ],
     [

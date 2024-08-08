@@ -1,6 +1,6 @@
 <?php
 
-use App\Admin\Users\ColumnFormatter;
+use App\Admin\Users\UserColumnFormatter;
 
 return [
     [
@@ -63,7 +63,7 @@ return [
         'class_list' => null,
         'order_by' => null,
         'search_field' => null,
-        'format' => new ColumnFormatter('role'),
+        'format' => new UserColumnFormatter('role'),
         'is_default' => true,
     ],
     [
@@ -72,7 +72,7 @@ return [
         'class_list' => null,
         'order_by' => null,
         'search_field' => null,
-        'format' => new ColumnFormatter('banned'),
+        'format' => new UserColumnFormatter('banned'),
         'is_default' => true,
     ],
     [

@@ -2,31 +2,12 @@
 
 namespace App\Admin\Promos;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Admin\IndexTable\ColumnFormatter;
 use Illuminate\Support\Facades\View;
 
-class ColumnFormatter
+final class PromoColumnFormatter extends ColumnFormatter
 {
-    private Model $model;
-    private string $property;
-
-
-    public function __construct(
-        public string $format
-    ){}
-
-
-    public function get(Model $model, string $property): string
-    {
-        $this->model = $model;
-        $this->property = $property;
-        $method = $this->format;
-
-        return $this->$method();
-    }
-
-
-    private function promoImage(): string
+    protected function promoImage(): string
     {
         $imgurl = $this->model->getImageURL('sm');
         $img_height = 60;
@@ -35,14 +16,14 @@ class ColumnFormatter
     }
 
 
-    private function percent(): string
+    protected function percent(): string
     {
         $property = $this->property;
         return $this->model->$property . '%';
     }
 
 
-    private function dateFormat(): string
+    protected function dateFormat(): string
     {
         $start = $this->model->starts_at;
         $end = $this->model->ends_at;

@@ -1,6 +1,6 @@
 <?php
 
-use App\Admin\Products\ColumnFormatter;
+use App\Admin\Products\ProductColumnFormatter;
 use App\Modules\Currencies\CurrencyService;
 use App\Modules\Products\Models\Sku;
 use Illuminate\Support\Facades\DB;
@@ -21,7 +21,7 @@ return [
         'class_list' => null,
         'order_by' => null,
         'search_field' => null,
-        'format' => new ColumnFormatter('imageLink'),
+        'format' => new ProductColumnFormatter('imageLink'),
         'is_default' => true,
     ],
     [
@@ -30,7 +30,7 @@ return [
         'class_list' => 'text-start',
         'order_by' => 'skus.name->' . app()->getLocale(),
         'search_field' => 'skus.name->' . app()->getLocale(),
-        'format' => new ColumnFormatter('nameLink'),
+        'format' => new ProductColumnFormatter('nameLink'),
         'is_default' => true,
     ],
     [
@@ -48,7 +48,7 @@ return [
         'class_list' => null,
         'order_by' => 'products.name->' . app()->getLocale(),
         'search_field' => null,
-        'format' => new ColumnFormatter('productLink'),
+        'format' => new ProductColumnFormatter('productLink'),
         'is_default' => true,
     ],
     [
@@ -120,7 +120,7 @@ return [
         'class_list' => 'nowrap',
         'order_by' => DB::raw(Sku::FINAL_PRICE . ' * ' . CurrencyService::RATE_SUBQUERY),
         'search_field' => null,
-        'format' => new ColumnFormatter('finalPriceFormatted'),
+        'format' => new ProductColumnFormatter('finalPriceFormatted'),
         'is_default' => true,
     ],
     [
@@ -147,7 +147,7 @@ return [
         'class_list' => null,
         'order_by' => 'skus.available_from',
         'search_field' => null,
-        'format' => new ColumnFormatter('dateStatus'),
+        'format' => new ProductColumnFormatter('dateStatus'),
         'is_default' => false,
     ],
     [
@@ -156,7 +156,7 @@ return [
         'class_list' => null,
         'order_by' => 'skus.available_until',
         'search_field' => null,
-        'format' => new ColumnFormatter('dateStatus'),
+        'format' => new ProductColumnFormatter('dateStatus'),
         'is_default' => false,
     ],
     [

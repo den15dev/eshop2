@@ -2,32 +2,13 @@
 
 namespace App\Admin\Products;
 
+use App\Admin\IndexTable\ColumnFormatter;
 use App\Modules\Products\ValueObjects\Price;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\View;
 
-class ColumnFormatter
+final class ProductColumnFormatter extends ColumnFormatter
 {
-    private Model $model;
-    private string $property;
-
-
-    public function __construct(
-        public string $format
-    ){}
-
-
-    public function get(Model $model, string $property): string
-    {
-        $this->model = $model;
-        $this->property = $property;
-        $method = $this->format;
-
-        return $this->$method();
-    }
-
-
-    private function nameLink()
+    protected function nameLink()
     {
         $url = route('admin.skus.edit', $this->model->id);
         $property = $this->property;
@@ -37,7 +18,7 @@ class ColumnFormatter
     }
 
 
-    private function imageLink()
+    protected function imageLink()
     {
         $url = route('admin.skus.edit', $this->model->id);
         $imgurl = $this->model->getImageURL('tn');
@@ -46,7 +27,7 @@ class ColumnFormatter
     }
 
 
-    private function productLink()
+    protected function productLink()
     {
         $url = route('admin.products.edit', $this->model->product_id);
         $property = $this->property;
@@ -56,7 +37,7 @@ class ColumnFormatter
     }
 
 
-    private function finalPriceFormatted(): string
+    protected function finalPriceFormatted(): string
     {
         return Price::from(
             $this->model->final_price,
@@ -66,7 +47,7 @@ class ColumnFormatter
     }
 
 
-    private function dateStatus(): string
+    protected function dateStatus(): string
     {
         $from = $this->model->available_from;
         $until = $this->model->available_until;

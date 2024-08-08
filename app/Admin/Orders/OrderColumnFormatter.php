@@ -2,32 +2,13 @@
 
 namespace App\Admin\Orders;
 
+use App\Admin\IndexTable\ColumnFormatter;
 use App\Modules\Products\ValueObjects\Price;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\View;
 
-class ColumnFormatter
+final class OrderColumnFormatter extends ColumnFormatter
 {
-    private Model $model;
-    private string $property;
-
-
-    public function __construct(
-        public string $format
-    ){}
-
-
-    public function get(Model $model, string $property): string
-    {
-        $this->model = $model;
-        $this->property = $property;
-        $method = $this->format;
-
-        return $this->$method();
-    }
-
-
-    private function status()
+    protected function status()
     {
         $property = $this->property;
         $status = $this->model->$property->value;
@@ -37,7 +18,7 @@ class ColumnFormatter
     }
 
 
-    private function enumDescription(): string
+    protected function enumDescription(): string
     {
         $property = $this->property;
 
@@ -45,7 +26,7 @@ class ColumnFormatter
     }
 
 
-    private function paymentStatus()
+    protected function paymentStatus()
     {
         $property = $this->property;
         $status = $this->model->$property->value;
@@ -55,7 +36,7 @@ class ColumnFormatter
     }
 
 
-    private function sumFormatted(): string
+    protected function sumFormatted(): string
     {
         $property = $this->property;
 

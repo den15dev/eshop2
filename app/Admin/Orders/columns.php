@@ -1,6 +1,6 @@
 <?php
 
-use App\Admin\Orders\ColumnFormatter;
+use App\Admin\Orders\OrderColumnFormatter;
 
 return [
     [
@@ -18,7 +18,7 @@ return [
         'class_list' => null,
         'order_by' => 'orders.status',
         'search_field' => null,
-        'format' => new ColumnFormatter('status'),
+        'format' => new OrderColumnFormatter('status'),
         'is_default' => true,
     ],
     [
@@ -72,7 +72,7 @@ return [
         'class_list' => null,
         'order_by' => 'orders.delivery_method',
         'search_field' => null,
-        'format' => new ColumnFormatter('enumDescription'),
+        'format' => new OrderColumnFormatter('enumDescription'),
         'is_default' => false,
     ],
     [
@@ -81,7 +81,7 @@ return [
         'class_list' => null,
         'order_by' => 'orders.payment_method',
         'search_field' => null,
-        'format' => new ColumnFormatter('enumDescription'),
+        'format' => new OrderColumnFormatter('enumDescription'),
         'is_default' => false,
     ],
     [
@@ -90,7 +90,7 @@ return [
         'class_list' => null,
         'order_by' => 'orders.payment_status',
         'search_field' => null,
-        'format' => new ColumnFormatter('paymentStatus'),
+        'format' => new OrderColumnFormatter('paymentStatus'),
         'is_default' => true,
     ],
     [
@@ -126,7 +126,7 @@ return [
         'class_list' => null,
         'order_by' => 'orders.items_cost',
         'search_field' => null,
-        'format' => new ColumnFormatter('sumFormatted'),
+        'format' => new OrderColumnFormatter('sumFormatted'),
         'is_default' => false,
     ],
     [
@@ -135,7 +135,7 @@ return [
         'class_list' => null,
         'order_by' => 'orders.shipping_cost',
         'search_field' => null,
-        'format' => new ColumnFormatter('sumFormatted'),
+        'format' => new OrderColumnFormatter('sumFormatted'),
         'is_default' => false,
     ],
     [
@@ -144,7 +144,7 @@ return [
         'class_list' => null,
         'order_by' => 'orders.total_cost',
         'search_field' => null,
-        'format' => new ColumnFormatter('sumFormatted'),
+        'format' => new OrderColumnFormatter('sumFormatted'),
         'is_default' => true,
     ],
     [

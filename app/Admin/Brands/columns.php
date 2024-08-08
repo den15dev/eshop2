@@ -1,6 +1,6 @@
 <?php
 
-use App\Admin\Brands\ColumnFormatter;
+use App\Admin\Brands\BrandColumnFormatter;
 
 return [
     [
@@ -27,7 +27,7 @@ return [
         'class_list' => null,
         'order_by' => null,
         'search_field' => null,
-        'format' => new ColumnFormatter('brandImage'),
+        'format' => new BrandColumnFormatter('brandImage'),
         'is_default' => true,
     ],
     [
