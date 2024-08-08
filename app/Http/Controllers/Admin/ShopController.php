@@ -10,7 +10,6 @@ use App\Modules\Languages\LanguageService;
 use App\Modules\Shops\Models\Shop;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use Illuminate\View\View;
 
 class ShopController extends Controller

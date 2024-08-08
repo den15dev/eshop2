@@ -3,7 +3,6 @@
 namespace App\Notifications;
 
 use App\Mail\OrderReadyMailable;
-use App\Mail\OrderSentMailable;
 use App\Modules\Orders\Models\Order;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;

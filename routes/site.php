@@ -23,7 +23,6 @@ use App\Http\Middleware\CheckOrderOwner;
 use Illuminate\Support\Facades\Route;
 
 
-
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::post('/language', [LanguageController::class, 'set'])->name('language.set');
 Route::get('/translations', [LanguageController::class, 'siteTranslations'])->name('translations');

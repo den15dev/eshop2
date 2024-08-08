@@ -17,15 +17,13 @@ class UserService
     {
         $out_dir = self::getDir($user_id);
 
-        // If a user image directory doesn't exist create it
-        if (!is_dir($out_dir)) {
-            mkdir($out_dir);
-        } else {
-            // otherwise clear it.
+        if (is_dir($out_dir)) {
             $old_images = array_diff(scandir($out_dir), array('..', '.'));
             foreach ($old_images as $old_image) {
                 unlink($out_dir . '/' . $old_image);
             }
+        } else {
+            mkdir($out_dir);
         }
 
         $out_path = $out_dir . '/' . $orig_basename . '.jpg';

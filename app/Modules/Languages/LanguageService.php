@@ -40,8 +40,6 @@ class LanguageService
     /**
      * Create default language collection
      * in case a database is empty.
-     *
-     * @return Collection
      */
     private static function createDefault(): Collection
     {
