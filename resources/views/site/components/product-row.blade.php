@@ -23,6 +23,7 @@
                   mb="2"
                   :url="$sku->reviews_url"
                   :rating="$sku->rating"
+                  :ratingformatted="$sku->rating_formatted"
                   :num="$sku->vote_num"/>
 
         <div class="product-row_group1">
