@@ -19,13 +19,6 @@ jobs:
             echo "Deploying..."
             cd /var/www/eshop2
             git pull origin master
-#            docker exec -it eshop2-app bash
-#            php artisan down
-#            composer install --no-dev --optimize-autoloader
-#            php artisan migrate --force
-#            php artisan cache:clear
-#            php artisan up
-#            exit
             echo "Setting user as the directory owner..."
             chown -R ${{ secrets.SSH_USERNAME }}:${{ secrets.SSH_USERNAME }} .
             echo "Deploying done!"
