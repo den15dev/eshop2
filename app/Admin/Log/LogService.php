@@ -43,7 +43,7 @@ class LogService
         $day_log = [];
         $temp_entry = '';
         foreach ($str_arr as $part) {
-            if (preg_match('/^\[(\d{4}-\d{2}-\d{2} [\d:]{7,8})] (local|production).INFO: (\{[\s\S]+)/', $part, $matches)) {
+            if (preg_match('/^\[(\d{4}-\d{2}-\d{2} [\d:]{7,8})] (local|production|testing).INFO: (\{[\s\S]+)/', $part, $matches)) {
                 if ($temp_entry !== '') {
                     $day_log[] = self::createNewEntry($temp_entry);
                 }

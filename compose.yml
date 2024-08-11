@@ -6,7 +6,7 @@ services:
       - ./:/var/www
       - ./docker/nginx/conf.d:/etc/nginx/conf.d
     environment:
-      - VIRTUAL_HOST=${APP_URL}
+      - VIRTUAL_HOST=${APP_VHOST}
     ports:
       - "8001:80"
     depends_on:

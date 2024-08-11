@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->configureForConsole();
+        CommonService::$app_start_time = microtime(true);
 
         // During development, throw an exception when attempting to fill an unfillable attribute
         Model::preventSilentlyDiscardingAttributes(!app()->isProduction());
@@ -43,24 +43,6 @@ class AppServiceProvider extends ServiceProvider
         if (!app()->runningInConsole()) {
             LanguageService::setDefaultLanguage();
             LanguageService::setFallbackLanguage();
-        }
-    }
-
-
-    /**
-     * In case of development with Docker, configure DB hosts
-     * in order to "php artisan" commands work properly.
-     *
-     * @return void
-     */
-    private function configureForConsole(): void
-    {
-        if (!app()->environment(['production']) && app()->runningInConsole()) {
-            config([
-                'database.connections.pgsql.host' => config('app.url'),
-                'database.redis.default.host' => config('app.url'),
-                'database.redis.cache.host' => config('app.url'),
-            ]);
         }
     }
 }
