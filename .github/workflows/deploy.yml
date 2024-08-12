@@ -16,6 +16,11 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
-          username: root
+          port: ${{ secrets.SSH_PORT }}
+          username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: "cd /var/www/eshop2 && ./deploy.sh"
+          script: |
+            eval `ssh-agent -s`
+            ssh-add ~/.ssh/eshop2-github
+            cd /var/www/eshop2
+            git pull origin master
