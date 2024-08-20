@@ -12,7 +12,7 @@ use Illuminate\Database\Seeder;
 
 class ReviewSeeder extends Seeder
 {
-    const REVIEWS_NUM = 20;
+    const REVIEWS_NUM = 100;
     const REACTIONS_MAX_NUM = 5; // Per one review
 
 

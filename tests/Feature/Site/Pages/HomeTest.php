@@ -1,20 +1,20 @@
 <?php
 
-namespace Tests\Feature;
+namespace Site\Pages;
 
 // use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class ExampleTest extends TestCase
+class HomeTest extends TestCase
 {
     /**
      * A basic test example 3.
      */
-    public function test_the_application_returns_a_successful_response(): void
+    public function test_the_home_page_returns_200(): void
     {
         $response = $this->get('/en');
 
         $response->assertStatus(200);
-        $response->assertSeeText('Popular');
+        $response->assertSeeText('Best Prices');
     }
 }

@@ -43,7 +43,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./docker/postgres/postgresql.conf:/var/lib/postgresql/data/postgresql.conf
-      - ./tmp/db:/var/lib/postgresql/data
+      - ./db_data/db:/var/lib/postgresql/data
     networks:
       - nw1
 
@@ -52,6 +52,18 @@ services:
     container_name: eshop2-redis
     ports:
       - "6379:6379"
+    networks:
+      - nw1
+
+  eshop2-nodejs:
+    image: node:22.6-alpine3.19
+    container_name: eshop2-nodejs
+    tty: true
+    ports:
+      - "5173:5173"
+    working_dir: /var/www
+    volumes:
+      - .:/var/www
     networks:
       - nw1
 

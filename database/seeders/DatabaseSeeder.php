@@ -10,10 +10,14 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            UserSeeder::class, // Creates users ONLY if they don't exist yet.
-            ReviewSeeder::class, // Add new reviews every run.
+            // Creates users ONLY if they don't exist yet.
+            UserSeeder::class,
 
-//            ReviewAndUserUnseeder::class, // Clear all fake users, reviews, reactions, and update all SKUs' ratings.
+            // Add 100 new reviews from that users with up to 5 reactions on each every run.
+            ReviewSeeder::class,
+
+            // Clear all fake users, reviews, reactions, and update all SKUs' ratings.
+            // ReviewAndUserUnseeder::class,
         ]);
     }
 }

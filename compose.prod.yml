@@ -2,11 +2,10 @@ services:
   eshop2-nginx:
     image: nginx:1.27.0
     container_name: eshop2-nginx
+    restart: always
     volumes:
       - ./:/var/www
       - ./docker/nginx/conf.d.prod:/etc/nginx/conf.d
-    ports:
-      - "8001:80"
     depends_on:
       - eshop2-app
 
@@ -18,9 +17,10 @@ services:
         user: ${DOCKER_APP_USER}
         uid: ${DOCKER_APP_UID}
       context: .
-      dockerfile: docker/app/Dockerfile.prod
+      dockerfile: docker/app/Dockerfile
     image: eshop2-app
     container_name: eshop2-app
+    restart: always
     volumes:
       - ./:/var/www
 
@@ -32,7 +32,7 @@ services:
       POSTGRES_USER: ${DB_USERNAME}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       PGDATA: "/var/lib/postgresql/data/pgdata"
-    restart: unless-stopped
+    restart: always
     volumes:
       - ./docker/postgres/postgresql.conf:/var/lib/postgresql/data/postgresql.conf
       - ./dbdata:/var/lib/postgresql/data
