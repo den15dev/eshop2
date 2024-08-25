@@ -2,54 +2,57 @@
 
 namespace App\Modules\Categories\Commands;
 
+use App\Console\Commands\BaseCommand;
 use App\Modules\Categories\Models\Category;
-use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 
-class AddCategories extends Command
+class AddCategories extends BaseCommand
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
     protected $signature = 'app:add-categories';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
     protected $description = 'Fill DB with categories';
 
-    /**
-     * Execute the console command.
-     */
+
     public function handle(): void
     {
-        $this->createCategories();
-        $this->info('Categories added to DB');
-    }
-
-    private function createCategories(): void
-    {
-        $categories = include_once __DIR__ . '/../Data/categories.php';
+        $categories = include __DIR__ . '/../Data/categories.php';
         $records = self::buildCategoryList($categories);
 
-        Category::upsert($records, 'id');
+        if (Category::count() == 0) {
+            foreach ($records as $record) {
+                Category::create($record);
+            }
 
-        // Fix for PostgreSQL after the upsert: sync the id sequence with the max Pkeys.
-        DB::statement('SELECT setval(\'categories_id_seq\', max(id)) FROM categories');
+            // Fix for PostgreSQL: sync the id sequence with the max Pkeys.
+            DB::statement('SELECT setval(\'categories_id_seq\', max(id)) FROM categories');
+
+            $this->info('Categories added to main DB');
+
+        } else {
+            echo 'Categories already exist in main DB' . PHP_EOL;
+        }
+
+        if (parent::$test_db_connection) {
+            if (Category::on(parent::$test_db_connection)->count() == 0) {
+                foreach ($records as $record) {
+                    Category::on(parent::$test_db_connection)->create($record);
+                }
+
+                DB::connection(parent::$test_db_connection)
+                    ->statement('SELECT setval(\'categories_id_seq\', max(id)) FROM categories');
+
+                $this->info('Categories added to testing DB');
+
+            } else {
+                echo 'Categories already exist in testing DB' . PHP_EOL;
+            }
+        }
     }
 
 
     /**
      * Build a flat associative array for a database
      * from a multidimensional array with nested subcategories.
-     *
-     * @param array $input_arr
-     * @param array $out_arr
-     * @return array
      */
     private static function buildCategoryList(array $input_arr, array $out_arr = []): array
     {
@@ -68,7 +71,7 @@ class AddCategories extends Command
                 'sort' => $sort,
             ];
 
-            array_push($out_arr, $new_cat);
+            $out_arr[] = $new_cat;
             $id++;
             $sort++;
 

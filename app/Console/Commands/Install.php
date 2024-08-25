@@ -9,25 +9,20 @@ use App\Modules\Languages\Commands\AddLanguages;
 use App\Modules\Promos\Commands\AddPromos;
 use App\Modules\StaticPages\Commands\AddStaticPageParams;
 use App\Modules\Shops\Commands\AddShops;
-use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\DB;
 
-class InstallCommand extends Command
+class Install extends BaseCommand
 {
-    /**
-     * The name and signature of the console command.
-     */
     protected $signature = 'app:install';
 
-    /**
-     * The console command description.
-     */
     protected $description = 'Install application';
 
-    /**
-     * Execute the console command.
-     */
+
     public function handle(): void
     {
+        $this->setTestDbConnection();
+
         $this->createImageDirs();
         $this->call(AddLanguages::class);
         $this->call(AddCurrencies::class);
@@ -60,6 +55,26 @@ class InstallCommand extends Command
             if (!file_exists($dir_path) || !is_dir($dir_path)) {
                 mkdir($dir_path);
             }
+        }
+    }
+
+
+    private function setTestDbConnection(): void
+    {
+        echo 'Trying to connect to testing database. Please wait...' . PHP_EOL;
+
+        try {
+            DB::connection(config('database.testing'))->getPdo();
+
+            echo 'Testing database is up, will be populated too.' . PHP_EOL;
+            parent::$test_db_connection = config('database.testing');
+
+            echo 'Running migrations for testing database...' . PHP_EOL;
+            Artisan::call('migrate', ['--database' => config('database.testing')]);
+            $this->info('Migrations for testing DB ran');
+
+        } catch (\Exception $e) {
+            echo 'Can\'t connect to testing database. Skipping.' . PHP_EOL;
         }
     }
 }

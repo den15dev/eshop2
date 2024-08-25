@@ -14,9 +14,6 @@ class UpdateRates extends Command
     protected $description = 'Update currency exchange rates';
 
 
-    /**
-     * Execute the console command.
-     */
     public function handle(CurrencyService $currencyService)
     {
         $this->updateRates($currencyService);

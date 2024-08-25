@@ -36,7 +36,7 @@ class LayoutComposer
         $is_popup_collapsed = $comparisonData?->is_popup_collapsed;
 
         $settings = StaticPageParam::getGeneral();
-        $phone = $settings->firstWhere('name', 'phone')->val;
+        $phone = $settings->firstWhere('name', 'phone')?->val;
         $phone_tel = str_replace([' ', '(', ')', '-'], '', $phone);
 
         $view->with(compact(

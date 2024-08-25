@@ -47,6 +47,23 @@ services:
     networks:
       - nw1
 
+  eshop2-db-test:
+    image: postgres:16.0
+    container_name: eshop2-db-test
+    environment:
+      POSTGRES_DB: ${DB_TEST_DATABASE}
+      POSTGRES_USER: ${DB_TEST_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    ports:
+      - "15432:5432"
+    restart: unless-stopped
+    volumes:
+      - ./docker/postgres/postgresql.conf:/var/lib/postgresql/data/postgresql.conf
+      - ./db_data/db_test:/var/lib/postgresql/data
+    networks:
+      - nw1
+
   eshop2-redis:
     image: redis:7.2.3
     container_name: eshop2-redis

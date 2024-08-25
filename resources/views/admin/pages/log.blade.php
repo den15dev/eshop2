@@ -25,7 +25,11 @@
                             @foreach($day_block as $entry)
                                 <div class="log-day_entry">
                                     <div class="log-day_entry_time">{{ $entry->time }}</div>
-                                    <x-dynamic-component :component="'admin::log.' . $entry->type" :data="$entry->data" />
+                                    @if($entry->type === 'error' && !$is_admin)
+                                        <x-admin::log.error-guest />
+                                    @else
+                                        <x-dynamic-component :component="'admin::log.' . $entry->type" :data="$entry->data" />
+                                    @endif
                                 </div>
                             @endforeach
                         </div>

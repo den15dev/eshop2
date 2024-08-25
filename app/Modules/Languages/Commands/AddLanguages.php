@@ -2,42 +2,48 @@
 
 namespace App\Modules\Languages\Commands;
 
+use App\Console\Commands\BaseCommand;
 use App\Modules\Languages\Models\Language;
-use Illuminate\Console\Command;
 
-class AddLanguages extends Command
+class AddLanguages extends BaseCommand
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
     protected $signature = 'app:add-languages';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
     protected $description = 'Fill DB with languages';
 
-    /**
-     * Execute the console command.
-     */
+
     public function handle()
     {
-        $this->createLanguages();
-        $this->info('Languages added to DB');
+        $records = $this->getLanguages();
+
+        if (Language::count() == 0) {
+            foreach ($records as $record) {
+                Language::create($record);
+            }
+            $this->info('Languages added to main DB');
+        } else {
+            echo 'Languages already exist in main DB' . PHP_EOL;
+        }
+
+        if (parent::$test_db_connection) {
+            if (Language::on(parent::$test_db_connection)->count() == 0) {
+                foreach ($records as $record) {
+                    Language::on(parent::$test_db_connection)->create($record);
+                }
+                $this->info('Languages added to testing DB');
+            } else {
+                echo 'Languages already exist in testing DB' . PHP_EOL;
+            }
+        }
     }
 
-    private function createLanguages(): void
+
+    private function getLanguages(): array
     {
-        $records = [
+        return [
             ['id' => 'en', 'name' => 'English', 'active' => true, 'default' => true, 'fallback' => true],
             ['id' => 'ru', 'name' => 'Русский', 'active' => true, 'default' => false, 'fallback' => false],
             ['id' => 'de', 'name' => 'Deutsch', 'active' => true, 'default' => false, 'fallback' => false],
         ];
-
-        Language::upsert($records, 'id');
     }
 }
