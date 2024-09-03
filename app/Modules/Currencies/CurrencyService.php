@@ -12,27 +12,24 @@ use Illuminate\Support\Facades\Cache;
 
 class CurrencyService
 {
-    public const RATE_SUBQUERY = '(SELECT currencies.exchange_rate FROM currencies where skus.currency_id = currencies.id)';
+    public const COOKIE = 'curr';
 
+    public const RATE_SUBQUERY = '(SELECT currencies.exchange_rate FROM currencies where skus.currency_id = currencies.id)';
 
     /**
      * Current preferred currency.
      * In admin panel, it is null.
      */
-    public static ?Currency $cur_currency = null;
+    private static ?Currency $cur_currency = null;
 
     /**
      * All currencies will be stored here.
-     *
-     * @var Collection|null
      */
     private static ?Collection $currencies = null;
 
 
     /**
      * Get all currencies and store them in static property.
-     *
-     * @return Collection
      */
     public static function getAll(): Collection
     {
@@ -51,8 +48,6 @@ class CurrencyService
     /**
      * Create default currency collection
      * in case a database is empty.
-     *
-     * @return Collection
      */
     private static function createDefault(): Collection
     {
@@ -71,24 +66,32 @@ class CurrencyService
 
 
     /**
-     * For convenience, move preferred currency
-     * to the beginning of the collection.
-     *
-     * @param string $pref_currency_id
-     * @return void
+     * Get current currency.
      */
-    public static function sortCurrency(string $pref_currency_id): void
+    public static function getCurrent(): Currency
     {
-        if (self::$currencies !== null) {
-            self::$currencies = self::$currencies->sortBy(fn($item) => $item->id !== $pref_currency_id);
-        }
+        if (self::$cur_currency === null) self::setCurrency();
+
+        return self::$cur_currency;
     }
 
 
-    public static function setCurrency($currency_id): void
+    /**
+     * Set current currency.
+     */
+    public static function setCurrency(?string $currency_id = null): void
     {
-        self::sortCurrency($currency_id);
-        self::$cur_currency = self::$currencies->firstWhere('id', $currency_id);
+        $currencies = self::getAll();
+
+        if (!$currency_id || $currencies->doesntContain('id', $currency_id)) {
+            $lang = app()->getLocale();
+            $currency_id = $currencies->firstWhere('language_id', $lang)?->id ?? 'usd';
+        }
+
+        // Move preferred currency to the beginning of the collection
+        self::$currencies = self::$currencies->sortBy(fn($item) => $item->id !== $currency_id);
+
+        self::$cur_currency = self::getAll()->firstWhere('id', $currency_id);
     }
 
 

@@ -11,17 +11,16 @@ use Illuminate\Support\Facades\Cache;
 
 class LanguageService
 {
+    public const COOKIE = 'lang';
+
     /**
      * All languages will be stored here.
-     * @var Collection|null
      */
     private static ?Collection $languages = null;
 
 
     /**
      * Get all languages and store them in static property.
-     *
-     * @return Collection
      */
     public static function getAll(): Collection
     {

@@ -13,8 +13,8 @@ class GetPriceRangeAction
         $price_range = new \stdClass();
         $price_range->min = '';
         $price_range->max = '';
-        $price_range->symbol = CurrencyService::$cur_currency->symbol;
-        $price_range->is_precedes = CurrencyService::$cur_currency->symbol_precedes;
+        $price_range->symbol = CurrencyService::getCurrent()->symbol;
+        $price_range->is_precedes = CurrencyService::getCurrent()->symbol_precedes;
 
         $skus = $db_query->get();
 
@@ -24,7 +24,7 @@ class GetPriceRangeAction
         }
 
         if (count($prices)) {
-            $curr_id = CurrencyService::$cur_currency->id;
+            $curr_id = CurrencyService::getCurrent()->id;
             $price_range->min = Price::from(min($prices), $curr_id)->formatted;
             $price_range->max = Price::from(max($prices), $curr_id)->formatted;
         }

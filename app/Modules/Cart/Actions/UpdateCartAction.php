@@ -36,9 +36,9 @@ class UpdateCartAction
         $response->item = null;
         $response->total = null;
         if ($get_cost) {
-            $skus = GetSkuCostsAction::run($cart);
-            $response->item = $skus->firstWhere('id', $sku_id);
-            $response->total = GetTotalCostAction::run($skus);
+            $sku_costs = GetSkuCostsAction::run($cart);
+            $response->item = $sku_costs->firstWhere('id', $sku_id);
+            $response->total = GetTotalCostAction::run($sku_costs);
         }
 
         if (!$user_id) return $response;

@@ -2,9 +2,11 @@
 
 namespace App\Modules\Brands\Models;
 
+use App\Modules\Brands\Factories\BrandFactory;
 use App\Modules\Common\CommonService;
 use App\Modules\Products\Models\Product;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
@@ -18,6 +20,12 @@ class Brand extends Model
     public array $translatable = ['description'];
     protected $guarded = [];
     const IMG_DIR = 'brands';
+
+
+    protected static function newFactory(): Factory
+    {
+        return BrandFactory::new();
+    }
 
 
     public function products(): HasMany

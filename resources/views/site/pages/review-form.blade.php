@@ -31,11 +31,14 @@
 
     <div class="mb-3">
         <label for="termOfUseSelect" class="form-label">{{ __('reviews.form.term') }}:</label>
+        @php
+            $termOfUse = \App\Modules\Reviews\Enums\TermOfUse::class;
+        @endphp
         <select class="form-select" name="term" aria-label="{{ __('reviews.form.title') }}" id="termOfUseSelect">
-            <option value="days" selected>{{ __('reviews.term.days') }}</option>
-            <option value="weeks">{{ __('reviews.term.weeks') }}</option>
-            <option value="months">{{ __('reviews.term.months') }}</option>
-            <option value="years">{{ __('reviews.term.years') }}</option>
+            <option value="{{ $termOfUse::Days->value }}" selected>{{ $termOfUse::Days->description() }}</option>
+            <option value="{{ $termOfUse::Weeks->value }}">{{ $termOfUse::Weeks->description() }}</option>
+            <option value="{{ $termOfUse::Months->value }}">{{ $termOfUse::Months->description() }}</option>
+            <option value="{{ $termOfUse::Years->value }}">{{ $termOfUse::Years->description() }}</option>
         </select>
     </div>
 

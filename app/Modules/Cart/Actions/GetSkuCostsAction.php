@@ -23,7 +23,7 @@ class GetSkuCostsAction
                 DB::raw(Sku::DISCOUNT . ' as discount'),
             )
             ->whereIn('skus.id', $ids)
-            ->orderByRaw(order_by_array($ids))
+            ->orderByRaw(order_by_array($ids, 'skus.id'))
             ->active()
             ->get();
 

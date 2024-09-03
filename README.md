@@ -73,7 +73,7 @@ Run migrations:\
 Generate app key:\
 `$ php artisan key:generate`
 
-Run all necessary app installation commands. This will populate main database with languages, currencies, categories, promos, stores, static pages' parameters, and update currency rates. Also, if the testing database is connectable (separate Postgres Docker container), this command will run migrations for it and populate it for testing:\
+Run all necessary app installation commands. This will populate main database with 3 languages, 3 currencies, 115 categories, promos, stores, static pages' parameters, and update currency rates. Also, if the testing database is connectable (separate Postgres Docker container), this command will run migrations for it and populate it with data required for tests:\
 `$ php artisan app:install`
 
 Generate storage symbolic link:\

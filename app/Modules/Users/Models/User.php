@@ -8,8 +8,10 @@ use App\Modules\Favorites\Models\Favorite;
 use App\Modules\Orders\Models\Order;
 use App\Modules\Reviews\Models\Reaction;
 use App\Modules\Reviews\Models\Review;
+use App\Modules\Users\Factories\UserFactory;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -40,6 +42,12 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     const IMG_DIR = 'users';
+
+
+    protected static function newFactory(): Factory
+    {
+        return UserFactory::new();
+    }
 
 
     public function orders(): HasMany

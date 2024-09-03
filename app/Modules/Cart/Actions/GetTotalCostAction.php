@@ -20,14 +20,14 @@ class GetTotalCostAction
         }
 
         $total->final_cost = $final_cost;
-        $total->final_cost_formatted = Price::from($final_cost, CurrencyService::$cur_currency->id)->formatted_full;
+        $total->final_cost_formatted = Price::from($final_cost, CurrencyService::getCurrent()->id)->formatted_full;
 
         if ($final_cost === $cost) {
             $total->cost = null;
             $total->cost_formatted = null;
         } else {
             $total->cost = $cost;
-            $total->cost_formatted = Price::from($cost, CurrencyService::$cur_currency->id)->formatted_full;
+            $total->cost_formatted = Price::from($cost, CurrencyService::getCurrent()->id)->formatted_full;
         }
 
         return $total;

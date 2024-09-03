@@ -5,8 +5,10 @@ namespace App\Modules\Reviews\Models;
 use App\Modules\Common\CommonService;
 use App\Modules\Products\Models\Sku;
 use App\Modules\Reviews\Enums\TermOfUse;
+use App\Modules\Reviews\Factories\ReviewFactory;
 use App\Modules\Users\Models\User;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -20,6 +22,12 @@ class Review extends Model
     protected $casts = [
         'term' => TermOfUse::class,
     ];
+
+
+    protected static function newFactory(): Factory
+    {
+        return ReviewFactory::new();
+    }
 
 
     public function sku(): BelongsTo

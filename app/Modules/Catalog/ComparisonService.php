@@ -48,7 +48,7 @@ class ComparisonService
                 'categories.slug as category_slug',
             )
             ->whereIn('skus.id', $ids)
-            ->orderByRaw(order_by_array($ids))
+            ->orderByRaw(order_by_array($ids, 'skus.id'))
             ->get();
     }
 
@@ -72,7 +72,7 @@ class ComparisonService
                 DB::raw(Sku::DISCOUNT . ' as discount'),
             )
             ->whereIn('skus.id', $ids)
-            ->orderByRaw(order_by_array($ids))
+            ->orderByRaw(order_by_array($ids, 'skus.id'))
             ->get();
     }
 

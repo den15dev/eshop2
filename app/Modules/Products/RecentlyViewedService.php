@@ -30,7 +30,7 @@ class RecentlyViewedService
             ->joinActivePromos()
             ->selectForCards()
             ->whereIn('skus.id', $ids)
-            ->orderByRaw(order_by_array($ids))
+            ->orderByRaw(order_by_array($ids, 'skus.id'))
             ->get();
     }
 

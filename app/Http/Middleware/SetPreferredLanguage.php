@@ -18,7 +18,7 @@ class SetPreferredLanguage
     {
         $languages = LanguageService::getActive();
 
-        $cookie_lang_id = $request->cookie('lang');
+        $cookie_lang_id = $request->cookie(LanguageService::COOKIE);
 
         if ($cookie_lang_id && $languages->contains('id', $cookie_lang_id)) {
             $pref_lang_id = $cookie_lang_id;

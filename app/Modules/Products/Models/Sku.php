@@ -12,11 +12,13 @@ use App\Modules\Currencies\Models\Currency;
 use App\Modules\Favorites\FavoriteService;
 use App\Modules\Favorites\Models\Favorite;
 use App\Modules\Orders\Models\OrderItem;
+use App\Modules\Products\Factories\SkuFactory;
 use App\Modules\Products\ValueObjects\Price;
 use App\Modules\Promos\Models\Promo;
 use App\Modules\Reviews\Models\Review;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -58,6 +60,12 @@ class Sku extends Model
     const DISCOUNT = 'COALESCE(skus.discount, promos.discount, 0)';
     const DISCOUNT_FILTERED = 'COALESCE(skus.discount, (CASE WHEN promos.starts_at <= NOW() AND promos.ends_at > NOW() THEN promos.discount ELSE NULL END), 0)';
     const FINAL_PRICE = '((skus.price * (100 - COALESCE(skus.discount, promos.discount, 0)) / 100))';
+
+
+    protected static function newFactory(): Factory
+    {
+        return SkuFactory::new();
+    }
 
 
     public function specifications(): BelongsToMany
@@ -181,12 +189,12 @@ class Sku extends Model
     public function scopeFilterByPrice(Builder $query, array $query_arr): void
     {
         if (isset($query_arr['price_min']) && is_numeric($query_arr['price_min'])) {
-            $price_min = bcmul(Price::parse($query_arr['price_min']), CurrencyService::$cur_currency->exchange_rate);
+            $price_min = bcmul(Price::parse($query_arr['price_min']), CurrencyService::getCurrent()->exchange_rate);
             $query = $query->where(DB::raw(self::FINAL_PRICE . ' * ' . CurrencyService::RATE_SUBQUERY), '>=', $price_min);
         }
 
         if (isset($query_arr['price_max']) && is_numeric($query_arr['price_max'])) {
-            $price_max = bcmul(Price::parse($query_arr['price_max']), CurrencyService::$cur_currency->exchange_rate);
+            $price_max = bcmul(Price::parse($query_arr['price_max']), CurrencyService::getCurrent()->exchange_rate);
             $query = $query->where(DB::raw(self::FINAL_PRICE . ' * ' . CurrencyService::RATE_SUBQUERY), '<=', $price_max);
         }
     }
@@ -238,8 +246,8 @@ class Sku extends Model
 
     public function getRatingFormattedAttribute(): ?string
     {
-        $decimal_sep = CurrencyService::$cur_currency->decimal_sep;
-        $thousands_sep = CurrencyService::$cur_currency->thousands_sep;
+        $decimal_sep = CurrencyService::getCurrent()->decimal_sep;
+        $thousands_sep = CurrencyService::getCurrent()->thousands_sep;
 
         return $this->rating ? number_format($this->rating, 1, $decimal_sep, $thousands_sep) : null;
     }

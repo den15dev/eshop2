@@ -24,7 +24,7 @@ class Price
         $this->value = $value;
         $currencies = CurrencyService::getAll();
 
-        if ($to_currency_id && $to_currency_id !== CurrencyService::$cur_currency?->id) {
+        if ($to_currency_id && $to_currency_id !== CurrencyService::getCurrent()->id) {
             self::$to_currency = $currencies->firstWhere('id', $to_currency_id);
 
             if ($to_currency_id === $from_currency_id) {
@@ -35,14 +35,14 @@ class Price
                 $this->converted = $this->getConverted($value, self::$from_currency->id, self::$to_currency->id);
             }
 
-        } elseif ($from_currency_id && $from_currency_id !== CurrencyService::$cur_currency?->id) {
-            self::$to_currency = CurrencyService::$cur_currency;
+        } elseif ($from_currency_id && $from_currency_id !== CurrencyService::getCurrent()->id) {
+            self::$to_currency = CurrencyService::getCurrent();
             self::$from_currency = $currencies->firstWhere('id', $from_currency_id);
 
             $this->converted = $this->getConverted($value, self::$from_currency->id, self::$to_currency->id);
 
         } else {
-            self::$to_currency = CurrencyService::$cur_currency;
+            self::$to_currency = CurrencyService::getCurrent();
             $this->converted = $value;
         }
 

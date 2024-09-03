@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 class CartService
 {
     public const COOKIE = 'cart';
-    private static array $cart = [];
+    private static ?array $cart = null;
 
 
     public function __construct(
@@ -21,7 +21,7 @@ class CartService
     ){}
 
 
-    public static function setCart(?string $cookie): void
+    public static function setCart(?string $cookie = null): void
     {
         $user_id = Auth::id();
 
@@ -42,12 +42,19 @@ class CartService
 
         } elseif ($cookie) {
             self::$cart = json_decode($cookie);
+
+        } else {
+            self::$cart = [];
         }
     }
 
 
     public static function getCart(): array
     {
+        if (is_null(self::$cart)) {
+            self::setCart();
+        }
+
         return self::$cart;
     }
 

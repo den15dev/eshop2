@@ -16,7 +16,7 @@ class LanguageController extends Controller
         $new_lang_id = $request->input('new_language');
         abort_unless(Language::where('id', $new_lang_id)->exists(), 404);
 
-        $cookie = cookie()->forever('lang', $new_lang_id);
+        $cookie = cookie()->forever(LanguageService::COOKIE, $new_lang_id);
 
         if (config('app.lang_url_priority')) {
             return $this->withURLPriority($cookie, $new_lang_id);

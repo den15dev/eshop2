@@ -2,6 +2,8 @@
 
 namespace App\Modules\Products\Models;
 
+use App\Modules\Products\Factories\AttributeFactory;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -14,6 +16,12 @@ class Attribute extends Model
     public array $translatable = ['name'];
 
     protected $guarded = [];
+
+
+    protected static function newFactory(): Factory
+    {
+        return AttributeFactory::new();
+    }
 
 
     public function product(): BelongsTo

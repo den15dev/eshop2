@@ -9,6 +9,7 @@ use App\Modules\Languages\Commands\AddLanguages;
 use App\Modules\Promos\Commands\AddPromos;
 use App\Modules\StaticPages\Commands\AddStaticPageParams;
 use App\Modules\Shops\Commands\AddShops;
+use Database\Seeders\TestingDBSeeder;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 
@@ -17,6 +18,14 @@ class Install extends BaseCommand
     protected $signature = 'app:install';
 
     protected $description = 'Install application';
+
+
+    public function __construct(
+        private readonly TestingDBSeeder $testingDBSeeder
+    )
+    {
+        parent::__construct();
+    }
 
 
     public function handle(): void
@@ -31,6 +40,7 @@ class Install extends BaseCommand
         $this->call(AddShops::class);
         $this->call(AddPromos::class);
         $this->call(AddCategories::class);
+        $this->seedTestingDB();
         $this->info('Application installed');
     }
 
@@ -75,6 +85,16 @@ class Install extends BaseCommand
 
         } catch (\Exception $e) {
             echo 'Can\'t connect to testing database. Skipping.' . PHP_EOL;
+        }
+    }
+
+
+    private function seedTestingDB(): void
+    {
+        if (parent::$test_db_connection) {
+            echo 'Seeding testing database...' . PHP_EOL;
+            $this->testingDBSeeder->run();
+            $this->info('Testing DB seeded');
         }
     }
 }

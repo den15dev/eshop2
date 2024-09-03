@@ -37,13 +37,20 @@ if (!function_exists('active_link')) {
 
 
 if (!function_exists('order_by_array')) {
-    function order_by_array(?array $arr): string
+    /**
+     * Order DB fetch results by array of values.
+     *
+     * @param array|null $arr
+     * @param string $column - db column for ordering, e.g. 'products.id'
+     * @return string
+     */
+    function order_by_array(?array $arr, string $column): string
     {
         if (!$arr || !count($arr)) return '';
 
         return match (config('database.default')) {
-            'pgsql' => 'ARRAY_POSITION(ARRAY[' . implode(', ', $arr) . '], skus.id)',
-            'mysql' => 'FIELD(skus.id, ' . implode(', ', $arr) . ')',
+            'pgsql', 'pgsql_test' => 'ARRAY_POSITION(ARRAY[' . implode(', ', $arr) . '], ' . $column . ')',
+            'mysql', 'mysql_test' => 'FIELD(' . $column . ', ' . implode(', ', $arr) . ')',
             default => '',
         };
     }
@@ -52,7 +59,7 @@ if (!function_exists('order_by_array')) {
 
 if (!function_exists('parse_slug')) {
     /**
-     * Explodes "slug-id"-type slug to array [slug, id].
+     * Explode "slug-id"-type slug to array [slug, id].
      *
      * @param string $slug_id - incoming "slug-id"-type slug.
      * @return array - like [slug, id].

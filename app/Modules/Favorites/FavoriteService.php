@@ -62,7 +62,7 @@ class FavoriteService
             ->joinActivePromos()
             ->selectForCards()
             ->whereIn('skus.id', $ids)
-            ->orderByRaw(order_by_array($ids));
+            ->orderByRaw(order_by_array($ids, 'skus.id'));
     }
 
 

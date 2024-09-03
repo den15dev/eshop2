@@ -62,7 +62,7 @@ class SkuController extends Controller
         $languages = LanguageService::getAll();
         $currencies = CurrencyService::getAll();
         $promos = PromoService::getAllPromos();
-        $final_prices = $this->productService->getSkuFinalPrices(0, CurrencyService::$cur_currency->id, null, null);
+        $final_prices = $this->productService->getSkuFinalPrices(0, CurrencyService::getCurrent()->id, null, null);
         $category_specs = $this->productService->getCategorySpecs($product->category_id);
 
         return view('admin.pages.skus.create', compact(

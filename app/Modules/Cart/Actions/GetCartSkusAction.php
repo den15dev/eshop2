@@ -32,7 +32,7 @@ class GetCartSkusAction
             )
             ->whereIn('skus.id', $ids)
             ->when(count($ids), function (EBuilder $query) use ($ids) {
-                $query->orderByRaw(order_by_array($ids));
+                $query->orderByRaw(order_by_array($ids, 'skus.id'));
             })
             ->active()
             ->get();

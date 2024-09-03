@@ -2,8 +2,10 @@
 
 namespace App\Modules\Orders\Models;
 
+use App\Modules\Orders\Factories\OrderItemFactory;
 use App\Modules\Products\Models\Sku;
 use App\Modules\Products\ValueObjects\Price;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -12,6 +14,12 @@ class OrderItem extends Model
     protected $guarded = [];
 
     public $timestamps = false;
+
+
+    protected static function newFactory(): Factory
+    {
+        return OrderItemFactory::new();
+    }
 
 
     public function sku(): BelongsTo

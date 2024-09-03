@@ -25,7 +25,7 @@ class CreateOrderAction
         }
 
         $order->user_id = $user_id;
-        $order->currency_id = CurrencyService::$cur_currency->id;
+        $order->currency_id = CurrencyService::getCurrent()->id;
         $order->language_id = app()->getLocale();
 
         $skus = $this->cartService->getCartSkus();

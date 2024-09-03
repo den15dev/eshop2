@@ -5,7 +5,9 @@ namespace App\Modules\Products\Models;
 use App\Modules\Brands\Models\Brand;
 use App\Modules\Categories\Models\Category;
 use App\Modules\Common\CommonService;
+use App\Modules\Products\Factories\ProductFactory;
 use Illuminate\Database\Eloquent\Casts\Attribute as ModelAttribute;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -22,6 +24,12 @@ class Product extends Model
     ];
 
     protected $guarded = [];
+
+
+    protected static function newFactory(): Factory
+    {
+        return ProductFactory::new();
+    }
 
 
     public function category(): BelongsTo

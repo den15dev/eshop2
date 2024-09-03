@@ -10,11 +10,13 @@ use App\Modules\Orders\Enums\DeliveryMethod;
 use App\Modules\Orders\Enums\OrderStatus;
 use App\Modules\Orders\Enums\PaymentMethod;
 use App\Modules\Orders\Enums\PaymentStatus;
+use App\Modules\Orders\Factories\OrderFactory;
 use App\Modules\Products\ValueObjects\Price;
 use App\Modules\Shops\Models\Shop;
 use App\Modules\Users\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -30,6 +32,12 @@ class Order extends Model
         'payment_method' => PaymentMethod::class,
         'delivery_method' => DeliveryMethod::class,
     ];
+
+
+    protected static function newFactory(): Factory
+    {
+        return OrderFactory::new();
+    }
 
 
     public function orderItems(): HasMany

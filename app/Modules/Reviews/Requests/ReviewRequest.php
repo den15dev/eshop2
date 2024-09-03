@@ -5,35 +5,29 @@ namespace App\Modules\Reviews\Requests;
 use App\Http\Requests\RequestHelper;
 use App\Modules\Reviews\Enums\TermOfUse;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class ReviewRequest extends FormRequest
 {
     use RequestHelper;
 
-    /**
-     * Determine if the user is authorized to make this request.
-     */
+
     public function authorize(): bool
     {
-        return true;
+        return Auth::check();
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     */
+
     public function rules(): array
     {
-        $terms = implode(',', array_column(TermOfUse::cases(), 'value'));
-
-        $rules = [
+        return [
             'mark' => ['required', 'numeric', 'max:5'],
             'sku_id' => ['required', 'numeric'],
-            'term' => ['required', "in:{$terms}"],
+            'term' => ['required', Rule::enum(TermOfUse::class)],
             'pros' => ['nullable', 'max:1500'],
             'cons' => ['nullable', 'max:1500'],
             'comnt' => ['nullable', 'max:1500'],
         ];
-
-        return $rules;
     }
 }
