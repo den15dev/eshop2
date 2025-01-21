@@ -1,6 +1,7 @@
 <?php
 return [
     "filters" => ["apply" => "Sich bewerben", "reset" => "Zurücksetzen"],
+
     "layout_settings" => [
         "on_page" => "Auf Seite:",
         "sort" => [
@@ -11,7 +12,9 @@ return [
             "popular" => "Populär zuerst"
         ]
     ],
-    "no_products" => "Keine Produkte",
+
+    "recent" => "Zuletzt angesehen",
     "product_num" => ":count Produkt|:count Produkte",
-    "recent" => "Zuletzt angesehen"
+    "no_products" => "Keine Produkte",
+    'no_products_found' => 'Keine Produkte gefunden',
 ];

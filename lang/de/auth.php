@@ -16,7 +16,7 @@ return [
         "register" => "Registrieren",
         "registration" => "Registrieren",
         "registration_success" => [
-            "link_sent" => "Ein E-Mail-Bestätigungslink wurde an :addressgesendet.",
+            "link_sent" => "Ein E-Mail-Bestätigungslink wurde an :address.",
             "welcome" => "Willkommen, :name!"
         ],
         "remember" => "Erinnere dich an mich",

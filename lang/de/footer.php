@@ -8,7 +8,7 @@ return [
         "title" => "Unternehmen",
         "vacancies" => "Stellenangebote"
     ],
-    "copyright" => "Demo E-Commerce Web-App basierend auf Laravel und Vanilla JS von",
+    "copyright" => "Demo E-Commerce Web-App basierend auf Laravel und Vanilla JS",
     "for_buyers" => [
         "corp_departments" => "Unternehmensbereiche",
         "credits" => "Credits",

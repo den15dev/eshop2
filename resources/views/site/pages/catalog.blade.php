@@ -6,19 +6,19 @@
     <div class="container">
         <x-breadcrumb :breadcrumb="$breadcrumb"/>
 
-        @if($skus->count())
-            <div class="catalog-page-wrap mb-6">
-                <div class="sidebar-cont">
-                    <form method="GET" action="" id="filterFormDesktop">
-                        @include('site.pages.' . $filters . '-filters', ['ismobile' => false])
+        <div class="catalog-page-wrap mb-6">
+            <div class="sidebar-cont">
+                <form method="GET" action="" id="filterFormDesktop">
+                    @include('site.pages.' . $filters . '-filters', ['ismobile' => false])
 
-                        <div class="filters_btn-cont">
-                            <button type="submit">{{ __('catalog.filters.apply') }}</button>
-                            <a href="{{ $filter_reset_url }}" class="btn btn-bg-grey">{{ __('catalog.filters.reset') }}</a>
-                        </div>
-                    </form>
-                </div>
+                    <div class="filters_btn-cont">
+                        <button type="submit">{{ __('catalog.filters.apply') }}</button>
+                        <a href="{{ $filter_reset_url }}" class="btn btn-bg-grey">{{ __('catalog.filters.reset') }}</a>
+                    </div>
+                </form>
+            </div>
 
+            @if($skus->count())
                 <div class="catalog-cont">
                     @include('site.pages.catalog-prefs')
 
@@ -38,12 +38,12 @@
                     {{ $skus->hasPages() ? $skus->links('common.pagination.results-shown') : '' }}
                     {{ $skus->onEachSide(1)->withQueryString()->links('common.pagination.page-links') }}
                 </div>
-            </div>
-        @else
-            <div class="items-not-found">
-                {{ __('catalog.no_products') }}
-            </div>
-        @endif
+            @else
+                <div class="items-not-found">
+                    {{ __('catalog.no_products_found') }}
+                </div>
+            @endif
+        </div>
 
 
         @if($recently_viewed->count())

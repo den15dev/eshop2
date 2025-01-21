@@ -74,6 +74,7 @@
 
     <div class="container footer-copyright-cont">
         <hr />
-        &copy; {{ date('Y') }} {{ __('footer.copyright') }} <a href="https://github.com/den15dev/eshop2" class="link">den15</a>
+        &copy; 2024 {{ __('footer.copyright') }}<br>
+        <a href="https://github.com/den15dev/eshop2" class="link">Github</a>
     </div>
 </footer>

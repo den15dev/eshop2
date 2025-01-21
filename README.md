@@ -1,8 +1,8 @@
 ## About This App
 
-This is a multi-language E-commerce web application with an admin panel. It is made using Laravel PHP framework, Blade templates, vanilla Javascript organized in ES modules, pure CSS written with a SCSS preprocessor, and Vite.js for building assets. For form elements, some Bootstrap modules were used.
+This is a traditional monolithic multi-language E-commerce web application with an admin panel. It is made using Laravel PHP framework, Blade templates, vanilla Javascript organized in ES modules, pure CSS written with a SCSS preprocessor, and Vite.js for building assets. For form elements, some Bootstrap modules were used.
 
-[Demo website](https://eshop2.den15.dev)
+[Live demo](https://eshop2.den15.dev)
 
 The following features were implemented:
 

@@ -1,6 +1,7 @@
 <?php
 return [
     "filters" => ["apply" => "Apply", "reset" => "Reset"],
+
     "layout_settings" => [
         "on_page" => "On page:",
         "sort" => [
@@ -11,7 +12,9 @@ return [
             "popular" => "Popular first"
         ]
     ],
-    "no_products" => "No products",
+
+    "recent" => "Recently Viewed",
     "product_num" => ":count product|:count products",
-    "recent" => "Recently Viewed"
+    "no_products" => "No products",
+    'no_products_found' => 'No products found',
 ];
