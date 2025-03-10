@@ -3,7 +3,6 @@
         {{ __('admin/log.entries.registration', [
             'name' => $data->name,
             'id' => $data->id,
-            'ip' => $data->ip ?? '',
         ]) }}
     </span>
 </div>
