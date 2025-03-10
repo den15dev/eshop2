@@ -37,6 +37,7 @@ class RegisteredUserController extends Controller
             [
                 'id' => $user->id,
                 'name' => $user->name,
+                'ip' => $request->ip(),
             ]
         );
 
