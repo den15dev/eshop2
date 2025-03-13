@@ -96,3 +96,13 @@ $link-color: $color1;
     opacity: 0.1;
   }
 }
+
+.link-add {
+  display: block;
+  width: fit-content;
+
+  &::before {
+    content: '+';
+    margin-right: 0.25rem;
+  }
+}

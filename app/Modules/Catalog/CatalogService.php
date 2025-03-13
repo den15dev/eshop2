@@ -3,6 +3,7 @@
 namespace App\Modules\Catalog;
 
 use App\Modules\Catalog\Enums\ProductSorting;
+use App\Modules\Settings\SettingService;
 use Illuminate\Support\Collection;
 
 class CatalogService
@@ -12,10 +13,19 @@ class CatalogService
 
     public function getPreferences(?string $pref_cookie): \stdClass
     {
-        $catalog_prefs_arr = $pref_cookie ? json_decode($pref_cookie) : [ProductSorting::New->value, 12, 1];
+        $sorting_init = null;
+        $per_page_init = null;
+        $layout_init = null;
 
-        $sorting_list = $this->getProductSorting($catalog_prefs_arr[0]);
-        $per_page_list = $this->getProductsPerPage(intval($catalog_prefs_arr[1]));
+        if ($pref_cookie) {
+            $catalog_prefs_arr = json_decode($pref_cookie);
+            $sorting_init = $catalog_prefs_arr[0];
+            $per_page_init = intval($catalog_prefs_arr[1]);
+            $layout_init = intval($catalog_prefs_arr[2]);
+        }
+
+        $sorting_list = $this->getProductSorting($sorting_init);
+        $per_page_list = $this->getProductsPerPage($per_page_init);
 
         $prefs = new \stdClass();
         $prefs->sorting = $sorting_list;
@@ -24,13 +34,13 @@ class CatalogService
         $prefs->per_page = $per_page_list;
         $prefs->per_page_num = $per_page_list->firstWhere('is_active', true)->num;
 
-        $prefs->layout = intval($catalog_prefs_arr[2]);
+        $prefs->layout = $layout_init ?? 1;
 
         return $prefs;
     }
 
 
-    public function getProductSorting(string $current_sorting): Collection
+    public function getProductSorting(?string $current_sorting): Collection
     {
         $current_case = ProductSorting::tryFrom($current_sorting) ?? ProductSorting::New;
 
@@ -49,12 +59,12 @@ class CatalogService
     }
 
 
-    public function getProductsPerPage(int $current_num): Collection
+    public function getProductsPerPage(?int $current_num): Collection
     {
-        $per_page_arr = [12, 24, 36, 48];
+        $per_page_arr = SettingService::get('catalog_per_page');
 
         if (!in_array($current_num, $per_page_arr)) {
-            $current_num = 12;
+            $current_num = $per_page_arr[0];
         }
 
         $per_page = new Collection([]);

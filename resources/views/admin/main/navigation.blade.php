@@ -9,4 +9,5 @@
     <x-admin::navigation-item route="users" icon="navUserIcon" />
     <x-admin::navigation-item route="reviews" icon="navReviewIcon" />
     <x-admin::navigation-item route="shops" icon="navStoreIcon" />
+    <x-admin::navigation-item route="settings" icon="navSettingsIcon" />
 </ul>

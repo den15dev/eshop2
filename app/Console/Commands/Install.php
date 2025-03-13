@@ -7,6 +7,7 @@ use App\Modules\Currencies\Commands\AddCurrencies;
 use App\Modules\Currencies\Commands\UpdateRates;
 use App\Modules\Languages\Commands\AddLanguages;
 use App\Modules\Promos\Commands\AddPromos;
+use App\Modules\Settings\Commands\AddSettings;
 use App\Modules\StaticPages\Commands\AddStaticPageParams;
 use App\Modules\Shops\Commands\AddShops;
 use Database\Seeders\TestingDBSeeder;
@@ -40,6 +41,7 @@ class Install extends BaseCommand
         $this->call(AddShops::class);
         $this->call(AddPromos::class);
         $this->call(AddCategories::class);
+        $this->call(AddSettings::class);
         $this->seedTestingDB();
         $this->info('Application installed');
     }

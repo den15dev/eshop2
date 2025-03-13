@@ -12,16 +12,20 @@ return [
         "name" => "Name",
         "new_password" => "New Password",
         "password" => "Password",
-        "password_reset" => ["submit_btn" => "Save", "title" => "Password Reset"],
         "register" => "Register",
         "registration" => "Register",
-        "registration_success" => [
-            "link_sent" => "An email confirmation link has been sent to :address.",
-            "welcome" => "Welcome, :name!"
-        ],
         "remember" => "Remember Me",
         "sign_in" => "Sign In",
-        "sign_in_button" => "Sign In"
+        "sign_in_button" => "Sign In",
+        "registration_success" => [
+            "link_sent" => "An email confirmation link has been sent to :address.",
+            "welcome" => "Welcome, :name!",
+        ],
+        "password_reset" => [
+            "submit_btn" => "Save",
+            "title" => "Password Reset",
+        ],
+        'registration_closed' => 'Registration is closed.',
     ],
     "password" => "The provided password is incorrect.",
     "throttle" => "Too many login attempts. Please try again in :seconds seconds."

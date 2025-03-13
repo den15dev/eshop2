@@ -29,5 +29,6 @@ return [
             'title' => 'Сброс пароля',
             'submit_btn' => 'Сохранить',
         ],
+        'registration_closed' => 'Регистрация закрыта',
     ],
 ];

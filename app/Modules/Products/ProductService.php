@@ -6,14 +6,12 @@ use App\Modules\Brands\Models\Brand;
 use App\Modules\Products\Actions\GetAttributesAction;
 use App\Modules\Products\Actions\GetSkuAction;
 use App\Modules\Products\Models\Sku;
+use App\Modules\Settings\SettingService;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 class ProductService
 {
-    private const HOME_CAROUSEL_LIMIT = 10;
-
-
     public function getSku(int $id): ?Sku
     {
         return GetSkuAction::run($id);
@@ -43,7 +41,7 @@ class ProductService
         return Sku::getCards()
             ->orderByDesc(DB::raw(Sku::DISCOUNT))
             ->orderByDesc('skus.created_at')
-            ->limit(self::HOME_CAROUSEL_LIMIT)
+            ->limit(SettingService::get('carousel_items_num'))
             ->get();
     }
 
@@ -51,7 +49,7 @@ class ProductService
     {
         return Sku::getCards()
             ->orderByDesc('skus.created_at')
-            ->limit(self::HOME_CAROUSEL_LIMIT)
+            ->limit(SettingService::get('carousel_items_num'))
             ->get();
     }
 
@@ -60,7 +58,7 @@ class ProductService
         return Sku::getCards()
             ->orderByRaw('skus.rating IS NULL, skus.rating DESC')
             ->orderByDesc('skus.vote_num')
-            ->limit(self::HOME_CAROUSEL_LIMIT)
+            ->limit(SettingService::get('carousel_items_num'))
             ->get();
     }
 

@@ -15,6 +15,7 @@ return [
         'reviews' => 'Rezensionen',
         'orders' => 'Aufträge',
         'shops' => 'Shops',
+        'settings' => 'Einstellungen',
     ],
 
     'save' => 'Speichern',

@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PromoController;
 use App\Http\Controllers\Admin\ReviewController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\ShopController;
 use App\Http\Controllers\Admin\SkuController;
 use App\Http\Controllers\Admin\UserController;
@@ -105,4 +106,11 @@ Route::middleware('admin.protection')->group(function () {
     Route::post('/stores', [ShopController::class, 'store'])->name('shops.store');
     Route::put('/stores/{id}', [ShopController::class, 'update'])->whereNumber('id')->name('shops.update');
     Route::delete('/stores/{id}', [ShopController::class, 'destroy'])->whereNumber('id')->name('shops.destroy');
+});
+
+Route::get('/settings', [SettingController::class, 'edit'])->name('settings');
+Route::middleware('admin.protection')->group(function () {
+    Route::post('/settings', [SettingController::class, 'store'])->name('settings.store');
+    Route::put('/settings/{id}', [SettingController::class, 'update'])->name('settings.update');
+    Route::get('/settings/create', [SettingController::class, 'create'])->name('settings.create');
 });

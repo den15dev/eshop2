@@ -117,7 +117,7 @@ export function adjustTextAreaHeights() {
 
 export function showSubmit403Messages() {
     if (submit403Messages) {
-        const submitBtns = document.querySelectorAll('button[type="submit"]');
+        const submitBtns = document.querySelectorAll('button[type="submit"], .submit-403');
 
         submitBtns.forEach(btn => {
             btn.addEventListener('click', e => {

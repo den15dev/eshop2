@@ -80,12 +80,14 @@ function initAuthWin() {
 
     // Register form
     const registerForm = authMainCont.querySelector('form#registerTabPane');
-    const registerSubmitBtn = registerForm.querySelector('button[type="submit"]');
+    if (registerForm) {
+        const registerSubmitBtn = registerForm.querySelector('button[type="submit"]');
 
-    registerSubmitBtn.addEventListener('click', e => {
-        e.preventDefault();
-        submitForm(registerForm, registerSubmitBtn);
-    });
+        registerSubmitBtn.addEventListener('click', e => {
+            e.preventDefault();
+            submitForm(registerForm, registerSubmitBtn);
+        });
+    }
 
     // Form for sending a password reset link
     const sendLinkForm = forgotPasswordCont.querySelector('form#sendResetLinkForm');

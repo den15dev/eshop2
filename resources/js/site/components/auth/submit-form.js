@@ -1,5 +1,6 @@
 import { showAlert, clearAlert, clearValidationErrors, handleResponse } from "./handle-response.js";
 
+const honPotHeader = 'pheeb4eKahxo';
 
 export function submitForm(formElem, submitBtn) {
     showButtonPreloader(submitBtn);
@@ -7,7 +8,10 @@ export function submitForm(formElem, submitBtn) {
 
     fetch(formElem.action, {
         method: 'post',
-        headers: { 'Accept': 'application/json' },
+        headers: {
+            'Accept': 'application/json',
+            honPotHeader
+        },
         body: new URLSearchParams(formData),
     })
     .then(response => {

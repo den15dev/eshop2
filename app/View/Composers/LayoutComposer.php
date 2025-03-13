@@ -9,6 +9,7 @@ use App\Modules\Currencies\CurrencyService;
 use App\Modules\Favorites\FavoriteService;
 use App\Modules\Languages\LanguageService;
 use App\Modules\Orders\OrderService;
+use App\Modules\Settings\SettingService;
 use App\Modules\StaticPages\Models\StaticPageParam;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
@@ -39,6 +40,8 @@ class LayoutComposer
         $phone = $settings->firstWhere('name', 'phone')?->val;
         $phone_tel = str_replace([' ', '(', ')', '-'], '', $phone);
 
+        $isRegistrationAllowed = SettingService::get('allow_registration');
+
         $view->with(compact(
             'currencies',
             'languages',
@@ -51,6 +54,7 @@ class LayoutComposer
             'is_popup_collapsed',
             'comparison_skus',
             'favorites_num',
+            'isRegistrationAllowed',
         ));
     }
 }

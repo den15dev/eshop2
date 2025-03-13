@@ -229,6 +229,7 @@ return [
         App\Modules\Cart\CartServiceProvider::class,
         App\Modules\Orders\OrderServiceProvider::class,
         App\Modules\Favorites\FavoriteServiceProvider::class,
+        App\Modules\Settings\SettingServiceProvider::class,
     ])->toArray(),
 
     /*

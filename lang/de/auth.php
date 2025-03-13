@@ -12,16 +12,20 @@ return [
         "name" => "Name",
         "new_password" => "Neues Kennwort",
         "password" => "Passwort",
-        "password_reset" => ["submit_btn" => "Sparen", "title" => "Passwort zurücksetzen"],
         "register" => "Registrieren",
         "registration" => "Registrieren",
-        "registration_success" => [
-            "link_sent" => "Ein E-Mail-Bestätigungslink wurde an :address.",
-            "welcome" => "Willkommen, :name!"
-        ],
         "remember" => "Erinnere dich an mich",
         "sign_in" => "Einloggen",
-        "sign_in_button" => "Einloggen"
+        "sign_in_button" => "Einloggen",
+        "registration_success" => [
+            "link_sent" => "Ein E-Mail-Bestätigungslink wurde an :address.",
+            "welcome" => "Willkommen, :name!",
+        ],
+        "password_reset" => [
+            "submit_btn" => "Sparen",
+            "title" => "Passwort zurücksetzen",
+        ],
+        'registration_closed' => 'Die Registrierung ist geschlossen.',
     ],
     "password" => "Das Passwort ist falsch.",
     "throttle" => "Zu viele Loginversuche. Versuchen Sie es bitte in :seconds Sekunden nochmal."

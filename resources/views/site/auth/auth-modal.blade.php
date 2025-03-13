@@ -16,7 +16,15 @@
 
             @include('site.auth.login-form')
 
-            @include('site.auth.register-form')
+            @if($isRegistrationAllowed)
+                @include('site.auth.register-form')
+            @else
+                <div class="tab-pane" id="registerTabPane">
+                    <div class="registration-dummy grey-text">
+                        {{ __('auth.modal.registration_closed') }}
+                    </div>
+                </div>
+            @endif
         </div>
 
         @include('site.auth.forgot-password')

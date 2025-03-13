@@ -21,3 +21,8 @@ jobs:
             ssh-add ~/.ssh/eshop2-github
             cd /var/www/eshop2
             git pull origin master
+            docker compose -f compose.prod.yml exec eshop2-app php artisan down
+            docker compose -f compose.prod.yml exec eshop2-app composer install --no-interaction --optimize-autoloader --no-dev
+            docker compose -f compose.prod.yml exec eshop2-app php artisan migrate --force
+            docker compose -f compose.prod.yml exec eshop2-app php artisan cache:clear
+            docker compose -f compose.prod.yml exec eshop2-app php artisan up

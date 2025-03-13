@@ -6,6 +6,10 @@
         <input type="text" name="name" class="form-control" id="registerNameInput" autocomplete="given-name">
         <div id="registerNameInputFeedback" class="invalid-feedback"></div>
     </div>
+    <div class="mb-3 important-input">
+        <label for="registerLastNameInput" class="form-label">Last name:</label>
+        <input type="text" name="last_name" class="form-control" id="registerLastNameInput" autocomplete="off">
+    </div>
     <div class="mb-3">
         <label for="registerEmailInput" class="form-label">{{ __('auth.modal.email') }}:</label>
         <input type="email" name="email" class="form-control" id="registerEmailInput" placeholder="name@example.com" autocomplete="email">

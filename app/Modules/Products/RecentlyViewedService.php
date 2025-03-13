@@ -3,12 +3,12 @@
 namespace App\Modules\Products;
 
 use App\Modules\Products\Models\Sku;
+use App\Modules\Settings\SettingService;
 use Illuminate\Database\Eloquent\Collection as ECollection;
 
 class RecentlyViewedService
 {
     public const COOKIE = 'viewed';
-    private const LIMIT = 10;
 
 
     public function get(?string $cookie, int $exclude_id = 0): ECollection
@@ -43,7 +43,7 @@ class RecentlyViewedService
 
         if (!in_array($sku_id, $ids)) {
             array_unshift($ids, $sku_id);
-            $ids = array_slice($ids, 0, self::LIMIT);
+            $ids = array_slice($ids, 0, SettingService::get('carousel_items_num'));
         }
 
         return $ids;

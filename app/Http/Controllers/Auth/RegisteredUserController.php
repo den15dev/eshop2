@@ -16,6 +16,9 @@ class RegisteredUserController extends Controller
 {
     public function store(Request $request): JsonResponse
     {
+        // Spam bot protection
+        if (!$request->header('honPotHeader') || !empty($request->last_name)) abort(403);
+
         $request->validate([
             'name' => ['required', 'string', 'max:100'],
             'email' => ['required', 'string', 'email:rfc,dns', 'max:100', 'unique:'.User::class],
