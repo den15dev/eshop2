@@ -27,7 +27,7 @@ return [
             'de' => 'Anzahl der pro Seite angezeigten Elemente im Katalog',
         ],
         'data_type' => DataType::Array,
-        'val' => '[12,24,36,48]',
+        'val' => [12,24,36,48],
     ],
 
     [
