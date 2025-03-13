@@ -1,5 +1,4 @@
 import { post } from "../components/ajax.js";
-import {submit403Messages, translations} from "../../common/global.js";
 import {showClientModal} from "../../common/modals.js";
 
 const switches = document.querySelectorAll('#settingsPage .form-switch input');
