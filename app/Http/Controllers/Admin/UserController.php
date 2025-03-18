@@ -70,6 +70,8 @@ class UserController extends Controller
     public function edit(int $id): View
     {
         $user = $this->userService->getUser($id);
+        if (!$user) abort(404);
+
         $current_user = Auth::user();
 
         return view('admin.pages.users.edit', compact(

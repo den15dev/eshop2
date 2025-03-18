@@ -1,4 +1,10 @@
-@extends('site.layout')
+@php
+    $layout = preg_match('/\/admin\//', request()->path())
+        ? (request()->user()->isAdmin() || config('app.admin_demo') ? 'admin.layout' : 'site.layout')
+        : 'site.layout';
+@endphp
+
+@extends($layout)
 
 @section('page_title', __('errors.403') . ' - ' . __('general.app_name'))
 

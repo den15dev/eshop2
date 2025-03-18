@@ -69,7 +69,7 @@ class UserService
     }
 
 
-    public function getUser(int $user_id): User
+    public function getUser(int $user_id): ?User
     {
         return User::withCount(
             [
