@@ -13,6 +13,15 @@ const fadeSpeed = 200;
 export default function init() {
     activateSearchInput(lgMedia);
     lgMedia.addEventListener('change', activateSearchInput);
+
+    // Prevent sending an empty search query
+    const searchForms = document.querySelectorAll('.search-form');
+    searchForms.forEach(searchForm => {
+        searchForm.addEventListener('submit', event => {
+            const input = searchForm.querySelector('.search-input, .search-input-mobile');
+            if (!input.value) event.preventDefault();
+        });
+    });
 }
 
 function activateSearchInput(mediaQuery) {

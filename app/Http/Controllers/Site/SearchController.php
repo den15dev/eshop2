@@ -7,6 +7,7 @@ use App\Modules\Catalog\CatalogService;
 use App\Modules\Catalog\FilterService;
 use App\Modules\Catalog\SearchService;
 use App\Modules\Products\RecentlyViewedService;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -20,9 +21,10 @@ class SearchController extends Controller
     ) {}
 
 
-    public function index(Request $request): View
+    public function index(Request $request): View|RedirectResponse
     {
         $search_query = $request->query('query');
+        if (!$search_query) return redirect()->back();
 
         $prefs_cookie = $request->cookie(CatalogService::PREF_COOKIE);
         $prefs = $this->catalogService->getPreferences($prefs_cookie);
