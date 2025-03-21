@@ -1,6 +1,6 @@
 @php
     $layout = preg_match('/\/admin\//', request()->path())
-        ? (request()->user()->isAdmin() || config('app.admin_demo') ? 'admin.layout' : 'site.layout')
+        ? (request()->user()?->isAdmin() || config('app.admin_demo') ? 'admin.layout' : 'site.layout')
         : 'site.layout';
 @endphp
 
