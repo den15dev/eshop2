@@ -32,6 +32,7 @@ class ReviewController extends Controller
         abort_if(!$category, 404);
 
         $slug_id = $productService::parseSlug($product_slug_id);
+        abort_if(!$slug_id, 404);
         $sku_id = $slug_id[1];
 
         $sku = $this->reviewService->getSku($sku_id);

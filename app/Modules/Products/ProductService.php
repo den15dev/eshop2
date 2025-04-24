@@ -66,10 +66,14 @@ class ProductService
     /**
      * Explode "slug-id"-type slug to array [slug, id].
      */
-    public static function parseSlug(string $slug_id): array
+    public static function parseSlug(string $slug_id): array|bool
     {
         $slug_arr = explode('-', $slug_id);
+        if (count($slug_arr) < 2) return false;
+
         $id = array_pop($slug_arr);
+        if (!ctype_digit($id)) return false;
+
         $slug = count($slug_arr) > 1 ? implode('-', $slug_arr) : $slug_arr[0];
 
         return [$slug, $id];

@@ -25,6 +25,7 @@ class ProductController extends Controller
         $breadcrumb = $categoryService->getBreadcrumb($category, false);
 
         $slug_id = $productService::parseSlug($product_slug_id);
+        abort_if(!$slug_id, 404);
         $sku_id = $slug_id[1];
 
         $sku = $productService->getSku($sku_id);
