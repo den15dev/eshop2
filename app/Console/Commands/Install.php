@@ -52,8 +52,7 @@ class Install extends BaseCommand
         $image_dir = storage_path('app/public/images');
         $dir_names = [
             'brands',
-            'categories',
-            'products',
+            'temp',
             'promos',
             'users',
         ];

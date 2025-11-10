@@ -44,6 +44,7 @@ class ComparisonService
                 'skus.id',
                 'skus.name',
                 'skus.slug',
+                'skus.code',
                 'products.category_id',
                 'categories.slug as category_slug',
             )
@@ -65,6 +66,7 @@ class ComparisonService
                 'skus.id',
                 'skus.name',
                 'skus.slug',
+                'skus.code',
                 'products.category_id',
                 'categories.slug as category_slug',
                 'skus.currency_id',

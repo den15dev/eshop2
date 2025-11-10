@@ -18,7 +18,7 @@
         </h4>
 
         <div class="product-code mb-3">
-            <div>{{ __('product.product_id') }}: {{ $sku->id }}</div>
+            <div>{{ __('product.sku_code') }}: {{ $sku->code }}</div>
 
             <x-rating size="small"
                       :url="route('reviews', [$sku->category_slug, $sku->url_slug])"
@@ -48,7 +48,7 @@
 
             <div class="product-main_specs">
                 <div class="mb-35">
-                    <div class="product-main_spec-title"><b>{{ __('product.sku_code') }}:</b></div>
+                    <div class="product-main_spec-title"><b>{{ __('product.manufacturer_code') }}:</b></div>
                     {{ $sku->sku }}
                 </div>
 

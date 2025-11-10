@@ -5,3 +5,6 @@ ProductDataFixer.php
 ProductDBSeeder.php
 ProductTranslator.php
 Translator.php
+SkuCodeAssigner.php
+ImageCodeOrganizer.php
+S3ImageUploader.php

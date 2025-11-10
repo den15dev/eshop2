@@ -15,6 +15,7 @@ class ProductTest extends TestCase
                 'skus.id',
                 'skus.name',
                 'skus.slug',
+                'skus.code',
                 'categories.slug as category_slug',
             )
             ->inRandomOrder()
@@ -24,7 +25,7 @@ class ProductTest extends TestCase
 
         $response->assertStatus(200);
         $response->assertSeeText($sku->name);
-        $response->assertSeeText(__('product.product_id'));
+        $response->assertSeeText(__('product.sku_code'));
         $response->assertSeeText(__('product.description'));
     }
 }

@@ -24,6 +24,7 @@ class ProductService
     public const TABLE_NAME = 'products';
     public const COLUMNS_COOKIE = 'cls_products';
     public const ROW_LINKS = false; // A whole table row will be a link (every <td> content will be wrapped by <a> tag)
+    private const LAST_CODE_PATH = 'eshop/products/last_code.txt';
 
 
     public function __construct(
@@ -52,6 +53,29 @@ class ProductService
         $state->order = $query['order'] ?? null;
 
         return $state;
+    }
+
+
+    /**
+     * This is a forced measure because of multiple
+     * demo apps with one storage. In the real app,
+     * use database sequence instead!
+     *
+     * @return int
+     */
+    public function getLastSkuCode(): int
+    {
+        $disk = Storage::disk('s3tw');
+
+        return (int) file_get_contents($disk->url(self::LAST_CODE_PATH));
+    }
+
+
+    public function updateSkuCode(int $newSkuCode): void
+    {
+        $disk = Storage::disk('s3tw');
+
+        $disk->put(self::LAST_CODE_PATH, $newSkuCode);
     }
 
 
@@ -186,15 +210,17 @@ class ProductService
     }
 
 
-    public function updateSkuImages(int $id, array $old_images, array $new_images, ?UploadedFile $file): void
+    public function updateSkuImages(int $id, int $sku_code, array $old_images, array $new_images, ?UploadedFile $file): void
     {
-        $dir = Storage::disk('images')->path(Sku::IMG_DIR . '/' . $id);
+        $disk = Storage::disk('s3tw');
 
         // Remove unneeded images
         foreach ($old_images as $old_image) {
             if (!in_array($old_image, $new_images)) {
                 foreach (Sku::IMG_SIZES as $size => $res) {
-                    unlink($dir . '/' . $old_image . '_' . $size . '.jpg');
+                    $imageName = $old_image . '_' . $size . '.jpg';
+                    $remotePath = "eshop/products/{$sku_code}/{$imageName}";
+                    $disk->delete($remotePath);
                 }
             }
         }
@@ -205,7 +231,7 @@ class ProductService
             $new_index = sprintf('%02d', $new_index);
             $new_images[] = $new_index;
 
-            $this->saveSkuImage($id, $new_index, $file);
+            $this->saveSkuImage($sku_code, $new_index, $file);
         }
 
         Sku::firstWhere('id', $id)->update([
@@ -214,47 +240,60 @@ class ProductService
     }
 
 
-    public function saveSkuImage(int $sku_id, int|string $index, UploadedFile $file): void
+    public function saveSkuImage(int $skuCode, int|string $index, UploadedFile $file): void
     {
-        $dir = Storage::disk('images')->path(Sku::IMG_DIR . '/' . $sku_id);
-        if (!is_dir($dir)) mkdir($dir);
+        $disk = Storage::disk('s3tw');
+        $tempDir = Storage::disk('images')->path('temp/' . $skuCode);
 
-        $source_path = $file->path();
+        if (!is_dir($tempDir)) {
+            mkdir($tempDir);
+        }
+
+        $sourcePath = $file->path();
 
         foreach (Sku::IMG_SIZES as $size => $res) {
-            $out_path = $dir . '/' . sprintf('%02d', $index) . '_' . $size . '.jpg';
-            ImageService::saveToSquareFilled($source_path, $out_path, $res);
+            $imageName = sprintf('%02d', $index) . '_' . $size . '.jpg';
+            $outPath = $tempDir . '/' . $imageName;
+            ImageService::saveToSquareFilled($sourcePath, $outPath, $res);
+
+            $remotePath = "eshop/products/{$skuCode}/{$imageName}";
+            $disk->put($remotePath, file_get_contents($outPath));
+
+            unlink($outPath);
         }
+
+        rmdir($tempDir);
     }
 
 
     public function deleteProductImages(int $product_id): int
     {
-        $sku_ids = Sku::select('id')
+        $skuCodes = Sku::select('id', 'code')
             ->where('product_id', $product_id)
+            ->orderBy('code', 'asc')
             ->get()
-            ->pluck('id')
+            ->pluck('code')
             ->all();
 
-        foreach ($sku_ids as $sku_id) {
-            $this->deleteSkuImages($sku_id);
+        foreach ($skuCodes as $skuCode) {
+            $this->deleteSkuImages($skuCode);
         }
 
-        return count($sku_ids);
+        return count($skuCodes);
     }
 
 
-    public function deleteSkuImages(int $sku_id): void
+    public function deleteSkuImages(int $skuCode): void
     {
-        $dir = Storage::disk('images')->path(Sku::IMG_DIR . '/' . $sku_id);
+        $disk = Storage::disk('s3tw');
+        $prefix = "eshop/products/{$skuCode}/";
+        $skuImages = $disk->allFiles($prefix);
 
-        if (is_dir($dir)) {
-            $images = array_diff(scandir($dir), ['.', '..']);
-            foreach ($images as $img) {
-                unlink($dir . '/' . $img);
-            }
-            rmdir($dir);
+        if ($skuImages) {
+            $disk->delete($skuImages);
         }
+
+        $disk->delete($prefix);
     }
 
 

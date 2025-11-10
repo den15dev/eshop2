@@ -112,24 +112,26 @@ class CategoryService
 
     public function saveImage(string $slug, UploadedFile $file): void
     {
-        $dir = Storage::disk('images')->path(Category::IMG_DIR);
-        if (!is_dir($dir)) mkdir($dir);
+        $disk = Storage::disk('s3tw');
+        $tempDir = Storage::disk('images')->path('temp/' . $slug);
 
-        if (file_exists($dir . '/' . $slug . '.jpg')) {
-            unlink($dir . '/' . $slug . '.jpg');
-        }
+        $sourcePath = $file->path();
+        $imageName = $slug . '.jpg';
+        $outPath = $tempDir . '/' . $imageName;
+        ImageService::saveToSquareFilled($sourcePath, $outPath, Category::IMG_SIZE);
 
-        $source_path = $file->path();
-        $out_path = $dir . '/' . $slug . '.jpg';
-        ImageService::saveToSquareFilled($source_path, $out_path, Category::IMG_SIZE);
+        $remotePath = "eshop/categories/{$imageName}";
+        $disk->put($remotePath, file_get_contents($outPath));
+
+        unlink($outPath);
+        rmdir($tempDir);
     }
 
 
     public function deleteImage(string $slug): void
     {
-        $dir = Storage::disk('images')->path(Category::IMG_DIR);
-        if (file_exists($dir . '/' . $slug . '.jpg')) {
-            unlink($dir . '/' . $slug . '.jpg');
-        }
+        $disk = Storage::disk('s3tw');
+
+        $disk->delete("eshop/categories/{$slug}.jpg");
     }
 }

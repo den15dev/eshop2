@@ -104,9 +104,10 @@ class SkuController extends Controller
 
             $old_images = isset($validated['old_images']) ? json_decode($validated['old_images']) : [];
             $new_images = isset($validated['new_images']) ? json_decode($validated['new_images']) : [];
+            $sku_code = $validated['sku_code'];
             $image_file = $request->file('image');
 
-            $this->productService->updateSkuImages($id, $old_images, $new_images, $image_file);
+            $this->productService->updateSkuImages($id, $sku_code, $old_images, $new_images, $image_file);
             $flash_message = __('admin/skus.messages.images_updated');
         }
 
@@ -125,10 +126,14 @@ class SkuController extends Controller
     {
         $validated = $request->validated();
 
+        $skuCode = $this->productService->getLastSkuCode();
+        $skuCode++;
+
         $sku = new Sku();
         $sku->product_id = $request->product_id;
         $sku->name = $validated['name'];
         $sku->slug = Str::slug($validated['name'][app()->getFallbackLocale()]);
+        $sku->code = $skuCode;
         $sku->sku = $validated['sku'];
         $sku->short_descr = $validated['short_descr'];
         $sku->description = $validated['description'];
@@ -170,6 +175,8 @@ class SkuController extends Controller
 
             $sku->update(['images' => $images_arr]);
         }
+
+        $this->productService->updateSkuCode($skuCode);
 
         $request->flashSuccessMessage(__('admin/products.messages.sku_added', ['name' => $sku->name]));
 

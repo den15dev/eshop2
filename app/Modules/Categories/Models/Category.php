@@ -2,7 +2,6 @@
 
 namespace App\Modules\Categories\Models;
 
-use App\Modules\Images\ImageService;
 use App\Modules\Products\Models\Product;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -66,6 +65,6 @@ class Category extends Model
 
     public function getImageUrlAttribute(): string
     {
-        return get_image(self::IMG_DIR . '/' . $this->slug . '.jpg', 'sm');
+        return Storage::disk('s3tw')->url('eshop/categories/' . $this->slug . '.jpg');
     }
 }

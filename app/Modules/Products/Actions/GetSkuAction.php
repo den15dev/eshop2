@@ -17,6 +17,7 @@ class GetSkuAction
                 'skus.product_id',
                 'skus.name',
                 'skus.slug',
+                'skus.code',
                 'skus.sku',
                 'skus.short_descr',
                 'skus.description',

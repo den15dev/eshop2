@@ -117,6 +117,7 @@ class ReviewTest extends TestCase
                 'skus.id',
                 'skus.name',
                 'skus.slug',
+                'skus.code',
                 'categories.slug as category_slug',
             );
 

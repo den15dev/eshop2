@@ -64,6 +64,7 @@ class CatalogTest extends TestCase
         $skus = Sku::select(
                 'skus.id',
                 'skus.slug',
+                'skus.code',
                 'skus.name',
                 'skus.currency_id',
                 'skus.price',

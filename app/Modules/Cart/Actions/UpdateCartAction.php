@@ -68,6 +68,7 @@ class UpdateCartAction
                 'skus.id',
                 'skus.name',
                 'skus.slug',
+                'skus.code',
                 'products.category_id',
                 'categories.slug as category_slug',
             )

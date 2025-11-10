@@ -15,9 +15,13 @@
             {{ __('admin/skus.to_product', ['product' => $sku->product->name]) }}
         </a>
 
-        <div class="mb-3">
+        <div>
             <span class="grey-text">ID {{ $sku->id }}:</span>
             <a href="{{ $sku->url }}" class="link external-link" target="_blank">{{ $sku->name }}</a>
+        </div>
+
+        <div class="mb-3">
+            <span class="grey-text">{{ __('product.sku_code') }}:</span> {{ $sku->code }}
         </div>
 
 
@@ -121,7 +125,7 @@
 
             <div class="form-flex-cont mb-4">
                 <div>
-                    <label for="sku" class="form-label">{{ __('admin/skus.sku') }}:</label>
+                    <label for="sku" class="form-label">{{ __('product.manufacturer_code') }}:</label>
                     <input type="text"
                            class="form-control @error('sku') is-invalid @enderror"
                            name="sku"
@@ -304,6 +308,8 @@
                     <input type="hidden" name="new_images"
                            value="{{ json_encode($sku->images, JSON_UNESCAPED_UNICODE) }}"
                            id="skuImages"/>
+                    <input type="hidden" name="sku_code"
+                           value="{{ $sku->code }}"/>
 
                     <div class="mb-3">
                         <input type="file"

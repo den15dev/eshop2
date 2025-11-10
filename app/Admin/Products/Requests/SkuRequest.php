@@ -49,6 +49,7 @@ class SkuRequest extends FormRequest
             $rules = array_merge($rules, [
                 'old_images' => ['nullable', 'json'],
                 'new_images' => ['nullable', 'json'],
+                'sku_code' => ['required', 'numeric'],
                 'image' => $image_rules,
             ]);
         }

@@ -6,7 +6,7 @@
 
 <div class="{{ $classname }}">
     <div class="cart-item_product-id">
-        {{ __('product.product_id') }}: {{ $sku->id }}
+        {{ __('product.sku_code') }}: {{ $sku->id }}
     </div>
     <div>
         @if($sku->discount)

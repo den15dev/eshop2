@@ -27,6 +27,7 @@ use Illuminate\Database\Query\JoinClause;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Translatable\HasTranslations;
 
 class Sku extends Model
@@ -164,6 +165,7 @@ class Sku extends Model
             'skus.id',
             'skus.name',
             'skus.slug',
+            'skus.code',
             'products.category_id',
             'categories.slug as category_slug',
             'skus.short_descr',
@@ -291,14 +293,8 @@ class Sku extends Model
 
     public function getImageURL(string $size, int|string $num = 1): ?string
     {
-        $placeholder_size = match ($size) {
-            'tn' => 'tn',
-            'sm' => 'sm',
-            default => 'md',
-        };
-
         if (!is_numeric($num)) return null;
 
-        return get_image(self::IMG_DIR . '/' . $this->id . '/' . sprintf('%02d', $num) . '_' . $size . '.jpg', $placeholder_size);
+        return Storage::disk('s3tw')->url('eshop/products/' . $this->code . '/' . sprintf('%02d', $num) . '_' . $size . '.jpg');
     }
 }

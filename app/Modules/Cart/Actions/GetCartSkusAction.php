@@ -23,6 +23,7 @@ class GetCartSkusAction
                 'skus.id',
                 'skus.name',
                 'skus.slug',
+                'skus.code',
                 'products.category_id',
                 'categories.slug as category_slug',
                 'skus.short_descr',

@@ -65,6 +65,16 @@ return [
             'throw' => false,
         ],
 
+        's3tw' => [
+            'driver' => 's3',
+            'key' => env('S3TW_ACCESS_KEY_ID'),
+            'secret' => env('S3TW_SECRET_ACCESS_KEY'),
+            'region' => env('S3TW_DEFAULT_REGION'),
+            'bucket' => env('S3TW_BUCKET'),
+            'endpoint' => env('S3TW_ENDPOINT'),
+            'use_path_style_endpoint' => env('S3TW_USE_PATH_STYLE_ENDPOINT', false),
+            'throw' => false,
+        ],
     ],
 
     /*

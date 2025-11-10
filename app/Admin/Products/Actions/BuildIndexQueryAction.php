@@ -41,6 +41,7 @@ class BuildIndexQueryAction
                 'sku_count',
                 'skus.name',
                 'skus.slug',
+                'skus.code',
                 'skus.sku',
                 'products.category_id',
                 'categories.name as category_name',

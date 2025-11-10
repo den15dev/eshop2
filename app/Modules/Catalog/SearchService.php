@@ -26,8 +26,8 @@ class SearchService
 
         return $total;
     }
-    
-    
+
+
     public function getDropdownSkus(string $search_query): Collection
     {
         return Sku::join('products', 'skus.product_id', 'products.id')
@@ -37,6 +37,7 @@ class SearchService
                 'skus.id',
                 'skus.name',
                 'skus.slug',
+                'skus.code',
                 'products.category_id',
                 'categories.slug as category_slug',
                 'skus.currency_id',
