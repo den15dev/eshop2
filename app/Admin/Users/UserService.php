@@ -22,7 +22,7 @@ class UserService
                 'users.*',
             );
 
-        $isBoss = Auth::user()->isBoss();
+        $isBoss = Auth::user()?->isBoss();
         if (!$isBoss) {
             $db_query->where('role', '!=', 'boss');
         }
