@@ -135,18 +135,6 @@
                     <div id="skuFeedback" class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
-
-                <div>
-                    <label for="sku" class="form-label">Unique SKU code:</label>
-                    <input type="text"
-                           class="form-control @error('code') is-invalid @enderror"
-                           name="code"
-                           value="{{ old('code', $sku->code) }}"
-                           id="code"/>
-                    @error('code')
-                    <div id="skuFeedback" class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
             </div>
 
             <div class="form-flex-cont mb-4">

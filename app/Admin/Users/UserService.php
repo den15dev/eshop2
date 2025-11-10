@@ -6,6 +6,7 @@ use App\Admin\IndexTable\IndexTableService;
 use App\Modules\Orders\Enums\OrderStatus;
 use App\Modules\Users\Models\User;
 use Illuminate\Database\Eloquent\Builder as EBuilder;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class UserService
@@ -20,6 +21,11 @@ class UserService
         $db_query = User::select(
                 'users.*',
             );
+
+        $isBoss = Auth::user()->isBoss();
+        if (!$isBoss) {
+            $db_query->where('role', '!=', 'boss');
+        }
 
         if (isset($query['search'])) {
             $db_query = $tableService->constrainBySearchStr($db_query, $query['search']);
