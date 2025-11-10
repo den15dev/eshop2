@@ -13,6 +13,15 @@ return [
         'order_by' => 'skus.id',
         'search_field' => 'skus.id',
         'format' => null,
+        'is_default' => false,
+    ],
+    [
+        'id' => 'code',
+        'show_name' => true,
+        'class_list' => null,
+        'order_by' => 'skus.code',
+        'search_field' => 'skus.code',
+        'format' => null,
         'is_default' => true,
     ],
     [

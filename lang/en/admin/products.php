@@ -15,6 +15,7 @@ return [
 
     'columns' => [
         'id' => 'ID',
+        'code' => 'Code',
         'image' => 'Image',
         'product_id' => 'Product ID',
         'product_name' => 'Product',

@@ -32,6 +32,7 @@ class SkuRequest extends FormRequest
                 'name.*' => ['nullable'],
                 'name.' . app()->getFallbackLocale() => ['required'],
                 'sku' => ['nullable'],
+                'code' => ['required', 'numeric'],
                 'short_descr.*' => ['nullable'],
                 'short_descr.' . app()->getFallbackLocale() => ['required'],
                 'description.*' => ['nullable'],

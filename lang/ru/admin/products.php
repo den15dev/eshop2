@@ -15,6 +15,7 @@ return [
 
     'columns' => [
         'id' => 'ID',
+        'code' => 'Код',
         'image' => 'Изображение',
         'product_id' => 'ID товара',
         'product_name' => 'Товар',
