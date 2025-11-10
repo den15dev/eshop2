@@ -10,7 +10,6 @@ use App\Modules\Languages\LanguageService;
 use App\Admin\Promos\PromoService;
 use App\Modules\Products\Models\Product;
 use App\Modules\Products\Models\Sku;
-use DragonCode\Support\Facades\Helpers\Str;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -96,7 +95,7 @@ class SkuController extends Controller
 
         if ($request->has('sku')) {
             $updated = $request->validated();
-            $updated['slug'] = Str::slug($request->validated('name')[app()->getFallbackLocale()]);
+            $updated['slug'] = str($request->validated('name')[app()->getFallbackLocale()])->slug()->value();
         }
 
         if ($request->has('old_images')) {
@@ -132,7 +131,7 @@ class SkuController extends Controller
         $sku = new Sku();
         $sku->product_id = $request->product_id;
         $sku->name = $validated['name'];
-        $sku->slug = Str::slug($validated['name'][app()->getFallbackLocale()]);
+        $sku->slug = str($validated['name'][app()->getFallbackLocale()])->slug()->value();
         $sku->code = $skuCode;
         $sku->sku = $validated['sku'];
         $sku->short_descr = $validated['short_descr'];
